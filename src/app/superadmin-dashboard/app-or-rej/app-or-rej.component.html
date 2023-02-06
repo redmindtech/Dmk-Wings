@@ -413,10 +413,12 @@
             <thead>
               <tr>
                   <th>Name</th>
-                  <th>Designation</th>
-                  <th>District</th>
-                  <th>Status</th>
+                  <!-- <th>Designation</th> -->
+                  <!-- <th>Applied role</th> -->
+                  <!-- <th>Status</th> -->
                   <th>Email</th>
+                  <th>Contact no</th>
+                  <th>Request</th>
                   <th>Show</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -428,18 +430,24 @@
                 <td style="min-width: 20px;">
                   {{customer.name}}
                   </td>
-                  <td style="min-width: 20px;">
+                  <!-- <td style="min-width: 20px;">
                   {{customer.designation}}
-                  </td>
-                  <td style="min-width: 20px;">
-                  {{customer.district}}
-                  </td>
-                  <td style="min-width: 20px;">
+                  </td> -->
+                  <!-- <td style="min-width: 20px;">
+                  {{customer.applied_role}}
+                  </td> -->
+                  <!-- <td style="min-width: 20px;">
                   {{customer.approval_status}}
-                  </td>
+                  </td> -->
                   <td style="min-width: 20px;">
                   {{customer.email}}
                   </td>
+                  <td style="min-width: 20px;">
+                    {{customer.contact_no}}
+                    </td>
+                  <td><a data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
+                    <i class="fas fa-flag"></i>
+                </a></td>
                   <td><a data-toggle="modal" data-target="#showDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
                       <i class="fas fa-flag"></i>
                   </a></td>
@@ -458,4 +466,76 @@
   
 </div>
 
+</div>
+
+<div class="modal fade" id="requestDialog">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Request office bearer</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="card-body">
+     
+           <form class="request-form" [formGroup]='reqform' (ngSubmit)="postdata1(reqform)" autocomplete="off">
+            <div class="form-group">            
+                <div class="col-6 md:col-6">
+                  <input type="text" pInputText  hidden name="user_id" formControlName="user_id" [value]="OBid"
+                    placeholder="obid" />
+               
+                </div>
+              </div>
+            <div class="form-group">
+             <div class="col-12 md:col-12">
+                                  <label>First Name</label><span class="required "> *</span>
+                                  <input  pInputText type="text" name="name" class="form-control"  placeholder="Enter Name" [value]="OBname+OBlastname" formControlName="name"/>
+                                  <div  *ngIf="reqform.get('name').hasError('required') && reqform.get('name').touched"
+                                    class="invalid-msg">Please enter the valid field
+                                </div>
+                </div>
+  
+            </div>
+            <!-- </div> -->
+            <div class="form-group">
+              <div class="col-12 md:col-12">
+                                   <label>Old Designation</label><span class="required "> *</span>
+                                   <input  pInputText type="text" name="old_designation" class="form-control"  placeholder="Old Designation" [value]="OBresponcibility" formControlName="old_designation"/>
+                                   <div  *ngIf="reqform.get('old_designation').hasError('old_designation') && reqform.get('old_designation').touched"
+                                     class="invalid-msg">Please enter the valid field
+                                 </div>
+                 </div>
+   
+             </div>
+            <div class="form-group ">
+                <div class="col-12 md:col-12">
+                  <label>New Designation</label><span class="required "> *</span>
+                    <input pInputText type="text" name="new_designation"  class="form-control" formControlName="new_designation" placeholder="New Designation" >
+                    <div  *ngIf="reqform.get('new_designation').hasError('new_designation') && reqform.get('new_designation').touched"
+                    class="invalid-msg">Please enter the valid field
+                  </div>
+            </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-12 md:col-12">
+                  <label>Reason</label><span class="required "> *</span>
+                    <input pInputText type="text" name="reason"  class="form-control" formControlName="reason" placeholder="Reason " >
+                    <div  *ngIf="reqform.get('reason').hasError('reason') && reqform.get('reason').touched"
+                    class="invalid-msg">Please enter the valid field
+                  </div>
+                </div>
+            </div>
+            <div class="col-3" style="margin-left:34%;">
+              <button  class="btn btn-danger btn btn-block">
+                REQUEST APPLY
+              </button>
+            </div>
+            
+            
+            
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

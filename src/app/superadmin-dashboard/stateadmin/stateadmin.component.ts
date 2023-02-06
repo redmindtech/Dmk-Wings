@@ -62,7 +62,7 @@ export class StateadminComponent implements OnInit {
     //console.log(this.ApiService.tabledata)
   }
   getdataarray(){
-    console.log("2st");
+    // console.log("2st");
     this.customers=[];
         for(const prop in this.ApiService.tabledata) {
             this.customers.push(this.ApiService.tabledata[prop])
