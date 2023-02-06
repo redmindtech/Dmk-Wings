@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 
 
@@ -9,6 +10,8 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./app-or-rej.component.scss']
 })
 export class AppOrRejComponent implements OnInit {
+  reqform !:FormGroup;
+  router: any;
   
 
   constructor(public ApiService:ApiServiceService,
@@ -32,6 +35,13 @@ export class AppOrRejComponent implements OnInit {
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
       });
+
+      this.reqform= this.fb.group({
+        name: [''],
+       old_designation:[''],
+       new_designation:[''],
+       reason:[''],
+        user_id:[''],});
     }
   customers:any=[];
   officebearerform !:FormGroup;
@@ -142,5 +152,41 @@ export class AppOrRejComponent implements OnInit {
          this.OBresponcibility=a.applied_role;
          this.OBcomments=a.party_comments;
 }
+
+
+postdata1(angForm1) //angForm1
+{
+    console.log(angForm1);
+    if( angForm1.status="valid" )
+    {
+        this.ApiService.rq_form(angForm1.value.name,this.OBid,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason )
+        .pipe(first())
+        .subscribe(
+        data => {
+          console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
+            alert("Request has been created successfully!")
+   
+        this.router.navigate(['superadmin/Approve-Reject']);
+        angForm1.reset();
+        },
+
+        error => {
+            console.log(error);
+        });
+    }
+    else{
+        alert("Please enter the valid details");
+    }
+}
+
+
+
+
+
+get user_id() { return this.reqform.get('user_id'); }
+get name() { return this.reqform.get('name'); }
+get  new_designation() { return this.reqform.get('new_designation'); }
+get old_designation() { return this.reqform.get(' old_designation'); }
+get reason() { return this.reqform.get('reason'); }
 
 }

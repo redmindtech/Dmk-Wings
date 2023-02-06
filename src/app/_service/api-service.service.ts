@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { Router } from '@angular/router';
 // import { AnyARecord } from 'dns';
 // import { Password } from 'primeng/password';
 
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class ApiServiceService {
   redirectUrl!: string;
           baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-        //baseUrl:string="http://localhost/lat_git_dmk/dmk_php/php/php/php";
+        // baseUrl:string="http://localhost/lat_git_dmk/dmk_php/php/php/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
@@ -244,6 +245,34 @@ public viewtableDA() {
               return Users;
                   }));
                               }
+
+                                public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
+                                  console.log(constituency);
+                                return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
+                                { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
+                                .pipe(map(Users => {
+                                return Users;
+                                }));
+                                }
+
+                                public rq_form(name:any,user_id:any,old_designation:any,new_designation:any, reason:any) {
+                                  const httpOptions: Object = {
+                                    headers: new HttpHeaders({
+                                      'Content-Type': 'application/x-www-form-urlencoded'
+                                    })
+                                  };
+                               // console.log("sdf")
+                                  //console.log(name);
+                                 return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php', 
+                                  {name,old_designation,new_designation,reason ,user_id},httpOptions)
+                                  .pipe(map(Users => {
+                                  return Users;
+                                  }));
+                            
+                                }
+
+
+
 
 //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
 //  const httpOptions : Object = {
