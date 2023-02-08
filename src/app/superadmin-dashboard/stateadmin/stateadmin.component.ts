@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 
@@ -13,6 +13,7 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 export class StateadminComponent implements OnInit {
   customers:any;
   stateadminform !:FormGroup;
+  editform: FormGroup;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder) { 
     this.stateadminform = this.fb.group({ //angForm
@@ -26,7 +27,31 @@ export class StateadminComponent implements OnInit {
       location_id:['1'],
       mode:['0']
       });
+
+      this.editform = this.fb.group({ //angForm
+        email1: [this.SAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+        //district:['',Validators.required],
+        designation1:[''],
+        party_designation1:[''],
+        approval_status1:[''],
+        location_id1:['1'],
+        mode1:['0']
+        });
+
+
+      
+      
   }
+  //firstname1=new FormControl('hu');
+  
+
+  // updateName() {
+  //   this.firstname1.setValue('Nancy');
+  // }
+  
+  
 
   dtOptions: DataTables.Settings = {};
   ngOnInit(): void {
@@ -40,6 +65,8 @@ export class StateadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
+
+    
       
   }
   // ngAfterViewInit() {
@@ -62,7 +89,7 @@ export class StateadminComponent implements OnInit {
     //console.log(this.ApiService.tabledata)
   }
   getdataarray(){
-    // console.log("2st");
+    console.log("2st");
     this.customers=[];
         for(const prop in this.ApiService.tabledata) {
             this.customers.push(this.ApiService.tabledata[prop])
@@ -123,12 +150,43 @@ export class StateadminComponent implements OnInit {
     editbuttonviewSA(a:any){
        let fullname=a.name.split(" ");
        this.SAid=a.id;
+      //  alert(this.SAid);
        this.SAname=fullname[0];
        this.SAlastname=fullname[1];
           this.SAdesig=a.designation;
           this.SAparty_desig=a.party_designation;
           this.SAmail=a.email;
           this.SAstatus=a.approval_status;
+
+          this.editform.patchValue({
+            id1:this.SAid,
+            email1:this.SAmail,
+            firstname1:this.SAname,
+            lastname1:this.SAlastname,
+            designation1:this.SAdesig,
+            party_designation1:this.SAparty_desig,
+            approval_status1:this.SAstatus
+            
+
+          })
+    }
+    updatedata(updateform: any){
+
+          console.log(updateform.value);
+          this.ApiService.updateSA('0', this.SAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
+            updateform.get('designation1').value,
+            updateform.get('party_designation1').value,
+            updateform.get('email1').value,
+            updateform.get('approval_status1').value)
+            .pipe()
+            .subscribe(
+                data => {
+                    alert("State admin detail was updated!");
+                },
+
+                error => {
+                    console.log(error);
+                });
     }
   
 

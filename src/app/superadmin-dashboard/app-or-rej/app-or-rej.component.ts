@@ -10,9 +10,9 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./app-or-rej.component.scss']
 })
 export class AppOrRejComponent implements OnInit {
-  reqform !:FormGroup;
+  reqform :FormGroup;
   router: any;
-  
+  editform:FormGroup;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder) 
@@ -36,10 +36,31 @@ export class AppOrRejComponent implements OnInit {
         mode:['2',Validators.required]
       });
 
+
+      this.editform = this.fb.group({ //angForm
+        email1: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+        age1:['',Validators.required],
+        father_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        educational_qualification1:['',Validators.required],
+        date_of_birth1:[''],
+        additional_qualification1:[''],
+        contact_no1:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        whatsapp_no1:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        profession1:[''],
+        address1:[''],
+        applied_role1:['',Validators.required],
+        party_comments1:[''],
+        location_id1:['1',Validators.required],
+        mode1:['2',Validators.required]
+      });
+
       this.reqform= this.fb.group({
         name: [''],
-       old_designation:[''],
-       new_designation:[''],
+        email1:[''],
+        old_designation:[''],
+       new_designation1:[''],
        reason:[''],
         user_id:[''],});
     }
@@ -131,8 +152,11 @@ export class AppOrRejComponent implements OnInit {
     whatsappnumner: any;
     OBprofession: any;
     OBaddress: any;
-    OBresponcibility: any;
+    OBold_designation: any;
     OBcomments: any;
+    OBnew_designation:any;
+    OBreason:any;
+    fullname1:any;
     editbuttonviewOB(a:any){
       //console.log(a);
       let fullname=a.name.split(" ");
@@ -149,21 +173,81 @@ export class AppOrRejComponent implements OnInit {
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
-         this.OBresponcibility=a.applied_role;
+         this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
+         
+        this.fullname1=a.name;
+
+         this.reqform.patchValue({
+          id1:this.OBid,
+          email1:this.OBmail,
+          name:this.fullname1,       
+          old_designation:this.OBold_designation,
+          new_designation1:"",
+          reason:""
+         });
+  this.editform.patchValue({
+          id1:this.OBid,
+          email1:this.OBmail,
+          firstname1:this.OBname,
+          lastname1:this.OBlastname,
+          age1:this.OBage,
+          designation1:this.OBdesig,
+          party_designation1:this.OBparty_desig,
+          approval_status1:this.OBstatus,
+        father_name1:this.OBfathername,
+        educational_qualification1:this.OBprofession,
+        date_of_birth1:this.OBdateofbirth,
+        additional_qualification1:this.OBaddtionaldegree,
+        contact_no1:this.OBphonenumber,
+        whatsapp_no1:this.whatsappnumner,
+        profession1:this.OBprofession,
+        address1:this.OBaddress,
+        applied_role1:this.OBold_designation,
+        party_comments1:this.OBcomments,
+        location_id1:'1',
+        mode1:'2'
+
+
+        });
+}
+updatedata(updateform: any){
+  console.log(updateform.value);
+  this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
+  updateform.get('age1').value,
+    updateform.get('father_name1').value,
+    updateform.get('educational_qualification1').value,
+    updateform.get('date_of_birth1').value,
+    updateform.get('additional_qualification1').value,
+    updateform.get('contact_no1').value,
+    updateform.get('whatsapp_no1').value,
+    updateform.get('profession1').value,
+    updateform.get('address1').value,
+    updateform.get('applied_role1').value,
+    updateform.get('party_comments1').value,
+    '1')
+    .pipe()
+    .subscribe(
+        data => {
+            alert("State admin detail was updated!");
+        },
+
+        error => {
+            console.log(error);
+        });
 }
 
 
 postdata1(angForm1) //angForm1
 {
-    console.log(angForm1);
+     console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.value.name,this.OBid,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason )
-        .pipe(first())
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value)
+        .pipe()
         .subscribe(
         data => {
-          console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
+          // console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
             alert("Request has been created successfully!")
    
         this.router.navigate(['superadmin/Approve-Reject']);
@@ -184,9 +268,11 @@ postdata1(angForm1) //angForm1
 
 
 get user_id() { return this.reqform.get('user_id'); }
+get email1() { return this.reqform.get('email1'); }
 get name() { return this.reqform.get('name'); }
 get  new_designation() { return this.reqform.get('new_designation'); }
 get old_designation() { return this.reqform.get(' old_designation'); }
-get reason() { return this.reqform.get('reason'); }
+get responcibility() { return this.reqform.get(' responcibility'); }
+// get reason1() { return this.reqform.get('reason1'); }
 
 }

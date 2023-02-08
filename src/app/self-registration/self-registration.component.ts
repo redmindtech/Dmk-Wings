@@ -20,12 +20,12 @@ export class SelfRegistrationComponent implements OnInit {
         this.angForm = this.fb.group({ //angForm
             email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
             firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-            lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
-            father_name:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+            lastname:['',[Validators.pattern('[A-Za-z]{1,32}')]],
+            father_name:['',[Validators.pattern('[A-Za-z]{1,32}')]],
             //parent_number:['',Validators.required],
             district:['',Validators.required],
             contact_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
-            date_of_birth:[''],
+            date_of_birth:['',[Validators.required]],
             educational_qualification:[''],
             profession:[''],
             location_id:['1',Validators.required]
@@ -38,9 +38,9 @@ export class SelfRegistrationComponent implements OnInit {
 
   postdata(angForm1 : any) //angForm1
   {
-      console.log(angForm1);
-      //if(this.angForm.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
-      if(1>0)
+      console.log(angForm1.value.email);
+      if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null)
+      // if(1>0)
       {
           this.ApiService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id)
           .subscribe(

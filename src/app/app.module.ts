@@ -24,6 +24,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { OfficeBearerApprovalComponent } from './superadmin-dashboard/office-bearer-approval/office-bearer-approval.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
+import {CreateMeetingsComponent} from 'src/app/stateadmin-menu/create-meetings/create-meetings.component';
+import { ChangePasswordComponent } from './change-password/change-password.component'
 
 
 @NgModule({
@@ -46,7 +48,11 @@ import { DataTablesModule } from 'angular-datatables';
     SelfRegistrationComponent,
     CreateOffBearerComponent,
     ForgotPasswordComponent,
-    OfficeBearerApprovalComponent
+    OfficeBearerApprovalComponent,
+    CreateMeetingsComponent,
+    AppointDistrictOffBearerComponent,
+    ChangePasswordComponent
+   
     ],
   imports: [
     BrowserModule,

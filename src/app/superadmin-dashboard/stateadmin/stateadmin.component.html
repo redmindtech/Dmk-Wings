@@ -25,7 +25,7 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>First Name / முதல் பெயர்</label><span class="required "> *</span>
                                             <input type="text" class="form-control form-control" formControlName="firstname" 
-                                                placeholder="Enter First Name / முதல் பெயர்">
+                                                placeholder="Enter First Name / முதல் பெயர்" >
                                                 <div *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched" 
                                                     class="invalid-msg">Please enter the valid field
                                                 </div>
@@ -85,6 +85,7 @@
                                             <input type="password" class="form-control form-control" id="password"
                                             placeholder="Enter Password / கடவுச்சொல்">
                                         </div> -->
+
                                         <div class="col-sm-6">
                                             <label>Status / நிலை</label>
                                             <input type="text" class="form-control form-control" formControlName="approval_status"
@@ -209,6 +210,67 @@
                 </div>
               </div>
 
+
+              <div class="modal fade" id="modal-xl">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="card-danger">
+                          <div class="card-header">
+                            <h3 class="card-title">Edit State Admin Information3</h3>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <form class="user"  [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>First Name / முதல் பெயர்</label>
+                                        <input type="text" class="form-control form-control"  formControlName="firstname1"
+                                            placeholder="Enter First Name / முதல் பெயர்" >
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Last Name / குடும்ப பெயர்</label>
+                                        <input type="text" class="form-control form-control" formControlName="lastname1"
+                                            placeholder="Enter Last Name / குடும்ப பெயர்" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Designation / பதவி</label>
+                                    <input type="text" class="form-control form-control" formControlName="designation1"
+                                        placeholder="Enter Designation / பதவி" >
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Party Designation / கட்சி பதவி</label>
+                                    <input type="text" class="form-control form-control" formControlName="party_designation1"
+                                        placeholder="Enter Party Designation / கட்சி பதவி">
+                                </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label>Email Address / மின்னஞ்சல் முகவரி</label>
+                                    <input type="email" class="form-control form-control" formControlName="email1"
+                                        placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>Status / நிலை</label>
+                                        <input type="text" class="form-control form-control" formControlName="approval_status1"
+                                            id="exampleRepeatPassword" placeholder="Enter Status / நிலை">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-3 d-flex align-content-center" style="margin-left:34%">
+                                    <button class="btn btn-danger btn btn-block">UPDATE STATE ADMIN</button>
+                                </div>
+                            </div>
+                        </form>
+                          
+                     </div>
+                  </div>
+                </div>
+            </div>
+
         
 <!-- State ADMIN DATATABLE         -->
         <div class="card-body">
@@ -259,72 +321,11 @@
                     
                     </table>
             </div>
+            
         </div>
 
-        <div class="modal fade" id="modal-xl">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="card-danger">
-                      <div class="card-header">
-                        <h3 class="card-title">Edit State Admin Information</h3>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-                      <form class="user">
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>First Name / முதல் பெயர்</label>
-                                    <input type="text" class="form-control form-control" id="exampleFirstName"
-                                        placeholder="Enter First Name / முதல் பெயர்" [value]="SAname">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Last Name / குடும்ப பெயர்</label>
-                                    <input type="text" class="form-control form-control" id="exampleLastName"
-                                        placeholder="Enter Last Name / குடும்ப பெயர்" [value]="SAlastname">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Designation / பதவி</label>
-                                <input type="text" class="form-control form-control" id="exampleFirstName"
-                                    placeholder="Enter Designation / பதவி" [value]="SAdesig">
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Party Designation / கட்சி பதவி</label>
-                                <input type="text" class="form-control form-control" id="exampleLastName"
-                                    placeholder="Enter Party Designation / கட்சி பதவி" [value]="SAparty_desig">
-                            </div>
-                            </div>
-                        
-                            <div class="form-group">
-                                <label>Email Address / மின்னஞ்சல் முகவரி</label>
-                                <input type="email" class="form-control form-control" id="exampleInputEmail"
-                                    placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [value]="SAmail">
-                            </div>
-                        
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <label>Status / நிலை</label>
-                                    <input type="text" class="form-control form-control"
-                                        id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [value]="SAstatus">
-                                </div>
-                            </div>
-                            
-                            <div class="col-3 d-flex align-content-center" style="margin-left:34%">
-                            <a  class="btn btn-danger btn btn-block">
-                                UPDATE STATE ADMIN
-                            </a>
-                            </div>
-                        </div>
-                    </form>
-                      
-                 </div>
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal -->
+        
+          
     
 </div>
 

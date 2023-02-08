@@ -1,89 +1,111 @@
-<div class="card shadow m-4">
-    <div class="card card-body">
-          <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Create Meeting</h1>
-          </div>
-                  <!-- Page Heading -->
-                  <form class="user">
-                      <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                              <input type="text" class="form-control form-control" id="exampleFirstName"
-                                  placeholder="Meeting Name / கூட்டத்தின் பெயர்">
-                          </div>
-                          <div class="col-sm-6">
-                              <!-- <input type="date" class="form-control form-control" id="MeetingDate"
-                                  placeholder="Meeting Date / சந்திப்பு தேதி"> -->
-                                  
-                                      <input type="text" class="form-control form-control" id="exampleFirstName"
-                                          placeholder="Meeting Date / சந்திப்பு தேதி">
-                                  
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control" id="exampleFirstName"
-                              placeholder="Meeting Time / சந்திப்பு நேரம்">
-                      </div>
-                      <!-- <div class="col-sm-6">
-                          <input type="text" class="form-control form-control" id="exampleLastName"
-                              placeholder="Participants / பங்கேற்பாளர்கள்">
-                      </div> -->
-                  </div>
-                      <div class="form-group">
-                          <p>Participants / பங்கேற்பாளர்கள்</p>
-                          <div class="form-check form-check-inline col-sm-6">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                              <label class="form-check-label" for="inlineRadio1">All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div> 
-                          <div class="form-check form-check-inline col-sm-6">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                              <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div>
-                          <div class="form-check form-check-inline col-sm-6">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                              <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
-                          </div> 
-                      </div>
+<div class="container-fluid">
+    <div class="card">
+    <div class="card-body">
+        
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create Meeting</h1>
+            </div>
+         
+                <form class="register-form" [formGroup]='createmeetingform' (ngSubmit)="postdata(createmeetingform)" autocomplete="off">       
+                <div class="form-group row">
+                        <div class="col-6 md:col-6">
+                            <label>Meeting Name / கூட்டத்தின் பெயர்</label><span class="required "> *</span>
+                            <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்">
+                            <!-- <div *ngIf="createmeetingform.get('meeting_name').hasError('required') && createmeetingform.get('meeting_name').touched"
+                            class="invalid-msg">Please enter Meeting Name
+                        </div> -->
+                        
+                        </div>
+                        <div class="col-6 md:col-6">
+                            <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
+                            <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
+                                        placeholder="Enter Meeting Date / சந்திப்பு தேதி" required>
+                                        <!-- <div *ngIf="createmeetingform.get('meeting_date').hasError('required') && createmeetingform.get('meeting_date').touched"
+                                        class="invalid-msg">Please enter Meeting Date
+                                    </div> -->
+                        </div>
+                </div>
+                
+                <div class="form-group row">
+                        <div class="col-6 md:col-6">
+                            <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
+                            <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
+                            <!-- <div *ngIf="createmeetingform.get('meeting_time').hasError('required') && createmeetingform.get('meeting_time').touched"
+                                        class="invalid-msg">Please enter Meeting Time
+                                    </div> -->
+                        </div>
+                </div>
+                
+                <div class="form-group" required>
+                    <label>Participants / பங்கேற்பாளர்கள்</label><span class="required "> *</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio1" (click)="Participants('option1')"   value="1">
+                            <label class="form-check-label" for="inlineRadio1">All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
+                        </div> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="participants"  formControlName="participants" id="inlineRadio2" (click)="Participants('option2')"  value="2">
+                            <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio3" (click)="Participants('option3')" value="3">
+                            <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
+                        </div>
+                        
+                        <div *ngIf="createmeetingform.get('meeting_date').hasError('required') && createmeetingform.get('meeting_date').touched"
+                        class="invalid-msg">Please enter Meeting Date
+                    </div>
+                        <!-- <div class="col-6 md:col-6" *ngIf="participantsptions=='option2'|| participantsptions=='option3'">
+                            <div class="form-group">
+                                <label>Select Multiple districts</label>
+                                <select class="form-control" multiple data-placeholder="Select multiple">
+                                    <option>Salem</option>
+                                    <option>Trichy</option>
+                                    <option>Namakkal</option>
+                                    <option>Erode</option>
+                                </select>
+                            </div>
+                            
+                        </div> -->
+                </div>
 
-
-                      <div class="form-group">
-                          <input type="text" class="form-control form-control" id="exampleInputEmail"
-                              placeholder="Comments / கருத்துகள்">
-                      </div>
-                  
-                      <div class="form-group">
-                          <select class="form-control form-select" aria-label="Default select example">
-                              <option selected>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
-                              <option value="1">Salem/சேலம்</option>
-                              <option value="2">Namakkal/நாமக்கல்</option>
-                              <option value="3">Chennai/சென்னை</option>
-                          </select>
-                      </div>
-
-                  
-                      <!-- <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                              <input type="password" class="form-control form-control-user"
-                                  id="exampleInputPassword" placeholder="Password">
-                          </div>
-                          <div class="col-sm-6">
-                              <input type="password" class="form-control form-control-user"
-                                  id="exampleRepeatPassword" placeholder="Repeat Password">
-                          </div>
-                      </div> -->
-                      <div class="col-3" style="margin-left: 42%;">
-                          <a class="btn btn-primary btn btn-block">
-                              Create Meeting
-                          </a>
-                      </div>
-                      
-                      
-                      <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                          <i class="fab fa-google fa-fw"></i> Register with Google
-                      </a>
-                      <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                          <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                      </a> -->
-                  </form>
-      </div>
+                <div>
+                    <div class="form-group" required>
+                        <label>Meeting Type</label><span class="required "> *</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('online')"  value="online">
+                            <label class="form-check-label" for="option1">Online</label>
+                            <input *ngIf="MeetingOptions=='online'" class="form-control col-6 md:col-6" formControlName="meeting_location" type="text" placeholder="Enter Meeting Url">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('offline')" value="offline">
+                            <label class="form-check-label" for="option2">Offline</label>
+                            <input *ngIf="MeetingOptions=='offline'"  class="form-control col-6 md:col-6"  formControlName="meeting_location" type="text" placeholder="Enter Location">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Comments / கருத்துகள்</label>
+                    <input pInputText type="text" class="form-control" formControlName="comments" id="exampleInputEmail"
+                        placeholder="Comments / கருத்துகள்">
+                    </div>
+                </div>
+            
+                <!-- <div class="form-group" required>
+                    <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
+                    <select  class="form-control" aria-label="Default select example" formControlName="district">
+                        <option selected>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
+                        <option value="1">Salem/சேலம்</option>
+                        <option value="2">Namakkal/நாமக்கல்</option>
+                        <option value="3">Chennai/சென்னை</option>
+                    </select>
+                </div> -->
+                <div class="col-3" style="margin-left:34%;">
+                    <button class="btn btn-danger btn btn-block">
+                    Create Meeting
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

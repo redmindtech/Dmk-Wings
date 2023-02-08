@@ -33,9 +33,25 @@ this.dataService.userlogin(userForm.value.email,userForm.value.password)
 .subscribe(
 data => {
     console.log(data);
+    console.log(data[0].category)
+    if(data[0].category=='SAD'){
 const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : 'superadmin';
 this.router.navigate([redirect]);
 this.districtadmin_constituency.emit(data[0].district);
+    }
+    else if(data[0].category=='SA'){
+      const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : 'stateadmin';
+this.router.navigate([redirect]);
+this.districtadmin_constituency.emit(data[0].district);
+    }
+    else if(data[0].category=='DA'){
+      const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : 'districtadmin';
+this.router.navigate([redirect]);
+
+this.districtadmin_constituency.emit(data[0].district);
+
+    }
+
 },
 error => {
 alert("User name or password is incorrect")

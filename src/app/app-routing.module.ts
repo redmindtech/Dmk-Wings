@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AppointDistrictOffBearerComponent } from './districtadmin-menu/appoint-district-off-bearer/appoint-district-off-bearer.component';
 import { CreateOffBearerComponent } from './districtadmin-menu/create-off-bearer/create-off-bearer.component';
 import { DaDashboardComponent } from './districtadmin-menu/da-dashboard/da-dashboard.component';
@@ -26,6 +27,7 @@ import { SuperadminDashboardComponent } from './superadmin-dashboard/superadmin-
 
 const routes: Routes = [
   {path:"", component: LoginComponent},
+  {path:"change-password/:email", component: ChangePasswordComponent},
   {path:"superadmin", component: SuperadminDashboardComponent,
         children: [
           { path: '', component: DashboardComponent},

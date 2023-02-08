@@ -5,14 +5,14 @@
             <div class="col-2" style="margin-left:68%">
                 <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
             </div>
-            
-            
+
+
         </div>
 
                   <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-xl">
                       <div class="modal-content">
-                  
+
                         <div  style="width:100%;height:100%">
                             <div class="card-danger">
                                 <div class="card-header">
@@ -27,7 +27,7 @@
                                                 <span class="required "> *</span>
                                                 <input type="text" class="form-control form-control" formControlName="firstname"
                                                     placeholder="Enter First Name / முதல் பெயர்">
-                                                    <div *ngIf="distadminform.get('firstname').hasError('required') && distadminform.get('firstname').touched" 
+                                                    <div *ngIf="distadminform.get('firstname').hasError('required') && distadminform.get('firstname').touched"
                                                         class="invalid-msg">Please enter the valid field
                                                     </div>
                                                     <div *ngIf="distadminform.get('firstname').hasError('pattern') && distadminform.get('firstname').touched"
@@ -39,10 +39,10 @@
                                                 <span class="required "> *</span>
                                                 <input type="text" class="form-control form-control"  formControlName="lastname"
                                                     placeholder="Enter Last Name / குடும்ப பெயர்" >
-                                                    <div *ngIf="distadminform.get('lastname').hasError('required') && distadminform.get('lastname').touched" 
+                                                    <div *ngIf="distadminform.get('lastname').hasError('required') && distadminform.get('lastname').touched"
                                                         class="invalid-msg">Please enter the valid field
                                                     </div>
-                                                    <div *ngIf="distadminform.get('lastname').hasError('pattern') && distadminform.get('lastname').touched" 
+                                                    <div *ngIf="distadminform.get('lastname').hasError('pattern') && distadminform.get('lastname').touched"
                                                         class="invalid-msg">Please enter the valid Name
                                                     </div>
                                             </div>
@@ -50,7 +50,7 @@
                                         <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>Designation / பதவி</label>
-                                            <input type="text" class="form-control form-control" formControlName="designation" 
+                                            <input type="text" class="form-control form-control" formControlName="designation"
                                                 placeholder="Enter Designation / பதவி" >
                                         </div>
                                         <div class="col-sm-6">
@@ -77,7 +77,7 @@
                                                 <option value="Erode (West)">Erode (West)</option>
                                             </select>
                                         </div>
-                                    
+
                                         <div class="form-group">
                                             <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                             <span class="required "> *</span>
@@ -86,12 +86,12 @@
                                                 <div *ngIf="distadminform.get('email').hasError('required') && distadminform.get('email').touched"
                                                      class="invalid-msg">Please enter the valid field
                                                 </div>
-                                                <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched" 
+                                                <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched"
                                                     class="invalid-msg">Please enter the valid Email Id
                                                 </div>
                                         </div>
-                                    
-                                        
+
+
                                         <div class="form-group row">
                                             <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Password / கடவுச்சொல்</label>
@@ -110,7 +110,7 @@
                                                 <input  type="text" hidden  formControlName="location_id"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-3" style="margin-left:34%;">
                                             <button class="btn btn-danger btn btn-block">Create District Admin</button>
                                         </div>
@@ -127,7 +127,7 @@
                   <div class="modal fade" id="showDialogDA">
                     <div class="modal-dialog modal-xl">
                       <div class="modal-content">
-                  
+
                         <div  style="width:100%;height:100%">
                             <div class="card-danger">
                                 <div class="card-header">
@@ -141,7 +141,7 @@
                                                 <label>First Name / முதல் பெயர்</label>
                                                 <span class="required "> *</span>
                                                 <input type="text" [disabled]="true" class="form-control" placeholder="Enter First Name / முதல் பெயர்99" [value]="DAname">
-                                                    <div *ngIf="distadminform.get('firstname').hasError('required') && distadminform.get('firstname').touched" 
+                                                    <div *ngIf="distadminform.get('firstname').hasError('required') && distadminform.get('firstname').touched"
                                                         class="invalid-msg">Please enter the valid field
                                                     </div>
                                                     <div *ngIf="distadminform.get('firstname').hasError('pattern') && distadminform.get('firstname').touched"
@@ -152,10 +152,10 @@
                                                 <label>Last Name / குடும்ப பெயர்</label>
                                                 <span class="required "> *</span>
                                                 <input type="text" class="form-control form-control" placeholder="Enter Last Name / குடும்ப பெயர்" [disabled]="true" [value]="DAlastname">
-                                                    <div *ngIf="distadminform.get('lastname').hasError('required') && distadminform.get('lastname').touched" 
+                                                    <div *ngIf="distadminform.get('lastname').hasError('required') && distadminform.get('lastname').touched"
                                                         class="invalid-msg">Please enter the valid field
                                                     </div>
-                                                    <div *ngIf="distadminform.get('lastname').hasError('pattern') && distadminform.get('lastname').touched" 
+                                                    <div *ngIf="distadminform.get('lastname').hasError('pattern') && distadminform.get('lastname').touched"
                                                         class="invalid-msg">Please enter the valid Name
                                                     </div>
                                             </div>
@@ -188,21 +188,21 @@
                                                 <option value="Erode (West)">Erode (West)</option>
                                             </select>
                                         </div>
-                                    
+
                                         <div class="form-group">
                                             <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                             <span class="required "> *</span>
-                                            <input type="email" class="form-control form-control" id="exampleInputEmail" 
+                                            <input type="email" class="form-control form-control" id="exampleInputEmail"
                                                 placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [disabled]="true" [value]="DAmail">
                                                 <div *ngIf="distadminform.get('email').hasError('required') && distadminform.get('email').touched"
                                                      class="invalid-msg">Please enter the valid field
                                                 </div>
-                                                <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched" 
+                                                <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched"
                                                     class="invalid-msg">Please enter the valid Email Id
                                                 </div>
                                         </div>
-                                    
-                                        
+
+
                                         <div class="form-group row">
                                             <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Password / கடவுச்சொல்</label>
@@ -211,7 +211,7 @@
                                             </div> -->
                                             <div class="col-sm-6">
                                                 <label>Status / நிலை</label>
-                                                <input type="text" class="form-control form-control" 
+                                                <input type="text" class="form-control form-control"
                                                     id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [disabled]="true" [value]="DAstatus">
                                             </div>
                                             <div class="col-6 md:col-6">
@@ -221,7 +221,7 @@
                                                 <input  type="text" hidden  formControlName="location_id"/>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- <div class="col-3" style="margin-left:34%;">
                                             <button class="btn btn-danger btn btn-block">Create District Admin</button>
                                         </div> -->
@@ -233,8 +233,8 @@
                       </div>
                     </div>
                   </div>
-        
-        
+
+
 <!-- DISTRICT ADMIN DATATABLE         -->
         <div class="card-body">
             <div class="table-responsive">
@@ -252,7 +252,7 @@
                             <th>Delete</th>
                         </tr>
                     </thead>
-        
+
                     <tbody>
                         <tr *ngFor="let customer of customers">
                             <td style="min-width: 20px;">
@@ -281,7 +281,7 @@
                             </a></td>
                         </tr>
                     </tbody>
-                    
+
                     </table>
             </div>
         </div>
@@ -294,70 +294,66 @@
                         <h3 class="card-title">Edit District Admin Information</h3>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
-                      <form class="user">
+                      <form class="user" [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>First Name / முதல் பெயர்</label>
                                     <input type="text" class="form-control form-control" id="exampleFirstName"
-                                        placeholder="Enter First Name / முதல் பெயர்"  [value]="DAname">
+                                        placeholder="Enter First Name / முதல் பெயர்"  formControlName="firstname1" name="firstname1">
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Last Name / குடும்ப பெயர்</label>
                                     <input type="text" class="form-control form-control" id="exampleLastName"
-                                        placeholder="Enter Last Name / குடும்ப பெயர்" [value]="DAlastname">
+                                        placeholder="Enter Last Name / குடும்ப பெயர்" formControlName="lastname1" name="lastname1">
                                 </div>
                             </div>
                             <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Designation / பதவி</label>
                                 <input type="text" class="form-control form-control" id="exampleFirstName"
-                                    placeholder="Enter Designation / பதவி" [value]="DAdesig">
+                                    placeholder="Enter Designation / பதவி" formControlName="designation1" name="designation1">
                             </div>
                             <div class="col-sm-6">
                                 <label>Party Designation / கட்சி பதவி</label>
                                 <input type="text" class="form-control form-control" id="exampleLastName"
-                                    placeholder="Enter Party Designation / கட்சி பதவி" [value]="DAparty_desig">
+                                    placeholder="Enter Party Designation / கட்சி பதவி" formControlName="party_designation1" name="party_designation1">
                             </div>
                             </div>
                             <div class="form-group">
                                 <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
-                                <select class="form-control form-select" aria-label="Default select example" [value]="DAdistrict">
+                                <select class="form-control form-select" aria-label="Default select example" formControlName="district1" name="district1">
                                     <option>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
                                     <option value="1">Salem/சேலம்</option>
                                     <option value="2">Namakkal/நாமக்கல்</option>
                                     <option value="3">Chennai/சென்னை</option>
                                 </select>
                             </div>
-                        
+
                             <div class="form-group">
                                 <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                 <input type="email" class="form-control form-control" id="exampleInputEmail"
-                                    placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [value]="DAdistrict">
+                                    placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" formControlName="email1" name="email1">
                             </div>
-                        
-                            
+
+
                             <div class="form-group row">
-                                <!-- <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Password / கடவுச்சொல்</label>
-                                    <input type="password" class="form-control form-control" id="password"
-                                    placeholder="Enter Password / கடவுச்சொல்">
-                                </div> -->
+
                                 <div class="col-sm-6">
                                     <label>Status / நிலை</label>
                                     <input type="text" class="form-control form-control"
-                                        id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [value]="DAmail">
+                                        id="exampleRepeatPassword" placeholder="Enter Status / நிலை" formControlName="approval_status1" name="approval_status1">
                                 </div>
                             </div>
-                            
+
                             <div class="col-3" style="margin-left:34%;">
-                            <a  class="btn btn-danger btn btn-block">
+                            <button  class="btn btn-danger btn btn-block">
                                 UPDATE DISTRICT ADMIN
-                            </a>
+                            </button>
                             </div>
                         </div>
                     </form>
-                      
+
                  </div>
               </div>
               <!-- /.modal-content -->

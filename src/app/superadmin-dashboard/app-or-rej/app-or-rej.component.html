@@ -20,78 +20,78 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="card-body">
-                    <form>
+                    <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
                         <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
                 
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
-                                <input type="text" name="firstname" class="form-control"  placeholder="Enter First Name/முதல் பெயர்" [value]="OBname"/>
+                                <input type="text" name="firstname1" formControlName="firstname1" class="form-control"  placeholder="Enter First Name/முதல் பெயர்"/>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Last Name/குடும்ப பெயர்</label>
-                                <input type="text" name="lastname" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்" [value]="OBlastname"/>
+                                <input type="text" name="lastname1" formControlName="lastname1" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்"/>
                               </div>
                       </div>
                       <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Age / வயது</label>
-                              <input type="number" name="age" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" [value]="OBage"/>
+                              <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" />
                             </div>
                             <div class="col-sm-6">
                               <label>Date of Birth</label>
-                              <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [value]="OBdateofbirth"/>
+                              <input type="date" name="date_of_birth1" class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth1"/>
                             </div>
                       </div>
                       <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Father Name / தந்தையின் பெயர்</label>
-                              <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" [value]="OBfathername"/>
+                              <input type="text" name="father_name1" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1"/>
                             </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-6 md:col-6">
                             <label>Degree / கல்வித் தகுதி</label>
-                            <input type="text" name="educational_qualification" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி" [value]="OBdegree"/>
+                            <input type="text" name="educational_qualification1" formControlName="educational_qualification1" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி"/>
                           </div>
                           <div class="col-6 md:col-6">
                             <label>Additional Degree / சிறப்பு தகுதி</label>
-                          <input type="text" name="additional_qualification" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி" [value]="OBaddtionaldegree"/>
+                          <input type="text" name="additional_qualification" formControlName="additional_qualification1" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி"/>
                           </div>
                       </div>
-                      
+
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Phone Number / தொலைபேசி எண்</label>
-                                <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" [value]="OBphonenumber"/>
+                                <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Whatsapp Number /வாட்ஸ்அப் எண்</label>
-                                <input type="text" name="whatsapp_no" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" [value]="whatsappnumner"/>
+                                <input type="text" name="whatsapp_no" formControlName="whatsapp_no1" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
                               </div>
                       </div>
                       <div class="form-group">
                             <div class="col-6 md:col-6">
                               <label>Email/மின்னஞ்சல்</label>
-                              <input type="text" name="email" class="form-control"  placeholder="Enter Email/மின்னஞ்சல்" [value]="OBmail"/>
+                              <input type="text" name="email1" formControlName="email1" class="form-control"  placeholder="Enter Email/மின்னஞ்சல்" />
                             </div>
                       </div>
                       <div class="form-group">
                             <div class="col-6 md:col-6">
                               <label>Profession / தொழில்,வேலை</label>
-                              <input pInputText type="text" class="form-control" name="profession"  placeholder="Enter Profession / தொழில்,வேலை" [value]="OBprofession"/>
+                              <input pInputText type="text" class="form-control" name="profession1" formControlName="profession1"  placeholder="Enter Profession / தொழில்,வேலை" />
                             </div>
                       </div>
                       <div class="form-group">
                             <div class="col-6 md:col-6">
                               <label>Address / முகவரி</label>
-                              <textarea name="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5" [value]="OBaddress"></textarea>
+                              <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
                             </div>
                       </div>
                       <div class="form-group">
                             <div class="col-12 md:col-12">
                                 <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு</label><br>
-                                <select name="applied_role"  class="form-control" [value]="OBresponcibility">
+                                <select name="applied_role" formControlName="applied_role1"  class="form-control">
                                     <option value="">Select Option</option>
                                     <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
                                     <option value="District Deputy Organiser">District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்</option>
@@ -109,13 +109,13 @@
                       <div class="form-group">
                           <div class="col-sm-6">
                             <label>Comments</label>
-                            <textarea name="party_comments" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" [value]="OBcomments"></textarea>
+                            <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
                           </div>
                       </div>
                       <div class="col-3" style="margin-left:34%;">
-                          <a  class="btn btn-danger btn btn-block">
+                          <button  class="btn btn-danger btn btn-block">
                             UPDATE OFFICE BEARER
-                          </a>
+                          </button>
                         </div>
                       </form>
                   </div>
@@ -175,7 +175,7 @@
                           <input type="text" name="additional_qualification" class="form-control" [disabled]="true" placeholder="Enter Additional Degree / சிறப்பு தகுதி"[value]="OBaddtionaldegree"/>
                           </div>
                       </div>
-                      
+
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Phone Number / தொலைபேசி எண்</label>
@@ -207,7 +207,7 @@
                       <div class="form-group">
                             <div class="col-12 md:col-12">
                                 <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு</label><br>
-                                <select name="applied_role"  class="form-control" [disabled]="true" [value]="OBresponcibility">
+                                <select name="applied_role"  class="form-control" [disabled]="true" [value]="OBold_designation">
                                     <option value="">Select Option</option>
                                     <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
                                     <option value="District Deputy Organiser">District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்</option>
@@ -266,7 +266,7 @@
                                   <div  *ngIf="officebearerform.get('firstname').hasError('required') && officebearerform.get('firstname').touched"
                                     class="invalid-msg">Please enter the valid field
                                 </div>
-                                <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched" 
+                                <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched"
                                     class="invalid-msg">Please enter the valid Name
                               </div>
                                 </div>
@@ -312,10 +312,10 @@
                                 <div class="col-6 md:col-6">
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
                                   <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" formControlName="contact_no"/>
-                                  <div *ngIf="officebearerform.get('contact_no').hasError('required') && officebearerform.get('contact_no').touched" 
+                                  <div *ngIf="officebearerform.get('contact_no').hasError('required') && officebearerform.get('contact_no').touched"
                                     class="invalid-msg">Please enter the valid field
                                   </div>
-                                  <div  *ngIf="officebearerform.get('contact_no').hasError('pattern') && officebearerform.get('contact_no').touched" 
+                                  <div  *ngIf="officebearerform.get('contact_no').hasError('pattern') && officebearerform.get('contact_no').touched"
                                     class="invalid-msg">Please enter the valid Phone Number
                                   </div>
                                 </div>
@@ -325,7 +325,7 @@
                                   <div *ngIf="officebearerform.get('whatsapp_no').hasError('required') && officebearerform.get('whatsapp_no').touched"
                                      class="invalid-msg">Please enter the valid field
                                   </div>
-                                  <div *ngIf="officebearerform.get('whatsapp_no').hasError('pattern') && officebearerform.get('whatsapp_no').touched" 
+                                  <div *ngIf="officebearerform.get('whatsapp_no').hasError('pattern') && officebearerform.get('whatsapp_no').touched"
                                     class="invalid-msg">Please enter the valid Whatsapp Number
                                   </div>
                                 </div>
@@ -337,7 +337,7 @@
                                  <div *ngIf="officebearerform.get('email').hasError('required') && officebearerform.get('email').touched"
                                    class="invalid-msg">Please enter the valid field
                                   </div>
-                                 <div *ngIf="officebearerform.get('email').hasError('pattern') && officebearerform.get('email').touched" 
+                                 <div *ngIf="officebearerform.get('email').hasError('pattern') && officebearerform.get('email').touched"
                                   class="invalid-msg">Please enter the valid Email Id
                                 </div>
                               </div>
@@ -404,7 +404,7 @@
               </div>
             </div>
 
-      
+
 <!-- OFFICE BEARER DATATABLE         -->
 <div class="card-body">
   <div class="table-responsive">
@@ -477,13 +477,13 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="card-body">
-     
+
            <form class="request-form" [formGroup]='reqform' (ngSubmit)="postdata1(reqform)" autocomplete="off">
-            <div class="form-group">            
+            <div class="form-group">
                 <div class="col-6 md:col-6">
                   <input type="text" pInputText  hidden name="user_id" formControlName="user_id" [value]="OBid"
                     placeholder="obid" />
-               
+
                 </div>
               </div>
             <div class="form-group">
@@ -499,19 +499,30 @@
             <!-- </div> -->
             <div class="form-group">
               <div class="col-12 md:col-12">
-                                   <label>Old Designation</label><span class="required "> *</span>
-                                   <input  pInputText type="text" name="old_designation" class="form-control"  placeholder="Old Designation" [value]="OBresponcibility" formControlName="old_designation"/>
-                                   <div  *ngIf="reqform.get('old_designation').hasError('old_designation') && reqform.get('old_designation').touched"
+                                   <label>Email</label><span class="required "> *</span>
+                                   <input  pInputText type="text" name="email1" class="form-control"  placeholder="Email"  formControlName="email1"/>
+                                   <div  *ngIf="reqform.get('email1').hasError('email') && reqform.get('email1').touched"
                                      class="invalid-msg">Please enter the valid field
                                  </div>
                  </div>
    
              </div>
+            <div class="form-group">
+              <div class="col-12 md:col-12">
+                                   <label>Old Designation</label><span class="required "> *</span>
+                                   <input  pInputText type="text" name="old_designation" class="form-control"  placeholder="Old Designation"  formControlName="old_designation"/>
+                                   <!-- <div  *ngIf="reqform.get('old_designation').hasError('old_designation') && reqform.get('old_designation').touched"
+                                     class="invalid-msg">Please enter the valid field
+                                 </div> -->
+                 </div>
+   
+             </div>
+             
             <div class="form-group ">
                 <div class="col-12 md:col-12">
                   <label>New Designation</label><span class="required "> *</span>
-                    <input pInputText type="text" name="new_designation"  class="form-control" formControlName="new_designation" placeholder="New Designation" >
-                    <div  *ngIf="reqform.get('new_designation').hasError('new_designation') && reqform.get('new_designation').touched"
+                    <input pInputText type="text" name="new_designation1"  class="form-control" formControlName="new_designation1" placeholder="New Designation" >
+                    <div  *ngIf="reqform.get('new_designation1').hasError('new_designation1') && reqform.get('new_designation1').touched"
                     class="invalid-msg">Please enter the valid field
                   </div>
             </div>
@@ -520,9 +531,9 @@
                 <div class="col-12 md:col-12">
                   <label>Reason</label><span class="required "> *</span>
                     <input pInputText type="text" name="reason"  class="form-control" formControlName="reason" placeholder="Reason " >
-                    <div  *ngIf="reqform.get('reason').hasError('reason') && reqform.get('reason').touched"
+                    <!-- <div  *ngIf="reqform.get('reason1').hasError('reason1') && reqform.get('reason1').touched"
                     class="invalid-msg">Please enter the valid field
-                  </div>
+                  </div> -->
                 </div>
             </div>
             <div class="col-3" style="margin-left:34%;">

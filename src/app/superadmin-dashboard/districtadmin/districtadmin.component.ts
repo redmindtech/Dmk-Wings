@@ -11,10 +11,11 @@ export class DistrictadminComponent implements OnInit {
   customers:any=[];
   distadminform !:FormGroup;
   dtOptions: DataTables.Settings = {};
-  
+  editform : FormGroup;
+
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder) 
-    { 
+    private fb: FormBuilder)
+    {
     this.distadminform = this.fb.group({ //angForm
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
@@ -25,8 +26,20 @@ export class DistrictadminComponent implements OnInit {
         approval_status:[''],
         location_id:['1',Validators.required]
         });
+
+        this.editform = this.fb.group({ //angForm
+          email1: [this.DAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+          firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+          lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+          district1:['',Validators.required],
+          designation1:[''],
+          party_designation1:[''],
+          approval_status1:[''],
+          location_id1:['1'],
+          mode1:['1']
+          });
   }
-   
+
 
   ngOnInit(): void {
     this.ApiService.viewtableDA();
@@ -37,7 +50,7 @@ export class DistrictadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-    
+
   }
   getdata(){
     this.customers=[];
@@ -46,7 +59,7 @@ export class DistrictadminComponent implements OnInit {
           }
           this.customers.pop();
     //console.log(this.ApiService.tabledataDA)
-    this.ApiService.viewtableDA(); 
+    this.ApiService.viewtableDA();
   }
 
   postdata(angForm1 : any) //angForm1
@@ -110,5 +123,38 @@ export class DistrictadminComponent implements OnInit {
           this.DAdistrict=a.district;
           this.DAmail=a.email;
           this.DAstatus=a.approval_status;
+
+          this.editform.patchValue({
+            id1:this.DAid,
+            email1:this.DAmail,
+            firstname1:this.DAname,
+            lastname1:this.DAlastname,
+            district1:this.DAdistrict,
+            designation1:this.DAdesig,
+            party_designation1:this.DAparty_desig,
+            approval_status1:this.DAstatus
+
+
+          })
     }
+
+
+    updatedata(updateform: any){
+
+      console.log(updateform.value);
+      this.ApiService.updateDA('1', this.DAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
+        updateform.get('designation1').value,
+        updateform.get('party_designation1').value,
+        updateform.get('email1').value,
+        updateform.get('approval_status1').value)
+        .pipe()
+        .subscribe(
+            data => {
+                alert("State admin detail was updated!");
+            },
+
+            error => {
+                console.log(error);
+            });
+}
 }

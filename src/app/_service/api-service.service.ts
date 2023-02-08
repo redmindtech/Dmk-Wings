@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-          baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-        // baseUrl:string="http://localhost/lat_git_dmk/dmk_php/php/php/php";
+           baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
+        //  baseUrl:string="http://localhost/lat_php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { };
 
@@ -246,7 +246,7 @@ public viewtableDA() {
                   }));
                               }
 
-                                public create_meeting(meeting_name:any,meeting_time:any,meeting_date:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
+                                public create_meeting(meeting_name:any,meeting_date:any,meeting_time:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
                                   console.log(constituency);
                                 return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
                                 { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
@@ -255,7 +255,7 @@ public viewtableDA() {
                                 }));
                                 }
 
-                                public rq_form(name:any,user_id:any,old_designation:any,new_designation:any, reason:any) {
+                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any, reason:any) {
                                   const httpOptions: Object = {
                                     headers: new HttpHeaders({
                                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -264,12 +264,41 @@ public viewtableDA() {
                                // console.log("sdf")
                                   //console.log(name);
                                  return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php', 
-                                  {name,old_designation,new_designation,reason ,user_id},httpOptions)
+                                  {name,email,old_designation,new_designation,reason ,user_id},httpOptions)
                                   .pipe(map(Users => {
                                   return Users;
                                   }));
                             
                                 }
+                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                                  //let firstname='names'
+                                  const httpOptions : Object = {
+                                          headers: new HttpHeaders({
+                                            'Content-Type':'application/x-www-form-urlencoded'
+                                          })
+                                        };
+                                        console.log(user_id);
+                                    console.log("apidata : "+user_id,firstname,lastname,designation,party_designation,approval_status)
+                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,designation,party_designation,email,approval_status,location_id},httpOptions)
+                                                .pipe(map(Users => {
+                                                return Users;
+                                                }));
+                                          }
+      
+                                          public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address:any,applied_role:any,party_comments:any,location_id:any) {
+                                            //let firstname='names'
+                                            const httpOptions : Object = {
+                                                    headers: new HttpHeaders({
+                                                      'Content-Type':'application/x-www-form-urlencoded'
+                                                    })
+                                                  };
+                                                  console.log(user_id);
+                                              // console.log("apidata : "+user_id,firstname,lastname,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address,applied_role,party_comments,location_id)
+                                                  return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=2', {mode,user_id,email,firstname,lastname,age,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address,applied_role,party_comments,location_id},httpOptions)
+                                                          .pipe(map(Users => {
+                                                          return Users;
+                                                          }));
+                                                    }
 
 
 
