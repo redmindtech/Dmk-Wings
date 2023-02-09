@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from 'src/app/_service/api-service.service';
 
 @Component({
   selector: 'app-districtadmin-menu',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DistrictadminMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public ApiService:ApiServiceService) { }
 
   ngOnInit(): void {
+    this.ApiService.viewtableDA()
+    this.ApiService.viewtableDA();
+    this.ApiService.viewtableOB();
+    this.ApiService.viewtableOBapprove();
   }
   toggle:any=false;
   menuitem:any=false;
