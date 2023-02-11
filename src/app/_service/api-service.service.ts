@@ -18,7 +18,7 @@ export class ApiServiceService {
 constructor(private httpClient : HttpClient) { };
 
  
-@Output() districtadmin_constituency: EventEmitter<any> = new EventEmitter();
+user_constituency:any;
 
 
 public mydist = [
@@ -56,6 +56,10 @@ public districts=[
   { name:'Erode (East)'}, { name:'Erode (West)'},
 
 ]
+public all_districts=['ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE'];
+
+public all_constituency={'ARIYALUR':['ARIYALUR','JAYANKONDAM'],
+'CHENGALPATTU':['CHENGALPATTU','CHEYYUR','MADURANTAKAM','PALLAVARAM','SHOLINGANALLUR','TAMBARAM','THIRUPORUR']};
 
 public constituency:any='No-Select';
 
@@ -65,7 +69,8 @@ public userlogin(username : any, password :any) {
 
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
-  this.constituency= Users[0].district;
+  this.user_constituency= Users[0].district;
+  
   //console.log(this.constituency);
 
 

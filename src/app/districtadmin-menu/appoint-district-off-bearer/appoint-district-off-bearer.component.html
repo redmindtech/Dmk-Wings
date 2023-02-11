@@ -265,7 +265,7 @@
                     <div class="card-danger">
                       <div class="card-header">
                         <h3 class="card-title">Create office bearer</h3>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" (click)="officebearerform.reset()">&times;</button>
                       </div>
                       <div class="card-body">
                         <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">

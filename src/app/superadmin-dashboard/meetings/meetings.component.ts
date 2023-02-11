@@ -91,9 +91,10 @@ export class MeetingsComponent implements OnInit {
             .pipe(first())
             .subscribe(
             data => {
+                 window.location.reload();
                  alert("Meeting has been created successfully!")
 
-            this.router.navigate(['superadmin/Meetings']);
+            //this.router.navigate(['superadmin/Meetings']);
              angForm1.reset();
             },
 

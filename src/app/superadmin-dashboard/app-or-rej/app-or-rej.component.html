@@ -260,17 +260,27 @@
 
 
 
-            <div class="modal fade" id="myModal">
+            <div class="modal fade" id="myModal">  
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="card-danger">
                     <div class="card-header">
                       <h3 class="card-title">Create office bearer</h3>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <button type="button" class="close" data-dismiss="modal" (click)="officebearerform.reset()">&times;</button>
                     </div>
                     <div class="card-body">
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
-                          <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
+                          
+                          <!-- <div class="">
+                                <div class="d-flex justify-content-between">
+                                  <label>Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                                  <select class="form-control col-3" ></select>
+                                  <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                                  <select  class="form-control col-3"></select>
+                                </div>
+                          </div> -->
+                            
+                          
                   
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">

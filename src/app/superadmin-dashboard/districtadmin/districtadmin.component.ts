@@ -69,6 +69,7 @@ export class DistrictadminComponent implements OnInit {
             this.ApiService.create_dist_admin('1',angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
             .subscribe(
             data => {
+                window.location.reload();
                 alert("District admin user has been created successfully!")
                 angForm1.reset();
             },
@@ -89,7 +90,7 @@ export class DistrictadminComponent implements OnInit {
             .pipe()
             .subscribe(
             data => {
-
+                window.location.reload();
                 alert("District admin detail has been deleted !")
             },
 
@@ -149,6 +150,7 @@ export class DistrictadminComponent implements OnInit {
         .pipe()
         .subscribe(
             data => {
+                window.location.reload();
                 alert("State admin detail was updated!");
             },
 

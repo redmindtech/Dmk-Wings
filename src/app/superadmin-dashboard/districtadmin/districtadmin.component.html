@@ -17,7 +17,7 @@
                             <div class="card-danger">
                                 <div class="card-header">
                                   <h3 class="card-title">Create District Admin</h3>
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <button type="button" class="close" data-dismiss="modal" (click)="distadminform.reset()">&times;</button>
                                 </div>
                                 <form class="user" [formGroup]='distadminform' (ngSubmit)="postdata(distadminform)" autocomplete="off">
                                     <div class="card-body">

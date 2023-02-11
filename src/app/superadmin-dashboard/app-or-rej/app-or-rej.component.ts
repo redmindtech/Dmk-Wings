@@ -85,6 +85,7 @@ export class AppOrRejComponent implements OnInit {
   
   
   ngOnInit(): void {
+    console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.ApiService.viewtableOB().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
@@ -135,7 +136,8 @@ export class AppOrRejComponent implements OnInit {
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .subscribe(
         data => {
-            alert("Office bearers user has been created successfully!")
+            window.location.reload();
+            alert("Office bearer has been created successfully!")
         //this.router.navigate(['']);
         officebearerform.reset();
         },
@@ -156,7 +158,7 @@ export class AppOrRejComponent implements OnInit {
             .pipe()
             .subscribe(
             data => {
-
+                window.location.reload();
                 //this.router.navigate(['uikit/formlayout']);
                 alert("Office Bearer detail has been deleted !")
             },
@@ -269,7 +271,8 @@ updatedata(updateform: any){
     .pipe()
     .subscribe(
         data => {
-            alert("State admin detail was updated!");
+            window.location.reload();
+            alert("Office Bearer detail was updated!");
         },
 
         error => {

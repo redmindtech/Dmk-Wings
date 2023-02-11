@@ -126,7 +126,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .subscribe(
         data => {
-            alert("Office bearers user has been created successfully!")
+            window.location.reload();
+            alert("Request has been sented successfully!")
         //this.router.navigate(['']);
         officebearerform.reset();
         },
@@ -260,6 +261,7 @@ updatedata(updateform: any){
     .pipe()
     .subscribe(
         data => {
+            window.location.reload();
             alert("State admin detail was updated!");
         },
 
@@ -278,10 +280,11 @@ postdata1(angForm1) //angForm1
         .pipe()
         .subscribe(
         data => {
+        window.location.reload();
           // console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
-            alert("Request has been created successfully!")
+        alert("Request has been created successfully!")
    
-        this.router.navigate(['superadmin/Approve-Reject']);
+        //this.router.navigate(['superadmin/Approve-Reject']);
         angForm1.reset();
         },
 
