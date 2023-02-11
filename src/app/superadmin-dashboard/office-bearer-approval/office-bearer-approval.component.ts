@@ -25,14 +25,19 @@ export class OfficeBearerApprovalComponent implements OnInit {
     };
   }
   getdata(){
-    this.customers=[];
-        for(const prop in this.ApiService.tabledataOBapprove) {
-            this.customers.push(this.ApiService.tabledataOBapprove[prop])
-          }
-          this.customers.pop();
-    console.log(this.ApiService.tabledataOBapprove)
+    // this.customers=[];
+    //     for(const prop in this.ApiService.tabledataOBapprove) {
+    //         this.customers.push(this.ApiService.tabledataOBapprove[prop])
+    //       }
+    //       this.customers.pop();
+    // console.log(this.ApiService.tabledataOBapprove)
+    this.ApiService.viewtableOBapprove().subscribe((data:any) => {
+      let obj= data;
+      this.customers=obj.data;
+      //console.log(obj.data.length);
+      ;})
 
-  }
+    }
   // delete_ob(user_id : any)
   //   {
   //       console.log(user_id)

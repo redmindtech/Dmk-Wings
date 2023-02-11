@@ -14,18 +14,17 @@ export class DistrictadminComponent implements OnInit {
   editform : FormGroup;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder)
-    {
-    this.distadminform = this.fb.group({ //angForm
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-      lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
-        district:['',Validators.required],
-        designation:[''],
-        party_designation:[''],
-        approval_status:[''],
-        location_id:['1',Validators.required]
-        });
+    private fb: FormBuilder, )
+    {   this.distadminform = this.fb.group({ //angForm
+          email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+          firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+          lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+            district:['',Validators.required],
+            designation:[''],
+            party_designation:[''],
+            approval_status:[''],
+            location_id:['1',Validators.required]
+            });
 
         this.editform = this.fb.group({ //angForm
           email1: [this.DAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -42,10 +41,10 @@ export class DistrictadminComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableOBapprove();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableOBapprove();
     this.getdata();
     this.dtOptions = {
       pagingType: 'full_numbers'
@@ -53,13 +52,13 @@ export class DistrictadminComponent implements OnInit {
 
   }
   getdata(){
-    this.customers=[];
-        for(const prop in this.ApiService.tabledataDA) {
-            this.customers.push(this.ApiService.tabledataDA[prop])
+    this.ApiService.viewtableDA().subscribe(data => {
+      console.log(data)
+        for(const prop in data) {
+            this.customers.push(data[prop])
           }
-          this.customers.pop();
-    //console.log(this.ApiService.tabledataDA)
-    this.ApiService.viewtableDA();
+          console.log(this.customers[0]);
+    });
   }
 
   postdata(angForm1 : any) //angForm1

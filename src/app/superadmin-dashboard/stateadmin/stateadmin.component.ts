@@ -11,7 +11,7 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./stateadmin.component.scss']
 })
 export class StateadminComponent implements OnInit {
-  customers:any;
+  customers:any[]=[];
   stateadminform !:FormGroup;
   editform: FormGroup;
 
@@ -55,13 +55,12 @@ export class StateadminComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   ngOnInit(): void {
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableOBapprove();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableOBapprove();
     this.getdata();
     //this.ApiService.viewtableSA();
-    this.getdata().then(res=>this.getdataarray())
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
@@ -69,15 +68,16 @@ export class StateadminComponent implements OnInit {
     
       
   }
-  // ngAfterViewInit() {
-  //   this.getdata()
-  // }
+    
   getdata(){
-    this.ApiService.viewtableSA()
-    //console.log(this.ApiService.viewtableSA1());
-    return new Promise<void>((resolve, reject) => {
-      resolve();
-  });
+    this.ApiService.viewtableSA().subscribe(data => {
+      console.log(data)
+        for(const prop in data) {
+            this.customers.push(data[prop])
+          }
+          console.log(this.customers);
+    });
+  
   
     
     // this.customers=[];
@@ -88,15 +88,15 @@ export class StateadminComponent implements OnInit {
     
     //console.log(this.ApiService.tabledata)
   }
-  getdataarray(){
-    console.log("2st");
-    this.customers=[];
-        for(const prop in this.ApiService.tabledata) {
-            this.customers.push(this.ApiService.tabledata[prop])
-          }
-          this.customers.pop();
+  // getdataarray(){
+  //   console.log("2st");
+  //   this.customers=[];
+  //       for(const prop in this.ApiService.tabledata) {
+  //           this.customers.push(this.ApiService.tabledata[prop])
+  //         }
+  //         this.customers.pop();
     
-  }
+  // }
   postdata(angForm1 : any) //angForm1
   {
       //console.log(angForm1);

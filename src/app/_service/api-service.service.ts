@@ -140,69 +140,75 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designat
 
 tabledata:any[]=[]
 public viewtableSA() {
-           this.httpClient.get<any>(this.baseUrl+'/show.php?mode=0')
-              .pipe(map((res)=>{
-                  const users =[];
-                  for(const key in res){
-                      if(res.hasOwnProperty(key)){
-                          users.push({...res[key],id:key})}
-                  } return users;
-              })).subscribe((users:any[])=>{
-                  //console.log(users);
-                  this.tabledata=users[0];
-                  return this.tabledata;
-                  //console.log(this.tabledata);
-                  })}
-                  public viewtableSA1():Observable<any> {
-                   return this.httpClient.get<any>(this.baseUrl+'/show.php?mode=0')
+          //  this.httpClient.get<any>(this.baseUrl+'/show.php?mode=0')
+          //     .pipe(map((res)=>{
+          //         const users =[];
+          //         for(const key in res){
+          //             if(res.hasOwnProperty(key)){
+          //                 users.push({...res[key],id:key})}
+          //         } return users;
+          //     })).subscribe((users:any[])=>{
+          //         console.log(users);
+          //         this.tabledata=users[0];
+          //         return this.tabledata;
+          //         console.log(this.tabledata);
+          //         })}
+          //         public viewtableSA1():Observable<any> {
+          //          return this.httpClient.get<any>(this.baseUrl+'/show.php?mode=0')
+          return this.httpClient.get(this.baseUrl+'/show.php?mode=0');
                        }
 
 tabledataDA:any[]=[];
 public viewtableDA() {
-           this.httpClient.get<any>(this.baseUrl + '/show.php?mode=1')
-              .pipe(map((res)=>{
+          //  this.httpClient.get<any>(this.baseUrl + '/show.php?mode=1')
+          //     .pipe(map((res)=>{
 
-                  const users =[];
-                  for(const key in res){
-                      if(res.hasOwnProperty(key)){
-                          users.push({...res[key],id:key})}
-                  } return users;
-              })).subscribe((users:any[])=>{
-                  //console.log(users);
-
-                  this.tabledataDA=users[0];
-                  //console.log(this.tabledataDA);
-                  })}
+          //         const users =[];
+          //         for(const key in res){
+          //             if(res.hasOwnProperty(key)){
+          //                 users.push({...res[key],id:key})}
+          //         } return users;
+          //     })).subscribe((users:any[])=>{
+                  
+          //         this.tabledataDA=users[0];
+          //         })
+          return this.httpClient.get(this.baseUrl + '/show.php?mode=1');
+                
+    }
 
                   
                   tabledataOB:any[]=[];
                       public viewtableOB() {
-                      this.httpClient.get<any>(this.baseUrl +'/show.php?mode=2')
-                                        .pipe(map((res)=>{
-                                                  const users =[];
-                                                  for(const key in res){
-                                                      if(res.hasOwnProperty(key)){
-                                                          users.push({...res[key],id:key})}
-                                                  } return users;
-                                              })).subscribe((users:any[])=>{
-                                                  //console.log(users)
-                                                  this.tabledataOB=users[0];
-                                                  })}
+                      // this.httpClient.get<any>(this.baseUrl +'/show.php?mode=2')
+                      //                   .pipe(map((res)=>{
+                      //                             const users =[];
+                      //                             for(const key in res){
+                      //                                 if(res.hasOwnProperty(key)){
+                      //                                     users.push({...res[key],id:key})}
+                      //                             } return users;
+                      //                         })).subscribe((users:any[])=>{
+                      //                             //console.log(users)
+                      //                             this.tabledataOB=users[0];
+                      //                             })
+                      return this.httpClient.get(this.baseUrl +'/show.php?mode=2');
+                    }
 
                tabledataOBapprove:any[]=[];
                 public viewtableOBapprove() {
                   
-                this.httpClient.get<any>(this.baseUrl +'/rolechange_approvel_show.php')
-                .pipe(map((res)=>{
-                  const users =[];
-                  for(const key in res){
-                  if(res.hasOwnProperty(key)){
-                    users.push({...res[key],id:key})}
-                   } return users;
-                   })).subscribe((users:any[])=>{
-                    console.log(users);
-                   this.tabledataOBapprove=users[0];
-                    })}  
+                // this.httpClient.get<any>(this.baseUrl +'/rolechange_approvel_show.php')
+                // .pipe(map((res)=>{
+                //   const users =[];
+                //   for(const key in res){
+                //   if(res.hasOwnProperty(key)){
+                //     users.push({...res[key],id:key})}
+                //    } return users;
+                //    })).subscribe((users:any[])=>{
+                //     console.log(users);
+                //    this.tabledataOBapprove=users[0];
+                //     })
+                return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
+            }  
 
 
           public sendmail(email:any) {
@@ -303,17 +309,19 @@ public viewtableDA() {
 
                                                     tabledatameeting:any[]=[];
                                                     public viewtablemeeting() {
-                                                    this.httpClient.get<any>(this.baseUrl +'/tablemeeting.php')
-                                                                      .pipe(map((res)=>{
-                                                                                const users =[];
-                                                                                for(const key in res){
-                                                                                    if(res.hasOwnProperty(key)){
-                                                                                        users.push({...res[key],id:key})}
-                                                                                } return users;
-                                                                            })).subscribe((users:any[])=>{
-                                                                                //console.log(users)
-                                                                                this.tabledatameeting=users[0];
-                                                                                })}
+                                                    // this.httpClient.get<any>(this.baseUrl +'/tablemeeting.php')
+                                                    //                   .pipe(map((res)=>{
+                                                    //                             const users =[];
+                                                    //                             for(const key in res){
+                                                    //                                 if(res.hasOwnProperty(key)){
+                                                    //                                     users.push({...res[key],id:key})}
+                                                    //                             } return users;
+                                                    //                         })).subscribe((users:any[])=>{
+                                                    //                             //console.log(users)
+                                                    //                             this.tabledatameeting=users[0];
+                                                    //                             })
+                                                    return this.httpClient.get(this.baseUrl +'/tablemeeting.php');
+                                                                              }
 
 
 //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {

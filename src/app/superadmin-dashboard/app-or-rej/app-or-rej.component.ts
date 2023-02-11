@@ -10,13 +10,27 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./app-or-rej.component.scss']
 })
 export class AppOrRejComponent implements OnInit {
+  customers:any;
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
+  dtOptions: DataTables.Settings = {};
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder) 
-    { 
+    {       
+      // this.ApiService.viewtableOB().subscribe((data:any) => {
+      // let obj= data;
+      // this.customers=obj.data;
+      // ;})
+      
+      
+  //     this.customers=[{name:'nm1',email:'em1'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'}
+  // ]
       this.officebearerform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
@@ -66,30 +80,50 @@ export class AppOrRejComponent implements OnInit {
        reason:[''],
         user_id:[''],});
     }
-  customers:any=[];
+  
   officebearerform !:FormGroup;
-  dtOptions: DataTables.Settings = {};
+  
   
   ngOnInit(): void {
-    this.getdata();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableOBapprove();
-    this.dtOptions = {
+    this.ApiService.viewtableOB().subscribe((data:any) => {
+      let obj= data;
+      this.customers=obj.data;
+      //console.log(obj.data.length);
+      ;})
+    //console.log(this.customers);
+    
+    this.dtOptions[0] = {
       pagingType: 'full_numbers'
     };
+    
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOBapprove();
+    this.getdata();
+    
     
    
   }
   getdata(){
-    this.customers=[];
-        for(const prop in this.ApiService.tabledataOB) {
-            this.customers.push(this.ApiService.tabledataOB[prop])
-          }
-          this.customers.pop();
+
+    // this.customers=[];
+    //     for(const prop in this.ApiService.tabledataOB) {
+    //         this.customers.push(this.ApiService.tabledataOB[prop])
+    //       }
+    //       this.customers.pop();
     //console.log(this.ApiService.tabledataDA)
     //this.ApiService.viewtableOB();
+
+    this.ApiService.viewtableOB().subscribe((data:any) => {
+        let obj= data;
+        // console.log(obj.data);
+       
+        // for(const prop in obj.data) {
+        //     this.customers.push(obj.data[prop]);
+        //   }
+        //   console.log(this.customers);
+    });
 
   }
   postdata(officebearerform : any) //officebearerform

@@ -11,10 +11,10 @@ export class DistrictadminMenuComponent implements OnInit {
   constructor(public ApiService:ApiServiceService) { }
 
   ngOnInit(): void {
-    this.ApiService.viewtableDA()
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableOBapprove();
+    // this.ApiService.viewtableDA()
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableOBapprove();
   }
   toggle:any=false;
   menuitem:any=false;

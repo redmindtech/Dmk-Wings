@@ -23,6 +23,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
         age:['',Validators.required],
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        mother_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:[''],
         additional_qualification:[''],
@@ -43,6 +44,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
         age1:['',Validators.required],
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
         educational_qualification1:['',Validators.required],
         date_of_birth1:[''],
         additional_qualification1:[''],
@@ -69,11 +71,17 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   
   ngOnInit(): void {
-    this.getdata();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableOBapprove();
+    // this.getdata();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOBapprove();
+    this.ApiService.viewtableOB().subscribe((data:any) => {
+      let obj= data;
+      this.customers=obj.data;
+      //console.log(obj.data.length);
+      ;})
+    //console.log(this.customers);
     this.dtOptions = {
       pagingType: 'full_numbers'
     };

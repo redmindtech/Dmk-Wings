@@ -11,7 +11,7 @@ export class SuperadminDashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    $.widget.bridge('uibutton', $.ui.button);
+    //$.widget.bridge('uibutton', $.ui.button);
   }
 
   toggle:any=false;

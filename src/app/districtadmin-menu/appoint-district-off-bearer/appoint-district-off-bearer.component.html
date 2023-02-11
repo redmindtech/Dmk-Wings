@@ -425,7 +425,7 @@
   
   <!-- OFFICE BEARER DATATABLE         -->
   <div class="card-body">
-    <div class="table-responsive">
+    <div class="table-responsive" *ngIf="customers.length !=0">
         <!-- TABLE -->
             <table class="table table-bordered display" [dtOptions]="dtOptions" datatable width="100%" cellspacing="0">
               <thead>

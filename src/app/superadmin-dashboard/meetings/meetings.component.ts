@@ -43,13 +43,18 @@ export class MeetingsComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit():void{
+    this.ApiService.viewtablemeeting().subscribe((data:any) => {
+      let obj= data;
+      this.customers=obj.data;
+      //console.log(obj.data.length);
+      ;})
 
-    this.getdata();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableOBapprove();
-    this.ApiService.viewtablemeeting();
+    // this.getdata();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOBapprove();
+    // this.ApiService.viewtablemeeting();
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
