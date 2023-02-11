@@ -21,9 +21,9 @@ export class StateadminComponent implements OnInit {
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
       lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
       //district:['',Validators.required],
-      designation:[''],
-      party_designation:[''],
-      approval_status:[''],
+      designation:['',Validators.required],
+      party_designation:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+      approval_status:['',Validators.required],
       location_id:['1'],
       mode:['0']
       });

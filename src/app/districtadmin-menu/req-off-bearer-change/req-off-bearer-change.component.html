@@ -48,6 +48,10 @@
                               <label>Father Name / தந்தையின் பெயர்</label>
                               <input type="text" name="father_name1" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1"/>
                             </div>
+                            <div class="col-6 md:col-6">
+                              <label>Mother Name / தாய் பெயர்</label>
+                              <input type="text" name="mother_name1" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name1"/>
+                            </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-6 md:col-6">
@@ -164,7 +168,11 @@
                       <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Father Name / தந்தையின் பெயர்</label>
-                              <input type="text" name="father_name" class="form-control" [disabled]="true" placeholder="Enter Father Name / தந்தையின் பெயர்"[value]="OBfathername"/>
+                              <input type="text" name="father_name" class="form-control" [disabled]="true" placeholder="Enter Father Name / தந்தையின் பெயர்" [value]="OBfathername"/>
+                            </div>
+                            <div class="col-6 md:col-6">
+                              <label>Mother Name / தாய் பெயர்</label>
+                              <input type="text" name="mother_name1" class="form-control" [disabled]="true" placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name1" [value]="OBfathername"/>
                             </div>
                       </div>
                       <div class="form-group row">
@@ -286,19 +294,24 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                              <div class="col-6 md:col-6">
-                                <label>Age / வயது</label><span class="required "> *</span>
-                                <input type="number" name="age" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/>
-                              </div>
+                              
                               <div class="col-sm-6">
                                 <label>Date of Birth</label><span class="required "> *</span>
                                 <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth"/>
+                              </div>
+                              <div class="col-6 md:col-6">
+                                <label>Age / வயது</label><span class="required "> *</span>
+                                <input type="number" name="age" class="form-control age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/>
                               </div>
                         </div>
                         <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Father Name / தந்தையின் பெயர்</label><span class="required "> *</span>
                                 <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name"/>
+                              </div>
+                              <div class="col-6 md:col-6">
+                                <label>Mother Name / தாய் பெயர்</label>
+                                <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name"/>
                               </div>
                         </div>
                         <div class="form-group row">
@@ -485,7 +498,7 @@
             <div class="form-group">
              <div class="col-12 md:col-12">
                                   <label>First Name</label><span class="required "> *</span>
-                                  <input  pInputText type="text" name="name" class="form-control"  placeholder="Enter Name" [value]="OBname+OBlastname" formControlName="name"/>
+                                  <input  pInputText type="text" name="name" class="form-control" [disabled]="true"  placeholder="Enter Name" [value]="OBname+OBlastname" />
                                   <div  *ngIf="reqform.get('name').hasError('required') && reqform.get('name').touched"
                                     class="invalid-msg">Please enter the valid field
                                 </div>
@@ -496,7 +509,7 @@
             <div class="form-group">
               <div class="col-12 md:col-12">
                                    <label>Email</label><span class="required "> *</span>
-                                   <input  pInputText type="text" name="email1" class="form-control"  placeholder="Email"  formControlName="email1"/>
+                                   <input  pInputText type="text" name="email1" class="form-control" [disabled]="true" placeholder="Email"  [value]="OBmail"/>
                                    <div  *ngIf="reqform.get('email1').hasError('email') && reqform.get('email1').touched"
                                      class="invalid-msg">Please enter the valid field
                                  </div>
@@ -506,7 +519,7 @@
             <div class="form-group">
               <div class="col-12 md:col-12">
                                    <label>Old Designation</label><span class="required "> *</span>
-                                   <input  pInputText type="text" name="old_designation" class="form-control"  placeholder="Old Designation"  formControlName="old_designation"/>
+                                   <input  pInputText type="text" name="old_designation" class="form-control" [disabled]="true" placeholder="Old Designation"   [value]="OBold_designation" />
                                    <!-- <div  *ngIf="reqform.get('old_designation').hasError('old_designation') && reqform.get('old_designation').touched"
                                      class="invalid-msg">Please enter the valid field
                                  </div> -->
@@ -547,7 +560,7 @@
             </div>
             <div class="col-3" style="margin-left:34%;">
               <button  class="btn btn-danger btn btn-block">
-                REQUEST APPLY
+                Request Designation Change
               </button>
             </div>
             

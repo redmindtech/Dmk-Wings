@@ -96,7 +96,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     //if()
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .subscribe(
         data => {
             alert("Office bearers user has been created successfully!")
@@ -146,6 +146,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     OBage: any;
     OBdateofbirth: any;
     OBfathername: any;
+    OBmothername: any;
     OBdegree: any;
     OBaddtionaldegree: any;
     OBphonenumber: any;
@@ -216,6 +217,7 @@ updatedata(updateform: any){
   this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
   updateform.get('age1').value,
     updateform.get('father_name1').value,
+    updateform.get('mother_name1').value,
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,

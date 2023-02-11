@@ -22,6 +22,7 @@ export class CreateOffBearerComponent implements OnInit {
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
         age:['',Validators.required],
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        mother_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:[''],
         additional_qualification:[''],
@@ -42,6 +43,7 @@ export class CreateOffBearerComponent implements OnInit {
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
         age1:['',Validators.required],
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
         educational_qualification1:['',Validators.required],
         date_of_birth1:[''],
         additional_qualification1:[''],
@@ -95,7 +97,7 @@ export class CreateOffBearerComponent implements OnInit {
     //if()
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .subscribe(
         data => {
             alert("Office bearers user has been created successfully!")
@@ -145,6 +147,7 @@ export class CreateOffBearerComponent implements OnInit {
     OBage: any;
     OBdateofbirth: any;
     OBfathername: any;
+    OBmothername: any;
     OBdegree: any;
     OBaddtionaldegree: any;
     OBphonenumber: any;
@@ -165,6 +168,7 @@ export class CreateOffBearerComponent implements OnInit {
          this.OBage=a.age;
          this.OBdateofbirth=a.date_of_birth;
          this.OBfathername=a.father_name;
+         this.OBfathername=a.mother_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
          this.OBphonenumber=a.contact_no;
@@ -195,6 +199,7 @@ export class CreateOffBearerComponent implements OnInit {
           party_designation1:this.OBparty_desig,
           approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
+        mother_name1:this.OBmothername,
         educational_qualification1:this.OBprofession,
         date_of_birth1:this.OBdateofbirth,
         additional_qualification1:this.OBaddtionaldegree,
@@ -215,6 +220,7 @@ updatedata(updateform: any){
   this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
   updateform.get('age1').value,
     updateform.get('father_name1').value,
+    updateform.get('mother_name1').value,
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,
