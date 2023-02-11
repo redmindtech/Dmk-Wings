@@ -25,7 +25,7 @@ export class MeetingsComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder,private dataService: ApiServiceService,private router:Router) { 
+  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router) {
     this.createmeetingform= this.fb.group({
       meeting_name: ['',Validators.required],
       meeting_date:['',Validators.required ],
@@ -35,14 +35,39 @@ export class MeetingsComponent implements OnInit {
       comments:[''],
       meeting_location:['',Validators.required],
    district:['']
-       
+
     });
   }
-  
+
+
+  dtOptions: DataTables.Settings = {};
 
   ngOnInit():void{
-    
+
+    this.getdata();
+    this.ApiService.viewtableOB();
+    this.ApiService.viewtableDA();
+    this.ApiService.viewtableSA();
+    this.ApiService.viewtableOBapprove();
+    this.ApiService.viewtablemeeting();
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+
   }
+
+  customers:any=[];
+  getdata(){
+    this.customers=[];
+        for(const prop in this.ApiService.tabledatameeting) {
+            this.customers.push(this.ApiService.tabledatameeting[prop])
+          }
+          this.customers.pop();
+    //console.log(this.ApiService.tabledataDA)
+    //this.ApiService.viewtableOB();
+
+  }
+
   postdata(angForm1 : any) //angForm1
     {
         console.log(this.createmeetingform.status,
@@ -52,17 +77,17 @@ export class MeetingsComponent implements OnInit {
        );
         if(angForm1.status == "VALID" &&  angForm1.value.meeting_name!=null  && angForm1.value.meeting_date !=null  && angForm1.value.meeting_time!=null && angForm1.value.participants !=null &&  angForm1.value.meeting_location !=null)
         {
-          
 
-            this.dataService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
+
+            this.ApiService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
-              angForm1.value.meeting_type, 
+              angForm1.value.meeting_type,
               angForm1.value.meeting_location,angForm1.value.comments, angForm1.value.district)
             .pipe(first())
             .subscribe(
             data => {
                  alert("Meeting has been created successfully!")
-           
+
             this.router.navigate(['superadmin/Meetings']);
              angForm1.reset();
             },

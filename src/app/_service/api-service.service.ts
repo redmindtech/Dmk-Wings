@@ -301,7 +301,19 @@ public viewtableDA() {
                                                           }));
                                                     }
 
-
+                                                    tabledatameeting:any[]=[];
+                                                    public viewtablemeeting() {
+                                                    this.httpClient.get<any>(this.baseUrl +'/tablemeeting.php')
+                                                                      .pipe(map((res)=>{
+                                                                                const users =[];
+                                                                                for(const key in res){
+                                                                                    if(res.hasOwnProperty(key)){
+                                                                                        users.push({...res[key],id:key})}
+                                                                                } return users;
+                                                                            })).subscribe((users:any[])=>{
+                                                                                //console.log(users)
+                                                                                this.tabledatameeting=users[0];
+                                                                                })}
 
 
 //    public updateSA(mode:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
