@@ -33,6 +33,9 @@
                                                     <div *ngIf="distadminform.get('firstname').hasError('pattern') && distadminform.get('firstname').touched"
                                                          class="invalid-msg">Please enter the valid Name
                                                 </div>
+                                                <div *ngIf="distadminform.get('firstname').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the First Name
+                                  </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name / குடும்ப பெயர்</label>
@@ -45,6 +48,9 @@
                                                     <div *ngIf="distadminform.get('lastname').hasError('pattern') && distadminform.get('lastname').touched"
                                                         class="invalid-msg">Please enter the valid Name
                                                     </div>
+                                                    <div *ngIf="distadminform.get('lastname').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Last Name
+                                  </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -76,6 +82,9 @@
                                                 <option value="Erode (East)">Erode (East)</option>
                                                 <option value="Erode (West)">Erode (West)</option>
                                             </select>
+                                            <div *ngIf="distadminform.get('district').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please select the district
+                                  </div>
                                         </div>
 
                                         <div class="form-group">
@@ -89,6 +98,9 @@
                                                 <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched"
                                                     class="invalid-msg">Please enter the valid Email Id
                                                 </div>
+                                                <div *ngIf="distadminform.get('email').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                  </div>
                                         </div>
 
 

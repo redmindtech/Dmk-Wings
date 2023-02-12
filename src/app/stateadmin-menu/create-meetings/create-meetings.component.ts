@@ -25,10 +25,11 @@ export class CreateMeetingsComponent implements OnInit {
   participants: any;
   meeting_type: any;
   meeting_location: any;
+  hidden:boolean=true;
 
 
 
-  constructor(private fb: FormBuilder,private dataService: ApiServiceService,private router:Router) { 
+  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router) { 
     this.createmeetingform= this.fb.group({
       meeting_name: ['',Validators.required],
       meeting_date:['',Validators.required ],
@@ -43,9 +44,44 @@ export class CreateMeetingsComponent implements OnInit {
   }
   
 
+
+  dtOptions: DataTables.Settings = {};
+  
   ngOnInit():void{
+
+    this.ApiService.viewtablemeeting().subscribe((data:any) => {
+      let obj= data;
+      this.customers=obj.data;
+      //console.log(obj.data.length);
+      ;})
+
+    // this.getdata();
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOBapprove();
+    // this.ApiService.viewtablemeeting();
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
     
   }
+
+
+  customers:any=[];
+  getdata(){
+    this.customers=[];
+        for(const prop in this.ApiService.tabledatameeting) {
+            this.customers.push(this.ApiService.tabledatameeting[prop])
+          }
+          this.customers.pop();
+    //console.log(this.ApiService.tabledataDA)
+    //this.ApiService.viewtableOB();
+
+  }
+
+
+
   postdata(angForm1 : any) //angForm1
     {
         console.log(this.createmeetingform.status,
@@ -57,7 +93,7 @@ export class CreateMeetingsComponent implements OnInit {
         {
           
 
-            this.dataService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
+            this.ApiService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
               angForm1.value.meeting_type, 
               angForm1.value.meeting_location,angForm1.value.comments, angForm1.value.district)
@@ -75,7 +111,7 @@ export class CreateMeetingsComponent implements OnInit {
             });
          }
         else{
-            alert("Please enter the valid details");
+            this.hidden=false;
         }
     }
 

@@ -22,12 +22,13 @@ export class MeetingsComponent implements OnInit {
   participants: any;
   meeting_type: any;
   meeting_location: any;
+  hidden:boolean=true;
 
 
 
   constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router) {
     this.createmeetingform= this.fb.group({
-      meeting_name: ['',Validators.required],
+      meeting_name: ['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       meeting_date:['',Validators.required ],
       meeting_time:['',Validators.required],
       participants:['',Validators.required],
@@ -103,7 +104,7 @@ export class MeetingsComponent implements OnInit {
             });
          }
         else{
-            alert("Please enter the valid details");
+            this.hidden=false;
         }
     }
 

@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-
+import { ApiServiceService } from 'src/app/_service/api-service.service';
 @Component({
   selector: 'app-da-dashboard',
   templateUrl: './da-dashboard.component.html',
   styleUrls: ['./da-dashboard.component.scss']
 })
 export class DaDashboardComponent implements OnInit {public chart: any;
+  barchat: any;
+  data: any;
+  keyvalue:any;
+  // ApiServiceService: any;
   
 
-  constructor() { }
+  constructor(public ApiService:ApiServiceService) { }
 
   // chartOptions = {
 	//   animationEnabled: true,
@@ -40,25 +44,43 @@ export class DaDashboardComponent implements OnInit {public chart: any;
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableOB();
     // this.ApiService.viewtableOBapprove();
-    this.createChart();
-    this.piechart()
+    
     // this.ApiService.viewtableSA();
+    this.ApiService.chartdatada().subscribe((data:any) => {
+console.log('hi');
+     this.barchat=data;
+  
+      this.createChart( this.barchat);
+       this.piechart();
+    
+       ;})
+      
+  
 
     
   }
-    createChart(){
+    createChart(data){
+      console.log(data);
+      let values = [];
+      let keys = Object.keys(data);   
+      for (let key in data) {
+        values.push(data[key]);
+      }
+
       this.chart = new Chart("MyChart", {
+        
         type: 'bar', //this denotes tha type of chart
 
         data: {// values on X-Axis
-          labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"], 
+          labels: keys, 
+          // backgroundColor: ["#800080","#7FFF00","#FF1493","#00FFFF","#DC143C","#FFFF00"],
           datasets: [
             {
-              label: "Applicants",
-              backgroundColor: "#4e73df",
-              hoverBackgroundColor: "#2e59d9",
-              borderColor: "#4e73df",
-              data: ['154',' 255', '300','355', '500','780'],
+                  // label: values,
+              backgroundColor: ["#800080","#7FFF00","#FF1493","#00FFFF","#DC143C","#FFFF00"],
+              // hoverBackgroundColor: "#2e59d9",
+              // borderColor: ["#4e73df"],
+              data:values,
               
             },
           ]
@@ -118,4 +140,5 @@ export class DaDashboardComponent implements OnInit {public chart: any;
       });
       
     }
-}
+  }
+

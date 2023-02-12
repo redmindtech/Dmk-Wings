@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-           baseUrl:string = "https://redmindtechnologies.com/dmk_dev";
-        //  baseUrl:string="http://localhost/lat_php";
+        baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+        //  baseUrl:string="http://localhost/lat_git_dmk/Dmk-Wings/lat_php_ftp/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
 constructor(private httpClient : HttpClient) { };
@@ -215,7 +215,10 @@ public viewtableDA() {
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
             }  
 
-
+            barchartdatada:any[]=[];
+            public chartdatada() {
+              return this.httpClient.get(this.baseUrl +'/dashboardda.php');
+            }
           public sendmail(email:any) {
             return this.httpClient.post<any>(this.baseUrl + '/send_email.php', { email })
             .pipe(map(Users => {

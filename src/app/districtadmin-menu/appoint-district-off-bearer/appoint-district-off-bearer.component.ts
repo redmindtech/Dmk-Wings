@@ -13,22 +13,23 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
+  hidden:boolean=true;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder) 
     { 
       this.officebearerform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-        lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+        firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-        mother_name:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:[''],
         additional_qualification:[''],
-        contact_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
-        whatsapp_no:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         profession:[''],
         address1:[''],
         applied_role:['',Validators.required],
@@ -40,16 +41,16 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
       this.editform = this.fb.group({ //angForm
         email1: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age1:['',Validators.required],
-        father_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-        mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
+        father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification1:['',Validators.required],
         date_of_birth1:[''],
         additional_qualification1:[''],
-        contact_no1:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
-        whatsapp_no1:['',[Validators.required,Validators.pattern('[789][0-9]{9}')]],
+        contact_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         profession1:[''],
         address1:[''],
         applied_role1:['',Validators.required],
@@ -118,7 +119,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         });
     }
     else{
-        alert("Please enter the valid details")
+        this.hidden=false;
     }
 
   }

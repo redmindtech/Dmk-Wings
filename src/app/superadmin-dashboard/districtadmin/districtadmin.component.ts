@@ -12,13 +12,14 @@ export class DistrictadminComponent implements OnInit {
   distadminform !:FormGroup;
   dtOptions: DataTables.Settings = {};
   editform : FormGroup;
+  hidden:boolean=true;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, )
     {   this.distadminform = this.fb.group({ //angForm
           email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-          lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+          firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+          lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
             district:['',Validators.required],
             designation:[''],
             party_designation:[''],
@@ -28,8 +29,8 @@ export class DistrictadminComponent implements OnInit {
 
         this.editform = this.fb.group({ //angForm
           email1: [this.DAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-          lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+          firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+          lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
           district1:['',Validators.required],
           designation1:[''],
           party_designation1:[''],
@@ -79,7 +80,7 @@ export class DistrictadminComponent implements OnInit {
             });
         }
         else{
-            alert("Please enter the valid details");
+            this.hidden=false;
         }
     }
 

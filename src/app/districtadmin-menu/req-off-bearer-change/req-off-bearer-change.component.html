@@ -281,6 +281,9 @@
                                 <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched"
                                     class="invalid-msg">Please enter the valid Name
                               </div>
+                              <div *ngIf="officebearerform.get('firstname').hasError('required')"
+                              class="invalid-msg" [hidden]='hidden'>Please enter the Firstname
+                            </div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Last Name/குடும்ப பெயர்</label><span class="required "> *</span>
@@ -291,23 +294,47 @@
                                   <div *ngIf="officebearerform.get('lastname').hasError('pattern') && officebearerform.get('lastname').touched"
                                     class="invalid-msg">Please enter the valid Name
                                   </div>
+                                  <div *ngIf="officebearerform.get('lastname').hasError('required')"
+                                  class="invalid-msg" [hidden]='hidden'>Please enter the Lastname
+                                </div>
                                 </div>
                         </div>
                         <div class="form-group row">
                               
                               <div class="col-sm-6">
                                 <label>Date of Birth</label><span class="required "> *</span>
-                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth"/>
+                                  <input type="date" name="date_of_birth"class="form-control"   placeholder="Enter Date of Birth" formControlName="date_of_birth"/>
+                                    <div *ngIf="officebearerform.get('date_of_birth').hasError('required')"
+                                     class="invalid-msg" [hidden]='hidden'>Please enter the Date of Birth
+                                    </div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Age / வயது</label><span class="required "> *</span>
                                 <input type="number" name="age" class="form-control age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/>
+                                <div *ngIf="officebearerform.get('age').hasError('required') && officebearerform.get('age').touched"
+                                    class="invalid-msg">Please enter the valid field
+                                  </div>
+                                  <div *ngIf="officebearerform.get('age').hasError('pattern') && officebearerform.get('age').touched"
+                                    class="invalid-msg">Please enter the valid age
+                                  </div>
+                                  <div *ngIf="officebearerform.get('age').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Age
+                                  </div>
                               </div>
-                        </div>
+                              </div>
                         <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Father Name / தந்தையின் பெயர்</label><span class="required "> *</span>
                                 <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name"/>
+                                <div *ngIf="officebearerform.get('father_name').hasError('required') && officebearerform.get('father_name').touched"
+                                    class="invalid-msg">Please enter the valid field
+                                  </div>
+                                  <div *ngIf="officebearerform.get('father_name').hasError('pattern') && officebearerform.get('father_name').touched"
+                                    class="invalid-msg">Please enter the valid Name
+                                  </div>
+                                  <div *ngIf="officebearerform.get('father_name').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Father Name
+                                  </div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Mother Name / தாய் பெயர்</label>
@@ -318,6 +345,9 @@
                             <div class="col-6 md:col-6">
                               <label>Degree / கல்வித் தகுதி</label><span class="required "> *</span>
                               <input type="text" name="educational_qualification" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி" formControlName="educational_qualification"/>
+                              <div *ngIf="officebearerform.get('educational_qualification').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the degree
+                                  </div>
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Additional Degree / சிறப்பு தகுதி</label>
@@ -335,6 +365,9 @@
                                   <div  *ngIf="officebearerform.get('contact_no').hasError('pattern') && officebearerform.get('contact_no').touched"
                                     class="invalid-msg">Please enter the valid Phone Number
                                   </div>
+                                  <div *ngIf="officebearerform.get('contact_no').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Contact Number
+                                  </div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Whatsapp Number /வாட்ஸ்அப் எண்</label><span class="required "> *</span>
@@ -344,6 +377,9 @@
                                   </div>
                                   <div *ngIf="officebearerform.get('whatsapp_no').hasError('pattern') && officebearerform.get('whatsapp_no').touched"
                                     class="invalid-msg">Please enter the valid Whatsapp Number
+                                  </div>
+                                  <div *ngIf="officebearerform.get('whatsapp_no').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Whatsapp Number
                                   </div>
                                 </div>
                         </div>
@@ -357,6 +393,9 @@
                                  <div *ngIf="officebearerform.get('email').hasError('pattern') && officebearerform.get('email').touched"
                                   class="invalid-msg">Please enter the valid Email Id
                                 </div>
+                                <div *ngIf="officebearerform.get('email').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                  </div>
                               </div>
                         </div>
                         <div class="form-group">

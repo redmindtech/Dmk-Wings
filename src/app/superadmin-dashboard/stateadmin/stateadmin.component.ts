@@ -14,15 +14,16 @@ export class StateadminComponent implements OnInit {
   customers:any[]=[];
   stateadminform !:FormGroup;
   editform: FormGroup;
+  hidden:boolean=true;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder) { 
     this.stateadminform = this.fb.group({ //angForm
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      firstname:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-      lastname:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+      firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       //district:['',Validators.required],
       designation:['',Validators.required],
-      party_designation:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+      party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status:['',Validators.required],
       location_id:['1'],
       mode:['0']
@@ -118,7 +119,7 @@ export class StateadminComponent implements OnInit {
         });
     }
     else{
-        alert("Please enter the valid details");
+      this.hidden=false;
     }
   }
   delete_sa(user_id : any)
