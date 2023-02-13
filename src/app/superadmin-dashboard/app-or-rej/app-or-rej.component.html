@@ -33,7 +33,7 @@
                                 <input type="text" name="lastname1" formControlName="lastname1" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்"/>
                               </div>
                       </div>
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Age / வயது</label>
                               <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" />
@@ -42,7 +42,19 @@
                               <label>Date of Birth</label>
                               <input type="date" name="date_of_birth1" class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth1"/>
                             </div>
+                      </div> -->
+
+                      <div class="form-group row">
+                        <div class="col-sm-6">
+                              <label>Date of Birth</label><span class="required "> *</span>
+                              <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth1"/>
+                            </div>
+                            <div class="col-6 md:col-6">
+                              <label>Age / வயது</label><span class="required "> *</span>
+                              <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" readonly/>
+                            </div>
                       </div>
+
                       <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Father Name / தந்தையின் பெயர்</label>
@@ -156,13 +168,14 @@
                               </div>
                       </div>
                       <div class="form-group row">
-                            <div class="col-6 md:col-6">
-                              <label>Age / வயது</label>
-                              <input type="number" name="age" class="form-control" [disabled]="true" min="18" max="100" placeholder="Enter Age / வயது"[value]="OBage"/>
-                            </div>
+                            
                             <div class="col-sm-6">
                               <label>Date of Birth</label>
                               <input type="date" name="date_of_birth"class="form-control" [disabled]="true" placeholder="Enter Date of Birth"[value]="OBdateofbirth"/>
+                            </div>
+                            <div class="col-6 md:col-6">
+                              <label>Age / வயது</label>
+                              <input type="number" name="age" class="form-control" [disabled]="true" min="18" max="100" placeholder="Enter Age / வயது"[value]="OBage"/>
                             </div>
                       </div>
                       <div class="form-group row">
@@ -269,16 +282,25 @@
                       <button type="button" class="close" data-dismiss="modal" (click)="officebearerform.reset()">&times;</button>
                     </div>
                     <div class="card-body">
+                      <div class="">
+                        <div class="d-flex justify-content-between">
+                          <label class="col-2" >District/மாவட்டம்:</label>
+                          <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
+                            <option *ngFor="let option of district_list" (value)="option" >
+                              {{option}}</option>
+                          </select>
+                            
+                            <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                            <select class="form-control"  [(ngModel)]="constituency">
+                              <option *ngFor="let option of user_constituency" (value)="option" >
+                                {{option}}</option>
+                            </select>
+                        </div>
+                      </div> 
+                  
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
+                        
                           
-                          <!-- <div class="">
-                                <div class="d-flex justify-content-between">
-                                  <label>Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                                  <select class="form-control col-3" ></select>
-                                  <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                                  <select  class="form-control col-3"></select>
-                                </div>
-                          </div> -->
                             
                           
                   
@@ -313,8 +335,19 @@
                         </div>
                         <div class="form-group row">
                               <div class="col-6 md:col-6">
-                                <label>Age / வயது</label><span class="required "> *</span>
-                                <input type="number" name="age" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/>
+                                <!-- <label>Age / வயது</label><span class="required "> *</span>
+                                <input type="number" name="age" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/> -->
+                                <label>Date of Birth</label><span class="required "> *</span>
+                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth"/>
+                                <div *ngIf="officebearerform.get('age').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Date of Birth
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <!-- <label>Date of Birth</label><span class="required "> *</span>
+                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth"/> -->
+                                 <label>Age / வயது</label><span class="required "> *</span>
+                                <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age" readonly/>
                                 <div *ngIf="officebearerform.get('age').hasError('required') && officebearerform.get('age').touched"
                                     class="invalid-msg">Please enter the valid field
                                   </div>
@@ -323,13 +356,6 @@
                                   </div>
                                   <div *ngIf="officebearerform.get('age').hasError('required')"
                                     class="invalid-msg" [hidden]='hidden'>Please enter the Age
-                                  </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label>Date of Birth</label><span class="required "> *</span>
-                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth"/>
-                                <div *ngIf="officebearerform.get('age').hasError('required')"
-                                    class="invalid-msg" [hidden]='hidden'>Please enter the Date of Birth
                                   </div>
                               </div>
                         </div>

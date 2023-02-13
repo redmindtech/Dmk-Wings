@@ -10,12 +10,16 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./app-or-rej.component.scss']
 })
 export class AppOrRejComponent implements OnInit {
-  customers:any;
+  customers:any=[];
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
   dtOptions: DataTables.Settings = {};
   hidden:boolean=true;
+  district:string;
+  constituency:string='';
+  date_of_birth :string;
+  age : number;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder) 
@@ -80,19 +84,26 @@ export class AppOrRejComponent implements OnInit {
        new_designation1:[''],
        reason:[''],
         user_id:[''],});
+
+        this.district=this.ApiService.user_district;
     }
   
   officebearerform !:FormGroup;
+  district_list:any[]=this.ApiService.all_districts;
+  constituency_list:any=this.ApiService.all_constituency;
+  user_constituency:any;
+  
   
   
   ngOnInit(): void {
-    console.log(this.ApiService.all_constituency['CHENGALPATTU'])
+    //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.ApiService.viewtableOB().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
       ;})
     //console.log(this.customers);
+    //console.log(this.district_list);
     
     this.dtOptions[0] = {
       pagingType: 'full_numbers'
@@ -103,9 +114,18 @@ export class AppOrRejComponent implements OnInit {
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
     this.getdata();
-    
-    
-   
+    let obj=this.constituency_list;
+    this.user_constituency=obj[this.district];
+  }
+  Constituency_selection(selection:any){
+    //console.log(selection)
+    if(selection != 'null'){
+      //console.log(this.district);
+      let obj=this.constituency_list;
+      this.user_constituency=obj[this.district];
+      
+    }
+      
   }
   getdata(){
 
@@ -127,6 +147,19 @@ export class AppOrRejComponent implements OnInit {
         //   console.log(this.customers);
     });
 
+  }
+  calculateAge() {
+    console.log(this.date_of_birth);
+    console.log("i m in");
+   
+    const today = new Date();
+    const birthdate = new Date(this.date_of_birth);
+    this.age = today.getFullYear() - birthdate.getFullYear();
+    const m = today.getMonth() - birthdate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+      this.age--;
+    }
+  
   }
   postdata(officebearerform : any) //officebearerform
   {
