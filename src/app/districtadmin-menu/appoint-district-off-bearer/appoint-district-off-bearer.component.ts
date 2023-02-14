@@ -21,8 +21,10 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
-    {
+    {   this.district = JSON.parse(localStorage.getItem('user_district'));
+
       this.officebearerform = this.fb.group({ //angForm
+        form_district:[this.district,Validators.required],
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -70,6 +72,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
        new_designation1:[''],
        reason:[''],
         user_id:[''],});
+
+        
     }
   customers:any=[];
   officebearerform !:FormGroup;
@@ -90,6 +94,13 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
+
+    if(this.district != 'null'){
+      //console.log(this.district);
+      let obj=this.constituency_list;
+      this.user_constituency=obj[this.district];
+
+    }
 
 
   }
@@ -163,6 +174,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     get email() { return this.officebearerform.get('email'); }
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
+    get father_name1() { return this.officebearerform.get('lastname'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
 
 
