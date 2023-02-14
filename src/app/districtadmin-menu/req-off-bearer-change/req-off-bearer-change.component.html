@@ -6,10 +6,10 @@
       <div class="col-2" style="margin-left:67%">
           <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
       </div>
-      
-      
+
+
   </div>
-      
+
 
       <div class="modal fade" id="modal-xl">
         <div class="modal-dialog modal-xl">
@@ -22,7 +22,7 @@
                   <div class="card-body">
                     <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
                         <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
-                
+
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
@@ -144,7 +144,7 @@
                   <div class="card-body">
                     <form>
                         <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
-                
+
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
@@ -253,9 +253,9 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      
 
-      
+
+
 
 
 
@@ -270,7 +270,7 @@
                     <div class="card-body">
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
                           <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
-                  
+
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>First Name/முதல் பெயர்</label><span class="required "> *</span>
@@ -300,28 +300,15 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                              
-                              <div class="col-sm-6">
+                          <div class="col-sm-6">
                                 <label>Date of Birth</label><span class="required "> *</span>
-                                  <input type="date" name="date_of_birth"class="form-control"   placeholder="Enter Date of Birth" formControlName="date_of_birth"/>
-                                    <div *ngIf="officebearerform.get('date_of_birth').hasError('required')"
-                                     class="invalid-msg" [hidden]='hidden'>Please enter the Date of Birth
-                                    </div>
+                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth"/>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Age / வயது</label><span class="required "> *</span>
-                                <input type="number" name="age" class="form-control age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/>
-                                <div *ngIf="officebearerform.get('age').hasError('required') && officebearerform.get('age').touched"
-                                    class="invalid-msg">Please enter the valid field
-                                  </div>
-                                  <div *ngIf="officebearerform.get('age').hasError('pattern') && officebearerform.get('age').touched"
-                                    class="invalid-msg">Please enter the valid age
-                                  </div>
-                                  <div *ngIf="officebearerform.get('age').hasError('required')"
-                                    class="invalid-msg" [hidden]='hidden'>Please enter the Age
-                                  </div>
+                                <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age" readonly/>
                               </div>
-                              </div>
+                        </div>
                         <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Father Name / தந்தையின் பெயர்</label><span class="required "> *</span>
@@ -354,7 +341,7 @@
                             <input type="text" name="additional_qualification" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி" formControlName="additional_qualification"/>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
@@ -477,7 +464,7 @@
                   <th>Email</th>
                   <th>Contact no</th>
                   <th>Request</th>
-                 
+
               </tr>
             </thead>
 
@@ -504,14 +491,14 @@
                   <td><a data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
                     <i class="fas fa-flag"></i>
                 </a></td>
-                 
+
                 </tr>
             </tbody>
-            
+
           </table>
   </div>
 </div>
-  
+
 </div>
 
 </div>
@@ -542,7 +529,7 @@
                                     class="invalid-msg">Please enter the valid field
                                 </div>
                 </div>
-  
+
             </div>
             <!-- </div> -->
             <div class="form-group">
@@ -553,7 +540,7 @@
                                      class="invalid-msg">Please enter the valid field
                                  </div>
                  </div>
-   
+
              </div>
             <div class="form-group">
               <div class="col-12 md:col-12">
@@ -563,13 +550,13 @@
                                      class="invalid-msg">Please enter the valid field
                                  </div> -->
                  </div>
-   
+
              </div>
-             
+
             <div class="form-group ">
                 <div class="col-12 md:col-12">
                   <label>New Designation</label><span class="required "> *</span>
-                    
+
                     <select name="new_designation1" formControlName="new_designation1"  class="form-control" placeholder="New Designation">
                       <option value="">Select Option</option>
                       <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
@@ -602,9 +589,9 @@
                 Request Designation Change
               </button>
             </div>
-            
-            
-            
+
+
+
         </form>
         </div>
       </div>

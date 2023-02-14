@@ -17,7 +17,7 @@ export class ApiServiceService {
   valueChanges: any;
 constructor(private httpClient : HttpClient) { };
 
- 
+
 user_district:any='null';
 
 
@@ -111,7 +111,7 @@ public userlogin(username : any, password :any) {
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
   this.user_district= Users[0].district;
-  
+
   console.log(this.user_district);
 
 
@@ -215,14 +215,14 @@ public viewtableDA() {
           //                 users.push({...res[key],id:key})}
           //         } return users;
           //     })).subscribe((users:any[])=>{
-                  
+
           //         this.tabledataDA=users[0];
           //         })
           return this.httpClient.get(this.baseUrl + '/show.php?mode=1');
-                
+
     }
 
-                  
+
                   tabledataOB:any[]=[];
                       public viewtableOB() {
                       // this.httpClient.get<any>(this.baseUrl +'/show.php?mode=2')
@@ -241,7 +241,7 @@ public viewtableDA() {
 
                tabledataOBapprove:any[]=[];
                 public viewtableOBapprove() {
-                  
+
                 // this.httpClient.get<any>(this.baseUrl +'/rolechange_approvel_show.php')
                 // .pipe(map((res)=>{
                 //   const users =[];
@@ -254,7 +254,7 @@ public viewtableDA() {
                 //    this.tabledataOBapprove=users[0];
                 //     })
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
-            }  
+            }
 
             barchartdatada:any[]=[];
             public chartdatada() {
@@ -290,7 +290,7 @@ public viewtableDA() {
       public approve_role(user_id:any,new_role:any,status:any) {
             //console.log(new_role);
                            // new_role="head";
-                           // user_id = ar_id;                                                                                                                                                                                                                                
+                           // user_id = ar_id;
         const httpOptions : Object = {
            headers: new HttpHeaders({
             'Content-Type':'application/x-www-form-urlencoded'
@@ -304,7 +304,7 @@ public viewtableDA() {
 
                                 public create_meeting(meeting_name:any,meeting_date:any,meeting_time:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
                                   console.log(constituency);
-                                return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php', 
+                                return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php',
                                 { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
                                 .pipe(map(Users => {
                                 return Users;
@@ -319,12 +319,12 @@ public viewtableDA() {
                                   };
                                // console.log("sdf")
                                   //console.log(name);
-                                 return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php', 
+                                 return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php',
                                   {name,email,old_designation,new_designation,reason ,user_id},httpOptions)
                                   .pipe(map(Users => {
                                   return Users;
                                   }));
-                            
+
                                 }
                                 public updateDA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
                                   //let firstname='names'
@@ -340,7 +340,7 @@ public viewtableDA() {
                                                 return Users;
                                                 }));
                                           }
-      
+
                                           public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address:any,applied_role:any,party_comments:any,location_id:'1') {
                                             //let firstname='names'
                                             const httpOptions : Object = {
@@ -396,6 +396,32 @@ public viewtableDA() {
   //     return Users;
   //     }));
   //     }
+
+
+  barchartdatasa:any[]=[];
+  public chartdatasa() {
+    return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
+  }
+
+            piechartdatada:any[]=[];
+            public piedatada() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
+            }
+            dashboardcarddata:any[]=[];
+            public dashboardcardda() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
+            }
+            public deletemeeting(id:any) {
+              const httpOptions : Object = {
+                headers: new HttpHeaders({
+                  'Content-Type':'application/x-www-form-urlencoded'
+                })
+              };
+                return this.httpClient.post<any>(this.baseUrl + '/deletemeeting.php', { id},httpOptions)
+                .pipe(map(Users => {
+                return Users;
+                }));
+                }
 
 
 //token

@@ -107,6 +107,26 @@ export class MeetingsComponent implements OnInit {
             this.hidden=false;
         }
     }
+    delete_CM(id : any){
+      console.log(id)
+      if(confirm("Are you sure want to cancel this meeting ?")) {
+        console.log("Implement delete functionality here");
+          this.ApiService.deletemeeting(id)
+          .pipe()
+          .subscribe(
+          data => {
+              window.location.reload();
+              alert("District admin detail has been deleted !")
+          },
+
+          error => {
+              console.log(error);
+          });
+
+  }
+}
+
+    
 
   radiobutton(option:any){
     this.MeetingOptions=option;
@@ -115,5 +135,32 @@ export class MeetingsComponent implements OnInit {
   Participants(a:any){
     this.participantsptions=a;
   }
+  CM_name:any;
+  CM_meeting_location:any;
+  CM_date:any;
+  CM_time:any;
+  CM_meeting_type:any;
+  CM_comments:any;
+  CM_participants:any;
+
+
+
+  buttonviewmeeting(a:any){
+    console.log(a)
+
+console.log(a.date)
+
+      
+          this.CM_name=a.meeting_name;
+          this.CM_meeting_location=a.meeting_location;
+          this.CM_date=a.date;
+          this.CM_time=a.time;
+          this.CM_meeting_type=a.meeting_type;
+          this.CM_comments=a.comments;
+          this.CM_participants=a.participants;
+          console.log(this.CM_name)
+          }
 
 }
+
+

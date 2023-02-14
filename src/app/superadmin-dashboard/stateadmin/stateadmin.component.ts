@@ -16,7 +16,7 @@ export class StateadminComponent implements OnInit {
   editform: FormGroup;
   hidden:boolean=true;
 
-  constructor(public ApiService:ApiServiceService,private fb: FormBuilder) { 
+  constructor(public ApiService:ApiServiceService,private fb: FormBuilder) {
     this.stateadminform = this.fb.group({ //angForm
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -42,17 +42,17 @@ export class StateadminComponent implements OnInit {
         });
 
 
-      
-      
+
+
   }
   //firstname1=new FormControl('hu');
-  
+
 
   // updateName() {
   //   this.firstname1.setValue('Nancy');
   // }
-  
-  
+
+
 
   dtOptions: DataTables.Settings = {};
   ngOnInit(): void {
@@ -66,10 +66,10 @@ export class StateadminComponent implements OnInit {
       pagingType: 'full_numbers'
     };
 
-    
-      
+
+
   }
-    
+
   getdata(){
     this.ApiService.viewtableSA().subscribe(data => {
       console.log(data)
@@ -78,15 +78,15 @@ export class StateadminComponent implements OnInit {
           }
           console.log(this.customers);
     });
-  
-  
-    
+
+
+
     // this.customers=[];
     //     for(const prop in this.ApiService.tabledata) {
     //         this.customers.push(this.ApiService.tabledata[prop])
     //       }
     //       this.customers.pop();
-    
+
     //console.log(this.ApiService.tabledata)
   }
   // getdataarray(){
@@ -96,7 +96,7 @@ export class StateadminComponent implements OnInit {
   //           this.customers.push(this.ApiService.tabledata[prop])
   //         }
   //         this.customers.pop();
-    
+
   // }
   postdata(angForm1 : any) //angForm1
   {
@@ -110,7 +110,7 @@ export class StateadminComponent implements OnInit {
         data => {
             window.location.reload();
             alert("State admin user has been created successfully!");
-            
+
         angForm1.reset();
         },
 
@@ -123,22 +123,27 @@ export class StateadminComponent implements OnInit {
     }
   }
   delete_sa(user_id : any)
-    {
-        console.log(user_id)
-            this.ApiService.delete_admin(user_id)
-            .pipe()
-            .subscribe(
-            data => {
-                window.location.reload()
-                alert("State admin detail was successfully Deleted !")
-                
-            },
+  {
+      console.log(user_id)
+      if(confirm("Are you sure want to delete this record ?")) {
+        console.log("Implement delete functionality here");
 
-            error => {
-                console.log(error);
-            });
-    }
- 
+
+          this.ApiService.delete_admin(user_id)
+          .pipe()
+          .subscribe(
+          data => {
+              window.location.reload()
+              alert("State admin detail was successfully Deleted !")
+
+          },
+
+          error => {
+              console.log(error);
+          });
+        }
+}
+
     get email() { return this.stateadminform.get('email'); }
     get firstname() { return this.stateadminform.get('firstname'); }
     get lastname() { return this.stateadminform.get('lastname'); }
@@ -169,7 +174,7 @@ export class StateadminComponent implements OnInit {
             designation1:this.SAdesig,
             party_designation1:this.SAparty_desig,
             approval_status1:this.SAstatus
-            
+
 
           })
     }
@@ -186,15 +191,15 @@ export class StateadminComponent implements OnInit {
                 data => {
                     window.location.reload();
                     alert("State admin detail was updated!");
-                    
+
                 },
 
                 error => {
                     console.log(error);
                 });
     }
-  
 
-  
 
-} 
+
+
+}

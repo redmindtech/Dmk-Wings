@@ -13,13 +13,13 @@ export class ReqOffBearerChangeComponent implements OnInit {
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
-  date_of_birth = new FormGroup('');
-  age = new FormGroup('');
+  date_of_birth :string;
+  age : number;
   hidden:boolean=true;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder) 
-    { 
+    private fb: FormBuilder)
+    {
       this.officebearerform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -72,7 +72,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
   customers:any=[];
   officebearerform !:FormGroup;
   dtOptions: DataTables.Settings = {};
-  
+
   ngOnInit(): void {
     this.ApiService.viewtableOB().subscribe((data:any) => {
       console.log(data);
@@ -88,25 +88,25 @@ export class ReqOffBearerChangeComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-    this.date_of_birth.valueChanges.subscribe(date_of_birth => {
-      this.calculateAge(date_of_birth);
-    });
-   
+    // this.date_of_birth.valueChanges.subscribe(date_of_birth => {
+    //   this.calculateAge(date_of_birth);
+    // });
+
   }
-  
-  calculateAge(date_of_birth: string) {
+
+  /*calculateAge(date_of_birth: string) {
     if (!date_of_birth) {
       this.age.setValue(null);
       return;
     }
-    
+
     const dobDate = new Date(date_of_birth);
     const today = new Date();
     const ageInMilliseconds = today.getTime() - dobDate.getTime();
     const age = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
     this.age.setValue(age.toString());
 
-  }
+  }*/
 
   getdata(){
     this.customers=[];
@@ -163,7 +163,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
-  
+
 
     OBid:any;
     OBname: any;
@@ -206,13 +206,13 @@ export class ReqOffBearerChangeComponent implements OnInit {
          this.OBaddress=a.address1;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
-         
+
         this.fullname1=a.name;
 
          this.reqform.patchValue({
           id1:this.OBid,
           email1:this.OBmail,
-          name:this.fullname1,       
+          name:this.fullname1,
           old_designation:this.OBold_designation,
           new_designation1:"",
           reason:""
@@ -284,7 +284,7 @@ postdata1(angForm1) //angForm1
         window.location.reload();
           // console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
         alert("Request has been created successfully!")
-   
+
         //this.router.navigate(['superadmin/Approve-Reject']);
         angForm1.reset();
         },
@@ -299,7 +299,19 @@ postdata1(angForm1) //angForm1
 }
 
 
+calculateAge() {
+  console.log(this.date_of_birth);
+  console.log("i m in");
 
+  const today = new Date();
+  const birthdate = new Date(this.date_of_birth);
+  this.age = today.getFullYear() - birthdate.getFullYear();
+  const m = today.getMonth() - birthdate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+    this.age--;
+  }
+
+}
 
 
 get user_id() { return this.reqform.get('user_id'); }

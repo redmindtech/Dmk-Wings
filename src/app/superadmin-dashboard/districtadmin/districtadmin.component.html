@@ -54,10 +54,31 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>Designation / பதவி</label>
                                             <input type="text" class="form-control form-control" formControlName="designation"
                                                 placeholder="Enter Designation / பதவி" >
+                                        </div> -->
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Designation / பதவி</label><span class="required "> *</span><br>
+                                            <select name="designation" formControlName="designation"  class="form-control">
+                                                <option value="">Select Option</option>
+                                                <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
+                                                <option value="Village Deputy Organiser">District Vice President / மாவட்ட துணை தலைவர்</option>
+                                                <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
+                                                <option value="District Deputy Organiser">District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்</option>
+                                                <option value="Union Organiser">Union Organiser / ஒன்றிய அமைப்பாளர்</option>
+                                                <option value="Union Deputy Organiser">Union Deputy Organiser / ஒன்றிய துணை அமைப்பாளர்</option>
+                                                <option value="City Organiser">City Organiser / நகர அமைப்பாளர்</option>
+                                                <option value="City Deputy Organiser">City Deputy Organiser / நகர துணை அமைப்பாளர்</option>
+                                                <option value="Area Organiser">Area Organiser / பகுதி அமைப்பாளர்</option>
+                                                <option value="Area Deputy Organiser">Area Deputy Organiser / பகுதி துணை அமைப்பாளர்</option>
+                                                <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
+                                                <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
+                                            </select>
+                                            <!-- <div *ngIf="stateadminform.get('designation').hasError('required')"
+                                                class="invalid-msg" [hidden]='hidden'>Please select the Designation
+                                              </div> -->
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Party Designation / கட்சி பதவி</label>
@@ -110,10 +131,21 @@
                                                 <input type="password" class="form-control form-control" id="password"
                                                 placeholder="Enter Password / கடவுச்சொல்">
                                             </div> -->
-                                            <div class="col-sm-6">
+                                            <!-- <div class="col-sm-6">
                                                 <label>Status / நிலை</label>
                                                 <input type="text" class="form-control form-control" formControlName="approval_status"
                                                     id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [value]="DAstatus">
+                                            </div> -->
+                                            <div class="col-12 md:col-12">
+                                                <label>Status / நிலை</label><span class="required "> *</span><br>
+                                                <select name="approval_status" formControlName="approval_status"  class="form-control">
+                                                    <option value="">Select Option</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                                <!-- <div *ngIf="stateadminform.get('approval_status').hasError('required')"
+                                                class="invalid-msg" [hidden]='hidden'>Please enter the Status
+                                              </div> -->
                                             </div>
                                             <div class="col-6 md:col-6">
                                                 <input  type="text" hidden  formControlName="mode"/>
@@ -173,9 +205,30 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>Designation / பதவி</label>
                                             <input type="text" class="form-control form-control" placeholder="Enter Designation / பதவி" [disabled]="true" [value]="DAdesig">
+                                        </div> -->
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Designation / பதவி</label><span class="required "> *</span><br>
+                                            <select name="designation" [disabled]="true" [value]="DAdesig" class="form-control">
+                                                <option value="">Select Option</option>
+                                                <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
+                                                <option value="Village Deputy Organiser">District Vice President / மாவட்ட துணை தலைவர்</option>
+                                                <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
+                                                <option value="District Deputy Organiser">District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்</option>
+                                                <option value="Union Organiser">Union Organiser / ஒன்றிய அமைப்பாளர்</option>
+                                                <option value="Union Deputy Organiser">Union Deputy Organiser / ஒன்றிய துணை அமைப்பாளர்</option>
+                                                <option value="City Organiser">City Organiser / நகர அமைப்பாளர்</option>
+                                                <option value="City Deputy Organiser">City Deputy Organiser / நகர துணை அமைப்பாளர்</option>
+                                                <option value="Area Organiser">Area Organiser / பகுதி அமைப்பாளர்</option>
+                                                <option value="Area Deputy Organiser">Area Deputy Organiser / பகுதி துணை அமைப்பாளர்</option>
+                                                <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
+                                                <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
+                                            </select>
+                                            <!-- <div *ngIf="stateadminform.get('designation').hasError('required')"
+                                                class="invalid-msg" [hidden]='hidden'>Please select the Designation
+                                              </div> -->
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Party Designation / கட்சி பதவி</label>
@@ -221,10 +274,21 @@
                                                 <input type="password" class="form-control form-control" id="password"
                                                 placeholder="Enter Password / கடவுச்சொல்">
                                             </div> -->
-                                            <div class="col-sm-6">
+                                            <!-- <div class="col-sm-6">
                                                 <label>Status / நிலை</label>
                                                 <input type="text" class="form-control form-control"
                                                     id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [disabled]="true" [value]="DAstatus">
+                                            </div> -->
+                                            <div class="col-12 md:col-12">
+                                                <label>Status / நிலை</label><span class="required "> *</span><br>
+                                                <select name="approval_status" formControlName="approval_status"  class="form-control">
+                                                    <option value="">Select Option</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                                <!-- <div *ngIf="stateadminform.get('approval_status').hasError('required')"
+                                                class="invalid-msg" [hidden]='hidden'>Please enter the Status
+                                              </div> -->
                                             </div>
                                             <div class="col-6 md:col-6">
                                                 <input  type="text" hidden  formControlName="mode"/>
@@ -320,10 +384,31 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Designation / பதவி</label>
                                 <input type="text" class="form-control form-control" id="exampleFirstName"
                                     placeholder="Enter Designation / பதவி" formControlName="designation1" name="designation1">
+                            </div> -->
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Designation / பதவி</label><span class="required "> *</span><br>
+                                <select name="designation1" formControlName="designation1"  class="form-control">
+                                    <option value="">Select Option</option>
+                                    <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
+                                    <option value="Village Deputy Organiser">District Vice President / மாவட்ட துணை தலைவர்</option>
+                                    <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
+                                    <option value="District Deputy Organiser">District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்</option>
+                                    <option value="Union Organiser">Union Organiser / ஒன்றிய அமைப்பாளர்</option>
+                                    <option value="Union Deputy Organiser">Union Deputy Organiser / ஒன்றிய துணை அமைப்பாளர்</option>
+                                    <option value="City Organiser">City Organiser / நகர அமைப்பாளர்</option>
+                                    <option value="City Deputy Organiser">City Deputy Organiser / நகர துணை அமைப்பாளர்</option>
+                                    <option value="Area Organiser">Area Organiser / பகுதி அமைப்பாளர்</option>
+                                    <option value="Area Deputy Organiser">Area Deputy Organiser / பகுதி துணை அமைப்பாளர்</option>
+                                    <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
+                                    <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
+                                </select>
+                                <!-- <div *ngIf="stateadminform.get('designation').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please select the Designation
+                                  </div> -->
                             </div>
                             <div class="col-sm-6">
                                 <label>Party Designation / கட்சி பதவி</label>
@@ -350,10 +435,21 @@
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <label>Status / நிலை</label>
                                     <input type="text" class="form-control form-control"
                                         id="exampleRepeatPassword" placeholder="Enter Status / நிலை" formControlName="approval_status1" name="approval_status1">
+                                </div> -->
+                                <div class="col-12 md:col-12">
+                                    <label>Status / நிலை</label><span class="required "> *</span><br>
+                                    <select name="approval_status1" formControlName="approval_status1"  class="form-control">
+                                        <option value="">Select Option</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                    <!-- <div *ngIf="stateadminform.get('approval_status').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Status
+                                  </div> -->
                                 </div>
                             </div>
 

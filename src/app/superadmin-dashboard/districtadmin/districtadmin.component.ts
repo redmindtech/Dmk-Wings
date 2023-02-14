@@ -87,6 +87,8 @@ export class DistrictadminComponent implements OnInit {
     delete_da(user_id : any)
     {
         console.log(user_id)
+        if(confirm("Are you sure want to delete this record ?")) {
+          console.log("Implement delete functionality here");
             this.ApiService.delete_admin(user_id)
             .pipe()
             .subscribe(
@@ -100,6 +102,7 @@ export class DistrictadminComponent implements OnInit {
             });
 
     }
+  }
     get email() { return this.distadminform.get('email'); }
     get firstname() { return this.distadminform.get('firstname'); }
     get lastname() { return this.distadminform.get('lastname'); }

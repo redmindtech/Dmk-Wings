@@ -6,10 +6,10 @@
       <div class="col-2" style="margin-left:67%">
           <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
       </div>
-      
-      
+
+
   </div>
-      
+
 
       <div class="modal fade" id="modal-xl">
         <div class="modal-dialog modal-xl">
@@ -20,9 +20,23 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="card-body">
+                    <div class="">
+                      <div class="d-flex justify-content-between">
+                        <label class="col-2" >District/மாவட்டம்:</label>
+                        <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
+                          <option *ngFor="let option of district_list" (value)="option" >
+                            {{option}}</option>
+                        </select>
+
+                          <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                          <select class="form-control"  [(ngModel)]="constituency">
+                            <option *ngFor="let option of user_constituency" (value)="option" >
+                              {{option}}</option>
+                          </select>
+                      </div>
+                    </div>
                     <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
-                        <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
-                
+                        
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
@@ -154,9 +168,23 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="card-body">
+                    <div class="">
+                      <div class="d-flex justify-content-between">
+                        <label class="col-2" >District/மாவட்டம்:</label>
+                        <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
+                          <option *ngFor="let option of district_list" (value)="option" >
+                            {{option}}</option>
+                        </select>
+
+                          <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                          <select class="form-control"  [(ngModel)]="constituency">
+                            <option *ngFor="let option of user_constituency" (value)="option" >
+                              {{option}}</option>
+                          </select>
+                      </div>
+                    </div>
                     <form>
-                        <div style="text-align:right"><h6>Assembly constituency/சட்டமன்ற தொகுதி: </h6></div>
-                
+                        
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
@@ -168,7 +196,7 @@
                               </div>
                       </div>
                       <div class="form-group row">
-                            
+
                             <div class="col-sm-6">
                               <label>Date of Birth</label>
                               <input type="date" name="date_of_birth"class="form-control" [disabled]="true" placeholder="Enter Date of Birth"[value]="OBdateofbirth"/>
@@ -267,13 +295,13 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      
-
-      
 
 
 
-            <div class="modal fade" id="myModal">  
+
+
+
+            <div class="modal fade" id="myModal">
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="card-danger">
@@ -289,21 +317,21 @@
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
-                            
+
                             <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
                             <select class="form-control"  [(ngModel)]="constituency">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
                         </div>
-                      </div> 
-                  
+                      </div>
+
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
-                        
-                          
-                            
-                          
-                  
+
+
+
+
+
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>First Name/முதல் பெயர்</label><span class="required "> *</span>
@@ -334,29 +362,13 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                              <div class="col-6 md:col-6">
-                                <!-- <label>Age / வயது</label><span class="required "> *</span>
-                                <input type="number" name="age" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age"/> -->
+                          <div class="col-sm-6">
                                 <label>Date of Birth</label><span class="required "> *</span>
                                 <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth"/>
-                                <div *ngIf="officebearerform.get('age').hasError('required')"
-                                    class="invalid-msg" [hidden]='hidden'>Please enter the Date of Birth
-                                  </div>
                               </div>
-                              <div class="col-sm-6">
-                                <!-- <label>Date of Birth</label><span class="required "> *</span>
-                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth"/> -->
-                                 <label>Age / வயது</label><span class="required "> *</span>
+                              <div class="col-6 md:col-6">
+                                <label>Age / வயது</label><span class="required "> *</span>
                                 <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age" readonly/>
-                                <div *ngIf="officebearerform.get('age').hasError('required') && officebearerform.get('age').touched"
-                                    class="invalid-msg">Please enter the valid field
-                                  </div>
-                                  <div *ngIf="officebearerform.get('age').hasError('pattern') && officebearerform.get('age').touched"
-                                    class="invalid-msg">Please enter the valid age
-                                  </div>
-                                  <div *ngIf="officebearerform.get('age').hasError('required')"
-                                    class="invalid-msg" [hidden]='hidden'>Please enter the Age
-                                  </div>
                               </div>
                         </div>
                         <div class="form-group row">
@@ -391,7 +403,7 @@
                             <input type="text" name="additional_qualification" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி" formControlName="additional_qualification"/>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
@@ -513,7 +525,7 @@
                   <!-- <th>Status</th> -->
                   <th>Email</th>
                   <th>Contact no</th>
-                
+
                   <th>Show</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -554,7 +566,7 @@
           </table>
   </div>
 </div>
-  
+
 </div>
 
 </div>
@@ -585,7 +597,7 @@
                                     class="invalid-msg">Please enter the valid field
                                 </div>
                 </div>
-  
+
             </div>
             <!-- </div> -->
             <div class="form-group">
@@ -596,7 +608,7 @@
                                      class="invalid-msg">Please enter the valid field
                                  </div>
                  </div>
-   
+
              </div>
             <div class="form-group">
               <div class="col-12 md:col-12">
@@ -606,9 +618,9 @@
                                      class="invalid-msg">Please enter the valid field
                                  </div> -->
                  </div>
-   
+
              </div>
-             
+
             <div class="form-group ">
                 <div class="col-12 md:col-12">
                   <label>New Designation</label><span class="required "> *</span>
@@ -632,9 +644,9 @@
                 REQUEST APPLY
               </button>
             </div>
-            
-            
-            
+
+
+
         </form>
         </div>
       </div>

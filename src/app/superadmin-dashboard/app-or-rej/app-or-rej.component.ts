@@ -22,14 +22,14 @@ export class AppOrRejComponent implements OnInit {
   age : number;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder) 
-    {       
+    private fb: FormBuilder)
+    {
       // this.ApiService.viewtableOB().subscribe((data:any) => {
       // let obj= data;
       // this.customers=obj.data;
       // ;})
-      
-      
+
+
   //     this.customers=[{name:'nm1',email:'em1'},{name:'nm2',email:'em2'},
   //   {name:'nm2',email:'em2'},
   //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
@@ -87,14 +87,14 @@ export class AppOrRejComponent implements OnInit {
 
         this.district=this.ApiService.user_district;
     }
-  
+
   officebearerform !:FormGroup;
   district_list:any[]=this.ApiService.all_districts;
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
-  
-  
-  
+
+
+
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.ApiService.viewtableOB().subscribe((data:any) => {
@@ -104,11 +104,11 @@ export class AppOrRejComponent implements OnInit {
       ;})
     //console.log(this.customers);
     //console.log(this.district_list);
-    
+
     this.dtOptions[0] = {
       pagingType: 'full_numbers'
     };
-    
+
     // this.ApiService.viewtableOB();
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
@@ -123,9 +123,9 @@ export class AppOrRejComponent implements OnInit {
       //console.log(this.district);
       let obj=this.constituency_list;
       this.user_constituency=obj[this.district];
-      
+
     }
-      
+
   }
   getdata(){
 
@@ -140,7 +140,7 @@ export class AppOrRejComponent implements OnInit {
     this.ApiService.viewtableOB().subscribe((data:any) => {
         let obj= data;
         // console.log(obj.data);
-       
+
         // for(const prop in obj.data) {
         //     this.customers.push(obj.data[prop]);
         //   }
@@ -148,19 +148,7 @@ export class AppOrRejComponent implements OnInit {
     });
 
   }
-  calculateAge() {
-    console.log(this.date_of_birth);
-    console.log("i m in");
-   
-    const today = new Date();
-    const birthdate = new Date(this.date_of_birth);
-    this.age = today.getFullYear() - birthdate.getFullYear();
-    const m = today.getMonth() - birthdate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
-      this.age--;
-    }
-  
-  }
+
   postdata(officebearerform : any) //officebearerform
   {
 
@@ -186,27 +174,30 @@ export class AppOrRejComponent implements OnInit {
 
   }
   delete_ob(user_id : any)
-    {
-        console.log(user_id)
-            this.ApiService.delete_admin(user_id)
-            .pipe()
-            .subscribe(
-            data => {
-                window.location.reload();
-                //this.router.navigate(['uikit/formlayout']);
-                alert("Office Bearer detail has been deleted !")
-            },
+  {
+      console.log(user_id)
+      if(confirm("Are you sure want to delete this record ?")) {
+        console.log("Implement delete functionality here");
+          this.ApiService.delete_admin(user_id)
+          .pipe()
+          .subscribe(
+          data => {
+              window.location.reload();
+              //this.router.navigate(['uikit/formlayout']);
+              alert("Office Bearer detail has been deleted !")
+          },
 
-            error => {
-                console.log(error);
-            });
+          error => {
+              console.log(error);
+          });
 
-    }
+  }
+}
     get email() { return this.officebearerform.get('email'); }
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
-  
+
 
     OBid:any;
     OBname: any;
@@ -249,13 +240,13 @@ export class AppOrRejComponent implements OnInit {
          this.OBaddress=a.address1;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
-         
+
         this.fullname1=a.name;
 
          this.reqform.patchValue({
           id1:this.OBid,
           email1:this.OBmail,
-          name:this.fullname1,       
+          name:this.fullname1,
           old_designation:this.OBold_designation,
           new_designation1:"",
           reason:""
@@ -326,7 +317,7 @@ postdata1(angForm1) //angForm1
         data => {
           // console.log(angForm1.value.name,angForm1.value.user_id,angForm1.value.new_designation,angForm1.value.old_designation,angForm1.value.reason );
             alert("Request has been created successfully!")
-   
+
         this.router.navigate(['superadmin/Approve-Reject']);
         angForm1.reset();
         },
@@ -341,7 +332,19 @@ postdata1(angForm1) //angForm1
 }
 
 
+calculateAge() {
+  console.log(this.date_of_birth);
+  console.log("i m in");
 
+  const today = new Date();
+  const birthdate = new Date(this.date_of_birth);
+  this.age = today.getFullYear() - birthdate.getFullYear();
+  const m = today.getMonth() - birthdate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+    this.age--;
+  }
+
+}
 
 
 get user_id() { return this.reqform.get('user_id'); }
