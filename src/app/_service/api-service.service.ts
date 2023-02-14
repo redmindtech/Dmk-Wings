@@ -110,11 +110,9 @@ public userlogin(username : any, password :any) {
 
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
-  this.user_district= Users[0].district;
-
-  console.log(this.user_district);
-
-
+  //this.user_district= Users[0].district;
+  localStorage.setItem('user_district', JSON.stringify(Users[0].district));
+  
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
 return Users;
