@@ -116,7 +116,7 @@ export class MeetingsComponent implements OnInit {
           .subscribe(
           data => {
               window.location.reload();
-              alert("District admin detail has been deleted !")
+              alert("Meeting has been canceled!")
           },
 
           error => {

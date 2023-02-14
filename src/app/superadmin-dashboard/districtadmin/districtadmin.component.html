@@ -90,18 +90,8 @@
                                             <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
                                             <span class="required "> *</span>
                                             <select class="form-control form-select" aria-label="Default select example" formControlName="district" >
-                                                <option value="">Select constituencies</option>
-                                                <option value="Salem (West)">Salem (West)</option>
-                                                <option value="Salem (North)">Salem (North)</option>
-                                                <option value="Salem (South)">Salem (South)</option>
-                                                <option value="Veerapandi">Veerapandi</option>
-                                                <option value="Rasipuram">Rasipuram</option>
-                                                <option value="Senthamangalam">Senthamangalam</option>
-                                                <option value="Attur">Attur</option>
-                                                <option value="Yercaud">Yercaud</option>
-                                                <option value="Namakkal">Namakkal</option>
-                                                <option value="Erode (East)">Erode (East)</option>
-                                                <option value="Erode (West)">Erode (West)</option>
+                                                <option *ngFor="let option of district_list" (value)="district" >
+                                                    {{option}}</option>
                                             </select>
                                             <div *ngIf="distadminform.get('district').hasError('required')"
                                     class="invalid-msg" [hidden]='hidden'>Please select the district
@@ -376,11 +366,27 @@
                                     <label>First Name / முதல் பெயர்</label>
                                     <input type="text" class="form-control form-control" id="exampleFirstName"
                                         placeholder="Enter First Name / முதல் பெயர்"  formControlName="firstname1" name="firstname1">
+                                        <div *ngIf="editform.get('firstname1').hasError('required') && editform.get('firstname1').touched"
+                                                        class="invalid-msg">Please enter the valid field
+                                                    </div>
+                                                    <div *ngIf="editform.get('firstname1').hasError('pattern') && editform.get('firstname1').touched"
+                                                         class="invalid-msg">Please enter the valid Name
+                                                </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Last Name / குடும்ப பெயர்</label>
                                     <input type="text" class="form-control form-control" id="exampleLastName"
+
                                         placeholder="Enter Last Name / குடும்ப பெயர்" formControlName="lastname1" name="lastname1">
+                                        <div *ngIf="editform.get('lastname1').hasError('required') && editform.get('lastname1').touched"
+                                        class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="editform.get('lastname1').hasError('pattern') && editform.get('lastname1').touched"
+                                        class="invalid-msg">Please enter the valid Name
+                                    </div>
+                                    <div *ngIf="editform.get('lastname1').hasError('required')"
+                    class="invalid-msg" [hidden]='hidden'>Please enter the Last Name
+                  </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -391,7 +397,7 @@
                             </div> -->
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Designation / பதவி</label><span class="required "> *</span><br>
-                                <select name="designation1" formControlName="designation1"  class="form-control">
+                                <select name="designation1" formControlName="designation1"  [(ngModel)]="designation1" class="form-control">
                                     <option value="">Select Option</option>
                                     <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
                                     <option value="Village Deputy Organiser">District Vice President / மாவட்ட துணை தலைவர்</option>
@@ -418,18 +424,29 @@
                             </div>
                             <div class="form-group">
                                 <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
-                                <select class="form-control form-select" aria-label="Default select example" formControlName="district1" name="district1">
-                                    <option>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</option>
-                                    <option value="1">Salem/சேலம்</option>
-                                    <option value="2">Namakkal/நாமக்கல்</option>
-                                    <option value="3">Chennai/சென்னை</option>
+                                <select class="form-control form-select"  formControlName="district1" name="district1">
+                                    <option *ngFor="let option of district_list" (value)="district1" >
+                                        {{option}}</option>
+
                                 </select>
+                                <div *ngIf="editform.get('district1').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please select the district
+                                  </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                 <input type="email" class="form-control form-control" id="exampleInputEmail"
                                     placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" formControlName="email1" name="email1">
+                                    <div *ngIf="distadminform.get('email').hasError('required') && distadminform.get('email').touched"
+                                                     class="invalid-msg">Please enter the valid field
+                                                </div>
+                                                <div *ngIf="distadminform.get('email').hasError('pattern') && distadminform.get('email').touched"
+                                                    class="invalid-msg">Please enter the valid Email Id
+                                                </div>
+                                                <div *ngIf="distadminform.get('email').hasError('required')"
+                                    class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                  </div>
                             </div>
 
 

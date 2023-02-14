@@ -56,7 +56,7 @@ public districts=[
   { name:'Erode (East)'}, { name:'Erode (West)'},
 
 ]
-public all_districts=['ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KALLAKURICHI',
+public all_districts=['Select District','ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KALLAKURICHI',
 'KANCHEEPURAM','KANNIYAKUMARI','KARUR', 'KRISHNAGIRI', 'MADURAI', 'NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI',
 'RAMANATHAPURAM','RANIPET','SALEM','SIVAGANGA','TENKASI','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','THOOTHUKUDI',
 'TIRUCHIRAPPALLI','TIRUNELVELI','TIRUPATHUR','TIRUPPUR','TIRUVANNAMALAI','VELLORE','VILLUPPURAM','VIRUDHUNAGAR'];
@@ -324,7 +324,7 @@ public viewtableDA() {
                                   }));
 
                                 }
-                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,district:any,party_designation:any,email:any,approval_status:any,location_id='1') {
                                   //let firstname='names'
                                   const httpOptions : Object = {
                                           headers: new HttpHeaders({
@@ -332,8 +332,8 @@ public viewtableDA() {
                                           })
                                         };
                                         console.log(user_id);
-                                    console.log("apidata : "+user_id,firstname,lastname,designation,party_designation,approval_status)
-                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,designation,party_designation,email,approval_status,location_id},httpOptions)
+                                    console.log("apidata : "+user_id,firstname,lastname,designation,district,party_designation,approval_status)
+                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,designation,district,party_designation,email,approval_status,location_id},httpOptions)
                                                 .pipe(map(Users => {
                                                 return Users;
                                                 }));
