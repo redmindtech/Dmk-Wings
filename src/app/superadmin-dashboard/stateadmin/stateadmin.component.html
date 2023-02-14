@@ -187,13 +187,26 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>First Name / முதல் பெயர்</label><span class="required "> *</span>
                                             <input type="text" class="form-control form-control" [disabled]="true" 
-                                                placeholder="Enter First Name / முதல் பெயர்" [value]="SAname">
+                                                placeholder="Enter First Name / முதல் பெயர்" [value]="SAfirstname">
                                                 <div *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched" 
                                                     class="invalid-msg">Please enter the valid field
                                                 </div>
                                                 <div *ngIf="stateadminform.get('firstname').hasError('pattern') && stateadminform.get('firstname').touched"
                                                     class="invalid-msg">Please enter the valid Name
                                                 </div>
+
+                                                
+
+                                                <!-- <div *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched" 
+                                                class="invalid-msg">Please enter the valid field
+                                            </div>
+                                            <div *ngIf="stateadminform.get('firstname').hasError('pattern') && stateadminform.get('firstname').touched"
+                                                class="invalid-msg">Please enter the valid Name
+                                            </div>
+                                            <div *ngIf="stateadminform.get('firstname').hasError('required')"
+                                            class="invalid-msg" [hidden]='hidden'>Please enter the Firstname
+                                          </div> -->
+
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Last Name / குடும்ப பெயர்</label><span class="required "> *</span>
@@ -319,11 +332,31 @@
                                         <label>First Name / முதல் பெயர்</label>
                                         <input type="text" class="form-control form-control"  formControlName="firstname1"
                                             placeholder="Enter First Name / முதல் பெயர்" >
+
+                                            <div *ngIf="editform.get('firstname1').hasError('required') && editform.get('firstname1').touched" 
+                                            class="invalid-msg">Please enter the valid field
+                                        </div>
+                                        <div *ngIf="editform.get('firstname1').hasError('pattern') && editform.get('firstname1').touched"
+                                            class="invalid-msg">Please enter the valid Name
+                                        </div>
+                                        <div *ngIf="editform.get('firstname1').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the Firstname
+                                      </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Last Name / குடும்ப பெயர்</label>
                                         <input type="text" class="form-control form-control" formControlName="lastname1"
                                             placeholder="Enter Last Name / குடும்ப பெயர்" >
+
+                                            <div *ngIf="editform.get('lastname1').hasError('required') && editform.get('lastname1').touched"
+                                            class="invalid-msg">Please enter the valid field
+                                        </div>
+                                        <div *ngIf="editform.get('lastname1').hasError('pattern') && editform.get('lastname1').touched"
+                                           class="invalid-msg">Please enter the valid Name
+                                    </div>
+                                    <div *ngIf="editform.get('lastname1').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the Lastname
+                                      </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -350,6 +383,9 @@
                                         <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                                         <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                     </select>
+                                    <div *ngIf="editform.get('designation1').hasError('required')"
+                                    class="invalid-msg">Please select the Designation
+                                  </div>
                                 </div>
 
 
@@ -364,6 +400,16 @@
                                     <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                     <input type="email" class="form-control form-control" formControlName="email1"
                                         placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
+                                        
+                                        <div *ngIf="editform.get('email1').hasError('required') && editform.get('email1').touched"
+                                        class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="editform.get('email1').hasError('pattern') && editform.get('email1').touched"
+                                        class="invalid-msg">Please enter the valid Email Id
+                                    </div>
+                                    <div *ngIf="editform.get('email1').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                      </div>
                                 </div>
                             
                                 <div class="form-group row">
@@ -380,6 +426,9 @@
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                         </select>
+                                        <div *ngIf="editform.get('approval_status1').hasError('required')"
+                                        class="invalid-msg">Please enter the Status
+                                      </div>
                                     </div>
 
                                 </div>

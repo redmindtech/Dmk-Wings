@@ -13,6 +13,11 @@ export class DistrictadminComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   editform : FormGroup;
   hidden:boolean=true;
+  email1: any;
+  firstname1: any;
+  lastname1: any;
+  district1: any;
+  designation1:any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, )
@@ -39,7 +44,7 @@ export class DistrictadminComponent implements OnInit {
           mode1:['1']
           });
   }
-
+  district_list:any[]=this.ApiService.all_districts;
 
   ngOnInit(): void {
     // this.ApiService.viewtableDA();
@@ -146,20 +151,28 @@ export class DistrictadminComponent implements OnInit {
     updatedata(updateform: any){
 
       console.log(updateform.value);
+      
+      if(this.editform.valid==true)
+      {
+       
       this.ApiService.updateDA('1', this.DAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
         updateform.get('designation1').value,
+        updateform.get('district1').value,
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
         updateform.get('approval_status1').value)
+       
+       
         .pipe()
         .subscribe(
             data => {
                 window.location.reload();
-                alert("State admin detail was updated!");
+                alert("District admin detail was updated!");
             },
 
             error => {
                 console.log(error);
             });
+}
 }
 }

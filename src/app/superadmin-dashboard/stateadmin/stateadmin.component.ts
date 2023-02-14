@@ -15,6 +15,7 @@ export class StateadminComponent implements OnInit {
   stateadminform !:FormGroup;
   editform: FormGroup;
   hidden:boolean=true;
+  updateform: FormGroup;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder) {
     this.stateadminform = this.fb.group({ //angForm
@@ -30,13 +31,13 @@ export class StateadminComponent implements OnInit {
       });
 
       this.editform = this.fb.group({ //angForm
-        email1: [this.SAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z]{1,32}')]],
-        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z]{1,32}')]],
+        email1: [this.SAfirstname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         //district:['',Validators.required],
-        designation1:[''],
-        party_designation1:[''],
-        approval_status1:[''],
+        designation1:['',Validators.required],
+        party_designation1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+        approval_status1:['',Validators.required],
         location_id1:['1'],
         mode1:['0']
         });
@@ -149,18 +150,18 @@ export class StateadminComponent implements OnInit {
     get lastname() { return this.stateadminform.get('lastname'); }
 
     SAid:any;
-    SAname:any;
+    SAfirstname:any;
     SAlastname:any;
     SAdesig:any;
     SAparty_desig:any;
     SAmail:any;
     SAstatus:any;
     editbuttonviewSA(a:any){
-       let fullname=a.name.split(" ");
+      //  let fullname=a.name.split(" ");
        this.SAid=a.id;
       //  alert(this.SAid);
-       this.SAname=fullname[0];
-       this.SAlastname=fullname[1];
+       this.SAfirstname=a.firstname;
+       this.SAlastname=a.lastname;
           this.SAdesig=a.designation;
           this.SAparty_desig=a.party_designation;
           this.SAmail=a.email;
@@ -169,7 +170,7 @@ export class StateadminComponent implements OnInit {
           this.editform.patchValue({
             id1:this.SAid,
             email1:this.SAmail,
-            firstname1:this.SAname,
+            firstname1:this.SAfirstname,
             lastname1:this.SAlastname,
             designation1:this.SAdesig,
             party_designation1:this.SAparty_desig,
@@ -178,8 +179,11 @@ export class StateadminComponent implements OnInit {
 
           })
     }
-    updatedata(updateform: any){
 
+    
+    updatedata(updateform: any){
+      if(this.editform.valid==true)
+      {
           console.log(updateform.value);
           this.ApiService.updateSA('0', this.SAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
             updateform.get('designation1').value,
@@ -199,7 +203,7 @@ export class StateadminComponent implements OnInit {
                 });
     }
 
-
+  }
 
 
 }
