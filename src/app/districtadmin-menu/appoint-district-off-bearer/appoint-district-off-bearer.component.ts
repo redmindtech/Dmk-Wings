@@ -133,7 +133,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     //if()
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,
+          officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
             window.location.reload();
@@ -200,12 +201,13 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     OBnew_designation:any;
     OBreason:any;
     fullname1:any;
+    OBDistrict:any;
+    OBConstituency:any;
     editbuttonviewOB(a:any){
       //console.log(a);
-      let fullname=a.name.split(" ");
       this.OBid=a.id;
-      this.OBname=fullname[0];
-      this.OBlastname=fullname[1];
+      this.OBname=a.firstname;
+      this.OBlastname=a.lastname;
          this.OBage=a.age;
          this.OBdateofbirth=a.date_of_birth;
          this.OBfathername=a.father_name;
@@ -220,6 +222,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
          this.OBcomments=a.party_comments;
 
         this.fullname1=a.name;
+        this.OBDistrict=a.district;
+         this.OBConstituency=a.constituency;
 
          this.reqform.patchValue({
           id1:this.OBid,
@@ -269,7 +273,7 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
     updateform.get('party_comments1').value,
-    '1')
+    '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(
         data => {

@@ -20,16 +20,17 @@
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="card-body">
-                      <div class="">
-                        <div class="d-flex justify-content-between">
-                          <label class="col-2" >District/மாவட்டம்:</label>
-                          <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
+                      <div class="row" style="margin-bottom: 2%;">
+                        <div class="col-sm-4">
+                          <label>Party District / கட்சி மாவட்டம்:</label>
+                          <select class="form-control"  [value]="OBDistrict" (click)="Constituency_selection(district)">
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
-  
-                            <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                            <select class="form-control"  [(ngModel)]="constituency">
+                        </div>
+                        <div class="col-sm-4" style="margin-left:30%">
+                          <label>Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                            <select class="form-control"  [value]="OBConstituency">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
@@ -67,7 +68,7 @@
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Age / வயது</label>
-                                <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" />
+                                <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Age / வயது" formControlName="age1" />
                                 <span *ngIf="age<18" class="invalid-msg">Age must be 18 or above</span>
                               </div>
                          </div>
@@ -123,7 +124,7 @@
                                       </div>
                                     </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Email/மின்னஞ்சல்</label>
                                 <input type="text" name="email1" formControlName="email1" class="form-control"  placeholder="Enter Email/மின்னஞ்சல்" />
@@ -134,12 +135,10 @@
                                     class="invalid-msg">Please enter the valid Email Id
                                   </div>
                                 </div>
-                        </div>
-                        <div class="form-group">
-                              <div class="col-6 md:col-6">
-                                <label>Profession / தொழில்,வேலை</label>
-                                <input pInputText type="text" class="form-control" name="profession1" formControlName="profession1"  placeholder="Enter Profession / தொழில்,வேலை" />
-                              </div>
+                                <div class="col-6 md:col-6">
+                                  <label>Profession / தொழில்,வேலை</label>
+                                  <input pInputText type="text" class="form-control" name="profession1" formControlName="profession1"  placeholder="Enter Profession / தொழில்,வேலை" />
+                                </div>
                         </div>
                         <div class="form-group">
                               <div class="col-6 md:col-6">
@@ -197,16 +196,17 @@
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="card-body">
-                      <div class="">
-                        <div class="d-flex justify-content-between">
-                          <label class="col-2" >District/மாவட்டம்:</label>
-                          <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
+                      <div class="row" style="margin-bottom: 2%;">
+                        <div class="col-sm-4">
+                          <label>Party District / கட்சி மாவட்டம்:</label>
+                          <select class="form-control"  [value]="OBDistrict" [disabled]="true" (click)="Constituency_selection(district)">
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
-  
-                            <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                            <select class="form-control"  [(ngModel)]="constituency">
+                        </div>
+                        <div class="col-sm-4" style="margin-left:30%">
+                          <label >Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                            <select class="form-control"  [value]="OBConstituency" [disabled]="true">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
@@ -225,13 +225,13 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                              <div class="col-6 md:col-6">
-                                <label>Age / வயது</label>
-                                <input type="number" name="age" class="form-control" [disabled]="true" min="18" max="100" placeholder="Enter Age / வயது"[value]="OBage"/>
-                              </div>
                               <div class="col-sm-6">
                                 <label>Date of Birth</label>
                                 <input type="date" name="date_of_birth"class="form-control" [disabled]="true" placeholder="Enter Date of Birth"[value]="OBdateofbirth"/>
+                              </div>
+                              <div class="col-6 md:col-6">
+                                <label>Age / வயது</label>
+                                <input type="number" name="age" class="form-control" [disabled]="true" min="18" max="100" placeholder="Age / வயது"[value]="OBage"/>
                               </div>
                         </div>
                         <div class="form-group row">
@@ -265,13 +265,11 @@
                                   <input type="text" name="whatsapp_no" class="form-control" [disabled]="true" placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்"[value]="whatsappnumner"/>
                                 </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Email/மின்னஞ்சல்</label>
                                 <input type="text" name="email" class="form-control" [disabled]="true" placeholder="Enter Email/மின்னஞ்சல்"[value]="OBmail"/>
                               </div>
-                        </div>
-                        <div class="form-group">
                               <div class="col-6 md:col-6">
                                 <label>Profession / தொழில்,வேலை</label>
                                 <input pInputText type="text" class="form-control" name="profession" [disabled]="true" placeholder="Enter Profession / தொழில்,வேலை"[value]="OBprofession"/>
@@ -337,21 +335,22 @@
                         <button type="button" class="close" data-dismiss="modal" (click)="officebearerform.reset();">&times;</button>
                       </div>
                       <div class="card-body">
-                        <div class="">
-                          <div class="d-flex justify-content-between">
-                            <label class="col-2" >District/மாவட்டம்:</label>
-                            <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)" [disabled]="true">
+                        <div class="row" style="margin-bottom: 2%;">
+                          <div class="col-sm-4">
+                            <label class="" >Party District / கட்சி மாவட்டம்:</label><br>
+                            <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
                               <option *ngFor="let option of district_list" (value)="option" >
                                 {{option}}</option>
                             </select>
-    
-                              <label class="col-2">Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                              <select class="form-control"  [(ngModel)]="constituency" name="constituency">
+                          </div>
+                          <div class="col-sm-4" style="margin-left:30%">
+                            <label class="">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                              <select class="form-control"  [(ngModel)]="constituency">
                                 <option *ngFor="let option of user_constituency" (value)="option" >
                                   {{option}}</option>
                               </select>
                               <span *ngIf="!constituency"
-                                      class="invalid-msg">Select Constituency
+                                        class="invalid-msg">Select Constituency
                               </span>
                           </div>
                         </div>
@@ -392,7 +391,7 @@
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Age / வயது</label><span class="required "> *</span>
-                                  <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age" readonly/>
+                                  <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Age / வயது" formControlName="age" readonly/>
                                 </div>
                           </div>
                           <div class="form-group row">
@@ -450,7 +449,7 @@
                                               </div>
                                   </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>Email/மின்னஞ்சல்</label><span class="required "> *</span>
                                   <input type="text" name="email" class="form-control"  placeholder="Enter Email/மின்னஞ்சல்" formControlName="email"/>
@@ -464,8 +463,6 @@
                                                 class="invalid-msg" [hidden]='hidden'>Please enter the Email
                                               </div>
                                 </div>
-                          </div>
-                          <div class="form-group">
                                 <div class="col-6 md:col-6">
                                   <label>Profession / தொழில்,வேலை</label>
                                   <input pInputText type="text" class="form-control" name="profession"  placeholder="Enter Profession / தொழில்,வேலை" formControlName="profession"/>

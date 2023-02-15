@@ -16,6 +16,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
   date_of_birth :string;
   age : number;
   hidden:boolean=true;
+  district: any;
+  constituency: any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -124,7 +126,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
     //if()
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
             window.location.reload();
@@ -187,6 +190,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
     OBnew_designation:any;
     OBreason:any;
     fullname1:any;
+    OBDistrict:any;
+    OBConstituency:any;
     editbuttonviewOB(a:any){
       //console.log(a);
       let fullname=a.name.split(" ");
@@ -208,6 +213,9 @@ export class ReqOffBearerChangeComponent implements OnInit {
          this.OBcomments=a.party_comments;
 
         this.fullname1=a.name;
+        this.OBDistrict=a.district;
+        this.OBConstituency=a.constituency;
+        
 
          this.reqform.patchValue({
           id1:this.OBid,
@@ -258,7 +266,7 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
     updateform.get('party_comments1').value,
-    '1')
+    '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(
         data => {

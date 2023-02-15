@@ -158,7 +158,8 @@ export class AppOrRejComponent implements OnInit {
     console.log(officebearerform);
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
     {   console.log(officebearerform);
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
             window.location.reload();
@@ -224,12 +225,13 @@ export class AppOrRejComponent implements OnInit {
     OBnew_designation:any;
     OBreason:any;
     fullname1:any;
+    OBDistrict:any;
+    OBConstituency:any;
     editbuttonviewOB(a:any){
-      //console.log(a);
-      let fullname=a.name.split(" ");
+      console.log(a);
       this.OBid=a.id;
-      this.OBname=fullname[0];
-      this.OBlastname=fullname[1];
+      this.OBname=a.firstname;
+      this.OBlastname=a.lastname;
          this.OBage=a.age;
          this.OBdateofbirth=a.date_of_birth;
          this.OBfathername=a.father_name;
@@ -243,9 +245,11 @@ export class AppOrRejComponent implements OnInit {
          this.OBaddress=a.address1;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
-
-        this.fullname1=a.name;
-
+         this.fullname1=a.name;
+         this.OBDistrict=a.district;
+         this.OBConstituency=a.constituency;
+         console.log(this.OBConstituency);
+ 
          this.reqform.patchValue({
           id1:this.OBid,
           email1:this.OBmail,
@@ -281,6 +285,7 @@ export class AppOrRejComponent implements OnInit {
         });
 }
 updatedata(updateform: any){
+  console.log(this.OBDistrict,'',this.OBConstituency);
   console.log(updateform.value);
   this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
   updateform.get('age1').value,
@@ -295,7 +300,7 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
     updateform.get('party_comments1').value,
-    '1')
+    '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(
         data => {
