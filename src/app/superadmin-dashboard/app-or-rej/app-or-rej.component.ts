@@ -85,7 +85,9 @@ export class AppOrRejComponent implements OnInit {
        reason:[''],
         user_id:[''],});
 
-        this.district=this.ApiService.user_district;
+        //this.district=this.ApiService.user_district;
+        this.district = JSON.parse(localStorage.getItem('user_district'));
+        
     }
 
   officebearerform !:FormGroup;
@@ -116,6 +118,7 @@ export class AppOrRejComponent implements OnInit {
     this.getdata();
     let obj=this.constituency_list;
     this.user_constituency=obj[this.district];
+    
   }
   Constituency_selection(selection:any){
     //console.log(selection)
@@ -152,9 +155,9 @@ export class AppOrRejComponent implements OnInit {
   postdata(officebearerform : any) //officebearerform
   {
 
-    //if()
+    console.log(officebearerform);
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
-    {
+    {   console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id)
         .subscribe(
         data => {

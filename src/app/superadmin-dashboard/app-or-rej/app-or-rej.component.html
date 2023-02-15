@@ -41,48 +41,61 @@
                               <div class="col-6 md:col-6">
                                 <label>First Name/முதல் பெயர்</label>
                                 <input type="text" name="firstname1" formControlName="firstname1" class="form-control"  placeholder="Enter First Name/முதல் பெயர்"/>
+                                    <div  *ngIf="editform.get('firstname1').hasError('required') && editform.get('firstname1').touched"
+                                        class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="editform.get('firstname1').hasError('pattern') && editform.get('firstname1').touched"
+                                        class="invalid-msg">Please enter the valid Name
+                                    </div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Last Name/குடும்ப பெயர்</label>
                                 <input type="text" name="lastname1" formControlName="lastname1" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்"/>
+                                    <div *ngIf="editform.get('lastname1').hasError('required') && editform.get('lastname1').touched"
+                                    class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="editform.get('lastname1').hasError('pattern') && editform.get('lastname1').touched"
+                                    class="invalid-msg">Please enter the valid Name
+                                    </div>
+                                    <div *ngIf="editform.get('lastname1').hasError('required')"
+                                              class="invalid-msg" [hidden]='hidden'>Please enter the Lastname
+                                    </div>
                               </div>
                       </div>
-                      <!-- <div class="form-group row">
-                            <div class="col-6 md:col-6">
-                              <label>Age / வயது</label>
-                              <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" />
-                            </div>
+                      <div class="form-group row">
                             <div class="col-sm-6">
                               <label>Date of Birth</label>
                               <input type="date" name="date_of_birth1" class="form-control"  placeholder="Enter Date of Birth" formControlName="date_of_birth1"/>
                             </div>
-                      </div> -->
-
-                      <div class="form-group row">
-                        <div class="col-sm-6">
-                              <label>Date of Birth</label><span class="required "> *</span>
-                              <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth1"/>
-                            </div>
                             <div class="col-6 md:col-6">
-                              <label>Age / வயது</label><span class="required "> *</span>
-                              <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" readonly/>
+                              <label>Age / வயது</label>
+                              <input type="number" name="age1" class="form-control"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age1" />
+                              <span *ngIf="age<18">Age must be 18 or above</span>
                             </div>
-                      </div>
-
+                       </div>
                       <div class="form-group row">
                             <div class="col-6 md:col-6">
                               <label>Father Name / தந்தையின் பெயர்</label>
                               <input type="text" name="father_name1" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1"/>
+                              <div *ngIf="editform.get('father_name1').hasError('required')"
+                                              class="invalid-msg">Please enter the Father name
+                              </div>
+                              <div *ngIf="editform.get('father_name1').hasError('pattern') && editform.get('father_name1').touched"
+                                          class="invalid-msg">Please enter the valid Name
+                                      </div>
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Mother Name / தாய் பெயர்</label>
-                              <input type="text" name="mother_name1" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name1"/>
+                              <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name"/>
                             </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-6 md:col-6">
                             <label>Degree / கல்வித் தகுதி</label>
                             <input type="text" name="educational_qualification1" formControlName="educational_qualification1" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி"/>
+                              <span *ngIf="editform.get('educational_qualification1').hasError('required')"
+                              class="invalid-msg">Please enter the Degree
+                              </span>
                           </div>
                           <div class="col-6 md:col-6">
                             <label>Additional Degree / சிறப்பு தகுதி</label>
@@ -94,16 +107,43 @@
                               <div class="col-6 md:col-6">
                                 <label>Phone Number / தொலைபேசி எண்</label>
                                 <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
+                                <div *ngIf="editform.get('contact_no1').hasError('required') && editform.get('contact_no1').touched"
+                                class="invalid-msg">Please enter the valid field
+                              </div>
+                              <div  *ngIf="editform.get('contact_no1').hasError('pattern') && editform.get('contact_no1').touched"
+                                class="invalid-msg">Please enter the valid Phone Number
+                              </div>
+                              <!-- <div *ngIf="editform.get('contact_no1').hasError('required')"
+                                          class="invalid-msg" [hidden]='hidden'>Please enter the Contact number
+                              </div> -->
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Whatsapp Number /வாட்ஸ்அப் எண்</label>
                                 <input type="text" name="whatsapp_no" formControlName="whatsapp_no1" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
+                                    <div *ngIf="editform.get('whatsapp_no1').hasError('required') && editform.get('whatsapp_no1').touched"
+                                        class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="editform.get('whatsapp_no1').hasError('pattern') && editform.get('whatsapp_no1').touched"
+                                        class="invalid-msg">Please enter the valid Whatsapp Number
+                                    </div>
+                                    <div *ngIf="editform.get('whatsapp_no1').hasError('required')"
+                                                  class="invalid-msg" [hidden]='hidden'>Please enter the Whatsapp Number
+                                  </div>
                               </div>
                       </div>
                       <div class="form-group">
                             <div class="col-6 md:col-6">
                               <label>Email/மின்னஞ்சல்</label>
                               <input type="text" name="email1" formControlName="email1" class="form-control"  placeholder="Enter Email/மின்னஞ்சல்" />
+                              <div *ngIf="editform.get('email1').hasError('required') && editform.get('email1').touched"
+                                   class="invalid-msg">Please enter the valid field
+                                  </div>
+                                 <div *ngIf="editform.get('email1').hasError('pattern') && editform.get('email1').touched"
+                                  class="invalid-msg">Please enter the valid Email Id
+                                </div>
+                                <div *ngIf="editform.get('email1').hasError('required')"
+                                              class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                            </div>
                             </div>
                       </div>
                       <div class="form-group">
@@ -323,6 +363,9 @@
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
+                            <span *ngIf="!constituency"
+                                      class="invalid-msg">Select Constituency
+                          </span>
                         </div>
                       </div>
 
@@ -369,6 +412,7 @@
                               <div class="col-6 md:col-6">
                                 <label>Age / வயது</label><span class="required "> *</span>
                                 <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18" max="100" placeholder="Enter Age / வயது" formControlName="age" readonly/>
+                                <span *ngIf="age<18" class="invalid-msg">Age must be 18 or above</span>
                               </div>
                         </div>
                         <div class="form-group row">
@@ -391,7 +435,7 @@
                             <div class="col-6 md:col-6">
                               <label>Degree / கல்வித் தகுதி</label><span class="required "> *</span>
                               <input type="text" name="educational_qualification" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி" formControlName="educational_qualification"/>
-                              <div *ngIf="officebearerform.get('age').hasError('required') && officebearerform.get('age').touched"
+                              <div *ngIf="officebearerform.get('educational_qualification').hasError('required') && officebearerform.get('educational_qualification').touched"
                                     class="invalid-msg">Please enter the valid field
                                   </div>
                                   <div *ngIf="officebearerform.get('age').hasError('required')"

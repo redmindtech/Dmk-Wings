@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-        baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-        //  baseUrl:string="http://localhost/lat_git_dmk/Dmk-Wings/lat_php_ftp/";
+        //baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+          baseUrl:string="http://localhost/s/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
 constructor(private httpClient : HttpClient) { };
@@ -118,10 +118,8 @@ public userlogin(username : any, password :any) {
 
 return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
 .pipe(map(Users => {
-  this.user_district= Users[0].district;
-
-  console.log(this.user_district);
-
+  //this.user_district= Users[0].district;
+  localStorage.setItem('user_district', JSON.stringify(Users[0].district));
 
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
@@ -270,11 +268,17 @@ public viewtableDA() {
               return this.httpClient.get(this.baseUrl +'/dashboardda.php');
             }
           public sendmail(email:any) {
-            return this.httpClient.post<any>(this.baseUrl + '/send_email.php', { email })
+            return this.httpClient.post<any>(this.baseUrl + 'send_email.php', { email })
             .pipe(map(Users => {
             return Users;
             }));
             }
+            public userreg_email(email:any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any) {
+              return this.httpClient.post<any>(this.baseUrl + '/self_reg_email.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession })
+              .pipe(map(Users => {
+              return Users;
+              }));
+              }
             public resetpassword(email:any,password:any,cpassword:any) {
                 return this.httpClient.post<any>(this.baseUrl + '/update_password.php', { email,password,cpassword })
                 .pipe(map(Users => {
