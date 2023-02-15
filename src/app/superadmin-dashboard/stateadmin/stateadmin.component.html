@@ -113,7 +113,8 @@
 
                                     </div>
                                 
-                                    <div class="form-group">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
                                         <input type="email" class="form-control form-control" formControlName="email"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
@@ -127,7 +128,19 @@
                                                 class="invalid-msg" [hidden]='hidden'>Please enter the Email
                                               </div>
                                     </div>
-                                
+
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Status / நிலை</label><span class="required "> *</span><br>
+                                        <select name="approval_status" formControlName="approval_status"  class="form-control">
+                                            <option value="">Select Option</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                        <div *ngIf="stateadminform.get('approval_status').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the Status
+                                      </div>
+                                    </div>
+                                </div>
                                     <!-- <div class="form-group">
                                         <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
                                         <select class="form-control form-select" aria-label="Default select example">
@@ -151,17 +164,7 @@
                                         </div> -->
 
                                         
-                                            <div class="col-12 md:col-12">
-                                                <label>Status / நிலை</label><span class="required "> *</span><br>
-                                                <select name="approval_status" formControlName="approval_status"  class="form-control">
-                                                    <option value="">Select Option</option>
-                                                    <option value="Active">Active</option>
-                                                    <option value="Inactive">Inactive</option>
-                                                </select>
-                                                <div *ngIf="stateadminform.get('approval_status').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please enter the Status
-                                              </div>
-                                            </div>
+                                           
                                     
 
                                         <div class="col-6 md:col-6">
@@ -233,12 +236,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                    <!-- <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Designation / பதவி</label>
-                                        <input type="text" class="form-control form-control" [disabled]="true"
-                                            placeholder="Enter Designation / பதவி" [value]="SAdesig">
-                                    </div> -->
-
+                                
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
                                     <select  [value]="SAparty_desig" [disabled]="true" class="form-control">
@@ -272,7 +270,9 @@
 
                                     </div>
                                 
-                                    <div class="form-group">
+                                    <div class="form-group row">
+                                
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
                                         <input type="email" class="form-control form-control" [disabled]="true"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [value]="SAmail">
@@ -282,8 +282,17 @@
                                             <div *ngIf="stateadminform.get('email').hasError('pattern') && stateadminform.get('email').touched"
                                                 class="invalid-msg">Please enter the valid Email Id
                                             </div>
-                                    </div>
-                                
+                                        </div>
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>Status / நிலை</label><br>
+                                                <select   class="form-control form-control" [disabled]="true" [value]="SAstatus">
+                                                    <option value="">Select Option</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                  
+                                </div>
                                     <!-- <div class="form-group">
                                         <label>Select District Name/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்</label>
                                         <select class="form-control form-select" aria-label="Default select example">
@@ -299,21 +308,7 @@
                                             <input type="password" class="form-control form-control" id="password"
                                             placeholder="Enter Password / கடவுச்சொல்">
                                         </div> -->
-                                        <!-- <div class="col-sm-6">
-                                            <label>Status / நிலை</label>
-                                            <input type="text" class="form-control form-control" [disabled]="true"
-                                                id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [value]="SAstatus">
-                                        </div> -->
-
-                                        <div class="col-sm-6">
-                                            <label>Status / நிலை</label><br>
-                                            <select   class="form-control form-control" [disabled]="true" [value]="SAstatus">
-                                                <option value="">Select Option</option>
-                                                <option value="Active">Active</option>
-                                                <option value="Inactive">Inactive</option>
-                                            </select>
-                                        </div>
-
+                                                                       
 
                                         <div class="col-6 md:col-6">
                                             <input type="text" hidden name="mode" formControlName="mode"/>
@@ -418,7 +413,8 @@
                                     </div>
                                 </div>
                             
-                                <div class="form-group">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                     <input type="email" class="form-control form-control" formControlName="email1"
                                         placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
@@ -433,27 +429,19 @@
                                         class="invalid-msg" [hidden]='hidden'>Please enter the Email
                                       </div>
                                 </div>
-                            
-                                <div class="form-group row">
-                                    <!-- <div class="col-sm-6">
-                                        <label>Status / நிலை</label>
-                                        <input type="text" class="form-control form-control" formControlName="approval_status1"
-                                            id="exampleRepeatPassword" placeholder="Enter Status / நிலை">
-                                    </div> -->
-
-                                    <div class="col-12 md:col-12">
-                                        <label>Status / நிலை</label><span class="required "> *</span><br>
-                                        <select formControlName="approval_status1"  class="form-control">
-                                            <option value="">Select Option</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                        </select>
-                                        <div *ngIf="editform.get('approval_status1').hasError('required')"
-                                        class="invalid-msg">Please enter the Status
-                                      </div>
-                                    </div>
-
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Status / நிலை</label><span class="required "> *</span><br>
+                                    <select formControlName="approval_status1"  class="form-control">
+                                        <option value="">Select Option</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                    <div *ngIf="editform.get('approval_status1').hasError('required')"
+                                    class="invalid-msg">Please enter the Status
+                                  </div>
                                 </div>
+                            </div>
+                               
                                 
                                 <div class="col-3 d-flex align-content-center" style="margin-left:34%">
                                     <button class="btn btn-danger btn btn-block">UPDATE STATE ADMIN</button>
