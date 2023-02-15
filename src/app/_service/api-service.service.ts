@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-        //baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          baseUrl:string="http://localhost/s/";
+        baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+         // baseUrl:string="http://localhost/s/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
 constructor(private httpClient : HttpClient) { };
