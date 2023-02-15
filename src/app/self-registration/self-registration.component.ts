@@ -14,7 +14,7 @@ export class SelfRegistrationComponent implements OnInit {
   angForm :FormGroup;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder, private router:Router) { 
+    private fb: FormBuilder, private router:Router) {
       this.mydist = this.ApiService.mydist;
 
         this.angForm = this.fb.group({ //angForm
@@ -48,7 +48,19 @@ export class SelfRegistrationComponent implements OnInit {
               alert("Self registration is completed successfully!")
           this.router.navigate(['']);
           },
-      
+
+          error => {
+              console.log(error);
+          });
+
+          this.ApiService.userreg_email(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession)
+          .subscribe(
+          data => {
+            
+              alert("Mail has been sented to super admin!")
+          this.router.navigate(['']);
+          },
+
           error => {
               console.log(error);
           });
