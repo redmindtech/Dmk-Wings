@@ -23,14 +23,14 @@
                       <div class="row" style="margin-bottom: 2%;">
                         <div class="col-sm-4">
                           <label>Party District / கட்சி மாவட்டம்:</label>
-                          <select class="form-control"  [value]="OBDistrict" (click)="Constituency_selection(district)">
+                          <select class="form-control"  [(ngModel)]="OBDistrict" (click)="OBconstituency_change(OBDistrict)">
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
                         </div>
                         <div class="col-sm-4" style="margin-left:30%">
                           <label>Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                            <select class="form-control"  [value]="OBConstituency">
+                            <select class="form-control"  [(ngModel)]="OBConstituency" >
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
@@ -199,14 +199,14 @@
                       <div class="row" style="margin-bottom: 2%;">
                         <div class="col-sm-4">
                           <label>Party District / கட்சி மாவட்டம்:</label>
-                          <select class="form-control"  [value]="OBDistrict" [disabled]="true" (click)="Constituency_selection(district)">
+                          <select class="form-control"  [(ngModel)]="OBDistrict" [disabled]="true" (click)="Constituency_selection(district)">
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
                         </div>
                         <div class="col-sm-4" style="margin-left:30%">
                           <label >Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                            <select class="form-control"  [value]="OBConstituency" [disabled]="true">
+                            <select class="form-control"  [(ngModel)]="OBConstituency" [disabled]="true">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>

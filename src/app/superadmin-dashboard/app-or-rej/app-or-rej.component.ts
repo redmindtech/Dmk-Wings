@@ -130,6 +130,12 @@ export class AppOrRejComponent implements OnInit {
     }
 
   }
+  OBconstituency_change(a:any){ 
+    let obj=this.constituency_list;
+    this.user_constituency=obj[a];
+    this.user_constituency.unshift('Select Option');
+    this.OBConstituency='';
+  }
   getdata(){
 
     // this.customers=[];
@@ -226,7 +232,7 @@ export class AppOrRejComponent implements OnInit {
     OBreason:any;
     fullname1:any;
     OBDistrict:any;
-    OBConstituency:any;
+    OBConstituency:string;
     editbuttonviewOB(a:any){
       console.log(a);
       this.OBid=a.id;
@@ -249,6 +255,8 @@ export class AppOrRejComponent implements OnInit {
          this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
          console.log(this.OBConstituency);
+          let obj=this.constituency_list;
+          this.user_constituency=obj[this.OBDistrict];
  
          this.reqform.patchValue({
           id1:this.OBid,

@@ -127,6 +127,12 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     //this.ApiService.viewtableOB();
 
   }
+  OBconstituency_change(a:any){ 
+    let obj=this.constituency_list;
+    this.user_constituency=obj[a];
+    this.user_constituency.unshift('Select Option');
+    this.OBConstituency='';
+  }
   postdata(officebearerform : any) //officebearerform
   {
 
@@ -224,6 +230,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         this.fullname1=a.name;
         this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
+          let obj=this.constituency_list;
+          this.user_constituency=obj[this.OBDistrict];
 
          this.reqform.patchValue({
           id1:this.OBid,
