@@ -56,6 +56,10 @@ public districts=[
   { name:'Erode (East)'}, { name:'Erode (West)'},
 
 ]
+// public all_districts=['Select District','ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KALLAKURICHI',
+// 'KANCHEEPURAM','KANNIYAKUMARI','KARUR', 'KRISHNAGIRI', 'MADURAI', 'NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI',
+// 'RAMANATHAPURAM','RANIPET','SALEM','SIVAGANGA','TENKASI','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','THOOTHUKUDI',
+// 'TIRUCHIRAPPALLI','TIRUNELVELI','TIRUPATHUR','TIRUPPUR','TIRUVANNAMALAI','VELLORE','VILLUPPURAM','VIRUDHUNAGAR'];
 public all_districts=['Select District','ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KALLAKURICHI',
 'KANCHEEPURAM','KANNIYAKUMARI','KARUR', 'KRISHNAGIRI', 'MADURAI', 'NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI',
 'RAMANATHAPURAM','RANIPET','SALEM','SIVAGANGA','TENKASI','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','THOOTHUKUDI',
@@ -102,6 +106,10 @@ public all_constituency={'ARIYALUR':['ARIYALUR','JAYANKONDAM'],
 
 };
 
+public all_designation=['Select designation ','District President / மாவட்ட தலைவர்','District Vice President / மாவட்ட துணை தலைவர்','District Organiser / மாவட்ட அமைப்பாளர்','District Deputy Organiser / மாவட்ட துணை அமைப்பாளர்','Union Organiser / ஒன்றிய அமைப்பாளர்','Union Deputy Organiser / ஒன்றிய துணை அமைப்பாளர்','City Organiser / நகர அமைப்பாளர்','City Deputy Organiser / நகர துணை அமைப்பாளர்','Area Organiser / பகுதி அமைப்பாளர்','Area Deputy Organiser / பகுதி துணை அமைப்பாளர்','illage Organiser / ஊரக அமைப்பாளர்','Village Deputy Organiser / ஊரக துணை அமைப்பாளர்'];
+
+
+
 public constituency:any='No-Select';
 
 
@@ -147,13 +155,13 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designat
   }))
   }
 
-    public create_dist_admin(mode:any,email:any,firstname:any,lastname:any,district:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+    public create_dist_admin(mode:any,whatsapp_no:any,email:any,firstname:any,lastname:any,district:any,party_designation:any,approval_status:any,location_id:any) {
       const httpOptions : Object = {
         headers: new HttpHeaders({
           'Content-Type':'application/x-www-form-urlencoded'
         })
       };
-      return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', {mode, email,firstname,lastname,district,designation,party_designation,approval_status,location_id },httpOptions )
+      return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', {mode, whatsapp_no,email,firstname,lastname,district,party_designation,approval_status,location_id },httpOptions )
         .pipe(map(Users => {
         return Users;
         }));
@@ -219,6 +227,7 @@ public viewtableDA() {
           //         this.tabledataDA=users[0];
           //         })
           return this.httpClient.get(this.baseUrl + '/show.php?mode=1');
+    
 
     }
 
@@ -272,7 +281,7 @@ public viewtableDA() {
                 return Users;
                 }));
                 }
-                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,email:any,approval_status:any,location_id='1') {
                   //let firstname='names'
                   const httpOptions : Object = {
                           headers: new HttpHeaders({
@@ -280,8 +289,8 @@ public viewtableDA() {
                           })
                         };
                         console.log(user_id);
-                    console.log("apidata : "+user_id,firstname,lastname,designation,party_designation,approval_status)
-                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,designation,party_designation,email,approval_status,location_id},httpOptions)
+                    console.log("apidata : "+user_id,firstname,lastname,whatsapp_no,party_designation,approval_status)
+                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,whatsapp_no,party_designation,email,approval_status,location_id},httpOptions)
                                 .pipe(map(Users => {
                                 return Users;
                                 }));
@@ -326,7 +335,7 @@ public viewtableDA() {
                                   }));
 
                                 }
-                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,district:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,district:any,party_designation:any,email:any,whatsapp_no:any,approval_status:any,location_id='1') {
                                   //let firstname='names'
                                   const httpOptions : Object = {
                                           headers: new HttpHeaders({
@@ -334,8 +343,8 @@ public viewtableDA() {
                                           })
                                         };
                                         console.log(user_id);
-                                    console.log("apidata : "+user_id,firstname,lastname,designation,district,party_designation,approval_status)
-                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,designation,district,party_designation,email,approval_status,location_id},httpOptions)
+                                    console.log("apidata : "+user_id,firstname,lastname,district,party_designation,approval_status)
+                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,district,party_designation,email,whatsapp_no,approval_status,location_id},httpOptions)
                                                 .pipe(map(Users => {
                                                 return Users;
                                                 }));
