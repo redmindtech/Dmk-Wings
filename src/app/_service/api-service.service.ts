@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-        //baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          baseUrl:string="http://localhost/s/";
+        // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+         baseUrl:string="http://localhost/dmk_php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
 constructor(private httpClient : HttpClient) { };
@@ -133,13 +133,13 @@ return Users;
 }));
 }
 
-public create_state_admin(mode:any,email:any,firstname:any,lastname:any,designation:any,party_designation:any,approval_status:any,location_id:any) {
+public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,approval_status:any,location_id:any) {
   const httpOptions : Object = {
           headers: new HttpHeaders({
             'Content-Type':'application/x-www-form-urlencoded'
           })
         };
-  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,designation,party_designation,approval_status,location_id },httpOptions )
+  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,whatsapp_no,party_designation,approval_status,location_id },httpOptions )
   .pipe(map(Users => {
   return Users;
   }))
@@ -276,7 +276,7 @@ public viewtableDA() {
                 return Users;
                 }));
                 }
-                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,designation:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,email:any,approval_status:any,location_id='1') {
                   //let firstname='names'
                   const httpOptions : Object = {
                           headers: new HttpHeaders({
@@ -284,8 +284,8 @@ public viewtableDA() {
                           })
                         };
                         console.log(user_id);
-                    console.log("apidata : "+user_id,firstname,lastname,designation,party_designation,approval_status)
-                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,designation,party_designation,email,approval_status,location_id},httpOptions)
+                    console.log("apidata : "+user_id,firstname,lastname,whatsapp_no,party_designation,approval_status)
+                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,whatsapp_no,party_designation,email,approval_status,location_id},httpOptions)
                                 .pipe(map(Users => {
                                 return Users;
                                 }));

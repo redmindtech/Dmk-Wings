@@ -23,7 +23,7 @@ export class StateadminComponent implements OnInit {
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       //district:['',Validators.required],
-      designation:['',Validators.required],
+      whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
       party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status:['',Validators.required],
       location_id:['1'],
@@ -35,7 +35,7 @@ export class StateadminComponent implements OnInit {
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         //district:['',Validators.required],
-        designation1:['',Validators.required],
+        whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         party_designation1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         approval_status1:['',Validators.required],
         location_id1:['1'],
@@ -106,7 +106,7 @@ export class StateadminComponent implements OnInit {
     if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
     {
         this.ApiService.create_state_admin(angForm1.value.mode,angForm1.value.email,angForm1.value.firstname,
-          angForm1.value.lastname,angForm1.value.designation,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
+          angForm1.value.lastname,angForm1.value.whatsapp_no,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
         .subscribe(
         data => {
             window.location.reload();
@@ -153,6 +153,7 @@ export class StateadminComponent implements OnInit {
     SAfirstname:any;
     SAlastname:any;
     SAdesig:any;
+    SAwhatsapp_no:any;
     SAparty_desig:any;
     SAmail:any;
     SAstatus:any;
@@ -163,6 +164,7 @@ export class StateadminComponent implements OnInit {
        this.SAfirstname=a.firstname;
        this.SAlastname=a.lastname;
           this.SAdesig=a.designation;
+          this.SAwhatsapp_no=a.whatsapp_no;
           this.SAparty_desig=a.party_designation;
           this.SAmail=a.email;
           this.SAstatus=a.approval_status;
@@ -173,6 +175,7 @@ export class StateadminComponent implements OnInit {
             firstname1:this.SAfirstname,
             lastname1:this.SAlastname,
             designation1:this.SAdesig,
+            whatsapp_no1:this.SAwhatsapp_no,
             party_designation1:this.SAparty_desig,
             approval_status1:this.SAstatus
 
@@ -186,7 +189,7 @@ export class StateadminComponent implements OnInit {
       {
           console.log(updateform.value);
           this.ApiService.updateSA('0', this.SAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
-            updateform.get('designation1').value,
+            updateform.get('whatsapp_no1').value,
             updateform.get('party_designation1').value,
             updateform.get('email1').value,
             updateform.get('approval_status1').value)

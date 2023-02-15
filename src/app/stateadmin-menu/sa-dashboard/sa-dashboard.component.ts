@@ -80,32 +80,32 @@ export class SADashboardComponent implements OnInit {
       //   }
       // });
 
-      this.chart = new Chart('canvas', {
-        type: 'pie',
-        data: {
-          labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
-          datasets: [
-            { label: "slices",
-              data: [10, 20, 30,23,40,80],
-              backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            datalabels: {
-              formatter: (value, ctx) => {
-                return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
-              },
-              color: 'white'
-            }
-          }
-        },
+      // this.chart = new Chart('canvas', {
+      //   type: 'pie',
+      //   data: {
+      //     labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
+      //     datasets: [
+      //       { label: "slices",
+      //         data: [10, 20, 30,23,40,80],
+      //         backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
+      //       }
+      //     ]
+      //   },
+      //   options: {
+        //   responsive: true,
+        //   maintainAspectRatio: false,
+        //   plugins: {
+        //     datalabels: {
+        //       formatter: (value, ctx) => {
+        //         return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
+        //       },
+        //       color: 'white'
+        //     }
+        //   }
+        // },
         
         //plugins: [pluginDataLabels]
-      });
+     // });
       
     }
 }

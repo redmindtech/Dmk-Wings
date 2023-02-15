@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private dataService: ApiServiceService,
     private router:Router) { 
       this.userForm = this.fb.group({
-        email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
+        whatsapp_no: ['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         password: ['', Validators.required]
         });
         //console.log(this.userForm);
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
   postdata(userForm : any)
 {
-this.dataService.userlogin(userForm.value.email,userForm.value.password)
+this.dataService.userlogin(userForm.value.whatsapp_no,userForm.value.password)
 .pipe(first())
 .subscribe(
 data => {
@@ -57,7 +57,7 @@ error => {
 alert("User name or password is incorrect")
 });
 }
-get email() { return this.userForm.get('email'); }
+get whatsapp_no() { return this.userForm.get('whatsapp_no'); }
 get password() { return this.userForm.get('password'); }
 
 

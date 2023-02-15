@@ -12,10 +12,10 @@
       <div class="card-body login-card-body">
         <form [formGroup]="userForm" (ngSubmit)="postdata(userForm)">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" formControlName="email">
+            <input type="number" class="form-control" placeholder="Phone Number" formControlName="whatsapp_no">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-phone"></span>
               </div>
             </div>
           </div>
