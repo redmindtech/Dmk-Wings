@@ -41,7 +41,7 @@ export class AppOrRejComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        father_name:[[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:[''],
@@ -95,7 +95,9 @@ export class AppOrRejComponent implements OnInit {
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
 
-
+  print(officebearerform){
+    console.log(officebearerform);
+  }
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
