@@ -27,13 +27,13 @@
                                             <input type="text" class="form-control form-control" formControlName="firstname"
                                                 placeholder="Enter First Name / முதல் பெயர்" >
                                                 <div *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched" 
-                                                    class="invalid-msg">Please enter the valid field
+                                                    class="invalid-msg">Please fill this field.
                                                 </div>
                                                 <div *ngIf="stateadminform.get('firstname').hasError('pattern') && stateadminform.get('firstname').touched"
-                                                    class="invalid-msg">Please enter the valid Name
+                                                    class="invalid-msg">Please enter the valid Name (Number and special character is not allowed)
                                                 </div>
                                                 <div *ngIf="stateadminform.get('firstname').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please enter the Firstname
+                                                class="invalid-msg" [hidden]='hidden'>Please enter the First name.
                                               </div>
                                                 
                                         </div>
@@ -42,13 +42,13 @@
                                             <input type="text" class="form-control form-control" formControlName="lastname"
                                                 placeholder="Enter Last Name / குடும்ப பெயர்">
                                                 <div *ngIf="stateadminform.get('lastname').hasError('required') && stateadminform.get('lastname').touched"
-                                                    class="invalid-msg">Please enter the valid field
+                                                    class="invalid-msg">Please fill this field.
                                                 </div>
                                                 <div *ngIf="stateadminform.get('lastname').hasError('pattern') && stateadminform.get('lastname').touched"
-                                                   class="invalid-msg">Please enter the valid Name
+                                                   class="invalid-msg">Please enter the valid Name (Number and special character is not allowed)
                                             </div>
                                             <div *ngIf="stateadminform.get('lastname').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please enter the Lastname
+                                                class="invalid-msg" [hidden]='hidden'>Please enter the Last name.
                                               </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                             </select>
 
                                             <div *ngIf="stateadminform.get('party_designation').hasError('required')"
-                                            class="invalid-msg" [hidden]='hidden'>Please select the Party Designation
+                                            class="invalid-msg" [hidden]='hidden'>Please select the Party Designation this field is required.
                                           </div>
 
                                     </div>
@@ -100,13 +100,13 @@
                                             placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
                                             <div *ngIf="stateadminform.get('whatsapp_no').hasError('required') && stateadminform.get('whatsapp_no').touched"
-                                            class="invalid-msg">Please enter the valid field
+                                            class="invalid-msg">Please fill this field..
                                         </div>
                                         <div *ngIf="stateadminform.get('whatsapp_no').hasError('pattern') && stateadminform.get('whatsapp_no').touched"
-                                            class="invalid-msg">Please enter the valid WhatsApp Number
+                                            class="invalid-msg">Please enter the valid WhatsApp Number (with country code (91xxxxxxxxxx))
                                         </div>
                                         <div *ngIf="stateadminform.get('whatsapp_no').hasError('required')"
-                                            class="invalid-msg" [hidden]='hidden'>Please enter the WhatsApp Number
+                                            class="invalid-msg" [hidden]='hidden'>Please enter the WhatsApp Number.
                                           </div>
 
                                     </div>
@@ -119,13 +119,13 @@
                                         <input type="email" class="form-control form-control" formControlName="email"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                             <div *ngIf="stateadminform.get('email').hasError('required') && stateadminform.get('email').touched"
-                                                class="invalid-msg">Please enter the valid field
+                                                class="invalid-msg">Please fill this field.
                                             </div>
                                             <div *ngIf="stateadminform.get('email').hasError('pattern') && stateadminform.get('email').touched"
                                                 class="invalid-msg">Please enter the valid Email Id
                                             </div>
                                             <div *ngIf="stateadminform.get('email').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please enter the Email
+                                                class="invalid-msg" [hidden]='hidden'>Please enter the Email.
                                               </div>
                                     </div>
 
@@ -137,7 +137,7 @@
                                             <option value="Inactive">Inactive</option>
                                         </select>
                                         <div *ngIf="stateadminform.get('approval_status').hasError('required')"
-                                        class="invalid-msg" [hidden]='hidden'>Please enter the Status
+                                        class="invalid-msg" [hidden]='hidden'>Please select the Status
                                       </div>
                                     </div>
                                 </div>
@@ -347,13 +347,13 @@
                                             placeholder="Enter First Name / முதல் பெயர்" >
 
                                             <div *ngIf="editform.get('firstname1').hasError('required') && editform.get('firstname1').touched" 
-                                            class="invalid-msg">Please enter the valid field
+                                            class="invalid-msg">Please fill this field.
                                         </div>
                                         <div *ngIf="editform.get('firstname1').hasError('pattern') && editform.get('firstname1').touched"
-                                            class="invalid-msg">Please enter the valid Name
+                                            class="invalid-msg">Please enter the valid Name (Number and special character is not allowed)
                                         </div>
                                         <div *ngIf="editform.get('firstname1').hasError('required')"
-                                        class="invalid-msg" [hidden]='hidden'>Please enter the Firstname
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the First name
                                       </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -362,13 +362,13 @@
                                             placeholder="Enter Last Name / குடும்ப பெயர்" >
 
                                             <div *ngIf="editform.get('lastname1').hasError('required') && editform.get('lastname1').touched"
-                                            class="invalid-msg">Please enter the valid field
+                                            class="invalid-msg">Please fill this field.
                                         </div>
                                         <div *ngIf="editform.get('lastname1').hasError('pattern') && editform.get('lastname1').touched"
-                                           class="invalid-msg">Please enter the valid Name
+                                           class="invalid-msg">Please enter the valid Name (Number and special character is not allowed)
                                     </div>
                                     <div *ngIf="editform.get('lastname1').hasError('required')"
-                                        class="invalid-msg" [hidden]='hidden'>Please enter the Lastname
+                                        class="invalid-msg" [hidden]='hidden'>Please enter the Last name
                                       </div>
                                     </div>
                                 </div>
@@ -401,10 +401,10 @@
                                             placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
                                             <div *ngIf="editform.get('whatsapp_no1').hasError('required') && editform.get('whatsapp_no1').touched"
-                                            class="invalid-msg">Please enter the valid field
+                                            class="invalid-msg">Please fill this field.
                                         </div>
                                         <div *ngIf="editform.get('whatsapp_no1').hasError('pattern') && editform.get('whatsapp_no1').touched"
-                                            class="invalid-msg">Please enter the valid WhatsApp Number
+                                            class="invalid-msg">Please enter the valid WhatsApp Number (with country code (91xxxxxxxxxx))
                                         </div>
                                         <div *ngIf="editform.get('whatsapp_no1').hasError('required')"
                                             class="invalid-msg" [hidden]='hidden'>Please enter the WhatsApp Number
@@ -420,7 +420,7 @@
                                         placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                         
                                         <div *ngIf="editform.get('email1').hasError('required') && editform.get('email1').touched"
-                                        class="invalid-msg">Please enter the valid field
+                                        class="invalid-msg">Please fill this field.
                                     </div>
                                     <div *ngIf="editform.get('email1').hasError('pattern') && editform.get('email1').touched"
                                         class="invalid-msg">Please enter the valid Email Id
@@ -437,7 +437,7 @@
                                         <option value="Inactive">Inactive</option>
                                     </select>
                                     <div *ngIf="editform.get('approval_status1').hasError('required')"
-                                    class="invalid-msg">Please enter the Status
+                                    class="invalid-msg">Please select the Status
                                   </div>
                                 </div>
                             </div>
