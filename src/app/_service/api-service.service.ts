@@ -166,7 +166,12 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp
         }
 
           public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any) {
-            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id,district,constituency })
+            const httpOptions : Object = {
+              headers: new HttpHeaders({
+                'Content-Type':'application/x-www-form-urlencoded'
+              })
+            };
+            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id,district,constituency},httpOptions)
             .pipe(map(Users => {
             return Users;
             }));
