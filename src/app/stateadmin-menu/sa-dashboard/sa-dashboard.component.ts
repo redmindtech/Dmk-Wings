@@ -9,10 +9,16 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
   styleUrls: ['./sa-dashboard.component.scss']
 })
 export class SADashboardComponent implements OnInit {
-  chart: Chart<"bar", string[], string>;
+  // chart: Chart string[], string>;
+  public chart: any;
   barchat: any;
+  piechartdata: any;
+  dashboardcarddata: any;
+  regob: any;
+  appob: any;
+  activeob: any;
 
-  constructor(public ApiService:ApiServiceService) { }
+  constructor(public ApiService:ApiServiceService,) { }
   ngOnInit(): void {
     // chartdatasa()
     this.ApiService.chartdatasa().subscribe((data:any) => {     
@@ -21,8 +27,24 @@ export class SADashboardComponent implements OnInit {
         this.createChart(this.barchat);     
      
         ;})
-    // this.createChart();
-     this.piechart()
+        this.ApiService.piedatasa().subscribe((piedate:any) => {
+           console.log('hipie');
+         this.piechartdata=piedate;
+           this.piechart(this.piechartdata);
+  
+           ;})
+
+           this.ApiService.carddatasa().subscribe((cardata:any) => {
+            console.log('card');
+           this.dashboardcarddata=cardata;
+           console.log(this.dashboardcarddata);
+           let obj= this.dashboardcarddata;
+         this.regob=obj.REGOB;
+         this.appob=obj.APPOB;
+         this.activeob=obj.ACTIVEOB;
+  
+             ;})
+    //  this.piechart()
     
   }
     createChart(data){
@@ -62,50 +84,44 @@ export class SADashboardComponent implements OnInit {
 
     }
 
-    piechart(){
-      // this.chart = new Chart('canvas', {
-      //   type: 'pie',
-      //   data: {
-      //     labels: ['A', 'B', 'C'],
-      //     datasets: [
-      //       {
-      //         data: [10, 20, 30],
-      //         backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
-      //       }
-      //     ]
-      //   },
-      //   options: {
-      //     responsive: true,
-      //     maintainAspectRatio: false
-      //   }
-      // });
+    piechart(data){
 
-      // this.chart = new Chart('canvas', {
-      //   type: 'pie',
-      //   data: {
-      //     labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
-      //     datasets: [
-      //       { label: "slices",
-      //         data: [10, 20, 30,23,40,80],
-      //         backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
-      //       }
-      //     ]
-      //   },
-      //   options: {
-        //   responsive: true,
-        //   maintainAspectRatio: false,
-        //   plugins: {
-        //     datalabels: {
-        //       formatter: (value, ctx) => {
-        //         return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
-        //       },
-        //       color: 'white'
-        //     }
-        //   }
-        // },
-        
-        //plugins: [pluginDataLabels]
-     // });
+      let values = [];
       
-    }
+            let keys = Object.keys(data);
+            for (let key in data) {
+              values.push(data[key]);
+            }
+            console.log(data);
+            this.chart = new Chart('canvas', {
+              type: 'pie',
+              data: {
+                // labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
+                labels:keys,
+                datasets: [
+                  {
+                     label: "Number of engineers",
+                    data:values,
+                    backgroundColor: ['#3B55E6', '#EB4E36', '#43D29E', '#32CBD8', '#E8C63B', '#28C63B',]
+                  }
+                ]
+              },
+              options: {
+                // responsive: true,
+                // maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  datalabels: {
+                    formatter: (value, ctx) => {
+                      return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
+                    },
+                    color: 'white'
+                  }
+                }
+              },
+            //   // plugins: [pluginDataLabels]
+             });
+      
+          }
 }

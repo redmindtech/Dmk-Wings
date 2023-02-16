@@ -60,10 +60,10 @@ public districts=[
 // 'KANCHEEPURAM','KANNIYAKUMARI','KARUR', 'KRISHNAGIRI', 'MADURAI', 'NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI',
 // 'RAMANATHAPURAM','RANIPET','SALEM','SIVAGANGA','TENKASI','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','THOOTHUKUDI',
 // 'TIRUCHIRAPPALLI','TIRUNELVELI','TIRUPATHUR','TIRUPPUR','TIRUVANNAMALAI','VELLORE','VILLUPPURAM','VIRUDHUNAGAR'];
-public all_districts=['Select District','ARIYALUR','CHENGALPATTU','CHENNAI','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KALLAKURICHI',
-'KANCHEEPURAM','KANNIYAKUMARI','KARUR', 'KRISHNAGIRI', 'MADURAI', 'NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI',
-'RAMANATHAPURAM','RANIPET','SALEM','SIVAGANGA','TENKASI','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','THOOTHUKUDI',
-'TIRUCHIRAPPALLI','TIRUNELVELI','TIRUPATHUR','TIRUPPUR','TIRUVANNAMALAI','VELLORE','VILLUPPURAM','VIRUDHUNAGAR'];
+public all_districts=['Select District','ARIYALUR','CHENGALPATTU','CHENNAI NORTH','CHENNAI NORTH EAST','CHENNAI EAST','CHENNAI WEST','CHENNAI SOUTH WEST','CHENNAI SOUTH','COIMBATORE NORTH','COIMBATORE SOUTH ','COIMBATORE CENTER','CUDDALORE EAST','CUDDALORE WEST','DHARMAPURI EAST','DHARMAPURI WEST','DINDIGUL EAST','DINDIGUL WEST','ERODE NORTH','ERODE SOUTH','KALLAKURICHI NORTH','KALLAKURICHI SOUTH',
+'KANCHEEPURAM NORTH','KANCHEEPURAM SOUTH','KANNIYAKUMARI EAST','KANNIYAKUMARI WEST','KARUR', 'KRISHNAGIRI EAST', 'KRISHNAGIRI WEST', 'MADURAI NORTH', 'MADURAI SOUTH', 'MADURAI CENTER','MAYILADUTHURAI', 'NAGAPATTINAM','NAMAKKAL EAST','NAMAKKAL WEST','PERAMBALUR','PONDICHERRY','PUDUKKOTTAI NORTH','PUDUKKOTTAI SOUTH',
+'RAMANATHAPURAM','RANIPET','SALEM EAST','SALEM WEST','SALEM CENTER','SIVAGANGAI','TENKASI NORTH','TENKASI SOUTH','THANJAVUR NORTH','THANJAVUR CENTER','THANJAVUR SOUTH','THE NILGIRIS','THENI NORTH','THENI SOUTH' ,'THIRUVALLUR EAST','THIRUVALLUR CENTER','THIRUVALLUR WEST','THIRUVARUR','THOOTHUKUDI NORTH','THOOTHUKUDI SOUTH',
+'TIRUCHIRAPPALLI NORTH','TIRUCHIRAPPALLI SOUTH','TIRUCHIRAPPALLI CENTER','TIRUNELVELI EAST','TIRUNELVELI CENTER','TIRUPATHUR','TIRUPPUR NORTH','TIRUPPUR SOUTH','TIRUVANNAMALAI NORTH','TIRUVANNAMALAI SOUTH','VELLORE','VILLUPPURAM NORTH','VILLUPPURAM SOUTH','VIRUDHUNAGAR NORTH','VIRUDHUNAGAR SOUTH'];
 
 public all_constituency={'ARIYALUR':['ARIYALUR','JAYANKONDAM'],
 'CHENGALPATTU':['CHENGALPATTU','CHEYYUR','MADURANTAKAM','PALLAVARAM','SHOLINGANALLUR','TAMBARAM','THIRUPORUR'],
@@ -120,6 +120,7 @@ return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, passwo
 .pipe(map(Users => {
   //this.user_district= Users[0].district;
   localStorage.setItem('user_district', JSON.stringify(Users[0].district));
+  console.log(this.user_district)
 
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
@@ -166,7 +167,12 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp
         }
 
           public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any) {
-            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id,district,constituency })
+            const httpOptions : Object = {
+              headers: new HttpHeaders({
+                'Content-Type':'application/x-www-form-urlencoded'
+              })
+            };
+            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id,district,constituency},httpOptions)
             .pipe(map(Users => {
             return Users;
             }));
@@ -263,9 +269,32 @@ public viewtableDA() {
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
             }
 
+            
             barchartdatada:any[]=[];
             public chartdatada() {
               return this.httpClient.get(this.baseUrl +'/dashboardda.php');
+            }
+            piechartdatasa:any[]=[];
+            public piedatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsapie.php');
+            }
+            cardsa:any[]=[];
+            public carddatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsacard.php');
+            }
+            
+            barchartdatasa:any[]=[];
+            public chartdatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
+            }
+
+            piechartdatada:any[]=[];
+            public piedatada() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
+            }
+            dashboardcarddata:any[]=[];
+            public dashboardcardda() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
             }
           public sendmail(email:any) {
             return this.httpClient.post<any>(this.baseUrl + 'send_email.php', { email })
@@ -412,21 +441,7 @@ public viewtableDA() {
   //     }));
   //     }
 
-
-  barchartdatasa:any[]=[];
-  public chartdatasa() {
-    return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
-  }
-
-            piechartdatada:any[]=[];
-            public piedatada() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
-            }
-            dashboardcarddata:any[]=[];
-            public dashboardcardda() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
-            }
-            public deletemeeting(id:any) {
+           public deletemeeting(id:any) {
               const httpOptions : Object = {
                 headers: new HttpHeaders({
                   'Content-Type':'application/x-www-form-urlencoded'

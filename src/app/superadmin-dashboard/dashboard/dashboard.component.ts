@@ -12,58 +12,67 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class DashboardComponent implements OnInit {
   public chart: any;
-  
+  barchat: any;
+  piechartdata: any;
+  dashboardcarddata: any;
+  regob: any;
+  appob: any;
+  activeob: any;
 
-  constructor(public ApiService:ApiServiceService) { }
-
-  // chartOptions = {
-	//   animationEnabled: true,
-	//   theme: "dark2",
-	//   title:{
-	// 	text: "Social Media Engagement"
-	//   },
-	//   data: [{
-	// 	type: "pie",
-	// 	startAngle: 45,
-	// 	indexLabel: "{name}: {y}",
-	// 	indexLabelPlacement: "inside",
-	// 	yValueFormatString: "#,###.##'%'",
-	// 	dataPoints: [
-	// 	  { y: 21.3, name: "Facebook" },
-	// 	  { y: 27.7, name: "Instagram" },
-	// 	  { y: 17, name: "Twitter" },
-	// 	  { y: 14.9, name: "LinkedIn" },
-	// 	  { y: 10.6, name: "Pinterest" },
-	// 	  { y: 8.5, name: "Others" }
-	// 	]
-	//   }]
-	// }
-
+  constructor(public ApiService:ApiServiceService,) { }
   ngOnInit(): void {
-    //get data when login completed
-    this.ApiService.viewtableSA();
-    this.ApiService.viewtableDA();
-    this.ApiService.viewtableOB();
-    this.ApiService.viewtableOBapprove();
-    this.createChart();
-    this.piechart()
-    // this.ApiService.viewtableSA();
+    // chartdatasa()
+    this.ApiService.chartdatasa().subscribe((data:any) => {     
+      this.barchat=data;    
+      console.log(this.barchat);
+        this.createChart(this.barchat);     
+     
+        ;})
+        this.ApiService.piedatasa().subscribe((piedate:any) => {
+           console.log('hipie');
+         this.piechartdata=piedate;
+           this.piechart(this.piechartdata);
+  
+           ;})
 
+           this.ApiService.carddatasa().subscribe((cardata:any) => {
+            console.log('card');
+           this.dashboardcarddata=cardata;
+           console.log(this.dashboardcarddata);
+           let obj= this.dashboardcarddata;
+         this.regob=obj.REGOB;
+         this.appob=obj.APPOB;
+         this.activeob=obj.ACTIVEOB;
+  
+             ;})
+    //  this.piechart()
+    //  this.piechart()
     
   }
-    createChart(){
+    createChart(data){
+
+      const barchatgraph = data;    
+      console.log()
+            const district = [];
+        const counts = [];
+        
+        for (let i = 0; i < barchatgraph.length; i++) {
+          district.push(barchatgraph[i].district);
+          counts.push(barchatgraph[i].count);
+        }
+     
       this.chart = new Chart("MyChart", {
         type: 'bar', //this denotes tha type of chart
 
         data: {// values on X-Axis
-          labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"], 
+          labels:district, 
           datasets: [
             {
-              label: "Applicants",
-              backgroundColor: "#4e73df",
-              hoverBackgroundColor: "#2e59d9",
-              borderColor: "#4e73df",
-              data: ['154',' 255', '300','355', '500','780'],
+              label: "Number of engineers in district-wise",
+              backgroundColor:["#800080","#7FFF00","#FF1493","#00FFFF","#DC143C","#FFFF00","#CCFF00","#6633FF","#66FF99","#808080"],
+              // hoverBackgroundColor: "#2e59d9",
+              // borderColor: "#4e73df",
+              data: counts,
               
             },
           ]
@@ -77,53 +86,44 @@ export class DashboardComponent implements OnInit {
 
     }
 
-    piechart(){
-      // this.chart = new Chart('canvas', {
-      //   type: 'pie',
-      //   data: {
-      //     labels: ['A', 'B', 'C'],
-      //     datasets: [
-      //       {
-      //         data: [10, 20, 30],
-      //         backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
-      //       }
-      //     ]
-      //   },
-      //   options: {
-      //     responsive: true,
-      //     maintainAspectRatio: false
-      //   }
-      // });
+    piechart(data){
 
-      this.chart = new Chart('canvas', {
-        type: 'pie',
-        data: {
-          labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
-          datasets: [
-            { label: "slices",
-              data: [10, 20, 30,23,40,80],
-              backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            datalabels: {
-              formatter: (value, ctx) => {
-                return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
-              },
-              color: 'white'
-            }
-          }
-        },
-        
-        //plugins: [pluginDataLabels]
-      });
+      let values = [];
       
-    }
-
-  
-
+            let keys = Object.keys(data);
+            for (let key in data) {
+              values.push(data[key]);
+            }
+            console.log(data);
+            this.chart = new Chart('canvas', {
+              type: 'pie',
+              data: {
+                // labels: ["Hosur", "Salem", "Trichy", "Madurai", "Kanchipuram", "Chennai"],
+                labels:keys,
+                datasets: [
+                  {
+                     label: "Number of engineers",
+                    data:values,
+                    backgroundColor: ['#3B55E6', '#EB4E36', '#43D29E', '#32CBD8', '#E8C63B', '#28C63B',]
+                  }
+                ]
+              },
+              options: {
+                // responsive: true,
+                // maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  datalabels: {
+                    formatter: (value, ctx) => {
+                      return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
+                    },
+                    color: 'white'
+                  }
+                }
+              },
+            //   // plugins: [pluginDataLabels]
+             });
+      
+          }
 }

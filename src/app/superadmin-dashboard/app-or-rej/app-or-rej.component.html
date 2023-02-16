@@ -23,7 +23,7 @@
                     <div class="row" style="margin-bottom: 2%;">
                       <div class="col-sm-4">
                         <label>Party District / கட்சி மாவட்டம்:</label>
-                        <select class="form-control"  [(ngModel)]="OBDistrict" (click)="Constituency_selection(district)">
+                        <select class="form-control"  [(ngModel)]="OBDistrict" (click)="OBconstituency_change(OBDistrict)">
                           <option *ngFor="let option of district_list" (value)="option" >
                             {{option}}</option>
                         </select>
@@ -34,6 +34,9 @@
                             <option *ngFor="let option of user_constituency" (value)="option" >
                               {{option}}</option>
                           </select>
+                          <span *ngIf="OBConstituency==''"
+                                      class="invalid-msg">Select Constituency
+                            </span>
                       </div>
                     </div>
                     <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
@@ -87,7 +90,7 @@
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Mother Name / தாய் பெயர்</label>
-                              <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name"/>
+                              <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name1"/>
                             </div>
                       </div>
                       <div class="form-group row">
@@ -217,7 +220,7 @@
                       </div>
                       <div class="col-sm-4" style="margin-left:30%">
                         <label >Assembly constituency/சட்டமன்ற தொகுதி:</label>
-                          <select class="form-control"  [(ngModel)]="OBConstituency" >
+                          <select class="form-control"  [(ngModel)]="OBConstituency" [disabled]="true">
                             <option *ngFor="let option of user_constituency" (value)="option" >
                               {{option}}</option>
                           </select>
@@ -389,17 +392,21 @@
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
                          <div class="form-group row">
                                 <div class="col-6 md:col-6">
-                                  <label>First Name/முதல் பெயர்</label><span class="required "> *</span>
+                                  <label (click)="print(firstname)">First Name/முதல் பெயர்{{firstname.touched}}</label><span class="required "> *</span>
                                   <input type="text" name="firstname" class="form-control"  placeholder="Enter First Name/முதல் பெயர்" formControlName="firstname"/>
-                                  <div  *ngIf="officebearerform.get('firstname').hasError('required') && officebearerform.get('firstname').touched"
-                                    class="invalid-msg">Please enter the valid field
-                                </div>
-                                <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched"
-                                    class="invalid-msg">Please enter the Firstname
-                              </div>
-                              <div *ngIf="officebearerform.get('firstname').hasError('required')"
-                                    class="invalid-msg" [hidden]='hidden'>Please enter the First Name
-                                  </div>
+                                      <div *ngIf="firstname.status=='INVALID'&& firstname.touched==true && firstname.value!=''" class="invalid-msg">
+                                        Numbers and Special charaters not allowed!</div>
+                                      <!-- <div *ngIf="firstname.value==''|| firstname.untouched==false">Please fill this field!</div> -->
+                                      <div  class="invalid-msg" [hidden]='hidden'>Please fill this field!</div>
+                                      <!-- <div  *ngIf="officebearerform.get('firstname').hasError('required') && officebearerform.get('firstname').touched"
+                                        class="invalid-msg">Numbers and Special charaters not allowed!
+                                      </div>
+                                      <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').untouched"
+                                        class="invalid-msg">Please fill this field!advv
+                                      </div>
+                                      <div *ngIf="officebearerform.get('firstname').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please fill this field!
+                                      </div> -->
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Last Name/குடும்ப பெயர்</label><span class="required "> *</span>

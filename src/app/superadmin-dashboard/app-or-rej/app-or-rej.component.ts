@@ -41,7 +41,7 @@ export class AppOrRejComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        father_name:[[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:[''],
@@ -95,7 +95,9 @@ export class AppOrRejComponent implements OnInit {
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
 
-
+  print(officebearerform){
+    console.log(officebearerform);
+  }
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
@@ -129,6 +131,12 @@ export class AppOrRejComponent implements OnInit {
 
     }
 
+  }
+  OBconstituency_change(a:any){ 
+    let obj=this.constituency_list;
+    this.user_constituency=obj[a];
+    this.user_constituency.unshift('Select Option');
+    this.OBConstituency='';
   }
   getdata(){
 
@@ -226,7 +234,7 @@ export class AppOrRejComponent implements OnInit {
     OBreason:any;
     fullname1:any;
     OBDistrict:any;
-    OBConstituency:any;
+    OBConstituency:string;
     editbuttonviewOB(a:any){
       console.log(a);
       this.OBid=a.id;
@@ -249,6 +257,8 @@ export class AppOrRejComponent implements OnInit {
          this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
          console.log(this.OBConstituency);
+          let obj=this.constituency_list;
+          this.user_constituency=obj[this.OBDistrict];
  
          this.reqform.patchValue({
           id1:this.OBid,

@@ -75,10 +75,14 @@ export class DistrictadminComponent implements OnInit {
         if(this.distadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.district!=null)
         {
             this.ApiService.create_dist_admin('1',angForm1.value.whatsapp_no,angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
+            
             .subscribe(
             data => {
+              console.log(this.whatsapp_no)
+             
+              alert("District admin user has been created successfully!")
                 window.location.reload();
-                alert("District admin user has been created successfully!")
+             
                 angForm1.reset();
             },
 
@@ -89,6 +93,8 @@ export class DistrictadminComponent implements OnInit {
         else{
             this.hidden=false;
         }
+       
+      
     }
 
     delete_da(user_id : any)
