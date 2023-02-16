@@ -269,9 +269,32 @@ public viewtableDA() {
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
             }
 
+            
             barchartdatada:any[]=[];
             public chartdatada() {
               return this.httpClient.get(this.baseUrl +'/dashboardda.php');
+            }
+            piechartdatasa:any[]=[];
+            public piedatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsapie.php');
+            }
+            cardsa:any[]=[];
+            public carddatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsacard.php');
+            }
+            
+            barchartdatasa:any[]=[];
+            public chartdatasa() {
+              return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
+            }
+
+            piechartdatada:any[]=[];
+            public piedatada() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
+            }
+            dashboardcarddata:any[]=[];
+            public dashboardcardda() {
+              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
             }
           public sendmail(email:any) {
             return this.httpClient.post<any>(this.baseUrl + 'send_email.php', { email })
@@ -418,21 +441,7 @@ public viewtableDA() {
   //     }));
   //     }
 
-
-  barchartdatasa:any[]=[];
-  public chartdatasa() {
-    return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
-  }
-
-            piechartdatada:any[]=[];
-            public piedatada() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
-            }
-            dashboardcarddata:any[]=[];
-            public dashboardcardda() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
-            }
-            public deletemeeting(id:any) {
+           public deletemeeting(id:any) {
               const httpOptions : Object = {
                 headers: new HttpHeaders({
                   'Content-Type':'application/x-www-form-urlencoded'
