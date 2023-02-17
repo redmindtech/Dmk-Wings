@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-        baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          // baseUrl:string="http://localhost/dmk_php/";
+        // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+        baseUrl:string="http://localhost/dmk_php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
+  district: any;
 constructor(private httpClient : HttpClient) { };
 
 
@@ -116,18 +117,20 @@ public constituency:any='No-Select';
 
 public userlogin(username : any, password :any) {
 
-return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
-.pipe(map(Users => {
-  //this.user_district= Users[0].district;
-  localStorage.setItem('user_district', JSON.stringify(Users[0].district));
-  console.log(this.user_district)
-
-this.setToken(Users[0].name);
-this.getLoggedInName.emit(true);
-return Users;
-//console.log(Users);
-}));
-}
+  return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+  .pipe(map(Users => {
+    this.user_district= Users[0].district;
+    localStorage.setItem('user_district', JSON.stringify(Users[0].district));
+    // this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    console.log(this.user_district)
+    this.district=this.user_district;
+  
+  this.setToken(Users[0].name);
+  this.getLoggedInName.emit(true);
+  return Users;
+  //console.log(Users);
+  }));
+  }
 
 public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any) {
   const httpOptions : Object = {
@@ -270,10 +273,7 @@ public viewtableDA() {
             }
 
             
-            barchartdatada:any[]=[];
-            public chartdatada() {
-              return this.httpClient.get(this.baseUrl +'/dashboardda.php');
-            }
+          
             piechartdatasa:any[]=[];
             public piedatasa() {
               return this.httpClient.get(this.baseUrl +'/dashboardsapie.php');
@@ -287,15 +287,49 @@ public viewtableDA() {
             public chartdatasa() {
               return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
             }
-
+            tableda:any[]=[];
+            public datablelogin(dadistrict:any) {
+              console.log(this.district);            
+              dadistrict=this.district;            
+                 
+              return this.httpClient.post(this.baseUrl +'/dashow.php',{dadistrict})
+              .pipe(map(Users => {
+                return Users;
+                }));
+            }
             piechartdatada:any[]=[];
-            public piedatada() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddamonth.php');
+            logindistrict:any;
+            public piedatada(ldistrict:any) {       
+              // console.log('API FUN');            
+              console.log(this.district);            
+          ldistrict=this.district;               
+              return this.httpClient.post<any>(this.baseUrl +'/dashboarddamonth.php',{ldistrict})
+              .pipe(map(Users => {
+                return Users;
+                }));
+            }
+            
+            barchartdatada:any[]=[];
+            public chartdatada(barchart:any) {
+              // console.log(this.user_district);
+               console.log(this.district);   
+               barchart=this.district;
+              return this.httpClient.post(this.baseUrl +'/dashboardda.php',{barchart})
+              .pipe(map(Users => {
+                return Users;
+                }));
             }
             dashboardcarddata:any[]=[];
-            public dashboardcardda() {
-              return this.httpClient.get(this.baseUrl +'/dashboarddacard.php');
+            public dashboardcardda(cardistrict:any) {
+              console.log(this.district);            
+              cardistrict=this.district;               
+                 
+              return this.httpClient.post(this.baseUrl +'/dashboarddacard.php',{cardistrict})
+              .pipe(map(Users => {
+                return Users;
+                }));
             }
+
           public sendmail(email:any) {
             return this.httpClient.post<any>(this.baseUrl + 'send_email.php', { email })
             .pipe(map(Users => {
@@ -353,7 +387,7 @@ public viewtableDA() {
                                 }));
                                 }
 
-                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any, reason:any) {
+                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any,reason:any,district:any) {
                                   const httpOptions: Object = {
                                     headers: new HttpHeaders({
                                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -362,7 +396,7 @@ public viewtableDA() {
                                // console.log("sdf")
                                   //console.log(name);
                                  return this.httpClient.post<any>(this.baseUrl + '/rolechange_req.php',
-                                  {name,email,old_designation,new_designation,reason ,user_id},httpOptions)
+                                  {name,email,old_designation,district,new_designation,reason,user_id},httpOptions)
                                   .pipe(map(Users => {
                                   return Users;
                                   }));

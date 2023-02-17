@@ -69,6 +69,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
         old_designation:[''],
        new_designation1:[''],
        reason:[''],
+       district:[''],
         user_id:[''],});
     }
   customers:any=[];
@@ -76,8 +77,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
-    this.ApiService.viewtableOB().subscribe((data:any) => {
-      console.log(data);
+    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
+            console.log(data);
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
@@ -223,7 +224,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
           name:this.fullname1,
           old_designation:this.OBold_designation,
           new_designation1:"",
-          reason:""
+          reason:"",
+          district:this.OBDistrict,
          });
   this.editform.patchValue({
           id1:this.OBid,
@@ -231,11 +233,13 @@ export class ReqOffBearerChangeComponent implements OnInit {
           firstname1:this.OBname,
           lastname1:this.OBlastname,
           age1:this.OBage,
+          district1:this.OBDistrict,
           designation1:this.OBdesig,
           party_designation1:this.OBparty_desig,
           approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
         mother_name1:this.OBmothername,
+        district:this.OBDistrict,
         educational_qualification1:this.OBprofession,
         date_of_birth1:this.OBdateofbirth,
         additional_qualification1:this.OBaddtionaldegree,
@@ -285,7 +289,7 @@ postdata1(angForm1) //angForm1
      console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value)
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value)
         .pipe()
         .subscribe(
         data => {

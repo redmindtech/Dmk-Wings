@@ -248,7 +248,7 @@ postdata1(angForm1) //angForm1
      console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value)
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value)
         .pipe()
         .subscribe(
         data => {

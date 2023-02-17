@@ -117,6 +117,10 @@
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
                           </div>
+                          <!-- <div class="col-sm-6">
+                          <label>District</label>
+                          <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
+                        </div> -->
                       </div>
                       <div class="col-3" style="margin-left:34%;">
                           <button  class="btn btn-danger btn btn-block">
@@ -578,12 +582,20 @@
             <div class="form-group ">
                 <div class="col-12 md:col-12">
                   <label>Reason</label><span class="required "> *</span>
-                    <input pInputText type="text" name="reason"  class="form-control" formControlName="reason" placeholder="Reason " >
+                    <input pInputText type="text" name="reason"  class="form-control" formControlName="reason" placeholder="Reason" >
                     <!-- <div  *ngIf="reqform.get('reason1').hasError('reason1') && reqform.get('reason1').touched"
                     class="invalid-msg">Please enter the valid field
                   </div> -->
                 </div>
-            </div>
+              </div>
+                <div class="col-12 md:col-12" hidden>
+                  <label>District</label><span class="required "> *</span>
+                    <input pInputText type="text" name="district"  class="form-control" formControlName="district" placeholder="District "  [value]="OBDistrict">
+                    <!-- <div  *ngIf="reqform.get('reason1').hasError('reason1') && reqform.get('reason1').touched"
+                    class="invalid-msg">Please enter the valid field
+                  </div> -->
+                </div>
+            
             <div class="col-3" style="margin-left:34%;">
               <button  class="btn btn-danger btn btn-block">
                 Request Designation Change

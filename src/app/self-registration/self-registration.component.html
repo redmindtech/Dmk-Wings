@@ -6,7 +6,7 @@
                     <div  style="width:95%">
                         <div class="card-header row justify-content-center">
                             <img class="img-fluid" style="width:8%" src="assets/dmk.png">
-                            <h2 class="h3 text-black font-weight-bold" style="padding-left:2%;padding-top:1%">DMK Engineers Wing</h2>
+                            <h2 class="h3 text-black font-weight-bold" style="padding-left:2%;padding-top:1%">DMK Engineer Wing</h2>
                             </div>
                         <br>
                         <div class="text-center">
@@ -19,19 +19,28 @@
                                     <input type="text" class="form-control form-control" formControlName="firstname"
                                         placeholder="Enter First Name / முதல் பெயர்">
                                         <div *ngIf="angForm.get('firstname').hasError('required') && angForm.get('firstname').touched"
-                                        class="invalid-msg">Please enter the valid firstname
+                                        class="invalid-msg">Please fill out this field
                                     </div>
                                     <div *ngIf="angForm.get('firstname').hasError('pattern') && angForm.get('firstname').touched"
-                                        class="invalid-msg">Please enter the valid firstname
+                                        class="invalid-msg">Numbers and Special characters are not allowed
                                     </div>
+                                    <div *ngIf="angForm.get('firstname').hasError('required')" class="invalid-msg"
+                                      [hidden]='hidden'>Please fill out this field
+                                  </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Last Name / குடும்ப பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="lastname"
                                         placeholder="Enter Last Name / குடும்ப பெயர்">
-                                        <div *ngIf="angForm.get('lastname').hasError('pattern') && angForm.get('lastname').touched"
-                                        class="invalid-msg">Please enter the valid last name
+                                        <div *ngIf="angForm.get('lastname').hasError('required') && angForm.get('lastname').touched"
+                                        class="invalid-msg">Please fill out this field
                                     </div>
+                                    <div *ngIf="angForm.get('lastname').hasError('pattern') && angForm.get('lastname').touched"
+                                        class="invalid-msg">Numbers and Special characters are not allowed
+                                    </div>
+                                    <div *ngIf="angForm.get('lastname').hasError('required')" class="invalid-msg"
+                                      [hidden]='hidden'>Please fill out this field
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -42,7 +51,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Degree Major / கல்வி தகுதின் பிரிவு</label>
-                                <input type="text" class="form-control form-control" formControlName="profession" 
+                                <input type="text" class="form-control form-control" formControlName="profession"
                                     placeholder="Enter Degree Major / கல்வி தகுதின் பிரிவு">
                             </div>
                         </div>
@@ -52,19 +61,26 @@
                                 <input type="date" class="form-control form-control" formControlName="date_of_birth"
                                     placeholder="Enter Date of Birth / பிறந்த தேதி">
                                     <div *ngIf="angForm.get('date_of_birth').hasError('required') && angForm.get('date_of_birth').touched"
-                                    class="invalid-msg">Please enter the valid firstname
-                                </div>
+                                        class="invalid-msg">Please fill out this field
+                                    </div>
+
+                                    <div *ngIf="angForm.get('date_of_birth').hasError('required')" class="invalid-msg"
+                                      [hidden]='hidden'>Please fill out this field
+                                  </div>
                             </div>
                             <div class="col-sm-6">
                                 <label>Mobile / கைபேசி</label><span class="required "> *</span>
                                 <input type="text" class="form-control form-control" formControlName="contact_no"
                                     placeholder="Enter Mobile / கைபேசி">
-                                    <div *ngIf="angForm.get('email').hasError('required') && angForm.get('email').touched"
-                                            class="invalid-msg">Please enter the valid field
+                                    <div *ngIf="angForm.get('contact_no').hasError('required') && angForm.get('contact_no').touched"
+                                            class="invalid-msg">Pleasefill out this field
                                         </div>
-                                        <div *ngIf="angForm.get('email').hasError('pattern') && angForm.get('email').touched"
-                                            class="invalid-msg">Please enter the valid Email Id
+                                        <div *ngIf="angForm.get('contact_no').hasError('pattern') && angForm.get('contact_no').touched"
+                                            class="invalid-msg">letters and Special characters are not allowed
                                         </div>
+                                        <div *ngIf="angForm.get('contact_no').hasError('required')" class="invalid-msg"
+                                        [hidden]='hidden'>Please fill out this field
+                                    </div>
                             </div>
                         </div>
                             <div class="form-group">
@@ -77,15 +93,24 @@
                                         <div *ngIf="angForm.get('email').hasError('pattern') && angForm.get('email').touched"
                                             class="invalid-msg">Please enter the valid Email Id
                                         </div>
+                                        <div *ngIf="angForm.get('email').hasError('required')" class="invalid-msg"
+                                        [hidden]='hidden'>Please fill out this field
+                                    </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Parents Name / பெற்றோர் பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="father_name"
                                         placeholder="Enter Parents Name / பெற்றோர் பெயர்">
-                                        <div *ngIf="angForm.get('father_name').hasError('pattern') && angForm.get('father_name').touched"
-                                            class="invalid-msg">Please enter the valid father name
-                                        </div>
+                                        <div *ngIf="angForm.get('father_name').hasError('required') && angForm.get('father_name').touched"
+                                        class="invalid-msg">Please enter the valid field
+                                    </div>
+                                    <div *ngIf="angForm.get('father_name').hasError('pattern') && angForm.get('father_name').touched"
+                                        class="invalid-msg">Numbers and Special characters are not allowed
+                                    </div>
+                                    <div *ngIf="angForm.get('father_name').hasError('required')" class="invalid-msg"
+                                    [hidden]='hidden'>Please fill out this field
+                                </div>
                                 </div>
                                 <!-- <div class="col-sm-6">
                                     <label>Parents Mobile No / பெற்றோர் கைபேசி எண்</label>
@@ -100,20 +125,26 @@
                                         <option value="NAMAKKAL">NAMAKKAL</option>
                                         <option value="CHENNAI">CHENNAI</option>
                                       </select>
+                                      <div *ngIf="angForm.get('district').hasError('required') && angForm.get('district').touched"
+                                            class="invalid-msg">Please select the district
+                                        </div>
+                                        <div *ngIf="angForm.get('district').hasError('required')" class="invalid-msg"
+                                        [hidden]='hidden'>Please select the district
+                                    </div>
                                 </div>
                                 <div class="col-12 md:col-12">
                                     <input pInputText type="text" hidden name="location_id" formControlName="location_id" placeholder="Location Id"required/>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group" >
                                 <div class="d-flex justify-content-center">
                                     <button class="btn btn-danger btn-block col-4">Self Register</button>
                                 </div>
                             </div>
-                           
+
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

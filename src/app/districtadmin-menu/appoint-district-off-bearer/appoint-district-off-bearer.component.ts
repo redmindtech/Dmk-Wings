@@ -85,7 +85,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
-    this.ApiService.viewtableOB().subscribe((data:any) => {
+    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
@@ -300,7 +300,7 @@ postdata1(angForm1) //angForm1
      console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value)
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value)
         .pipe()
         .subscribe(
         data => {
