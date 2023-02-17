@@ -41,17 +41,17 @@ export class AppOrRejComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        father_name:[[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
-        date_of_birth:[''],
-        additional_qualification:[''],
+        date_of_birth:['',Validators.required],
+        additional_qualification:['',Validators.required],
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession:[''],
-        address1:[''],
+        profession:['',Validators.required],
+        address1:['',Validators.required],
         applied_role:['',Validators.required],
-        party_comments:[''],
+        party_comments:['',Validators.required],
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
       });
@@ -94,10 +94,6 @@ export class AppOrRejComponent implements OnInit {
   district_list:any[]=this.ApiService.all_districts;
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
-
-  print(officebearerform){
-    console.log(officebearerform);
-  }
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
@@ -209,6 +205,16 @@ export class AppOrRejComponent implements OnInit {
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
+    get father_name() { return this.officebearerform.get('father_name'); }
+    get mother_name() { return this.officebearerform.get('mother_name'); }
+    get educational_qualification() { return this.officebearerform.get('educational_qualification'); }
+    get additional_qualification() { return this.officebearerform.get('additional_qualification'); }
+    get contact_no() { return this.officebearerform.get('contact_no'); }
+    get whatsapp_no() { return this.officebearerform.get('whatsapp_no'); }
+    get profession() { return this.officebearerform.get('profession'); }
+    get address1() { return this.officebearerform.get('address1'); }
+    get party_comments() { return this.officebearerform.get('party_comments'); }
+
 
 
     OBid:any;
