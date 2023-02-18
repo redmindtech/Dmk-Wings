@@ -47,9 +47,9 @@ export class AppOrRejComponent implements OnInit {
         date_of_birth:['',Validators.required],
         additional_qualification:['',Validators.required],
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
         profession:['',Validators.required],
-        address1:['',Validators.required],
+        address:['',Validators.required],
         applied_role:['',Validators.required],
         party_comments:['',Validators.required],
         location_id:['1',Validators.required],
@@ -65,14 +65,14 @@ export class AppOrRejComponent implements OnInit {
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification1:['',Validators.required],
-        date_of_birth1:[''],
-        additional_qualification1:[''],
+        date_of_birth1:['',Validators.required],
+        additional_qualification1:['',Validators.required],
         contact_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession1:[''],
-        address1:[''],
+        profession1:['',Validators.required],
+        address1:['',Validators.required],
         applied_role1:['',Validators.required],
-        party_comments1:[''],
+        party_comments1:['',Validators.required],
         location_id1:['1',Validators.required],
         mode1:['2',Validators.required]
       });
@@ -160,9 +160,9 @@ export class AppOrRejComponent implements OnInit {
   {
 
     console.log(officebearerform);
-    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
+    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='')
     {   console.log(officebearerform);
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
           officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
@@ -212,10 +212,21 @@ export class AppOrRejComponent implements OnInit {
     get contact_no() { return this.officebearerform.get('contact_no'); }
     get whatsapp_no() { return this.officebearerform.get('whatsapp_no'); }
     get profession() { return this.officebearerform.get('profession'); }
-    get address1() { return this.officebearerform.get('address1'); }
+    get address() { return this.officebearerform.get('address'); }
     get party_comments() { return this.officebearerform.get('party_comments'); }
 
-
+    get firstname1() { return this.editform.get('firstname1'); }
+    get lastname1() { return this.editform.get('lastname1'); }
+    get father_name1() { return this.editform.get('father_name1'); }
+    get mother_name1() { return this.editform.get('mother_name1'); }
+    get educational_qualification1() { return this.editform.get('educational_qualification1'); }
+    get additional_qualification1() { return this.editform.get('additional_qualification1'); }
+    get contact_no1() { return this.editform.get('contact_no1'); }
+    get whatsapp_no1() { return this.editform.get('whatsapp_no1'); }
+    get profession1() { return this.editform.get('profession1'); }
+    get applied_role1() { return this.editform.get('applied_role1'); }
+    get party_comments1() { return this.editform.get('party_comments1'); }
+    get address1() { return this.editform.get('address1'); }
 
     OBid:any;
     OBname: any;
@@ -285,7 +296,7 @@ export class AppOrRejComponent implements OnInit {
           approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
         mother_name1:this.OBmothername,
-        educational_qualification1:this.OBprofession,
+        educational_qualification1:this.OBdegree,
         date_of_birth1:this.OBdateofbirth,
         additional_qualification1:this.OBaddtionaldegree,
         contact_no1:this.OBphonenumber,
@@ -301,10 +312,12 @@ export class AppOrRejComponent implements OnInit {
         });
 }
 updatedata(updateform: any){
-  console.log(this.OBDistrict,'',this.OBConstituency);
-  console.log(updateform.value);
-  this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
-  updateform.get('age1').value,
+  // console.log(this.OBDistrict,'',this.OBConstituency);
+  // console.log(updateform.value);
+  if(this.editform.valid==true && this.OBConstituency!=''){
+    //console.log("VAAALId")
+    this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
+    updateform.get('age1').value,
     updateform.get('father_name1').value,
     updateform.get('mother_name1').value,
     updateform.get('educational_qualification1').value,
@@ -327,6 +340,12 @@ updatedata(updateform: any){
         error => {
             console.log(error);
         });
+ 
+  }
+  else{
+    this.hidden=false;
+  }
+  
 }
 
 
@@ -358,7 +377,7 @@ postdata1(angForm1) //angForm1
 
 calculateAge() {
   console.log(this.date_of_birth);
-  console.log("i m in");
+  
 
   const today = new Date();
   const birthdate = new Date(this.date_of_birth);
@@ -368,6 +387,20 @@ calculateAge() {
     this.age--;
   }
 
+}
+
+edit_dateofbirth:string;
+editAge:number;
+editcalculateAge() {
+  //console.log(this.edit_dateofbirth);
+  const today1 = new Date();
+  const birthdate1 = new Date(this.edit_dateofbirth);
+  this.editAge = today1.getFullYear() - birthdate1.getFullYear();
+  const i = today1.getMonth() - birthdate1.getMonth();
+  if (i < 0 || (i === 0 && today1.getDate() < birthdate1.getDate())) {
+    this.editAge--;
+  }
+  //console.log(this.editAge);
 }
 
 

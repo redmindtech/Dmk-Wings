@@ -14,11 +14,14 @@ export class DistrictadminComponent implements OnInit {
   editform : FormGroup;
   hidden:boolean=true;
   email1: any;
-  firstname1: any;
-  lastname1: any;
-  district1: any;
-  designation1:any;
-  whatsapp_no1:any;
+  //email: any;
+  party_designation:any;
+  
+ // firstname1: any;
+  //lastname1: any;
+ //district1: any;
+ // designation1:any;
+  //whatsapp_no1:any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, )
@@ -28,9 +31,9 @@ export class DistrictadminComponent implements OnInit {
           lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
             district:['',Validators.required],
           
-            whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-            party_designation:[''],
-            approval_status:[''],
+            whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+            party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+            approval_status:['',Validators.required],
             location_id:['1',Validators.required]
             });
 
@@ -39,10 +42,10 @@ export class DistrictadminComponent implements OnInit {
           firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
           lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
           district1:['',Validators.required],
-          whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-          party_designation1:[''],
-          approval_status1:[''],
-          location_id1:['1'],
+          whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+          party_designation1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+          approval_status1:['',Validators.required],
+          location_id1:['1',Validators.required],
           mode1:['1']
           });
   }
@@ -121,6 +124,10 @@ export class DistrictadminComponent implements OnInit {
     get lastname() { return this.distadminform.get('lastname'); }
     get district() { return this.distadminform.get('district'); }
     get whatsapp_no() { return this.distadminform.get('whatsapp_no'); }
+    get party_designation1() { return this.editform.get('party_designation1'); }
+    get firstname1() { return this.editform.get('firstname1'); }
+    get lastname1() { return this.editform.get('lastname1'); }
+    get district1() { return this.editform.get('district1'); }
 
     DAid:any;
     DAname:any;
