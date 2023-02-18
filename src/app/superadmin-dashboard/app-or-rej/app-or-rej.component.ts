@@ -20,6 +20,9 @@ export class AppOrRejComponent implements OnInit {
   constituency:string='';
   date_of_birth :string;
   age : number;
+  username: any;
+  user_password: any;
+  message: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -166,10 +169,14 @@ export class AppOrRejComponent implements OnInit {
           officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
-            window.location.reload();
-            alert("Office bearer has been created successfully!")
+            // window.location.reload();
+            // alert("Office bearer has been created successfully!")
+            console.log(data)
+            this.username=officebearerform.value.whatsapp_no;
+            console.log(officebearerform.value.whatsapp_no)
+            this.user_password=data.password;
         //this.router.navigate(['']);
-        officebearerform.reset();
+      //  officebearerform.reset();
         },
 
         error => {
@@ -179,6 +186,10 @@ export class AppOrRejComponent implements OnInit {
     else{
         this.hidden=false;
     }
+    this.message=true;
+  }
+  reload(){
+    window.location.reload();
 
   }
   delete_ob(user_id : any)

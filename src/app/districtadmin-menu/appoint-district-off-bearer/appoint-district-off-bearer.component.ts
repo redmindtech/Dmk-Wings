@@ -10,22 +10,36 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 })
 export class AppointDistrictOffBearerComponent implements OnInit {
 
+  customers:any=[];
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
+  dtOptions: DataTables.Settings = {};
   hidden:boolean=true;
   district:string;
   constituency:string='';
-  districtname: any;
-  
-
+  date_of_birth :string;
+  age : number;
+  username: any;
+  user_password: any;
+  message: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
-    {   this.district = JSON.parse(localStorage.getItem('user_district'));
+    {
+      // this.ApiService.viewtableOB().subscribe((data:any) => {
+      // let obj= data;
+      // this.customers=obj.data;
+      // ;})
 
+
+  //     this.customers=[{name:'nm1',email:'em1'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
+  //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'}
+  // ]
       this.officebearerform = this.fb.group({ //angForm
-        form_district:[this.district,Validators.required],
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -33,14 +47,14 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
-        date_of_birth:[''],
-        additional_qualification:[''],
+        date_of_birth:['',Validators.required],
+        additional_qualification:['',Validators.required],
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession:[''],
-        address1:[''],
+        profession:['',Validators.required],
+        address1:['',Validators.required],
         applied_role:['',Validators.required],
-        party_comments:[''],
+        party_comments:['',Validators.required],
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
       });
@@ -74,41 +88,39 @@ export class AppointDistrictOffBearerComponent implements OnInit {
        reason:[''],
         user_id:[''],});
 
+        //this.district=this.ApiService.user_district;
+        this.district = JSON.parse(localStorage.getItem('user_district'));
         
     }
-  customers:any=[];
+
   officebearerform !:FormGroup;
-  dtOptions: DataTables.Settings = {};
+  district_list:any[]=this.ApiService.all_districts;
+  constituency_list:any=this.ApiService.all_constituency;
+  user_constituency:any;
 
   ngOnInit(): void {
-    // this.getdata();
-    // this.ApiService.viewtableOB();
-    // this.ApiService.viewtableDA();
-    // this.ApiService.viewtableSA();
-    // this.ApiService.viewtableOBapprove();
-    this.districtname = JSON.parse(localStorage.getItem('user_district'));
-    this.ApiService.datablelogin(this.district).subscribe((data:any) => {
+    //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
+    this.ApiService.viewtableOB().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
       ;})
     //console.log(this.customers);
-    this.dtOptions = {
+    //console.log(this.district_list);
+
+    this.dtOptions[0] = {
       pagingType: 'full_numbers'
     };
 
-    if(this.district != 'null'){
-      //console.log(this.district);
-      let obj=this.constituency_list;
-      this.user_constituency=obj[this.district];
-
-    }
-
-
+    // this.ApiService.viewtableOB();
+    // this.ApiService.viewtableDA();
+    // this.ApiService.viewtableSA();
+    // this.ApiService.viewtableOBapprove();
+    this.getdata();
+    let obj=this.constituency_list;
+    this.user_constituency=obj[this.district];
+    
   }
-  district_list:any[]=this.ApiService.all_districts;
-  constituency_list:any=this.ApiService.all_constituency;
-  user_constituency:any;
   Constituency_selection(selection:any){
     //console.log(selection)
     if(selection != 'null'){
@@ -119,34 +131,50 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     }
 
   }
-  getdata(){
-    this.customers=[];
-        for(const prop in this.ApiService.tabledataOB) {
-            this.customers.push(this.ApiService.tabledataOB[prop])
-          }
-          this.customers.pop();
-    //console.log(this.ApiService.tabledataDA)
-    //this.ApiService.viewtableOB();
-
-  }
   OBconstituency_change(a:any){ 
     let obj=this.constituency_list;
     this.user_constituency=obj[a];
     this.user_constituency.unshift('Select Option');
     this.OBConstituency='';
   }
+  getdata(){
+
+    // this.customers=[];
+    //     for(const prop in this.ApiService.tabledataOB) {
+    //         this.customers.push(this.ApiService.tabledataOB[prop])
+    //       }
+    //       this.customers.pop();
+    //console.log(this.ApiService.tabledataDA)
+    //this.ApiService.viewtableOB();
+
+    this.ApiService.viewtableOB().subscribe((data:any) => {
+        let obj= data;
+        // console.log(obj.data);
+
+        // for(const prop in obj.data) {
+        //     this.customers.push(obj.data[prop]);
+        //   }
+        //   console.log(this.customers);
+    });
+
+  }
+
   postdata(officebearerform : any) //officebearerform
   {
 
-    //if()
+    console.log(officebearerform);
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null)
-    {
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,
-          officebearerform.value.applied_role,officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
+    {   console.log(officebearerform);
+        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address1,officebearerform.value.applied_role,
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
-            window.location.reload();
-            alert("Office bearers user has been created successfully!")
+            // window.location.reload();
+            // alert("Office bearer has been created successfully!")
+            console.log(data)
+            this.username=officebearerform.value.whatsapp_no;
+            console.log(officebearerform.value.whatsapp_no)
+            this.user_password=data.password;
         //this.router.navigate(['']);
         officebearerform.reset();
         },
@@ -158,6 +186,10 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     else{
         this.hidden=false;
     }
+    this.message=true;
+  }
+  reload(){
+    window.location.reload();
 
   }
   delete_ob(user_id : any)
@@ -183,8 +215,17 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     get email() { return this.officebearerform.get('email'); }
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
-    get father_name1() { return this.officebearerform.get('lastname'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
+    get father_name() { return this.officebearerform.get('father_name'); }
+    get mother_name() { return this.officebearerform.get('mother_name'); }
+    get educational_qualification() { return this.officebearerform.get('educational_qualification'); }
+    get additional_qualification() { return this.officebearerform.get('additional_qualification'); }
+    get contact_no() { return this.officebearerform.get('contact_no'); }
+    get whatsapp_no() { return this.officebearerform.get('whatsapp_no'); }
+    get profession() { return this.officebearerform.get('profession'); }
+    get address1() { return this.officebearerform.get('address1'); }
+    get party_comments() { return this.officebearerform.get('party_comments'); }
+
 
 
     OBid:any;
@@ -210,15 +251,16 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     OBreason:any;
     fullname1:any;
     OBDistrict:any;
-    OBConstituency:any;
+    OBConstituency:string;
     editbuttonviewOB(a:any){
-      //console.log(a);
+      console.log(a);
       this.OBid=a.id;
       this.OBname=a.firstname;
       this.OBlastname=a.lastname;
          this.OBage=a.age;
          this.OBdateofbirth=a.date_of_birth;
          this.OBfathername=a.father_name;
+         this.OBmothername=a.mother_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
          this.OBphonenumber=a.contact_no;
@@ -228,13 +270,13 @@ export class AppointDistrictOffBearerComponent implements OnInit {
          this.OBaddress=a.address1;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
-
-        this.fullname1=a.name;
-        this.OBDistrict=a.district;
+         this.fullname1=a.name;
+         this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
+         console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
-
+ 
          this.reqform.patchValue({
           id1:this.OBid,
           email1:this.OBmail,
@@ -253,6 +295,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
           party_designation1:this.OBparty_desig,
           approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
+        mother_name1:this.OBmothername,
         educational_qualification1:this.OBprofession,
         date_of_birth1:this.OBdateofbirth,
         additional_qualification1:this.OBaddtionaldegree,
@@ -269,6 +312,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         });
 }
 updatedata(updateform: any){
+  console.log(this.OBDistrict,'',this.OBConstituency);
   console.log(updateform.value);
   this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
   updateform.get('age1').value,
@@ -323,8 +367,6 @@ postdata1(angForm1) //angForm1
 }
 
 
-date_of_birth :string;
-age : number;
 calculateAge() {
   console.log(this.date_of_birth);
   console.log("i m in");
@@ -340,8 +382,6 @@ calculateAge() {
 }
 
 
-
-
 get user_id() { return this.reqform.get('user_id'); }
 get email1() { return this.reqform.get('email1'); }
 get name() { return this.reqform.get('name'); }
@@ -351,4 +391,3 @@ get responcibility() { return this.reqform.get(' responcibility'); }
 // get reason1() { return this.reqform.get('reason1'); }
 
 }
-

@@ -136,7 +136,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
             window.location.reload();
             alert("Request has been sented successfully!")
         //this.router.navigate(['']);
-        officebearerform.reset();
+      //  officebearerform.reset();
         },
 
         error => {
@@ -227,7 +227,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
           old_designation:this.OBold_designation,
           new_designation1:"",
           reason:"",
-          district:this.OBDistrict,
+          district:this.OBDistrict
+
          });
   this.editform.patchValue({
           id1:this.OBid,

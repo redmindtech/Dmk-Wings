@@ -16,6 +16,8 @@ export class DistrictadminComponent implements OnInit {
   email1: any;
   //email: any;
   party_designation:any;
+
+  message :boolean =false;
   
  // firstname1: any;
   //lastname1: any;
@@ -49,7 +51,9 @@ export class DistrictadminComponent implements OnInit {
           mode1:['1']
           });
   }
+  
   district_list:any[]=this.ApiService.all_districts;
+ 
 
   ngOnInit(): void {
     // this.ApiService.viewtableDA();
@@ -60,7 +64,7 @@ export class DistrictadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-
+    
   }
   getdata(){
     this.ApiService.viewtableDA().subscribe(data => {
@@ -71,22 +75,32 @@ export class DistrictadminComponent implements OnInit {
           console.log(this.customers[0]);
     });
   }
-
+  username:any;
+  user_password:any;
   postdata(angForm1 : any) //angForm1
     {
         console.log(angForm1);
+       
         if(this.distadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.district!=null)
         {
             this.ApiService.create_dist_admin('1',angForm1.value.whatsapp_no,angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
             
             .subscribe(
             data => {
-              console.log(this.whatsapp_no)
-             
-              alert("District admin user has been created successfully!")
-                window.location.reload();
-             
-                angForm1.reset();
+              console.log(data)
+              this.username=angForm1.value.whatsapp_no;
+              console.log(angForm1.value.whatsapp_no)
+              this.user_password=data.password;
+              
+           // alert("District admin user has been created successfully!")
+              
+              
+            // window.location.reload();
+               
+               
+                //angForm1.reset();
+                
+                
             },
 
             error => {
@@ -96,8 +110,13 @@ export class DistrictadminComponent implements OnInit {
         else{
             this.hidden=false;
         }
-       
+        this.message=true;
+        
       
+    }
+    reload(){
+      window.location.reload();
+
     }
 
     delete_da(user_id : any)
@@ -197,3 +216,9 @@ export class DistrictadminComponent implements OnInit {
 }
 }
 }
+
+
+
+
+// ngIf="distadminform.status=='INVALID'" type="button" class="btn btn-block btn-danger" data-toggle="modal"   data-toggle="modal" data-target="#message" 
+// data-target="#message" _pendingDirty: true

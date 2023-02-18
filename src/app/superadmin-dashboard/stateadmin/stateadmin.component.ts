@@ -16,6 +16,7 @@ export class StateadminComponent implements OnInit {
   editform: FormGroup;
   hidden:boolean=true;
   updateform: FormGroup;
+  message: boolean;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder) {
     this.stateadminform = this.fb.group({ //angForm
@@ -99,6 +100,8 @@ export class StateadminComponent implements OnInit {
   //         this.customers.pop();
 
   // }
+  username:any;
+  user_password:any;
   postdata(angForm1 : any) //angForm1
   {
       //console.log(angForm1);
@@ -109,10 +112,14 @@ export class StateadminComponent implements OnInit {
           angForm1.value.lastname,angForm1.value.whatsapp_no,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
         .subscribe(
         data => {
-            window.location.reload();
-            alert("State admin user has been created successfully!");
+          console.log(data)
+          this.username=angForm1.value.whatsapp_no;
+          console.log(angForm1.value.whatsapp_no)
+          this.user_password=data.password;
+           // window.location.reload();
+            //alert("State admin user has been created successfully!");
 
-        angForm1.reset();
+      //  angForm1.reset();
         },
 
         error => {
@@ -122,6 +129,11 @@ export class StateadminComponent implements OnInit {
     else{
       this.hidden=false;
     }
+    this.message=true;
+  }
+  reload(){
+    window.location.reload();
+
   }
   delete_sa(user_id : any)
   {
