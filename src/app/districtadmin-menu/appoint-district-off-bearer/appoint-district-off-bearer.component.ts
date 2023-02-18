@@ -16,6 +16,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   hidden:boolean=true;
   district:string;
   constituency:string='';
+  districtname: any;
   
 
 
@@ -85,7 +86,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
-    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
+    this.districtname = JSON.parse(localStorage.getItem('user_district'));
+    this.ApiService.datablelogin(this.district).subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);

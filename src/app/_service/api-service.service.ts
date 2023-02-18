@@ -289,8 +289,8 @@ public viewtableDA() {
             }
             tableda:any[]=[];
             public datablelogin(dadistrict:any) {
-              console.log(this.district);            
-              dadistrict=this.district;            
+              // console.log(this.district);            
+              // dadistrict=this.district;            
                  
               return this.httpClient.post(this.baseUrl +'/dashow.php',{dadistrict})
               .pipe(map(Users => {
@@ -300,9 +300,10 @@ public viewtableDA() {
             piechartdatada:any[]=[];
             logindistrict:any;
             public piedatada(ldistrict:any) {       
-              // console.log('API FUN');            
-              console.log(this.district);            
-          ldistrict=this.district;               
+               console.log('str');      
+
+               console.log(ldistrict);            
+          // ldistrict=this.district;               
               return this.httpClient.post<any>(this.baseUrl +'/dashboarddamonth.php',{ldistrict})
               .pipe(map(Users => {
                 return Users;
@@ -312,8 +313,8 @@ public viewtableDA() {
             barchartdatada:any[]=[];
             public chartdatada(barchart:any) {
               // console.log(this.user_district);
-               console.log(this.district);   
-               barchart=this.district;
+               console.log(barchart);   
+              //  barchart=this.district;
               return this.httpClient.post(this.baseUrl +'/dashboardda.php',{barchart})
               .pipe(map(Users => {
                 return Users;
@@ -321,8 +322,9 @@ public viewtableDA() {
             }
             dashboardcarddata:any[]=[];
             public dashboardcardda(cardistrict:any) {
-              console.log(this.district);            
-              cardistrict=this.district;               
+               console.log("cardistrict");      
+               console.log(cardistrict);      
+              // cardistrict=this.district;               
                  
               return this.httpClient.post(this.baseUrl +'/dashboarddacard.php',{cardistrict})
               .pipe(map(Users => {

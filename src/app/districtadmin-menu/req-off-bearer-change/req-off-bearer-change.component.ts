@@ -18,6 +18,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
   hidden:boolean=true;
   district: any;
   constituency: any;
+  districtname: any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -77,8 +78,9 @@ export class ReqOffBearerChangeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
-    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
-            console.log(data);
+    this.districtname = JSON.parse(localStorage.getItem('user_district'));
+    this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
+            // console.log(data);
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
