@@ -18,7 +18,6 @@ export class ReqOffBearerChangeComponent implements OnInit {
   hidden:boolean=true;
   district: any;
   constituency: any;
-  districtname: any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -78,9 +77,8 @@ export class ReqOffBearerChangeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
-    this.districtname = JSON.parse(localStorage.getItem('user_district'));
-    this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
-            // console.log(data);
+    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
+            console.log(data);
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
@@ -136,7 +134,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
             window.location.reload();
             alert("Request has been sented successfully!")
         //this.router.navigate(['']);
-      //  officebearerform.reset();
+        officebearerform.reset();
         },
 
         error => {
@@ -227,8 +225,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
           old_designation:this.OBold_designation,
           new_designation1:"",
           reason:"",
-          district:this.OBDistrict
-
+          district:this.OBDistrict,
          });
   this.editform.patchValue({
           id1:this.OBid,

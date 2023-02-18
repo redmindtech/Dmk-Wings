@@ -46,8 +46,8 @@
                                 <label>First Name/முதல் பெயர்</label>
                                 <input type="text" name="firstname1" formControlName="firstname1" class="form-control"  placeholder="Enter First Name/முதல் பெயர்" />
                                     <div *ngIf="firstname1.status=='INVALID'&& firstname1.touched==true && firstname1.value!=''" class="invalid-msg">
-                                      Numbers and Special charaters not allowed!</div>
-                                    <div  *ngIf="(editform.get('firstname1').touched && firstname1.value=='')" 
+                                      Numbers and Special charaters not allowed</div>
+                                    <div  *ngIf="(editform.get('firstname1').touched && firstname1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('firstname1').untouched && firstname1.value==''">Please fill this field</div>
                               </div>
@@ -55,18 +55,18 @@
                                 <label>Last Name/குடும்ப பெயர்</label>
                                 <input type="text" name="lastname1" formControlName="lastname1" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்"/>
                                 <div *ngIf="lastname1.status=='INVALID'&& lastname1.touched==true && lastname1.value!=''" class="invalid-msg">
-                                  Numbers and Special charaters not allowed!</div>
-                                <div  *ngIf="(editform.get('lastname1').touched && lastname1.value=='')" 
+                                  Numbers and Special charaters not allowed</div>
+                                <div  *ngIf="(editform.get('lastname1').touched && lastname1.value=='')"
                                 class="invalid-msg" >Please fill this field</div>
                                 <div  class="invalid-msg" *ngIf="editform.get('lastname1').untouched && lastname1.value==''">Please fill this field</div>
-                      
+
                               </div>
                       </div>
                       <div class="form-group row">
                             <div class="col-sm-6">
                               <label>Date of Birth</label>
                               <input type="date" name="date_of_birth1" class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="edit_dateofbirth" (ngModelChange)="editcalculateAge()" formControlName="date_of_birth1"/>
-                              
+
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Age / வயது</label>
@@ -79,8 +79,8 @@
                               <label>Father Name / தந்தையின் பெயர்</label>
                               <input type="text" name="father_name1" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1"/>
                                   <div *ngIf="father_name1.status=='INVALID'&& father_name1.touched==true && father_name1.value!=''" class="invalid-msg">
-                                    Numbers and Special charaters not allowed!</div>
-                                  <div  *ngIf="(editform.get('father_name1').touched && father_name1.value=='')" 
+                                    Numbers and Special charaters not allowed</div>
+                                  <div  *ngIf="(editform.get('father_name1').touched && father_name1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="editform.get('father_name1').untouched && father_name1.value==''">Please fill this field</div>
                               <!-- <div *ngIf="editform.get('father_name1').hasError('required')"
@@ -94,8 +94,8 @@
                               <label>Mother Name / தாய் பெயர்</label>
                               <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name1"/>
                                   <div *ngIf="mother_name1.status=='INVALID'&& mother_name1.touched==true && mother_name1.value!=''" class="invalid-msg">
-                                    Numbers and Special charaters not allowed!</div>
-                                  <div  *ngIf="(editform.get('mother_name1').touched && mother_name1.value=='')" 
+                                    Numbers and Special charaters not allowed</div>
+                                  <div  *ngIf="(editform.get('mother_name1').touched && mother_name1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="editform.get('mother_name1').untouched && mother_name1.value==''">Please fill this field</div>
                             </div>
@@ -104,14 +104,14 @@
                           <div class="col-6 md:col-6">
                             <label>Degree / கல்வித் தகுதி</label>
                             <input type="text" name="educational_qualification1" formControlName="educational_qualification1" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி"/>
-                            <div  *ngIf="(editform.get('educational_qualification1').touched && educational_qualification1.value=='')" 
+                            <div  *ngIf="(editform.get('educational_qualification1').touched && educational_qualification1.value=='')"
                             class="invalid-msg" >Please fill this field</div>
                             <div  class="invalid-msg" *ngIf="editform.get('educational_qualification1').untouched && educational_qualification1.value==''">Please fill this field</div>
                           </div>
                           <div class="col-6 md:col-6">
                             <label>Additional Degree / சிறப்பு தகுதி</label>
                             <input type="text" name="additional_qualification" formControlName="additional_qualification1" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி"/>
-                            <div  *ngIf="(editform.get('additional_qualification1').touched && additional_qualification1.value=='')" 
+                            <div  *ngIf="(editform.get('additional_qualification1').touched && additional_qualification1.value=='')"
                             class="invalid-msg" >Please fill this field</div>
                             <div  class="invalid-msg" *ngIf="editform.get('additional_qualification1').untouched && additional_qualification1.value==''">Please fill this field</div>
                         </div>
@@ -122,8 +122,8 @@
                                 <label>Phone Number / தொலைபேசி எண்</label>
                                 <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
                                     <div *ngIf="contact_no1.status=='INVALID'&& contact_no1.touched==true && contact_no1.value!=''" class="invalid-msg">
-                                      Alphabets and Special characters not allowed!</div>
-                                    <div  *ngIf="(editform.get('contact_no1').touched && contact_no1.value=='')" 
+                                      Alphabets and Special characters not allowed</div>
+                                    <div  *ngIf="(editform.get('contact_no1').touched && contact_no1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('contact_no1').untouched && contact_no1.value==''">Please fill this field</div>
                                 <!-- <div *ngIf="editform.get('contact_no1').hasError('required') && editform.get('contact_no1').touched"
@@ -137,8 +137,8 @@
                                 <label>Whatsapp Number /வாட்ஸ்அப் எண்</label>
                                 <input type="text" name="whatsapp_no" formControlName="whatsapp_no1" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
                                     <div *ngIf="whatsapp_no1.status=='INVALID'&& whatsapp_no1.touched==true && whatsapp_no1.value!=''" class="invalid-msg">
-                                      Alphabets and Special characters not allowed!</div>
-                                    <div  *ngIf="(editform.get('whatsapp_no1').touched && whatsapp_no1.value=='')" 
+                                      Alphabets and Special characters not allowed</div>
+                                    <div  *ngIf="(editform.get('whatsapp_no1').touched && whatsapp_no1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('whatsapp_no1').untouched && whatsapp_no1.value==''">Please fill this field</div>
                                     <!-- <div *ngIf="editform.get('whatsapp_no1').hasError('required') && editform.get('whatsapp_no1').touched"
@@ -166,15 +166,15 @@
                                               class="invalid-msg" [hidden]='hidden'>Please enter the Email
                                   </div> -->
                                   <div *ngIf="email1.status=='INVALID'&& email1.touched==true && email1.value!=''" class="invalid-msg">
-                                    Email invalid!</div>
-                                  <div  *ngIf="(editform.get('email1').touched && email1.value=='')" 
+                                    Please enter the valid Email Id</div>
+                                  <div  *ngIf="(editform.get('email1').touched && email1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="editform.get('email1').untouched && email1.value==''">Please fill this field</div>
                             </div>
                             <div class="col-6 md:col-6">
                                 <label>Profession / தொழில்,வேலை</label>
                                 <input pInputText type="text" class="form-control" name="profession1" formControlName="profession1"  placeholder="Enter Profession / தொழில்,வேலை" />
-                                    <div  *ngIf="(editform.get('profession1').touched && profession1.value=='')" 
+                                    <div  *ngIf="(editform.get('profession1').touched && profession1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('profession1').untouched && profession1.value==''">Please fill this field</div>
                               </div>
@@ -183,7 +183,7 @@
                             <div class="col-6 md:col-6">
                               <label>Address / முகவரி</label>
                               <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
-                                    <div  *ngIf="(editform.get('address1').touched && address1.value=='')" 
+                                    <div  *ngIf="(editform.get('address1').touched && address1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('address1').untouched && address1.value==''">Please fill this field</div>
                             </div>
@@ -206,7 +206,7 @@
                                     <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                                     <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                 </select>
-                                    <div  *ngIf="(editform.get('applied_role1').touched && applied_role1.value=='')" 
+                                    <div  *ngIf="(editform.get('applied_role1').touched && applied_role1.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('applied_role1').untouched && applied_role1.value==''">Please fill this field</div>
                             </div>
@@ -215,7 +215,7 @@
                           <div class="col-sm-6">
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
-                                  <div  *ngIf="(editform.get('party_comments1').touched && address1.value=='')" 
+                                  <div  *ngIf="(editform.get('party_comments1').touched && address1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="editform.get('party_comments1').untouched && party_comments1.value==''">Please fill this field</div>
                           </div>
@@ -387,14 +387,14 @@
                     <div class="card-body">
                       <div class="row" style="margin-bottom: 2%;">
                         <div class="col-sm-4">
-                          <label class="" >Party District / கட்சி மாவட்டம்:</label><br>
+                          <label class="" >Party District / கட்சி மாவட்டம்: <span class="required "> *</span></label><br>
                           <select class="form-control"  [(ngModel)]="district" (click)="Constituency_selection(district)">
                             <option *ngFor="let option of district_list" (value)="option" >
                               {{option}}</option>
                           </select>
                         </div>
                         <div class="col-sm-4" style="margin-left:30%">
-                          <label class="">Assembly constituency/சட்டமன்ற தொகுதி:</label>
+                          <label class="">Assembly constituency/சட்டமன்ற தொகுதி: <span class="required "> *</span></label>
                             <select class="form-control"  [(ngModel)]="constituency">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
@@ -429,8 +429,8 @@
                                   <label>First Name/முதல் பெயர்</label><span class="required "> *</span>
                                   <input type="text" name="firstname" class="form-control"  placeholder="Enter First Name/முதல் பெயர்" formControlName="firstname"/>
                                       <div *ngIf="firstname.status=='INVALID'&& firstname.touched==true && firstname.value!=''" class="invalid-msg">
-                                        Numbers and Special charaters not allowed!</div>
-                                      <div  *ngIf="(officebearerform.get('firstname').touched && firstname.value=='')" 
+                                        Numbers and Special charaters not allowed</div>
+                                      <div  *ngIf="(officebearerform.get('firstname').touched && firstname.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
                                       <div  class="invalid-msg" *ngIf="officebearerform.get('firstname').untouched" [hidden]='hidden'>Please fill this field</div>
                                 </div>
@@ -438,18 +438,18 @@
                                   <label>Last Name/குடும்ப பெயர்</label><span class="required "> *</span>
                                   <input type="text" name="lastname" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்" formControlName="lastname"/>
                                       <div *ngIf="lastname.status=='INVALID'&& lastname.touched==true && lastname.value!=''" class="invalid-msg">
-                                        Numbers and Special charaters not allowed!</div>
-                                      <div  *ngIf="(officebearerform.get('lastname').touched && lastname.value=='')" 
+                                        Numbers and Special charaters not allowed</div>
+                                      <div  *ngIf="(officebearerform.get('lastname').touched && lastname.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
                                       <div  class="invalid-msg" *ngIf="officebearerform.get('lastname').untouched" [hidden]='hidden'>Please fill this field</div>
-                            
+
                                 </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-sm-6">
                                 <label>Date of Birth</label><span class="required "> *</span>
                                 <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth"/>
-                                  <!-- <div  *ngIf="date_of_birth.touched && date_of_birth.value==''" 
+                                  <!-- <div  *ngIf="date_of_birth.touched && date_of_birth.value==''"
                                   class="invalid-msg" >Please fill this field</div> -->
                                   <div  class="invalid-msg" *ngIf="!date_of_birth && hidden==false">Please fill this field</div>
                               </div>
@@ -464,8 +464,8 @@
                                 <label>Father Name / தந்தையின் பெயர்</label><span class="required "> *</span>
                                 <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name"/>
                                     <div *ngIf="father_name.status=='INVALID'&& father_name.touched==true && father_name.value!=''" class="invalid-msg">
-                                      Numbers and Special charaters not allowed!</div>
-                                    <div  *ngIf="(officebearerform.get('father_name').touched && father_name.value=='')" 
+                                      Numbers and Special charaters not allowed</div>
+                                    <div  *ngIf="(officebearerform.get('father_name').touched && father_name.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="officebearerform.get('father_name').untouched" [hidden]='hidden'>Please fill this field</div>
                               </div>
@@ -473,10 +473,10 @@
                                 <label>Mother Name / தாய் பெயர்</label>
                                 <input type="text" name="mother_name" class="form-control"  placeholder="Enter Mother Name / தாய் பெயர்" formControlName="mother_name"/>
                                     <div *ngIf="mother_name.status=='INVALID'&& mother_name.touched==true && mother_name.value!=''" class="invalid-msg">
-                                      Numbers and Special charaters not allowed!</div>
-                                    <div  *ngIf="(officebearerform.get('mother_name').touched && mother_name.value=='')" 
-                                    class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('mother_name').untouched" [hidden]='hidden'>Please fill this field</div>
+                                      Numbers and Special charaters not allowed</div>
+                                    <!-- <div  *ngIf="(officebearerform.get('mother_name').touched && mother_name.value=='')"
+                                    class="invalid-msg" >Please fill this field</div> -->
+                                    <!-- <div  class="invalid-msg" *ngIf="officebearerform.get('mother_name').untouched" [hidden]='hidden'>Please fill this field</div> -->
                               </div>
                         </div>
                         <div class="form-group row">
@@ -484,17 +484,17 @@
                               <label>Degree / கல்வித் தகுதி</label><span class="required "> *</span>
                               <input type="text" name="educational_qualification" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி" formControlName="educational_qualification"/>
                                     <!-- <div *ngIf="educational_qualification.status=='INVALID'&& educational_qualification.touched==true && educational_qualification.value!=''" class="invalid-msg">
-                                      Numbers and Special charaters not allowed!</div> -->
-                                    <div  *ngIf="(officebearerform.get('educational_qualification').touched && educational_qualification.value=='')" 
+                                      Numbers and Special charaters not allowed</div> -->
+                                    <div  *ngIf="(officebearerform.get('educational_qualification').touched && educational_qualification.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="officebearerform.get('educational_qualification').untouched" [hidden]='hidden'>Please fill this field</div>
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Additional Degree / சிறப்பு தகுதி</label>
                               <input type="text" name="additional_qualification" class="form-control"  placeholder="Enter Additional Degree / சிறப்பு தகுதி" formControlName="additional_qualification"/>
-                                    <div  *ngIf="(officebearerform.get('additional_qualification').touched && additional_qualification.value=='')" 
+                                    <!-- <div  *ngIf="(officebearerform.get('additional_qualification').touched && additional_qualification.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('additional_qualification').untouched" [hidden]='hidden'>Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('additional_qualification').untouched" [hidden]='hidden'>Please fill this field</div> -->
                             </div>
                         </div>
 
@@ -503,8 +503,8 @@
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
                                   <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" formControlName="contact_no"/>
                                       <div *ngIf="contact_no.status=='INVALID'&& contact_no.touched==true && contact_no.value!=''" class="invalid-msg">
-                                        Alphabets Special characters not allowed!</div>
-                                      <div  *ngIf="(officebearerform.get('contact_no').touched && contact_no.value=='')" 
+                                        Alphabets Special characters not allowed</div>
+                                      <div  *ngIf="(officebearerform.get('contact_no').touched && contact_no.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
                                       <div  class="invalid-msg" *ngIf="officebearerform.get('contact_no').untouched" [hidden]='hidden'>Please fill this field</div>
                                   <!-- <div *ngIf="officebearerform.get('contact_no').hasError('required') && officebearerform.get('contact_no').touched"
@@ -519,14 +519,14 @@
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Whatsapp Number /வாட்ஸ்அப் எண்</label><span class="required "> *</span>
-                                  <input type="text" name="whatsapp_no" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" formControlName="whatsapp_no"/>
+                                  <input type="text" name="whatsapp_no" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" maxlength="10" formControlName="whatsapp_no"/>
                                         <div *ngIf="whatsapp_no.status=='INVALID'&& whatsapp_no.touched==true && whatsapp_no.value!=''" class="invalid-msg">
-                                          Please enter the valid WhatsApp Number (with country code (91xxxxxxxxxx))</div>
-                                        <div  *ngIf="(officebearerform.get('whatsapp_no').touched && whatsapp_no.value=='')" 
+                                          Please enter the valid WhatsApp Number</div>
+                                        <div  *ngIf="(officebearerform.get('whatsapp_no').touched && whatsapp_no.value=='')"
                                         class="invalid-msg" >Please fill this field</div>
                                         <div  class="invalid-msg" *ngIf="officebearerform.get('whatsapp_no').untouched && whatsapp_no.value==''" [hidden]='hidden'>Please fill this field</div>
                                         <!-- <span *ngIf="officebearerform.get('whatsapp_no').errors?.['minlength'] || officebearerform.get('whatsapp_no').errors?.['maxlength']">10 digit number required</span> -->
-                                
+
                                       </div>
                         </div>
                         <div class="form-group row">
@@ -543,28 +543,28 @@
                                     class="invalid-msg" [hidden]='hidden'>Please fill out this field
                                   </div> -->
                                     <div *ngIf="email.status=='INVALID'&& email.touched==true && email.value!=''" class="invalid-msg">
-                                      Email invalid!</div>
-                                    <div  *ngIf="(officebearerform.get('email').touched && email.value=='')" 
+                                      Please enter the valid Email Id</div>
+                                    <div  *ngIf="(officebearerform.get('email').touched && email.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="officebearerform.get('email').untouched" [hidden]='hidden'>Please fill this field</div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Profession / தொழில்,வேலை</label>
                                 <input pInputText type="text" class="form-control" name="profession"  placeholder="Enter Profession / தொழில்,வேலை" formControlName="profession"/>
-                                    <div  *ngIf="(officebearerform.get('profession').touched && profession.value=='')" 
+                                    <!-- <div  *ngIf="(officebearerform.get('profession').touched && profession.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('profession').untouched" [hidden]='hidden'>Please fill this field</div>
-                       
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('profession').untouched" [hidden]='hidden'>Please fill this field</div> -->
+
                               </div>
-                        </div> 
+                        </div>
                         <div class="form-group">
                               <div class="col-6 md:col-6">
                                 <label>Address / முகவரி</label>
                                 <textarea name="address" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5" formControlName="address"></textarea>
-                                      <div  *ngIf="(officebearerform.get('address').touched && address.value=='')" 
+                                      <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
-                                      <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div>  
-                              </div> 
+                                      <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
+                              </div>
                         </div>
                         <div class="form-group">
                               <div class="col-12 md:col-12">
@@ -584,18 +584,18 @@
                                       <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                                       <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                   </select>
-                                    <div  *ngIf="(officebearerform.get('applied_role').touched && applied_role.value=='')" 
-                                    class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('applied_role').untouched" [hidden]='hidden'>Please fill this field</div>
+                                    <div  *ngIf="(officebearerform.get('applied_role').touched && applied_role.value=='')"
+                                    class="invalid-msg" >Please select this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('applied_role').untouched" [hidden]='hidden'>Please select this field</div>
                               </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6">
                               <label>Comments</label>
                               <textarea name="party_comments" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" formControlName="party_comments"></textarea>
-                                    <div  *ngIf="(officebearerform.get('party_comments').touched && party_comments.value=='')" 
+                                    <!-- <div  *ngIf="(officebearerform.get('party_comments').touched && party_comments.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('party_comments').untouched" [hidden]='hidden'>Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('party_comments').untouched" [hidden]='hidden'>Please fill this field</div> -->
                             </div>
                             <div class="col-6 md:col-6">
                               <input  type="text" hidden  formControlName="mode"/>
@@ -615,7 +615,7 @@
                             </div>
                         </div> -->
                           <div class="col-3" style="margin-left:34%;">
-                            <button class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#message">Create office bearer</button>
+                            <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  >Create office bearer</button>
                           </div>
                         </form>
                     </div>
@@ -771,6 +771,7 @@
 
 
 
+
 <div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID'">
   <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -817,4 +818,3 @@
       </div>
   </div>
 </div>
-

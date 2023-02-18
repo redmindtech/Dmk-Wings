@@ -15,30 +15,28 @@ export class DaDashboardComponent implements OnInit {public chart: any;
   dashboardcarddata: any;
   appob: any;
   activeob: any;
-  districtname: any;
   // ApiServiceService: any;
 
 
   constructor(public ApiService:ApiServiceService) { }
 
    ngOnInit(): void {
- this.districtname=JSON.parse(localStorage.getItem('user_district'));
-
-    this.ApiService.piedatada(this.districtname).subscribe((data:any) => {
+// this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    this.ApiService.piedatada('SALEM').subscribe((data:any) => {
      this.barchat=data;
-
        this.createChart(this.barchat);
 
        ;})
-       this.ApiService.chartdatada(this.districtname).subscribe((piedate:any) => {
-        
+       this.ApiService.chartdatada('SALEM').subscribe((piedate:any) => {
+        // console.log('hipie');
        this.piechartdata=piedate;
          this.piechart(this.piechartdata);
 
          ;})
-         this.ApiService.dashboardcardda(this.districtname).subscribe((cardata:any) => {
+         this.ApiService.dashboardcardda('SALEM').subscribe((cardata:any) => {
           // console.log('card');
-         this.dashboardcarddata=cardata;        
+         this.dashboardcarddata=cardata;
+         console.log(this.dashboardcarddata);
          let obj= this.dashboardcarddata;
        this.regob=obj.REGOB;
        this.appob=obj.APPOB;

@@ -20,9 +20,9 @@ export class AppOrRejComponent implements OnInit {
   constituency:string='';
   date_of_birth :string;
   age : number;
+  message: boolean;
   username: any;
   user_password: any;
-  message: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -48,13 +48,13 @@ export class AppOrRejComponent implements OnInit {
         mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:['',Validators.required],
-        additional_qualification:['',Validators.required],
+        additional_qualification:[''],
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
-        profession:['',Validators.required],
-        address:['',Validators.required],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        profession:[''],
+        address:[''],
         applied_role:['',Validators.required],
-        party_comments:['',Validators.required],
+        party_comments:[''],
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
       });
@@ -69,13 +69,13 @@ export class AppOrRejComponent implements OnInit {
         mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification1:['',Validators.required],
         date_of_birth1:['',Validators.required],
-        additional_qualification1:['',Validators.required],
+        additional_qualification1:[''],
         contact_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession1:['',Validators.required],
-        address1:['',Validators.required],
-        applied_role1:['',Validators.required],
-        party_comments1:['',Validators.required],
+        profession1:[''],
+        address1:[''],
+        applied_role1:[''],
+        party_comments1:[''],
         location_id1:['1',Validators.required],
         mode1:['2',Validators.required]
       });
@@ -90,7 +90,7 @@ export class AppOrRejComponent implements OnInit {
 
         //this.district=this.ApiService.user_district;
         this.district = JSON.parse(localStorage.getItem('user_district'));
-        
+
     }
 
   officebearerform !:FormGroup;
@@ -119,7 +119,7 @@ export class AppOrRejComponent implements OnInit {
     this.getdata();
     let obj=this.constituency_list;
     this.user_constituency=obj[this.district];
-    
+
   }
   Constituency_selection(selection:any){
     //console.log(selection)
@@ -131,7 +131,7 @@ export class AppOrRejComponent implements OnInit {
     }
 
   }
-  OBconstituency_change(a:any){ 
+  OBconstituency_change(a:any){
     let obj=this.constituency_list;
     this.user_constituency=obj[a];
     this.user_constituency.unshift('Select Option');
@@ -169,7 +169,7 @@ export class AppOrRejComponent implements OnInit {
           officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
         data => {
-            // window.location.reload();
+           // window.location.reload();
             // alert("Office bearer has been created successfully!")
             console.log(data)
             this.username=officebearerform.value.whatsapp_no;
@@ -287,7 +287,7 @@ export class AppOrRejComponent implements OnInit {
          console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
- 
+
          this.reqform.patchValue({
           id1:this.OBid,
           email1:this.OBmail,
@@ -351,12 +351,12 @@ updatedata(updateform: any){
         error => {
             console.log(error);
         });
- 
+
   }
   else{
     this.hidden=false;
   }
-  
+
 }
 
 
@@ -388,7 +388,7 @@ postdata1(angForm1) //angForm1
 
 calculateAge() {
   console.log(this.date_of_birth);
-  
+
 
   const today = new Date();
   const birthdate = new Date(this.date_of_birth);

@@ -16,9 +16,8 @@ export class DistrictadminComponent implements OnInit {
   email1: any;
   //email: any;
   party_designation:any;
+  message: boolean;
 
-  message :boolean =false;
-  
  // firstname1: any;
   //lastname1: any;
  //district1: any;
@@ -32,8 +31,8 @@ export class DistrictadminComponent implements OnInit {
           firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
           lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
             district:['',Validators.required],
-          
-            whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+
+            whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
             party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
             approval_status:['',Validators.required],
             location_id:['1',Validators.required]
@@ -44,16 +43,14 @@ export class DistrictadminComponent implements OnInit {
           firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
           lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
           district1:['',Validators.required],
-          whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+          whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
           party_designation1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
           approval_status1:['',Validators.required],
           location_id1:['1',Validators.required],
           mode1:['1']
           });
   }
-  
   district_list:any[]=this.ApiService.all_districts;
- 
 
   ngOnInit(): void {
     // this.ApiService.viewtableDA();
@@ -64,7 +61,7 @@ export class DistrictadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-    
+
   }
   getdata(){
     this.ApiService.viewtableDA().subscribe(data => {
@@ -75,6 +72,7 @@ export class DistrictadminComponent implements OnInit {
           console.log(this.customers[0]);
     });
   }
+
   username:any;
   user_password:any;
   postdata(angForm1 : any) //angForm1
@@ -118,7 +116,6 @@ export class DistrictadminComponent implements OnInit {
       window.location.reload();
 
     }
-
     delete_da(user_id : any)
     {
         console.log(user_id)
@@ -170,7 +167,7 @@ export class DistrictadminComponent implements OnInit {
           this.DAmail=a.email;
           this.DAstatus=a.approval_status;
           this.DAwhats=a.whatsapp_no;
-          
+
 
           this.editform.patchValue({
             id1:this.DAid,
@@ -178,7 +175,7 @@ export class DistrictadminComponent implements OnInit {
             firstname1:this.DAname,
             lastname1:this.DAlastname,
             district1:this.DAdistrict,
-         
+
             party_designation1:this.DAparty_desig,
             approval_status1:this.DAstatus,
             whatsapp_no1:this.DAwhats
@@ -190,19 +187,19 @@ export class DistrictadminComponent implements OnInit {
     updatedata(updateform: any){
 
       console.log(updateform.value);
-      
+
       if(this.editform.valid==true)
       {
-       
+
       this.ApiService.updateDA('1', this.DAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
-        
+
         updateform.get('district1').value,
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
         updateform.get('whatsapp_no1').value,
         updateform.get('approval_status1').value)
-       
-       
+
+
         .pipe()
         .subscribe(
             data => {
@@ -216,9 +213,3 @@ export class DistrictadminComponent implements OnInit {
 }
 }
 }
-
-
-
-
-// ngIf="distadminform.status=='INVALID'" type="button" class="btn btn-block btn-danger" data-toggle="modal"   data-toggle="modal" data-target="#message" 
-// data-target="#message" _pendingDirty: true

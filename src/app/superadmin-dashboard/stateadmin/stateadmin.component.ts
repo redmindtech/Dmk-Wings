@@ -17,6 +17,8 @@ export class StateadminComponent implements OnInit {
   hidden:boolean=true;
   updateform: FormGroup;
   message: boolean;
+  username: any;
+  user_password: any;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder) {
     this.stateadminform = this.fb.group({ //angForm
@@ -24,7 +26,7 @@ export class StateadminComponent implements OnInit {
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       //district:['',Validators.required],
-      whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+      whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
       party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status:['',Validators.required],
       location_id:['1'],
@@ -36,7 +38,7 @@ export class StateadminComponent implements OnInit {
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         //district:['',Validators.required],
-        whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{11}')]],
+        whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         party_designation1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         approval_status1:['',Validators.required],
         location_id1:['1'],
@@ -100,8 +102,6 @@ export class StateadminComponent implements OnInit {
   //         this.customers.pop();
 
   // }
-  username:any;
-  user_password:any;
   postdata(angForm1 : any) //angForm1
   {
       //console.log(angForm1);
@@ -195,7 +195,7 @@ export class StateadminComponent implements OnInit {
           })
     }
 
-    
+
     updatedata(updateform: any){
       if(this.editform.valid==true)
       {

@@ -124,7 +124,7 @@ public userlogin(username : any, password :any) {
     // this.districtname=JSON.parse(localStorage.getItem('user_district'));
     console.log(this.user_district)
     this.district=this.user_district;
-  
+
   this.setToken(Users[0].name);
   this.getLoggedInName.emit(true);
   return Users;
@@ -234,7 +234,7 @@ public viewtableDA() {
           //         this.tabledataDA=users[0];
           //         })
           return this.httpClient.get(this.baseUrl + '/show.php?mode=1');
-    
+
 
     }
 
@@ -272,8 +272,8 @@ public viewtableDA() {
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
             }
 
-            
-          
+
+
             piechartdatasa:any[]=[];
             public piedatasa() {
               return this.httpClient.get(this.baseUrl +'/dashboardsapie.php');
@@ -282,16 +282,16 @@ public viewtableDA() {
             public carddatasa() {
               return this.httpClient.get(this.baseUrl +'/dashboardsacard.php');
             }
-            
+
             barchartdatasa:any[]=[];
             public chartdatasa() {
               return this.httpClient.get(this.baseUrl +'/dashboardsabar.php');
             }
             tableda:any[]=[];
             public datablelogin(dadistrict:any) {
-              // console.log(this.district);            
-              // dadistrict=this.district;            
-                 
+              // console.log(this.district);
+              // dadistrict=this.district;
+
               return this.httpClient.post(this.baseUrl +'/dashow.php',{dadistrict})
               .pipe(map(Users => {
                 return Users;
@@ -299,21 +299,21 @@ public viewtableDA() {
             }
             piechartdatada:any[]=[];
             logindistrict:any;
-            public piedatada(ldistrict:any) {       
-               console.log('str');      
+            public piedatada(ldistrict:any) {
+               console.log('str');
 
-               console.log(ldistrict);            
-          // ldistrict=this.district;               
+               console.log(ldistrict);
+          // ldistrict=this.district;
               return this.httpClient.post<any>(this.baseUrl +'/dashboarddamonth.php',{ldistrict})
               .pipe(map(Users => {
                 return Users;
                 }));
             }
-            
+
             barchartdatada:any[]=[];
             public chartdatada(barchart:any) {
               // console.log(this.user_district);
-               console.log(barchart);   
+               console.log(barchart);
               //  barchart=this.district;
               return this.httpClient.post(this.baseUrl +'/dashboardda.php',{barchart})
               .pipe(map(Users => {
@@ -322,16 +322,15 @@ public viewtableDA() {
             }
             dashboardcarddata:any[]=[];
             public dashboardcardda(cardistrict:any) {
-               console.log("cardistrict");      
-               console.log(cardistrict);      
-              // cardistrict=this.district;               
-                 
+               console.log("cardistrict");
+               console.log(cardistrict);
+              // cardistrict=this.district;
+
               return this.httpClient.post(this.baseUrl +'/dashboarddacard.php',{cardistrict})
               .pipe(map(Users => {
                 return Users;
                 }));
             }
-
           public sendmail(email:any) {
             return this.httpClient.post<any>(this.baseUrl + 'send_email.php', { email })
             .pipe(map(Users => {
@@ -417,7 +416,7 @@ public viewtableDA() {
                                                 .pipe(map(Users => {
                                                 return Users;
                                                 }));
-                                          } 
+                                          }
 
                                           public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,
                                             party_comments:any,location_id:'1',district:any,constituency:any) {

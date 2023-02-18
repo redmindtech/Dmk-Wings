@@ -19,20 +19,20 @@
                                     <input type="text" class="form-control form-control" formControlName="firstname"
                                         placeholder="Enter First Name / முதல் பெயர்">
                                         <div *ngIf="angForm.get('firstname').status=='INVALID'&& angForm.get('firstname').touched==true && angForm.get('firstname').value!=''" class="invalid-msg">
-                                          Numbers and Special charaters not allowed!</div>
+                                          Numbers and Special charaters not allowed</div>
                                         <div  *ngIf="(angForm.get('firstname').touched && angForm.get('firstname').value=='')"
-                                        class="invalid-msg" >Please enter the First name.</div>
-                                        <div  class="invalid-msg" *ngIf="angForm.get('firstname').untouched" [hidden]='hidden'>Please enter the First name</div>
+                                        class="invalid-msg" >Please fill out this field</div>
+                                        <div  class="invalid-msg" *ngIf="angForm.get('firstname').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Last Name / குடும்ப பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="lastname"
                                         placeholder="Enter Last Name / குடும்ப பெயர்">
                                         <div *ngIf="angForm.get('lastname').status=='INVALID'&& angForm.get('lastname').touched==true && angForm.get('lastname').value!=''" class="invalid-msg">
-                                          Numbers and Special charaters not allowed!</div>
+                                          Numbers and Special charaters not allowed</div>
                                         <div  *ngIf="(angForm.get('lastname').touched && angForm.get('lastname').value=='')"
-                                        class="invalid-msg" >Please enter the Last name</div>
-                                        <div  class="invalid-msg" *ngIf="angForm.get('lastname').untouched" [hidden]='hidden'>Please enter the Last name</div>
+                                        class="invalid-msg" >Please fill out this field</div>
+                                        <div  class="invalid-msg" *ngIf="angForm.get('lastname').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -54,18 +54,18 @@
                                     placeholder="Enter Date of Birth / பிறந்த தேதி">
 
                                     <div  *ngIf="(angForm.get('date_of_birth').touched && angForm.get('date_of_birth').value=='')"
-                                    class="invalid-msg" >Please enter the Date of birth</div>
-                                    <div  class="invalid-msg" *ngIf="angForm.get('date_of_birth').untouched" [hidden]='hidden'>Please enter the Date of birth</div>
+                                    class="invalid-msg" >Please fill out this field</div>
+                                    <div  class="invalid-msg" *ngIf="angForm.get('date_of_birth').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                             <div class="col-sm-6">
                                 <label>Mobile / கைபேசி</label><span class="required "> *</span>
-                                <input type="text" class="form-control form-control" formControlName="contact_no"
+                                <input type="text" maxlength="10" class="form-control form-control" formControlName="contact_no"
                                     placeholder="Enter Mobile / கைபேசி">
                                     <div *ngIf="angForm.get('contact_no').status=='INVALID'&& angForm.get('contact_no').touched==true && angForm.get('contact_no').value!=''" class="invalid-msg">
-                                      Letters and Special charaters not allowed!</div>
+                                      Please enter the valid Contact Number</div>
                                     <div  *ngIf="(angForm.get('contact_no').touched && angForm.get('contact_no').value=='')"
-                                    class="invalid-msg" >Please enter the Mobile number</div>
-                                    <div  class="invalid-msg" *ngIf="angForm.get('contact_no').untouched" [hidden]='hidden'>Please enter the Mobile number</div>
+                                    class="invalid-msg" >Please fill out this field</div>
+                                    <div  class="invalid-msg" *ngIf="angForm.get('contact_no').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                         </div>
                             <div class="form-group">
@@ -73,10 +73,10 @@
                                 <input type="email" class="form-control form-control" formControlName="email"
                                     placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                     <div *ngIf="angForm.get('email').status=='INVALID'&& angForm.get('email').touched==true && angForm.get('email').value!=''" class="invalid-msg">
-                                     Please enter valid email</div>
+                                     Please enter valid Email Id</div>
                                     <div  *ngIf="(angForm.get('email').touched && angForm.get('email').value=='')"
-                                    class="invalid-msg" >Please enter the Email Id</div>
-                                    <div  class="invalid-msg" *ngIf="angForm.get('email').untouched" [hidden]='hidden'>Please enter the Email Id</div>
+                                    class="invalid-msg" >Please fill out this field</div>
+                                    <div  class="invalid-msg" *ngIf="angForm.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -84,10 +84,10 @@
                                     <input type="text" class="form-control form-control" formControlName="father_name"
                                         placeholder="Enter Parents Name / பெற்றோர் பெயர்">
                                         <div *ngIf="angForm.get('father_name').status=='INVALID'&& angForm.get('father_name').touched==true && angForm.get('father_name').value!=''" class="invalid-msg">
-                                            Numbers and Special charaters not allowed!</div>
+                                            Numbers and Special charaters not allowed</div>
                                           <div  *ngIf="(angForm.get('father_name').touched && angForm.get('father_name').value=='')"
-                                          class="invalid-msg" >Please enter the Parent name</div>
-                                          <div  class="invalid-msg" *ngIf="angForm.get('father_name').untouched" [hidden]='hidden'>Please enter the Parent name</div>
+                                          class="invalid-msg" >Please fill out this field</div>
+                                          <div  class="invalid-msg" *ngIf="angForm.get('father_name').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                                 <!-- <div class="col-sm-6">
                                     <label>Parents Mobile No / பெற்றோர் கைபேசி எண்</label>
