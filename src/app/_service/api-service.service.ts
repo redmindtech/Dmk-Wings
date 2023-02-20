@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-        baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-        //  baseUrl:string="http://localhost/tod_dmk/Dmk-Wings/php/";
+        //  baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+           baseUrl:string="http://localhost/lat_git/Dmk-Wings/php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -303,7 +303,7 @@ public viewtableDA() {
                console.log('str');
 
                console.log(ldistrict);
-          // ldistrict=this.district;
+          
               return this.httpClient.post<any>(this.baseUrl +'/dashboarddamonth.php',{ldistrict})
               .pipe(map(Users => {
                 return Users;
@@ -312,20 +312,17 @@ public viewtableDA() {
 
             barchartdatada:any[]=[];
             public chartdatada(barchart:any) {
-              // console.log(this.user_district);
+              
                console.log(barchart);
-              //  barchart=this.district;
-              return this.httpClient.post(this.baseUrl +'/dashboardda.php',{barchart})
+                return this.httpClient.post(this.baseUrl +'/dashboardda.php',{barchart})
               .pipe(map(Users => {
                 return Users;
                 }));
             }
             dashboardcarddata:any[]=[];
             public dashboardcardda(cardistrict:any) {
-               console.log("cardistrict");
+              //  console.log("cardistrict");
                console.log(cardistrict);
-              // cardistrict=this.district;
-
               return this.httpClient.post(this.baseUrl +'/dashboarddacard.php',{cardistrict})
               .pipe(map(Users => {
                 return Users;

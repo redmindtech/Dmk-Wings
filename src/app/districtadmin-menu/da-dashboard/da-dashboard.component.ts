@@ -15,25 +15,29 @@ export class DaDashboardComponent implements OnInit {public chart: any;
   dashboardcarddata: any;
   appob: any;
   activeob: any;
+  districtname: any;
   // ApiServiceService: any;
 
 
   constructor(public ApiService:ApiServiceService) { }
 
    ngOnInit(): void {
-// this.districtname=JSON.parse(localStorage.getItem('user_district'));
-    this.ApiService.piedatada('SALEM').subscribe((data:any) => {
+ this.districtname=JSON.parse(localStorage.getItem('user_district'));
+ console.log(this.districtname)
+ console.log('this.districtname')
+    this.ApiService.piedatada(this.districtname).subscribe((data:any) => {
      this.barchat=data;
+     console.log(this.barchat);
        this.createChart(this.barchat);
 
        ;})
-       this.ApiService.chartdatada('SALEM').subscribe((piedate:any) => {
+       this.ApiService.chartdatada(this.districtname).subscribe((piedate:any) => {
         // console.log('hipie');
        this.piechartdata=piedate;
          this.piechart(this.piechartdata);
 
          ;})
-         this.ApiService.dashboardcardda('SALEM').subscribe((cardata:any) => {
+         this.ApiService.dashboardcardda(this.districtname).subscribe((cardata:any) => {
           // console.log('card');
          this.dashboardcarddata=cardata;
          console.log(this.dashboardcarddata);
@@ -47,7 +51,7 @@ export class DaDashboardComponent implements OnInit {public chart: any;
 
   }
     createChart(data){
-
+// console.log(data);
       const barchatgraph = data;
 
             const months = [];

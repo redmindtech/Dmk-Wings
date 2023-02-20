@@ -19,12 +19,14 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   username: any;
   user_password: any;
   message: boolean;
+  districtname: any;
 
 
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
     {   this.district = JSON.parse(localStorage.getItem('user_district'));
+    
 
       this.officebearerform = this.fb.group({ //angForm
         form_district:[this.district,Validators.required],
@@ -88,7 +90,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
-    this.ApiService.datablelogin('SALEM').subscribe((data:any) => {
+    this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
