@@ -172,7 +172,7 @@ export class AppOrRejComponent implements OnInit {
            // window.location.reload();
             // alert("Office bearer has been created successfully!")
             console.log(data)
-            this.username=officebearerform.value.whatsapp_no;
+            this.username=data.whatsapp_no;
             console.log(officebearerform.value.whatsapp_no)
             this.user_password=data.password;
         //this.router.navigate(['']);

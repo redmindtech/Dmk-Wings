@@ -113,7 +113,7 @@ export class StateadminComponent implements OnInit {
         .subscribe(
         data => {
           console.log(data)
-        this.username=data.whatsapp_no;
+          this.username=angForm1.value.whatsapp_no;
           console.log(angForm1.value.whatsapp_no)
           this.user_password=data.password;
            // window.location.reload();
