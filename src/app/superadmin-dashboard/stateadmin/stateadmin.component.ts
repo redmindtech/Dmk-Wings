@@ -176,7 +176,7 @@ export class StateadminComponent implements OnInit {
        this.SAfirstname=a.firstname;
        this.SAlastname=a.lastname;
           this.SAdesig=a.designation;
-          this.SAwhatsapp_no=a.whatsapp_no;
+          this.SAwhatsapp_no=a.whatsapp_no.slice(2);
           this.SAparty_desig=a.party_designation;
           this.SAmail=a.email;
           this.SAstatus=a.approval_status;
@@ -201,7 +201,7 @@ export class StateadminComponent implements OnInit {
       {
           console.log(updateform.value);
           this.ApiService.updateSA('0', this.SAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
-            updateform.get('whatsapp_no1').value,
+            '91'+updateform.get('whatsapp_no1').value,
             updateform.get('party_designation1').value,
             updateform.get('email1').value,
             updateform.get('approval_status1').value)

@@ -274,8 +274,8 @@ export class AppOrRejComponent implements OnInit {
          this.OBmothername=a.mother_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
-         this.OBphonenumber=a.contact_no;
-         this.whatsappnumner=a.whatsapp_no;
+         this.OBphonenumber=a.contact_no.slice(2);
+         this.whatsappnumner=a.whatsapp_no.slice(2);
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
@@ -334,12 +334,12 @@ updatedata(updateform: any){
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,
-    updateform.get('contact_no1').value,
-    updateform.get('whatsapp_no1').value,
+    '91'+updateform.get('contact_no1').value,
+    '91'+updateform.get('whatsapp_no1').value,
     updateform.get('profession1').value,
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
-    updateform.get('party_comments1').value,
+    updateform.get('party_comments1').value, 
     '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(

@@ -501,7 +501,7 @@
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
-                                  <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" formControlName="contact_no"/>
+                                  <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" maxlength="10" formControlName="contact_no"/>
                                       <div *ngIf="contact_no.status=='INVALID'&& contact_no.touched==true && contact_no.value!=''" class="invalid-msg">
                                         Alphabets Special characters not allowed</div>
                                       <div  *ngIf="(officebearerform.get('contact_no').touched && contact_no.value=='')"

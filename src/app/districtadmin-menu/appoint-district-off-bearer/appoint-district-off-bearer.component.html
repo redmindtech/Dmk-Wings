@@ -123,7 +123,7 @@
                         <div class="form-group row">
                                 <div class="col-6 md:col-6">
                                   <label>Phone Number / தொலைபேசி எண்</label>
-                                  <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
+                                  <input type="text" name="contact_no1" formControlName="contact_no1" maxlength="10" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
                                   <div *ngIf="editform.get('contact_no1').status=='INVALID'&& editform.get('contact_no1').touched==true && editform.get('contact_no1').value!=''" class="invalid-msg">
                                     Please enter the valid Contact Number</div>
                                   <div  *ngIf="(editform.get('contact_no1').touched && editform.get('contact_no1').value=='')"
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Whatsapp Number /வாட்ஸ்அப் எண்</label>
-                                  <input type="text" name="whatsapp_no1" formControlName="whatsapp_no11" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
+                                  <input type="text" name="whatsapp_no1" formControlName="whatsapp_no11" maxlength="10" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
                                   <div *ngIf="editform.get('whatsapp_no1').status=='INVALID'&& editform.get('whatsapp_no1').touched==true && editform.get('whatsapp_no1').value!=''" class="invalid-msg">
                                     Please enter the valid Whatsapp Number</div>
                                   <div  *ngIf="(editform.get('whatsapp_no1').touched && editform.get('whatsapp_no1').value=='')"
@@ -457,7 +457,7 @@
                           <div class="form-group row">
                                   <div class="col-6 md:col-6">
                                     <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
-                                    <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" formControlName="contact_no"/>
+                                    <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" maxlength="10" formControlName="contact_no"/>
                                     <div *ngIf="officebearerform.get('contact_no').status=='INVALID'&& officebearerform.get('contact_no').touched==true && officebearerform.get('contact_no').value!=''" class="invalid-msg">
                                       Please enter the valid Contact Number</div>
                                     <div  *ngIf="(officebearerform.get('contact_no').touched && officebearerform.get('contact_no').value=='')"
@@ -466,7 +466,7 @@
                                   </div>
                                   <div class="col-6 md:col-6">
                                     <label>Whatsapp Number /வாட்ஸ்அப் எண்</label><span class="required "> *</span>
-                                    <input type="text" name="whatsapp_no" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" formControlName="whatsapp_no"/>
+                                    <input type="text" name="whatsapp_no" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" maxlength="10" formControlName="whatsapp_no"/>
                                     <div *ngIf="officebearerform.get('whatsapp_no').status=='INVALID'&& officebearerform.get('whatsapp_no').touched==true && officebearerform.get('whatsapp_no').value!=''" class="invalid-msg">
                                       Please enter the valid Contact Number</div>
                                     <div  *ngIf="(officebearerform.get('whatsapp_no').touched && officebearerform.get('whatsapp_no').value=='')"

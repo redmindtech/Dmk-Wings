@@ -233,15 +233,15 @@ export class AppointDistrictOffBearerComponent implements OnInit {
          this.OBfathername=a.father_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
-         this.OBphonenumber=a.contact_no;
-         this.whatsappnumner=a.whatsapp_no;
+         this.OBphonenumber=a.contact_no.slice(2);
+         this.whatsappnumner=a.whatsapp_no.slice(2);
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
-
-        this.fullname1=a.name;
+         this.OBmothername=a.mother_name
+          this.fullname1=a.name;
         this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
           let obj=this.constituency_list;
@@ -265,6 +265,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
           party_designation1:this.OBparty_desig,
           approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
+        mother_name1:this.OBmothername,
         educational_qualification1:this.OBprofession,
         date_of_birth1:this.OBdateofbirth,
         additional_qualification1:this.OBaddtionaldegree,
@@ -289,8 +290,8 @@ updatedata(updateform: any){
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,
-    updateform.get('contact_no1').value,
-    updateform.get('whatsapp_no1').value,
+    '91'+updateform.get('contact_no1').value,
+    '91'+updateform.get('whatsapp_no1').value,
     updateform.get('profession1').value,
     updateform.get('address1').value,
     updateform.get('applied_role1').value,

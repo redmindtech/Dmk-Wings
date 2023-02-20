@@ -166,7 +166,7 @@ export class DistrictadminComponent implements OnInit {
           this.DAdistrict=a.district;
           this.DAmail=a.email;
           this.DAstatus=a.approval_status;
-          this.DAwhats=a.whatsapp_no;
+          this.DAwhats=a.whatsapp_no.slice(2);
 
 
           this.editform.patchValue({
@@ -196,7 +196,7 @@ export class DistrictadminComponent implements OnInit {
         updateform.get('district1').value,
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
-        updateform.get('whatsapp_no1').value,
+        '91'+updateform.get('whatsapp_no1').value,
         updateform.get('approval_status1').value)
 
 
