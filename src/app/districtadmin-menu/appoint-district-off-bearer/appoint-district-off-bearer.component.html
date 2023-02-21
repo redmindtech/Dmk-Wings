@@ -348,7 +348,7 @@
 
 
 
-              <div class="modal fade" id="myModal">
+              <div class="modal fade" id="myModal"  *ngIf="user_password==null">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
                     <div class="card-danger">
@@ -371,9 +371,11 @@
                                 <option *ngFor="let option of user_constituency" (value)="option" >
                                   {{option}}</option>
                               </select>
-                              <span *ngIf="!constituency"
+                              <!-- <span *ngIf="!constituency"
                                         class="invalid-msg">Select Constituency
-                              </span>
+                              </span> -->
+                              <div *ngIf="constituency && !constituency" class="invalid-msg">
+                                Select Constituency</div>
                           </div>
                         </div>
                         <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
@@ -382,28 +384,20 @@
                                   <div class="col-6 md:col-6">
                                     <label>First Name/முதல் பெயர்</label><span class="required "> *</span>
                                     <input type="text" name="firstname" class="form-control"  placeholder="Enter First Name/முதல் பெயர்" formControlName="firstname"/>
-                                    <div  *ngIf="officebearerform.get('firstname').hasError('required') && officebearerform.get('firstname').touched"
-                                      class="invalid-msg">Please fill out this field
-                                  </div>
-                                  <div *ngIf="officebearerform.get('firstname').hasError('pattern') && officebearerform.get('firstname').touched"
-                                      class="invalid-msg">Numbers and Special charaters not allowed
-                                </div>
-                                <div *ngIf="officebearerform.get('firstname').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                              </div>
+                                   <div *ngIf="firstname.status=='INVALID'&& firstname.touched==true && firstname.value!=''" class="invalid-msg">
+                                      Numbers and Special charaters not allowed</div>
+                                    <div  *ngIf="(officebearerform.get('firstname').touched && firstname.value=='')"
+                                    class="invalid-msg" >Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('firstname').untouched" [hidden]='hidden'>Please fill this field</div>
                                   </div>
                                   <div class="col-6 md:col-6">
                                     <label>Last Name/குடும்ப பெயர்</label><span class="required "> *</span>
                                     <input type="text" name="lastname" class="form-control"  placeholder="Enter Last Name/குடும்ப பெயர்" formControlName="lastname"/>
-                                    <div *ngIf="officebearerform.get('lastname').hasError('required') && officebearerform.get('lastname').touched"
-                                      class="invalid-msg">Please fill out this field
-                                    </div>
-                                    <div *ngIf="officebearerform.get('lastname').hasError('pattern') && officebearerform.get('lastname').touched"
-                                      class="invalid-msg">Numbers and Special charaters not allowed
-                                    </div>
-                                    <div *ngIf="officebearerform.get('lastname').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                              </div>
+                                     <div *ngIf="lastname.status=='INVALID'&& lastname.touched==true && lastname.value!=''" class="invalid-msg">
+                                      Numbers and Special charaters not allowed</div>
+                                    <div  *ngIf="(officebearerform.get('lastname').touched && lastname.value=='')"
+                                    class="invalid-msg" >Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('lastname').untouched" [hidden]='hidden'>Please fill this field</div>
                                   </div>
                           </div>
                           <div class="form-group row">
@@ -420,15 +414,11 @@
                                 <div class="col-6 md:col-6">
                                   <label>Father Name / தந்தையின் பெயர்</label><span class="required "> *</span>
                                   <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name"/>
-                                  <div *ngIf="officebearerform.get('father_name').hasError('required') && officebearerform.get('father_name').touched"
-                                      class="invalid-msg">Please fill out this field
-                                    </div>
-                                    <div *ngIf="officebearerform.get('father_name').hasError('pattern') && officebearerform.get('father_name').touched"
-                                      class="invalid-msg">Numbers and Special charaters not allowed
-                                    </div>
-                                    <div *ngIf="officebearerform.get('father_name').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                              </div>
+                                 <div *ngIf="officebearerform.get('father_name').status=='INVALID'&& officebearerform.get('father_name').touched==true && officebearerform.get('father_name').value!=''" class="invalid-msg">
+                                    Numbers and Special charaters not allowed</div>
+                                  <div  *ngIf="(officebearerform.get('father_name').touched && officebearerform.get('father_name').value=='')"
+                                  class="invalid-msg" >Please fill this field</div>
+                                  <div  class="invalid-msg" *ngIf="officebearerform.get('father_name').untouched" [hidden]='hidden'>Please fill this field</div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Mother Name / தாய் பெயர்</label>
@@ -440,13 +430,9 @@
                                 <label>Degree / கல்வித் தகுதி</label><span class="required "> *</span>
                                 <input type="text" name="educational_qualification" class="form-control"  placeholder="Enter Degree / கல்வித் தகுதி" formControlName="educational_qualification"/>
 
-                                <div  *ngIf="officebearerform.get('educational_qualification').hasError('required') && officebearerform.get('educational_qualification').touched"
-                                      class="invalid-msg">Please fill out this field
-                                  </div>
-
-                                <div *ngIf="officebearerform.get('educational_qualification').hasError('required')"
-                                                class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                              </div>
+                                 <div  *ngIf="(officebearerform.get('educational_qualification').touched && officebearerform.get('educational_qualification').value=='')"
+                                class="invalid-msg" >Please fill this field</div>
+                                <div  class="invalid-msg" *ngIf="officebearerform.get('educational_qualification').untouched" [hidden]='hidden'>Please fill this field</div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Additional Degree / சிறப்பு தகுதி</label>
@@ -513,12 +499,10 @@
                                         <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                                         <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                     </select>
-                                    <div *ngIf="officebearerform.get('applied_role').hasError('required') && officebearerform.get('applied_role').touched"
-                                            class="invalid-msg">Please select the field
-                                        </div>
-                                        <div *ngIf="officebearerform.get('applied_role').hasError('required')" class="invalid-msg"
-                                        [hidden]='hidden'>Please select the field
-                                    </div>
+                                   <div  *ngIf="(officebearerform.get('applied_role').touched && applied_role.value=='')"
+                                    class="invalid-msg" >Please select this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('applied_role').untouched" [hidden]='hidden'>Please select this field</div>
+
                                 </div>
                           </div>
                           <div class="form-group">
@@ -544,7 +528,7 @@
                               </div>
                           </div> -->
                             <div class="col-3" style="margin-left:34%;">
-                              <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  data-backdrop="false"  >Create office bearer</button>
+                              <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"   >Create office bearer</button>
                             </div>
                           </form>
                       </div>
@@ -703,27 +687,29 @@
   <div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID'" >
     <div class="modal-dialog modal-m"  style="margin-top:10%;">
         <div class="modal-content">
-  
+           
             <div style="width:100%;height:200%">
                 <div class="card-danger" style="width:100%;height:200%">
                     <div class="card-header">
+                       
+  
                         <h3 class="card-title">Office Bearer Login Credentials</h3>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" *ngIf="user_password==null" >&times;</button>
                     </div>
                     
                         <div class="card-body" >
+                           
                           
                             <label>Please access the portal using the following details</label>
                             <div class="form-group row">
                                 <div class="col-12">
                                 <label>Application Link : </label> <a href="#" class="link-danger">  https://redmindtech.github.io/Dmk-Wings/</a>
-                                <div class="loader-container">
-                                  <div *ngIf="user_password==null"class="loader"></div>
-                                </div> 
                                 
-                               
-                            </div>
-                               
+                                <div class="loader-container">
+                                <div *ngIf="user_password==null"class="loader"></div>
+                                   </div> 
+                                </div>
+                    
                                 <div class="col-12">
                                     <label>Username:</label> {{username}}
                                    <div>
@@ -736,11 +722,14 @@
                                     <label>Password:</label>{{user_password}} 
                                   
                                    <div>
+                                   
                                 
                             
                                     <div class="col-6 align-center" style="margin-left:25%;">
-                                        <button class="btn btn-danger btn btn-block" (click)="reload()" >Office Bearer Created</button>
+                                        <button class="btn btn-danger btn btn-block" (click)="reload()" *ngIf="username!=null">Ok</button>
                                     </div>
+                                </div>
+                                
                 </div>
             </div>
   

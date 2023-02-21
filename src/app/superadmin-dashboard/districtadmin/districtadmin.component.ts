@@ -75,6 +75,7 @@ export class DistrictadminComponent implements OnInit {
 
   username:any;
   user_password:any;
+  user_email:any;
   postdata(angForm1 : any) //angForm1
     {
         console.log(angForm1);
@@ -89,6 +90,7 @@ export class DistrictadminComponent implements OnInit {
               this.username=data.whatsapp_no;
               console.log(angForm1.value.whatsapp_no)
               this.user_password=data.password;
+              this.user_email=data.email;
               
            // alert("District admin user has been created successfully!")
               

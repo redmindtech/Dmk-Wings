@@ -74,7 +74,7 @@ export class AppOrRejComponent implements OnInit {
         whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         profession1:[''],
         address1:[''],
-        applied_role1:[''],
+        applied_role1:['',Validators.required],
         party_comments1:[''],
         location_id1:['1',Validators.required],
         mode1:['2',Validators.required]
@@ -339,7 +339,7 @@ updatedata(updateform: any){
     updateform.get('profession1').value,
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
-    updateform.get('party_comments1').value, 
+     updateform.get('party_comments1').value,
     '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(
