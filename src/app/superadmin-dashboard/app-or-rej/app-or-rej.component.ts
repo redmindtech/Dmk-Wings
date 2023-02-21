@@ -132,6 +132,7 @@ export class AppOrRejComponent implements OnInit {
 
   }
   OBconstituency_change(a:any){
+    //this.user_constituency=[];
     let obj=this.constituency_list;
     this.user_constituency=obj[a];
     this.user_constituency.unshift('Select Option');
