@@ -57,7 +57,23 @@
                           <div class="form-check">
                               <input class="form-check-input" type="radio" name="participants"  formControlName="participants" id="inlineRadio2" (click)="Participants('option2')"  value="2">
                               <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div>
+                              
+                              <div  class="col-6 md:col-6">
+                                <ng-multiselect-dropdown 
+                               [placeholder]="'Select District'"
+                               [settings]="dropdownSettings"
+                               [data]="dropdownList"
+                               formControlName="meeting_district"
+                               
+                               (onSelect)="onItemSelect($event)"
+                               (onSelectAll)="onSelectAll($event)"
+                               (onDeSelect)="onItemDeSelect($event)"
+                               (onDeSelectAll)="onUnSelectAll()"
+                               (click)="Participants('option2')" *ngIf="participantsptions=='option2'" >
+                               </ng-multiselect-dropdown>
+                       
+                           </div>
+                            </div>
                           <div class="form-check">
                               <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio3" (click)="Participants('option3')" value="3">
                               <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>

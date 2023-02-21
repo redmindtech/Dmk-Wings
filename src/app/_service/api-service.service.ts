@@ -376,10 +376,10 @@ public viewtableDA() {
                   }));
                               }
 
-                                public create_meeting(meeting_name:any,meeting_date:any,meeting_time:any,participants:any,meeting_type:any,meeting_location:any, comments:any,constituency:any) {
-                                  console.log(constituency);
+                                public create_meeting(meeting_name:any,meeting_date:any,meeting_time:any,participants:any,meeting_type:any,meeting_location:any, comments:any,meeting_district:any) {
+                                  // console.log(constituency);
                                 return this.httpClient.post<any>(this.baseUrl + '/createmeeting.php',
-                                { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,constituency},)
+                                { meeting_name,meeting_time,meeting_date,participants,meeting_type,meeting_location,comments,meeting_district},)
                                 .pipe(map(Users => {
                                 return Users;
                                 }));

@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import {CreateMeetingsComponent} from 'src/app/stateadmin-menu/create-meetings/create-meetings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component'
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,ReactiveFormsModule, 
-    HttpClientModule,DataTablesModule
+    HttpClientModule,DataTablesModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   
   

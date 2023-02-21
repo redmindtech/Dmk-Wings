@@ -183,7 +183,9 @@
                             <div class="col-6 md:col-6">
                               <label>Address / முகவரி</label>
                               <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
-                                    
+                                    <div  *ngIf="(editform.get('address1').touched && address1.value=='')"
+                                    class="invalid-msg" >Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="editform.get('address1').untouched && address1.value==''">Please fill this field</div>
                             </div>
                       </div>
                       <div class="form-group">
@@ -213,7 +215,9 @@
                           <div class="col-sm-6">
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
-                                  
+                                  <div  *ngIf="(editform.get('party_comments1').touched && address1.value=='')"
+                                  class="invalid-msg" >Please fill this field</div>
+                                  <div  class="invalid-msg" *ngIf="editform.get('party_comments1').untouched && party_comments1.value==''">Please fill this field</div>
                           </div>
                       </div>
                       <div class="col-3" style="margin-left:34%;">
@@ -372,7 +376,7 @@
 
 
 
-            <div class="modal fade" id="myModal" *ngIf="user_password==null">
+            <div class="modal fade" id="myModal">
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="card-danger">
@@ -390,16 +394,14 @@
                           </select>
                         </div>
                         <div class="col-sm-4" style="margin-left:28%">
-                          <label class="">Assembly constituency/சட்டமன்ற தொகுதி:<span class="required "> *</span></label><br>
+                          <label class="row">Assembly constituency/சட்டமன்ற தொகுதி: <span class="required "> *</span></label>
                             <select class="form-control"  [(ngModel)]="constituency">
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
-                            <!-- <span *ngIf="constituency"
+                            <span *ngIf="!constituency && officebearerform.status=='VALID'"
                                       class="invalid-msg">Select Constituency
-                            </span> -->
-                            <div *ngIf="constituency && !constituency && constituency==''" class="invalid-msg">
-                                    Select Constituency</div>
+                            </span>
                         </div>
                       </div>
                       <!-- <div class="">
@@ -566,7 +568,7 @@
                         </div>
                         <div class="form-group">
                               <div class="col-12 md:col-12">
-                                   <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு <span class="required ">*</span></label><br>
+                                  <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு</label><br>
                                   <select name="applied_role"  class="form-control" formControlName="applied_role">
                                       <option value="">Select Option</option>
                                       <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
@@ -613,7 +615,7 @@
                             </div>
                         </div> -->
                           <div class="col-3" style="margin-left:34%;">
-                            <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  >Create office bearer</button>
+                            <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  data-backdrop="false" >Create office bearer</button>
                           </div>
                         </form>
                     </div>
@@ -769,32 +771,31 @@
 
 
 
+
 <div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID'" >
   <div class="modal-dialog modal-m"  style="margin-top:10%;">
       <div class="modal-content">
-         
+
           <div style="width:100%;height:200%">
               <div class="card-danger" style="width:100%;height:200%">
                   <div class="card-header">
-                     
-
                       <h3 class="card-title">Office Bearer Login Credentials</h3>
-                      <button type="button" class="close" data-dismiss="modal" *ngIf="user_password==null">&times;</button>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   
                       <div class="card-body" >
-                         
                         
                           <label>Please access the portal using the following details</label>
                           <div class="form-group row">
                               <div class="col-12">
                               <label>Application Link : </label> <a href="#" class="link-danger">  https://redmindtech.github.io/Dmk-Wings/</a>
-                              
                               <div class="loader-container">
-                              <div *ngIf="user_password==null"class="loader"></div>
-                                 </div> 
-                              </div>
-                  
+                                <div *ngIf="user_password==null"class="loader"></div>
+                              </div> 
+                              
+                             
+                          </div>
+                             
                               <div class="col-12">
                                   <label>Username:</label> {{username}}
                                  <div>
@@ -807,14 +808,11 @@
                                   <label>Password:</label>{{user_password}} 
                                 
                                  <div>
-                                 
                               
                           
                                   <div class="col-6 align-center" style="margin-left:25%;">
-                                      <button class="btn btn-danger btn btn-block" (click)="reload()" *ngIf="username!=null">Ok</button>
+                                      <button class="btn btn-danger btn btn-block" (click)="reload()" >Office Bearer Created</button>
                                   </div>
-                              </div>
-                              
               </div>
           </div>
 
