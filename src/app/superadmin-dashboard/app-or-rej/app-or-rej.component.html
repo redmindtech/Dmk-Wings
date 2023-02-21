@@ -34,7 +34,7 @@
                             <option *ngFor="let option of user_constituency" (value)="option" >
                               {{option}}</option>
                           </select>
-                          <span *ngIf="OBConstituency==''"
+                          <span *ngIf="OBConstituency=='' && editform.status=='VALID'"
                                       class="invalid-msg">Select Constituency
                             </span>
                       </div>

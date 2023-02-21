@@ -48,9 +48,6 @@
                               <div *ngIf="editform.get('firstname1').hasError('pattern') && editform.get('firstname1').touched"
                                   class="invalid-msg">Numbers and Special charaters not allowed
                             </div>
-                            <div *ngIf="editform.get('firstname1').hasError('required')"
-                                            class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                          </div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Last Name/குடும்ப பெயர்</label>
@@ -61,9 +58,7 @@
                               <div *ngIf="editform.get('lastname1').hasError('pattern') && editform.get('lastname1').touched"
                                   class="invalid-msg">Numbers and Special charaters not allowed
                             </div>
-                            <div *ngIf="editform.get('lastname1').hasError('required')"
-                                            class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                          </div>
+
 
                                 </div>
                         </div>
@@ -91,9 +86,6 @@
                               <div *ngIf="editform.get('father_name1').hasError('pattern') && editform.get('father_name1').touched"
                                   class="invalid-msg">Numbers and Special charaters not allowed
                             </div>
-                            <div *ngIf="editform.get('father_name1').hasError('required')"
-                                            class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                          </div>
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Mother Name / தாய் பெயர்</label>
@@ -110,9 +102,6 @@
                               <div  *ngIf="editform.get('educational_qualification1').hasError('required') && editform.get('educational_qualification1').touched"
                               class="invalid-msg">Please fill out this field
                           </div>
-                        <div *ngIf="editform.get('educational_qualification1').hasError('required')"
-                                        class="invalid-msg" [hidden]='hidden'>Please fill out this field
-                                      </div>
                             </div>
                             <div class="col-6 md:col-6">
                               <label>Additional Degree / சிறப்பு தகுதி</label>
@@ -128,7 +117,6 @@
                                     Please enter the valid Contact Number</div>
                                   <div  *ngIf="(editform.get('contact_no1').touched && editform.get('contact_no1').value=='')"
                                   class="invalid-msg" >Please fill out this field</div>
-                                  <div  class="invalid-msg" *ngIf="editform.get('contact_no1').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Whatsapp Number /வாட்ஸ்அப் எண்</label>
@@ -137,7 +125,6 @@
                                     Please enter the valid Whatsapp Number</div>
                                   <div  *ngIf="(editform.get('whatsapp_no1').touched && editform.get('whatsapp_no1').value=='')"
                                   class="invalid-msg" >Please fill out this field</div>
-                                  <div  class="invalid-msg" *ngIf="editform.get('whatsapp_no1').untouched" [hidden]='hidden'>Please fill out this field</div>
                                     </div>
                         </div>
                         <div class="form-group row">
@@ -148,7 +135,6 @@
                                   Please enter valid Email Id</div>
                                  <div  *ngIf="(editform.get('email1').touched && editform.get('email1').value=='')"
                                  class="invalid-msg" >Please fill out this field</div>
-                                 <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                                 <div class="col-6 md:col-6">
                                   <label>Profession / தொழில்,வேலை</label>
@@ -182,9 +168,6 @@
                                   <div *ngIf="editform.get('applied_role1').hasError('required') && editform.get('applied_role1').touched"
                                             class="invalid-msg">Please select the applied_role1
                                         </div>
-                                        <div *ngIf="editform.get('applied_role1').hasError('required')" class="invalid-msg"
-                                        [hidden]='hidden'>Please select the field
-                                    </div>
                               </div>
                         </div>
                         <div class="form-group">
@@ -320,7 +303,7 @@
                                       <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                                       <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                   </select>
-                                  
+
                               </div>
                         </div>
                         <div class="form-group">
@@ -374,7 +357,7 @@
                               <!-- <span *ngIf="!constituency"
                                         class="invalid-msg">Select Constituency
                               </span> -->
-                              <div *ngIf="constituency && !constituency" class="invalid-msg">
+                              <div *ngIf="(!constituency && officebearerform.status=='VALID')" class="invalid-msg">
                                 Select Constituency</div>
                           </div>
                         </div>
@@ -687,29 +670,29 @@
   <div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID'" >
     <div class="modal-dialog modal-m"  style="margin-top:10%;">
         <div class="modal-content">
-           
+
             <div style="width:100%;height:200%">
                 <div class="card-danger" style="width:100%;height:200%">
                     <div class="card-header">
-                       
-  
+
+
                         <h3 class="card-title">Office Bearer Login Credentials</h3>
                         <button type="button" class="close" data-dismiss="modal" *ngIf="user_password==null" >&times;</button>
                     </div>
-                    
+
                         <div class="card-body" >
-                           
-                          
+
+
                             <label>Please access the portal using the following details</label>
                             <div class="form-group row">
                                 <div class="col-12">
                                 <label>Application Link : </label> <a href="#" class="link-danger">  https://redmindtech.github.io/Dmk-Wings/</a>
-                                
+
                                 <div class="loader-container">
                                 <div *ngIf="user_password==null"class="loader"></div>
-                                   </div> 
+                                   </div>
                                 </div>
-                    
+
                                 <div class="col-12">
                                     <label>Username:</label> {{username}}
                                    <div>
@@ -717,22 +700,22 @@
                                         placeholder="Enter First Name / முதல் பெயர்99" [value]="username"></label> -->
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12">
-                                    <label>Password:</label>{{user_password}} 
-                                  
+                                    <label>Password:</label>{{user_password}}
+
                                    <div>
-                                   
-                                
-                            
+
+
+
                                     <div class="col-6 align-center" style="margin-left:25%;">
                                         <button class="btn btn-danger btn btn-block" (click)="reload()" *ngIf="username!=null">Ok</button>
                                     </div>
                                 </div>
-                                
+
                 </div>
             </div>
-  
+
         </div>
     </div>
   </div>

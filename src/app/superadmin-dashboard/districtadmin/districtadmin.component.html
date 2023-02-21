@@ -138,7 +138,7 @@
                                               <div  *ngIf="(distadminform.get('email').touched && email.value=='')"
                                               class="invalid-msg" >Please fill out this field</div>
                                               <div  class="invalid-msg" *ngIf="distadminform.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
-                                                <div  class="invalid-msg" *ngIf="distadminform.status=='INVALID'" [hidden]='hidden'>This email was already used</div> 
+                                                <!-- <div  class="invalid-msg" *ngIf="distadminform.status=='INVALID'" [hidden]='hidden'>This email was already used</div>  -->
 
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -425,7 +425,7 @@
                                                 Numbers and Special charaters not allowed!</div>
                                               <div  *ngIf="(editform.get('firstname1').touched && firstname1.value=='')"
                                               class="invalid-msg" >Please fill this field</div>
-                                              <div  class="invalid-msg" *ngIf="editform.get('firstname1').untouched" [hidden]='hidden'>Please fill this field</div>
+                                              <!-- <div  class="invalid-msg" *ngIf="editform.get('firstname1').untouched">Please fill this field</div> -->
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Last Name / குடும்ப பெயர்</label>
@@ -436,7 +436,7 @@
                                                 Numbers and Special charaters not allowed</div>
                                               <div  *ngIf="(editform.get('lastname1').touched && lastname1.value=='')"
                                               class="invalid-msg" >Please fill this field</div>
-                                              <div  class="invalid-msg" *ngIf="editform.get('lastname1').untouched" [hidden]='hidden'>Please fill this field</div>
+                                              <!-- <div  class="invalid-msg" *ngIf="editform.get('lastname1').untouched" [hidden]='hidden'>Please fill this field</div> -->
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -498,7 +498,7 @@
 
                                         <div  *ngIf="(editform.get('email1').touched && email1.value=='')"
                                         class="invalid-msg" >Please fill out this field</div>
-                                        <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div>
+                                        <!-- <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div> -->
                                 </div>
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
