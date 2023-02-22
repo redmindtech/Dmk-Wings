@@ -25,6 +25,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   username: any;
   user_password: any;
   spinner: boolean;
+  districtname: any;
 
   constructor(public ApiService:ApiServiceService,private spinnerService: NgxSpinnerService,
     private fb: FormBuilder)
@@ -46,6 +47,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
+        constituency:['',Validators.required],
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
@@ -67,6 +69,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age1:['',Validators.required],
+        constituency:['',Validators.required],
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name1:['', Validators.pattern('[A-Za-z ]{1,32}')],
         educational_qualification1:['',Validators.required],
@@ -102,7 +105,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
-    this.ApiService.viewtableOB().subscribe((data:any) => {
+    this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);

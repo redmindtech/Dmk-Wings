@@ -43,6 +43,7 @@ export class AppOrRejComponent implements OnInit {
   // ]
       this.officebearerform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        constituency:['',Validators.required],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
@@ -221,6 +222,7 @@ export class AppOrRejComponent implements OnInit {
     get email() { return this.officebearerform.get('email'); }
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
+    // get constituency() { return this.officebearerform.get('constituency'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
     get father_name() { return this.officebearerform.get('father_name'); }
     get mother_name() { return this.officebearerform.get('mother_name'); }

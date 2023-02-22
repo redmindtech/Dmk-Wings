@@ -29,6 +29,7 @@
                       <div class="col-6 md:col-6">
                         <label>Party District / கட்சி மாவட்டம்<span class="required "> *</span></label>
                         <select class="form-control"  [(ngModel)]="OBDistrict" (click)="OBconstituency_change(OBDistrict)">
+                          <option value="null" selected disabled>Select constituency</option>
                           <option *ngFor="let option of district_list" (value)="option" >
                             {{option}}</option>
                         </select>
@@ -36,13 +37,14 @@
                       <div class="col-6 md:col-6">
                         <label>Assembly constituency/சட்டமன்ற தொகுதி<span class="required "> *</span></label>
                           <select class="form-control"  [(ngModel)]="OBConstituency">
-                           
+                            <option value="" selected disabled>Select constituency</option>
                             <option *ngFor="let option of user_constituency" (value)="option" >
                               {{option}}</option>
                           </select>
                           <span *ngIf="OBConstituency=='' && editform.status=='VALID'"
                                       class="invalid-msg">Select Constituency
                             </span>
+                            <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div>
                       </div>
                     </div>
                     <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
@@ -252,15 +254,15 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="card-body">
-                    <div class="row" style="margin-bottom: 2%;">
-                      <div class="col-sm-4">
+                    <div class="form-group row">
+                      <div class="col-6 md:col-6">
                         <label>Party District / கட்சி மாவட்டம்:</label>
                         <select class="form-control"  [(ngModel)]="OBDistrict" [disabled]="true" (click)="Constituency_selection(district)">
                           <option *ngFor="let option of district_list" (value)="option" >
                             {{option}}</option>
                         </select>
                       </div>
-                      <div class="col-sm-4" style="margin-left:30%">
+                      <div class="col-6 md:col-6">
                         <label >Assembly constituency/சட்டமன்ற தொகுதி:</label>
                           <select class="form-control"  [(ngModel)]="OBConstituency" [disabled]="true">
                             <option *ngFor="let option of user_constituency" (value)="option" >
@@ -405,12 +407,18 @@
                           <div class="col-6 md:col-6">
                           <label class="row">Assembly constituency/சட்டமன்ற தொகுதி<span class="required "> *</span></label>
                             <select class="form-control"  [(ngModel)]="constituency">
+                              <option value="" selected disabled>Select constituency</option>
                               <option *ngFor="let option of user_constituency" (value)="option" >
                                 {{option}}</option>
                             </select>
-                            <span *ngIf="!constituency && officebearerform.status=='VALID'"
+                            <div *ngIf="!constituency && officebearerform.status=='VALID' "
                                       class="invalid-msg">Select Constituency
-                            </span>
+                          </div>
+                          <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div>
+                       
+                            <!-- <div *ngIf="officebearerform.get('constituency').touched && officebearerform.get('constituency') !=''">
+                              Numbers and Special charaters not allowed
+                            </div> -->
                         </div>
                       </div>
                       <!-- <div class="">
