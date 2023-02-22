@@ -27,6 +27,8 @@ import { DataTablesModule } from 'angular-datatables';
 import {CreateMeetingsComponent} from 'src/app/stateadmin-menu/create-meetings/create-meetings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component'
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -60,7 +62,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AppRoutingModule,
     FormsModule,ReactiveFormsModule, 
     HttpClientModule,DataTablesModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),BrowserAnimationsModule,NgxSpinnerModule
   ],
   
   

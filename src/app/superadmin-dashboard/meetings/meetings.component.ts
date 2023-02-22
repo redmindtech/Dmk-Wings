@@ -172,7 +172,7 @@ export class MeetingsComponent implements OnInit {
   CM_meeting_type:any;
   CM_comments:any;
   CM_participants:any;
-
+  CM_constituency:any;
 
 
   buttonviewmeeting(a:any){
@@ -188,6 +188,7 @@ console.log(a.date)
           this.CM_meeting_type=a.meeting_type;
           this.CM_comments=a.comments;
           this.CM_participants=a.participants;
+          this.CM_constituency=a.constituency;
           console.log(this.CM_name)
           }
 

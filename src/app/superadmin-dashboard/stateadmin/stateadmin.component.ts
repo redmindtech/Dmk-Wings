@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -19,8 +19,9 @@ export class StateadminComponent implements OnInit {
   message: boolean;
   username: any;
   user_password: any;
+  spinner: boolean;
 
-  constructor(public ApiService:ApiServiceService,private fb: FormBuilder) {
+  constructor(public ApiService:ApiServiceService,private fb: FormBuilder,private spinnerService: NgxSpinnerService) {
     this.stateadminform = this.fb.group({ //angForm
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -69,10 +70,13 @@ export class StateadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-
+    this.showSpinner();
 
 
   }
+  public showSpinner(): void {
+    this.spinnerService.show();
+    }
 
   getdata(){
     this.ApiService.viewtableSA().subscribe(data => {
@@ -198,7 +202,7 @@ export class StateadminComponent implements OnInit {
 
     updatedata(updateform: any){
       if(this.editform.valid==true)
-      {
+      {   this.spinner=true;
           console.log(updateform.value);
           this.ApiService.updateSA('0', this.SAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
             '91'+updateform.get('whatsapp_no1').value,

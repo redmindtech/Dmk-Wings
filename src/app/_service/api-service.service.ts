@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-          baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          // baseUrl:string="http://localhost/lat_git/Dmk-Wings/php/";
+          //  baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+           baseUrl:string="http://localhost/todaydmk/Dmk-Wings/php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -357,6 +357,7 @@ public viewtableDA() {
                     console.log("apidata : "+user_id,firstname,lastname,whatsapp_no,party_designation,approval_status)
                         return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,whatsapp_no,party_designation,email,approval_status,location_id},httpOptions)
                                 .pipe(map(Users => {
+                                  // console.log(Users);
                                 return Users;
                                 }));
                           }

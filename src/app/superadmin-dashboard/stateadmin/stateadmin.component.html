@@ -1,4 +1,10 @@
 <!-- <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+<div *ngIf="spinner==true">
+    <ngx-spinner  size="medium"  type="timer" >
+        <p style="font-size: 20px; color: white;padding-left:7%;">Loading...</p>
+    </ngx-spinner>
+</div>
 <div class="container-fluid" >
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between">

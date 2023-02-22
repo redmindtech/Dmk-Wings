@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -23,9 +24,10 @@ export class AppOrRejComponent implements OnInit {
   message: boolean;
   username: any;
   user_password: any;
+  spinner: boolean;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder)
+    private fb: FormBuilder,private spinnerService: NgxSpinnerService)
     {
       // this.ApiService.viewtableOB().subscribe((data:any) => {
       // let obj= data;
@@ -45,13 +47,13 @@ export class AppOrRejComponent implements OnInit {
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        mother_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:['',Validators.required],
-        additional_qualification:[''],
+        additional_qualification:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession:[''],
+        profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address:[''],
         applied_role:['',Validators.required],
         party_comments:[''],
@@ -66,13 +68,13 @@ export class AppOrRejComponent implements OnInit {
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age1:['',Validators.required],
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        mother_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name1:['', Validators.pattern('[A-Za-z ]{1,32}')],
         educational_qualification1:['',Validators.required],
         date_of_birth1:['',Validators.required],
-        additional_qualification1:[''],
+        additional_qualification1:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         contact_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession1:[''],
+        profession1:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address1:[''],
         applied_role1:['',Validators.required],
         party_comments1:[''],
@@ -119,8 +121,11 @@ export class AppOrRejComponent implements OnInit {
     this.getdata();
     let obj=this.constituency_list;
     this.user_constituency=obj[this.district];
-
+    this.showSpinner();
   }
+  public showSpinner(): void {
+    this.spinnerService.show();
+    }
   Constituency_selection(selection:any){
     //console.log(selection)
     if(selection != 'null'){
@@ -135,7 +140,7 @@ export class AppOrRejComponent implements OnInit {
     //this.user_constituency=[];
     let obj=this.constituency_list;
     this.user_constituency=obj[a];
-    this.user_constituency.unshift('Select Option');
+    // this.user_constituency.unshift('Select Option');
     this.OBConstituency='';
   }
   getdata(){
@@ -326,6 +331,7 @@ export class AppOrRejComponent implements OnInit {
 updatedata(updateform: any){
   // console.log(this.OBDistrict,'',this.OBConstituency);
   // console.log(updateform.value);
+  this.spinner=true;
   if(this.editform.valid==true && this.OBConstituency!=''){
     //console.log("VAAALId")
     this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,

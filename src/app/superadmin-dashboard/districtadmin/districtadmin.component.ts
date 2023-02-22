@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-districtadmin',
@@ -17,6 +18,7 @@ export class DistrictadminComponent implements OnInit {
   //email: any;
   party_designation:any;
   message: boolean;
+  spinner: boolean;
 
  // firstname1: any;
   //lastname1: any;
@@ -25,7 +27,7 @@ export class DistrictadminComponent implements OnInit {
   //whatsapp_no1:any;
 
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder, )
+    private fb: FormBuilder,private spinnerService: NgxSpinnerService )
     {   this.distadminform = this.fb.group({ //angForm
           email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
           firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -61,8 +63,11 @@ export class DistrictadminComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
-
+    this.showSpinner();
   }
+  public showSpinner(): void {
+    this.spinnerService.show();
+    }
   getdata(){
     this.ApiService.viewtableDA().subscribe(data => {
       console.log(data)
@@ -192,6 +197,7 @@ export class DistrictadminComponent implements OnInit {
 
       if(this.editform.valid==true)
       {
+        this.spinner=true;
 
       this.ApiService.updateDA('1', this.DAid, updateform.get('firstname1').value, updateform.get('lastname1').value,
 
