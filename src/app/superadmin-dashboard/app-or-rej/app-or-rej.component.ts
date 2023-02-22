@@ -330,9 +330,11 @@ export class AppOrRejComponent implements OnInit {
 }
 updatedata(updateform: any){
   // console.log(this.OBDistrict,'',this.OBConstituency);
-  // console.log(updateform.value);
-  this.spinner=true;
+  console.log(updateform);
+  
   if(this.editform.valid==true && this.OBConstituency!=''){
+    console.log(updateform)
+    this.spinner=true;
     //console.log("VAAALId")
     this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
     updateform.get('age1').value,
@@ -351,8 +353,13 @@ updatedata(updateform: any){
     .pipe()
     .subscribe(
         data => {
-            window.location.reload();
-            alert("Office Bearer detail was updated!");
+          console.log(data);
+          this.spinnerService.hide();
+          setTimeout(function(){
+           alert("Office Bearer detail was updated!");
+           window.location.reload();
+            },100)
+            
         },
 
         error => {
