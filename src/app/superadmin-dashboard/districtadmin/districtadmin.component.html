@@ -215,7 +215,7 @@
                                     </div>
 
                                     <div class="col-3" style="margin-left:34%;">
-                                        <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"   >Create District Admin</button>
+                                        <button class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message" data-backdrop="false"  >Create District Admin</button>
                                     </div>
                                 </div>
                             </form>
@@ -608,15 +608,15 @@
                                 
                                 <div class="col-12">
                                     <label>Password:</label>{{user_password}} 
-                                  
-                                   <div>
+                                </div>
                                    
                                 
                             
                                     <div class="col-6 align-center" style="margin-left:25%;">
                                         <button class="btn btn-danger btn btn-block" (click)="reload()" *ngIf="username!=null">Ok</button>
                                     </div>
-                                </div>
+                             </div>
+                        </div>
                                 
                 </div>
             </div>

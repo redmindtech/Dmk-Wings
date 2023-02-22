@@ -211,8 +211,12 @@ export class DistrictadminComponent implements OnInit {
         .pipe()
         .subscribe(
             data => {
-                window.location.reload();
+              this.spinnerService.hide();
+              setTimeout(function(){
                 alert("District admin detail was updated!");
+                window.location.reload();
+                },100)
+                
             },
 
             error => {

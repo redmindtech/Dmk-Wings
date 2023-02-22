@@ -212,8 +212,12 @@ export class StateadminComponent implements OnInit {
             .pipe()
             .subscribe(
                 data => {
-                    window.location.reload();
-                    alert("State admin detail was updated!");
+                    this.spinnerService.hide();
+                    setTimeout(function(){
+                      alert("State admin detail was updated!");
+                      window.location.reload();
+                      },100)
+                    
 
                 },
 
