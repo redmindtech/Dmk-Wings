@@ -46,7 +46,7 @@
                           <span *ngIf="OBConstituency=='' && editform.status=='VALID'"
                                       class="invalid-msg">Select Constituency
                             </span>
-                            <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div>
+                            <!-- <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div> -->
                       </div>
                     </div>
                     <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
@@ -416,7 +416,7 @@
                             <div *ngIf="!constituency && officebearerform.status=='VALID' "
                                       class="invalid-msg">Select Constituency
                           </div>
-                          <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div>
+                          <!-- <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div> -->
                        
                             <!-- <div *ngIf="officebearerform.get('constituency').touched && officebearerform.get('constituency') !=''">
                               Numbers and Special charaters not allowed
@@ -792,7 +792,7 @@
 
 
 
-<div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID'" >
+<div class="modal fade show" id="message" *ngIf="officebearerform.status=='VALID' && constituency !=''" >
   <div class="modal-dialog modal-m"  style="margin-top:10%;">
       <div class="modal-content">
 

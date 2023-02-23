@@ -47,7 +47,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        constituency:['',Validators.required],
+        // constituency:['',Validators.required],
         father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],

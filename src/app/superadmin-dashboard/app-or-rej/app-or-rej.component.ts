@@ -43,7 +43,7 @@ export class AppOrRejComponent implements OnInit {
   // ]
       this.officebearerform = this.fb.group({ //angForm
         email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        constituency:['',Validators.required],
+        // constituency:['',Validators.required],
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
@@ -171,7 +171,8 @@ export class AppOrRejComponent implements OnInit {
 
     console.log(officebearerform);
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='')
-    {   console.log(officebearerform);
+    {  
+       console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
           officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(

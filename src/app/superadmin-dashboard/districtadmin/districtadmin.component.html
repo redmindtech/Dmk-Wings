@@ -141,8 +141,7 @@
                                         <span class="required "> *</span>
                                         <input type="email" class="form-control form-control" id="exampleInputEmail"
                                             formControlName="email"
-                                            placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [value]="DAmail">
-
+                                            placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" >
                                               <div  *ngIf="(distadminform.get('email').touched && email.value=='')"
                                               class="invalid-msg" >Please fill out this field</div>
                                               <div  class="invalid-msg" *ngIf="distadminform.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>

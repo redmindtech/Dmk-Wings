@@ -28,25 +28,24 @@
                               <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_name').untouched" [hidden]='hidden'>Please fill this field</div>
 
                           </div>
-                          <div class="col-6 md:col-6">
-                              <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
-                              <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
-                                          placeholder="Enter Meeting Date / சந்திப்பு தேதி" required>
-                                          <div  *ngIf="(createmeetingform.get('meeting_date').touched && createmeetingform.get('meeting_date').value=='')"
-                                          class="invalid-msg" >Please fill this field</div>
-                                          <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_date').untouched" [hidden]='hidden'>Please fill this field</div>
-
-                          </div>
+                          
                   </div>
 
                   <div class="form-group row">
+                    <div class="col-6 md:col-6">
+                        <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
+                        <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
+                                    placeholder="Enter Meeting Date / சந்திப்பு தேதி" required>
+                                    <div  *ngIf="(createmeetingform.get('meeting_date').touched && createmeetingform.get('meeting_date').value=='')"
+                                    class="invalid-msg" >Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_date').untouched" [hidden]='hidden'>Please fill this field</div>
+                    </div>
                           <div class="col-6 md:col-6">
                               <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
                               <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
                               <div  *ngIf="(createmeetingform.get('meeting_time').touched && createmeetingform.get('meeting_time').value=='')"
                               class="invalid-msg" >Please fill this field</div>
                               <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_time').untouched" [hidden]='hidden'>Please fill this field</div>
-
                           </div>
                   </div>
 
@@ -59,7 +58,23 @@
                           <div class="form-check">
                               <input class="form-check-input" type="radio" name="participants"  formControlName="participants" id="inlineRadio2" (click)="Participants('option2')"  value="2">
                               <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                          </div>
+
+                              <div  class="col-6 md:col-6">
+                                <ng-multiselect-dropdown
+                               [placeholder]="'Select District'"
+                               [settings]="dropdownSettings"
+                               [data]="dropdownList"
+                               formControlName="meeting_district"
+
+                               (onSelect)="onItemSelect($event)"
+                               (onSelectAll)="onSelectAll($event)"
+                               (onDeSelect)="onItemDeSelect($event)"
+                               (onDeSelectAll)="onUnSelectAll()"
+                               (click)="Participants('option2')" *ngIf="participantsptions=='option2'" >
+                               </ng-multiselect-dropdown>
+
+                           </div>
+                            </div>
                           <div class="form-check">
                               <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio3" (click)="Participants('option3')" value="3">
                               <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
@@ -198,42 +213,41 @@
                   <div class="form-group row">
                           <div class="col-6 md:col-6">
                               <label>Meeting Name / கூட்டத்தின் பெயர்</label><span class="required "> *</span>
-                              <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்"  [value]="CM_name" [disabled]="true">
-
-
-                          </div>
-                          <div class="col-6 md:col-6">
-                              <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
-                              <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
-                                          placeholder="Enter Meeting Date / சந்திப்பு தேதி" required [value]="CM_date">
+                              <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்"  [value]="CM_name" [disabled]="true" readonly="readonly">
 
                           </div>
+                         
                   </div>
 
                   <div class="form-group row">
+                    <div class="col-6 md:col-6">
+                        <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
+                        <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
+                                    placeholder="Enter Meeting Date / சந்திப்பு தேதி" required [value]="CM_date" readonly="readonly">
+
+                    </div> 
                           <div class="col-6 md:col-6">
                               <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
-                              <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required  [value]="CM_time">
+                              <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required  [value]="CM_time" readonly="readonly">
 
                           </div>
                   </div>
 
                   <div class="form-group" required >
-                      <label>Participants / பங்கேற்பாளர்கள்</label><span class="required "> *</span>
+                    <label>Participants / பங்கேற்பாளர்கள்</label><span class="required "> *</span>
 
-                          <div class="form-check" *ngIf="CM_participants==1" >
+                        <div class="form-check" *ngIf="CM_participants==1" >
 
-                             All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்
-                          </div>
-                          <div class="form-check"*ngIf="CM_participants==2">
+                           All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்
+                        </div>
+                        <div class="form-check"*ngIf="CM_participants==2">
+                          <label class="form-check-label" for="option2">OfflineDistrict Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
+                        <input  class="form-control col-6 md:col-6" type="text" placeholder="Enter Meeting Url"  [value]="CM_constituency" readonly="readonly">
+                      </div>
+                        <div class="form-check"*ngIf="CM_participants==3">
 
-                              District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்
-                          </div>
-                          <div class="form-check"*ngIf="CM_participants==3">
-
-                             Engineers/பொறியாளர்கள்
-                          </div>
-
+                           Engineers/பொறியாளர்கள்
+                        </div>
                           <!-- <div class="col-6 md:col-6" *ngIf="participantsptions=='option2'|| participantsptions=='option3'">
                               <div class="form-group">
                                   <label>Select Multiple districts</label>
@@ -254,12 +268,12 @@
                           <div class="form-check" *ngIf="CM_meeting_type=='online'" >
 
                               <label class="form-check-label" for="option1">Online</label>
-                              <input  class="form-control col-6 md:col-6"  type="text" placeholder="Enter Meeting Url"  [value]="CM_meeting_location">
+                              <input  class="form-control col-6 md:col-6" readonly="readonly" type="text" placeholder="Enter Meeting Url"  [value]="CM_meeting_location">
                           </div>
                           <div class="form-check" *ngIf="CM_meeting_type=='offline'">
 
                               <label class="form-check-label" for="option2">Offline</label>
-                              <input  class="form-control col-6 md:col-6"   placeholder="Enter Location"  [value]="CM_meeting_location">
+                              <input  class="form-control col-6 md:col-6" readonly="readonly"  placeholder="Enter Location"  [value]="CM_meeting_location">
                           </div>
                       </div>
                   </div>
@@ -267,7 +281,7 @@
                       <div>
                           <label>Comments / கருத்துகள்</label>
                       <input pInputText type="text" class="form-control" formControlName="comments" id="exampleInputEmail"
-                          placeholder="Comments / கருத்துகள்"  [value]="CM_comments">
+                          placeholder="Comments / கருத்துகள்" readonly="readonly"  [value]="CM_comments">
                       </div>
                   </div>
 

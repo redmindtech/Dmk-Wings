@@ -4,6 +4,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 
 
@@ -15,7 +16,7 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 export class CreateMeetingsComponent implements OnInit {
   MeetingOptions:any;
   participantsptions:any;
-  districts:any=['Salem','Karur','Namakkal','Trichy'];
+  // districts:any=['Salem','Karur','Namakkal','Trichy'];
   createmeetingform !:FormGroup;
   constituencies!:any;
   meeting_name: any;
@@ -25,7 +26,25 @@ export class CreateMeetingsComponent implements OnInit {
   meeting_type: any;
   meeting_location: any;
   hidden:boolean=true;
+  dropdownList : string[]= [];
+  dropdownSettings:IDropdownSettings={};
+ 
+  selectedItems = [];
+  
+  dropDownForm: FormGroup;
 
+  onItemSelect(item: any) {
+    console.log('onItemSelect', item);
+  }
+  onItemDeSelect(item: any) {
+      console.log('onItemDeSelect', item);
+  }
+  onSelectAll(items: any) {
+      console.log('onSelectAll', items);
+  }
+  onUnSelectAll() {
+      console.log('onUnSelectAll fires');
+  }
 
 
   constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router) {
@@ -37,7 +56,7 @@ export class CreateMeetingsComponent implements OnInit {
       meeting_type:['',Validators.required],
       comments:[''],
       meeting_location:['',Validators.required],
-   district:['']
+      meeting_district:['']
 
     });
   }
@@ -62,6 +81,17 @@ export class CreateMeetingsComponent implements OnInit {
       pagingType: 'full_numbers'
     };
 
+    const all_districts = this.ApiService.all_districts;
+    this.dropdownList = all_districts;
+  
+   
+    this.selectedItems = [
+      { }
+    ];
+    this.dropDownForm = this.fb.group({
+      meeting_district: [this.selectedItems]
+  });
+
   }
 
   customers:any=[];
@@ -83,14 +113,14 @@ export class CreateMeetingsComponent implements OnInit {
           angForm1.value.meeting_name,
           angForm1.value.meeting_date,
        );
-        if(angForm1.status == "VALID" &&  angForm1.value.meeting_name!=null  && angForm1.value.meeting_date !=null  && angForm1.value.meeting_time!=null && angForm1.value.participants !=null &&  angForm1.value.meeting_location !=null)
+        if(angForm1.status == "VALID" &&  angForm1.value.meeting_name!=null  && angForm1.value.meeting_date !=null  && angForm1.value.meeting_time!=null && angForm1.value.participants !=null &&  angForm1.value.meeting_location !=null &&  angForm1.value.meeting_district !=null)
         {
 
 
             this.ApiService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
               angForm1.value.meeting_type,
-              angForm1.value.meeting_location,angForm1.value.comments, angForm1.value.district)
+              angForm1.value.meeting_location,angForm1.value.comments, angForm1.value.meeting_district.toString())
             .pipe(first())
             .subscribe(
             data => {
@@ -118,7 +148,7 @@ export class CreateMeetingsComponent implements OnInit {
           .subscribe(
           data => {
               window.location.reload();
-              alert("District admin detail has been deleted !")
+              alert("Meeting has been canceled!")
           },
 
           error => {
@@ -144,7 +174,7 @@ export class CreateMeetingsComponent implements OnInit {
   CM_meeting_type:any;
   CM_comments:any;
   CM_participants:any;
-
+  CM_constituency:any;
 
 
   buttonviewmeeting(a:any){
@@ -160,6 +190,7 @@ console.log(a.date)
           this.CM_meeting_type=a.meeting_type;
           this.CM_comments=a.comments;
           this.CM_participants=a.participants;
+          this.CM_constituency=a.constituency;
           console.log(this.CM_name)
           }
 
