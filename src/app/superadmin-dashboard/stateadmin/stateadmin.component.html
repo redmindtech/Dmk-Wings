@@ -26,7 +26,7 @@
                         <div class="card-danger">
                             <div class="card-header">
                               <h3 class="card-title">Create State Admin</h3>
-                              <button type="button" class="close" data-dismiss="modal" (click)="stateadminform.reset()">&times;</button>
+                              <button type="button" class="close" data-dismiss="modal" (click)="FormReset()">&times;</button>
                             </div>
                             <form class="user" [formGroup]='stateadminform' (ngSubmit)="postdata(stateadminform)" autocomplete="off">
                                 <div class="card-body">
@@ -129,6 +129,9 @@
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                         </select>
+                                        <div *ngIf="stateadminform.get('approval_status').touched && stateadminform.get('approval_status').value==''"
+                                        class="invalid-msg" >Please select the Status
+                                      </div>
                                         <div *ngIf="stateadminform.get('approval_status').hasError('required')"
                                         class="invalid-msg" [hidden]='hidden'>Please select the Status
                                       </div>

@@ -28,20 +28,10 @@ export class DistrictadminComponent implements OnInit {
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService )
-    {   this.distadminform = this.fb.group({ //angForm
-          email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-          lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-            district:['',Validators.required],
-
-            whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-            party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-            approval_status:['',Validators.required],
-            location_id:['1',Validators.required]
-            });
+    {   this.FormIntialize();
 
         this.editform = this.fb.group({ //angForm
-          email1: [this.DAname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+          email1: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
           firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
           lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
           district1:['',Validators.required],
@@ -51,6 +41,19 @@ export class DistrictadminComponent implements OnInit {
           location_id1:['1',Validators.required],
           mode1:['1']
           });
+  }
+  FormIntialize(){
+    this.distadminform = this.fb.group({ //angForm
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+        district:['',Validators.required],
+
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+        approval_status:['',Validators.required],
+        location_id:['1',Validators.required]
+        });
   }
   district_list:any[]=this.ApiService.all_districts;
 
@@ -147,10 +150,12 @@ export class DistrictadminComponent implements OnInit {
     get lastname() { return this.distadminform.get('lastname'); }
     get district() { return this.distadminform.get('district'); }
     get whatsapp_no() { return this.distadminform.get('whatsapp_no'); }
+    
     get party_designation1() { return this.editform.get('party_designation1'); }
     get firstname1() { return this.editform.get('firstname1'); }
     get lastname1() { return this.editform.get('lastname1'); }
     get district1() { return this.editform.get('district1'); }
+    //get district1() { return this.editform.get('district1'); }
 
     DAid:any;
     DAname:any;
@@ -188,6 +193,12 @@ export class DistrictadminComponent implements OnInit {
             whatsapp_no1:this.DAwhats
 
           })
+    }
+
+    formReset(){
+      this.distadminform.reset();
+      this.FormIntialize();
+     this.hidden=true;
     }
 
 

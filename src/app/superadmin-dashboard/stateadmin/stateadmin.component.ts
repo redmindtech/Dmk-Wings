@@ -22,17 +22,7 @@ export class StateadminComponent implements OnInit {
   spinner: boolean;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder,private spinnerService: NgxSpinnerService) {
-    this.stateadminform = this.fb.group({ //angForm
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-      lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-      //district:['',Validators.required],
-      whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-      party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-      approval_status:['',Validators.required],
-      location_id:['1'],
-      mode:['0']
-      });
+    this.FormInilialize();
 
       this.editform = this.fb.group({ //angForm
         email1: [this.SAfirstname, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -49,6 +39,24 @@ export class StateadminComponent implements OnInit {
 
 
 
+  }
+  FormInilialize(){
+    this.stateadminform = this.fb.group({ //angForm
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+      //district:['',Validators.required],
+      whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+      party_designation:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+      approval_status:['',Validators.required],
+      location_id:['1'],
+      mode:['0']
+      });
+  }
+  FormReset(){
+    this.stateadminform.reset();
+    this.FormInilialize();
+    this.hidden=true;
   }
   //firstname1=new FormControl('hu');
 

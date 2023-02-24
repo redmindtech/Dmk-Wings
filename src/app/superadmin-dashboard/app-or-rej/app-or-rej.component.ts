@@ -247,6 +247,7 @@ export class AppOrRejComponent implements OnInit {
     get applied_role1() { return this.editform.get('applied_role1'); }
     get party_comments1() { return this.editform.get('party_comments1'); }
     get address1() { return this.editform.get('address1'); }
+    get email1() { return this.editform.get('email1'); }
 
     OBid:any;
     OBname: any;
@@ -433,7 +434,7 @@ editcalculateAge() {
 
 
 get user_id() { return this.reqform.get('user_id'); }
-get email1() { return this.reqform.get('email1'); }
+//get email1() { return this.reqform.get('email1'); }
 get name() { return this.reqform.get('name'); }
 get  new_designation() { return this.reqform.get('new_designation'); }
 get old_designation() { return this.reqform.get(' old_designation'); }

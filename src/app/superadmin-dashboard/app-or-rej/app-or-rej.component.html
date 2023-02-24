@@ -132,7 +132,7 @@
                       <div class="form-group row">
                               <div class="col-6 md:col-6">
                                 <label>Phone Number / தொலைபேசி எண்<span class="required "> *</span></label>
-                                <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" />
+                                <input type="text" name="contact_no1" formControlName="contact_no1" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" maxlength="10"/>
                                     <div *ngIf="contact_no1.status=='INVALID'&& contact_no1.touched==true && contact_no1.value!=''" class="invalid-msg">
                                       Alphabets and Special characters not allowed</div>
                                     <div  *ngIf="(editform.get('contact_no1').touched && contact_no1.value=='')"
@@ -147,7 +147,7 @@
                               </div>
                               <div class="col-6 md:col-6">
                                 <label>Whatsapp Number /வாட்ஸ்அப் எண்<span class="required "> *</span></label>
-                                <input type="text" name="whatsapp_no" formControlName="whatsapp_no1" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" />
+                                <input type="text" name="whatsapp_no" formControlName="whatsapp_no1" class="form-control"  placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்" maxlength="10"/>
                                     <div *ngIf="whatsapp_no1.status=='INVALID'&& whatsapp_no1.touched==true && whatsapp_no1.value!=''" class="invalid-msg">
                                       Please enter valid phone number</div>
                                     <div  *ngIf="(editform.get('whatsapp_no1').touched && whatsapp_no1.value=='')"
@@ -177,7 +177,7 @@
                                   <div *ngIf="editform.get('email1').hasError('required')"
                                               class="invalid-msg" [hidden]='hidden'>Please enter the Email
                                   </div> -->
-                                  <div *ngIf="email1.status=='INVALID'" class="invalid-msg">
+                                  <div *ngIf="email1.status=='INVALID' && editform.get('email1').value!=''" class="invalid-msg">
                                     Please enter the valid Email Id</div>
                                   <div  *ngIf="(editform.get('email1').touched && email1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
@@ -523,7 +523,7 @@
                                   <label>Phone Number / தொலைபேசி எண்</label><span class="required "> *</span>
                                   <input type="text" name="contact_no" class="form-control"  placeholder="Enter Phone Number / தொலைபேசி எண்" maxlength="10" formControlName="contact_no"/>
                                       <div *ngIf="contact_no.status=='INVALID'&& contact_no.touched==true && contact_no.value!=''" class="invalid-msg">
-                                        Alphabets Special characters not allowed</div>
+                                        Please enter the valid phone number</div>
                                       <div  *ngIf="(officebearerform.get('contact_no').touched && contact_no.value=='')"
                                       class="invalid-msg" >Please fill this field</div>
                                       <div  class="invalid-msg" *ngIf="officebearerform.get('contact_no').untouched" [hidden]='hidden'>Please fill this field</div>
