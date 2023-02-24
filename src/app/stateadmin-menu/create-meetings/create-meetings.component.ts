@@ -55,7 +55,7 @@ export class CreateMeetingsComponent implements OnInit {
       participants:['',Validators.required],
       meeting_type:['',Validators.required],
       comments:[''],
-      meeting_location:['',Validators.required],
+      meeting_location:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       meeting_district:['']
 
     });
@@ -81,7 +81,7 @@ export class CreateMeetingsComponent implements OnInit {
       pagingType: 'full_numbers'
     };
 
-    const all_districts = this.ApiService.all_districts;
+    const all_districts = this.ApiService.meeting_districts;
     this.dropdownList = all_districts;
   
    
