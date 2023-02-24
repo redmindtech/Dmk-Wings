@@ -68,6 +68,7 @@ export class SelfRegistrationComponent implements OnInit {
           });
       }
       else{
+        alert('Enter Valid Details')
         this.hidden=false;
       }
   }

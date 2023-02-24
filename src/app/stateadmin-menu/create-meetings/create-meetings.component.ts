@@ -55,7 +55,7 @@ export class CreateMeetingsComponent implements OnInit {
       participants:['',Validators.required],
       meeting_type:['',Validators.required],
       comments:[''],
-      meeting_location:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      meeting_location:['',Validators.required],
       meeting_district:['']
 
     });

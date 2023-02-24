@@ -465,7 +465,7 @@
                                             *</span><br>
                                         <select class="form-control form-select" formControlName="party_designation1"
                                             name="party_designation1">
-                                            <option value="">Select Option</option>
+                                            <option value="" disabled selected hidden>Select Option</option>
                                             <option value="District Organiser ">District Organiser / மாவட்ட அமைப்பாளர்
                                             </option>
                                         </select>
@@ -482,6 +482,7 @@
                                         <select class="form-control form-select" formControlName="district1"
                                             name="district1" required>
                                             <!-- <option value="">Select District</option> -->
+                                            <option value="" disabled selected hidden>Select District</option>
                                             <option *ngFor="let option of district_list" (value)="district1">
                                                 {{option}}</option>
 

@@ -58,7 +58,7 @@
                                     <div  class="invalid-msg" *ngIf="angForm.get('date_of_birth').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                             <div class="col-sm-6">
-                                <label>Mobile / கைபேசி</label><span class="required "> *</span>
+                                <label>Mobile No / கைபேசி எண்</label><span class="required "> *</span>
                                 <input type="text" maxlength="10" class="form-control form-control" formControlName="contact_no"
                                     placeholder="Enter Mobile / கைபேசி">
                                     <div *ngIf="angForm.get('contact_no').status=='INVALID'&& angForm.get('contact_no').touched==true && angForm.get('contact_no').value!=''" class="invalid-msg">
@@ -97,6 +97,7 @@
                                 <div class="col-sm-6">
                                     <label>Select District Name</label><span class="required "> *</span>
                                     <select class="form-control dropdown-toggle" aria-label="Default select example" formControlName="district">
+                                        <option value="" disabled selected hidden>Select District</option>
                                         <option *ngFor="let option of district_list" (value)="district">
                                             {{option}}</option>
                                       </select>

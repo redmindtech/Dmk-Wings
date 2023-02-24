@@ -41,28 +41,9 @@ export class AppOrRejComponent implements OnInit {
   //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
   //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'}
   // ]
-      this.officebearerform = this.fb.group({ //angForm
-        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        // constituency:['',Validators.required],
-        firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-        age:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
-        educational_qualification:['',Validators.required],
-        date_of_birth:['',Validators.required],
-        additional_qualification:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
-        contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
-        address:[''],
-        applied_role:['',Validators.required],
-        party_comments:[''],
-        location_id:['1',Validators.required],
-        mode:['2',Validators.required]
-      });
+      
 
-
+      this.FormIntialize();
       this.editform = this.fb.group({ //angForm
         email1: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -95,11 +76,41 @@ export class AppOrRejComponent implements OnInit {
         this.district = JSON.parse(localStorage.getItem('user_district'));
 
     }
+    FormIntialize(){
+      this.officebearerform = this.fb.group({ //angForm
+        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        // constituency:['',Validators.required],
+        firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+        age:['',Validators.required],
+        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
+        educational_qualification:['',Validators.required],
+        date_of_birth:['',Validators.required],
+        additional_qualification:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
+        contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
+        address:[''],
+        applied_role:['',Validators.required],
+        party_comments:[''],
+        location_id:['1',Validators.required],
+        mode:['2',Validators.required]
+      });
+
+    }
 
   officebearerform !:FormGroup;
   district_list:any[]=this.ApiService.all_districts;
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
+  
+  FormReset(){
+    this.officebearerform.reset();
+    this.FormIntialize();
+    this.hidden=true;
+
+  }
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
@@ -284,8 +295,8 @@ export class AppOrRejComponent implements OnInit {
          this.OBmothername=a.mother_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
-         this.OBphonenumber=a.contact_no.slice(2);
-         this.whatsappnumner=a.whatsapp_no.slice(2);
+         this.OBphonenumber=a.contact_no;
+         this.whatsappnumner=a.whatsapp_no;
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
@@ -347,8 +358,8 @@ updatedata(updateform: any){
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,
-    '91'+updateform.get('contact_no1').value,
-    '91'+updateform.get('whatsapp_no1').value,
+    updateform.get('contact_no1').value,
+    updateform.get('whatsapp_no1').value,
     updateform.get('profession1').value,
     updateform.get('address1').value,
     updateform.get('applied_role1').value,

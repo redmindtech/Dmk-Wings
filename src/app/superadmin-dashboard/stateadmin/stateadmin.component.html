@@ -82,7 +82,7 @@
                                     <div class="col-sm-6">
                                         <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
                                         <select name="party_designation" formControlName="party_designation"  class="form-control">
-                                            <option value="">Select Option</option>
+                                            <option value="" disabled selected hidden>Select Option</option>
                                             <option value="State Engineer Team Leader">State Engineer Team Leader / மாநில பொறியாளர் அணித் தலைவர்</option>
                                             <option value="State Secretary">State Secretary / மாநில செயலாளர்</option>
                                             <option value="Joint Secretary">Joint Secretary / இணைச் செயலாளர்</option>
@@ -125,13 +125,10 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Status / நிலை</label><span class="required "> *</span><br>
                                         <select name="approval_status" formControlName="approval_status"  class="form-control">
-                                            <option value="">Select Option</option>
+                                            <option value="" disabled selected hidden>Select Option</option>
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                         </select>
-                                        <div *ngIf="stateadminform.get('approval_status').touched && stateadminform.get('approval_status').value==''"
-                                        class="invalid-msg" >Please select the Status
-                                      </div>
                                         <div *ngIf="stateadminform.get('approval_status').hasError('required')"
                                         class="invalid-msg" [hidden]='hidden'>Please select the Status
                                       </div>
@@ -369,7 +366,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
                                     <select formControlName="party_designation1" class="form-control">
-                                        <option value="">Select Option</option>
+                                        <option value="" disabled selected hidden>Select Option</option>
                                         <option value="State Engineer Team Leader">State Engineer Team Leader / மாநில பொறியாளர் அணித் தலைவர்</option>
                                         <option value="State Secretary">State Secretary / மாநில செயலாளர்</option>
                                         <option value="Joint Secretary">Joint Secretary / இணைச் செயலாளர்</option>
@@ -407,7 +404,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Status / நிலை</label><span class="required "> *</span><br>
                                     <select formControlName="approval_status1"  class="form-control">
-                                        <option value="">Select Option</option>
+                                        <option value="" disabled selected hidden>Select Option</option>
                                         <option value="Active">Active</option>
                                         <option value="Inactive">Inactive</option>
                                     </select>
