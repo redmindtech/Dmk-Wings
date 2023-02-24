@@ -79,7 +79,7 @@ export class MeetingsComponent implements OnInit {
       pagingType: 'full_numbers'
     };
 
-    const all_districts = this.ApiService.all_districts;
+    const all_districts = this.ApiService.meeting_districts;
     this.dropdownList = all_districts;
   
    
