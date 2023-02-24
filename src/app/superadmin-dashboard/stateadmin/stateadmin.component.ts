@@ -76,7 +76,8 @@ export class StateadminComponent implements OnInit {
     this.getdata();
     //this.ApiService.viewtableSA();
     this.dtOptions = {
-      pagingType: 'full_numbers'
+      pagingType: 'full_numbers',
+      order:[]
     };
     this.showSpinner();
 

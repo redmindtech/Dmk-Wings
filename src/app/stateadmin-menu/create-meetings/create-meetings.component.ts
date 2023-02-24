@@ -78,7 +78,8 @@ export class CreateMeetingsComponent implements OnInit {
     // this.ApiService.viewtableOBapprove();
     // this.ApiService.viewtablemeeting();
     this.dtOptions = {
-      pagingType: 'full_numbers'
+      pagingType: 'full_numbers',
+      order:[]
     };
 
     const all_districts = this.ApiService.meeting_districts;

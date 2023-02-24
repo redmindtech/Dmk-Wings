@@ -123,7 +123,8 @@ export class AppOrRejComponent implements OnInit {
     //console.log(this.district_list);
 
     this.dtOptions[0] = {
-      pagingType: 'full_numbers'
+      pagingType: 'full_numbers',
+      order:[]
     };
 
     // this.ApiService.viewtableOB();

@@ -21,7 +21,8 @@ export class OfficeBearerApprovalComponent implements OnInit {
     this.ApiService.viewtableOBapprove();
     this.getdata();
     this.dtOptions = {
-      pagingType: 'full_numbers'
+      pagingType: 'full_numbers',
+      order:[]
     };
   }
   getdata(){
