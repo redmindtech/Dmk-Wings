@@ -97,16 +97,13 @@
                                 <div class="col-sm-6">
                                     <label>Select District Name</label><span class="required "> *</span>
                                     <select class="form-control dropdown-toggle" aria-label="Default select example" formControlName="district">
-                                        <option selected>Select District Name</option>
-                                        <option value="SALEM">SALEM</option>
-                                        <option value="NAMAKKAL">NAMAKKAL</option>
-                                        <option value="CHENNAI">CHENNAI</option>
+                                        <option *ngFor="let option of district_list" (value)="district">
+                                            {{option}}</option>
                                       </select>
-                                      <div *ngIf="angForm.get('district').hasError('required') && angForm.get('district').touched"
-                                            class="invalid-msg">Please select the district
-                                        </div>
-                                        <div *ngIf="angForm.get('district').hasError('required')" class="invalid-msg"
-                                        [hidden]='hidden'>Please select the district
+                                      <div  *ngIf="(angForm.get('district').touched && district.value=='Select District') && angForm.get('district').value=='' "
+                                            class="invalid-msg" >Please fill out this field</div>
+                                            <div *ngIf="angForm.get('district').hasError('required')"
+                                        class="invalid-msg" [hidden]='hidden'>Please fill out this field
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-12">

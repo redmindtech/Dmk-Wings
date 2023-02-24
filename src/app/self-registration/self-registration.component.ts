@@ -13,6 +13,7 @@ export class SelfRegistrationComponent implements OnInit {
   mydist:any;
   angForm :FormGroup;
   hidden:boolean=true;
+  district:any;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, private router:Router) {
@@ -33,7 +34,7 @@ export class SelfRegistrationComponent implements OnInit {
             });
 
     }
-
+    district_list:any[]=this.ApiService.all_districts;
   ngOnInit(): void {
   }
 
