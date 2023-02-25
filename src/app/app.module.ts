@@ -54,7 +54,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OfficeBearerApprovalComponent,
     CreateMeetingsComponent,
     AppointDistrictOffBearerComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MeetingsComponent,
+    CreateMeetingsComponent
    
     ],
   imports: [

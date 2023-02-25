@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -32,6 +33,8 @@ export class CreateMeetingsComponent implements OnInit {
   selectedItems = [];
   
   dropDownForm: FormGroup;
+  spinner: boolean;
+
 
   onItemSelect(item: any) {
     console.log('onItemSelect', item);
@@ -47,7 +50,7 @@ export class CreateMeetingsComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router) {
+  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router,private spinnerService: NgxSpinnerService) {
     this.createmeetingform= this.fb.group({
       meeting_name: ['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       meeting_date:['',Validators.required ],
@@ -78,8 +81,7 @@ export class CreateMeetingsComponent implements OnInit {
     // this.ApiService.viewtableOBapprove();
     // this.ApiService.viewtablemeeting();
     this.dtOptions = {
-      pagingType: 'full_numbers',
-      order:[]
+      pagingType: 'full_numbers'
     };
 
     const all_districts = this.ApiService.meeting_districts;
@@ -92,8 +94,12 @@ export class CreateMeetingsComponent implements OnInit {
     this.dropDownForm = this.fb.group({
       meeting_district: [this.selectedItems]
   });
+  this.showSpinner();
 
   }
+  public showSpinner(): void {
+    this.spinnerService.show();
+    }
 
   customers:any=[];
   getdata(){
