@@ -32,6 +32,7 @@ export class MeetingsComponent implements OnInit {
   selectedItems = [];
   
   dropDownForm: FormGroup;
+  tableshow: boolean=false;
   
 
 
@@ -67,10 +68,13 @@ export class MeetingsComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit():void{
+    this.customers=[];
     this.showSpinner();
     this.ApiService.viewtablemeeting().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
+      this.tableshow=true;
+      //console.log(this.customers.length);
       //console.log(obj.data.length);
       ;})
 
@@ -111,6 +115,7 @@ export class MeetingsComponent implements OnInit {
           this.customers.pop();
     //console.log(this.ApiService.tabledataDA)
     //this.ApiService.viewtableOB();
+    
 
   }
 

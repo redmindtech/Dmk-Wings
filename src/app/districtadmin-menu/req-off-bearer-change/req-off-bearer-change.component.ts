@@ -19,6 +19,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
   district: any;
   constituency: any;
   districtname: any;
+  tableshow: boolean=false;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder)
@@ -83,6 +84,7 @@ export class ReqOffBearerChangeComponent implements OnInit {
             console.log(data);
       let obj= data;
       this.customers=obj.data;
+      this.tableshow=true;
       //console.log(obj.data.length);
       ;})
     // this.getdata();

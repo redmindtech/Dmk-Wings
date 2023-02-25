@@ -11,6 +11,7 @@ export class OfficeBearerApprovalComponent implements OnInit {
 
   customers:any;
   dtOptions: DataTables.Settings = {};
+  tableshow: boolean=false;
   constructor(public ApiService:ApiServiceService,
     public router:Router) { }
 
@@ -36,6 +37,7 @@ export class OfficeBearerApprovalComponent implements OnInit {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
+      this.tableshow=true;
       ;})
 
     }

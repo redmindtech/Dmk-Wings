@@ -34,6 +34,7 @@ export class CreateMeetingsComponent implements OnInit {
   
   dropDownForm: FormGroup;
   spinner: boolean;
+  tableshow: boolean=false;
 
 
   onItemSelect(item: any) {
@@ -72,6 +73,7 @@ export class CreateMeetingsComponent implements OnInit {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
+      this.tableshow=true;
       ;})
 
     // this.getdata();

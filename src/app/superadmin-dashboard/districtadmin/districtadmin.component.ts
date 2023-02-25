@@ -19,6 +19,7 @@ export class DistrictadminComponent implements OnInit {
   party_designation:any;
   message: boolean;
   spinner: boolean;
+  tableshow: boolean=false;
 
  // firstname1: any;
   //lastname1: any;
@@ -79,6 +80,7 @@ export class DistrictadminComponent implements OnInit {
             this.customers.push(data[prop])
           }
           console.log(this.customers[0]);
+          this.tableshow=true;
     });
   }
 

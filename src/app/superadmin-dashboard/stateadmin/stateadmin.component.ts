@@ -20,6 +20,7 @@ export class StateadminComponent implements OnInit {
   username: any;
   user_password: any;
   spinner: boolean;
+  tableshow: boolean=false;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder,private spinnerService: NgxSpinnerService) {
     this.FormInilialize();
@@ -94,6 +95,7 @@ export class StateadminComponent implements OnInit {
             this.customers.push(data[prop])
           }
           console.log(this.customers);
+          this.tableshow=true;
     });
 
 

@@ -26,6 +26,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   user_password: any;
   spinner: boolean;
   districtname: any;
+  tableshow: boolean=false;
 
   constructor(public ApiService:ApiServiceService,private spinnerService: NgxSpinnerService,
     private fb: FormBuilder)
@@ -110,6 +111,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
+      this.tableshow=true;
       ;})
     //console.log(this.customers);
     //console.log(this.district_list);
