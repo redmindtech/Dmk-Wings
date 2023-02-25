@@ -128,7 +128,7 @@ export class MeetingsComponent implements OnInit {
        );
         if(angForm1.status == "VALID" &&  angForm1.value.meeting_name!=null  && angForm1.value.meeting_date !=null  && angForm1.value.meeting_time!=null && angForm1.value.participants !=null &&  angForm1.value.meeting_location !=null &&  angForm1.value.meeting_district !=null)
         {
-
+          this.spinner=true;
 
             this.ApiService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
@@ -137,9 +137,12 @@ export class MeetingsComponent implements OnInit {
             .pipe(first())
             .subscribe(
             data => {
-                 window.location.reload();
-                 alert("Meeting has been created successfully!")
-
+              this.spinnerService.hide();
+              setTimeout(function(){
+                alert("Meeting has been created successfully!")
+                window.location.reload();
+                },100)
+                 
             //this.router.navigate(['superadmin/Meetings']);
              angForm1.reset();
             },
