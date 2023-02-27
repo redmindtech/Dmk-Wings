@@ -105,7 +105,7 @@
                                             <div  *ngIf="(stateadminform.get('whatsapp_no').touched && stateadminform.get('whatsapp_no').value=='')"
                                             class="invalid-msg" >Please fill out this field</div>
                                             <div  class="invalid-msg" *ngIf="stateadminform.get('whatsapp_no').untouched" [hidden]='hidden'>Please fill out this field</div>
-
+                                            <div  class="invalid-msg" *ngIf="test_ph=='true'">This phone is already exist and please enter new phone.</div>
                                     </div>
 
                                     </div>
@@ -113,13 +113,14 @@
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
-                                        <input type="email" class="form-control form-control" formControlName="email"
+                                        <input type="email" class="form-control form-control" formControlName="email" (keyup)="getemail(stateadminform.get('email').value)"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                             <div *ngIf="stateadminform.get('email').status=='INVALID'&& stateadminform.get('email').touched==true && stateadminform.get('email').value!=''" class="invalid-msg">
                                               Please enter valid email</div>
                                              <div  *ngIf="(stateadminform.get('email').touched && stateadminform.get('email').value=='')"
                                              class="invalid-msg" >Please fill out this field</div>
                                              <div  class="invalid-msg" *ngIf="stateadminform.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
+                                             <div  class="invalid-msg" *ngIf="test_email=='true'">This email is already exist and please enter new email.</div>
                                     </div>
 
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -484,7 +485,7 @@
 
 
 
-<div class="modal fade show" id="message" *ngIf="stateadminform.status=='VALID'" >
+<div class="modal fade show" id="message" *ngIf="stateadminform.status=='VALID' && test_email=='false'" >
     <div class="modal-dialog modal-m"  style="margin-top:10%;">
         <div class="modal-content">
 

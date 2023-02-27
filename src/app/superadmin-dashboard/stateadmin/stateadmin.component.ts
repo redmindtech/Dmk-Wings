@@ -21,6 +21,7 @@ export class StateadminComponent implements OnInit {
   user_password: any;
   spinner: boolean;
   tableshow: boolean=false;
+  email_check1: any;
 
   constructor(public ApiService:ApiServiceService,private fb: FormBuilder,private spinnerService: NgxSpinnerService) {
     this.FormInilialize();
@@ -81,6 +82,8 @@ export class StateadminComponent implements OnInit {
       order:[]
     };
     this.showSpinner();
+  
+   //this.getphone();
 
 
   }
@@ -121,7 +124,7 @@ export class StateadminComponent implements OnInit {
   {
       //console.log(angForm1);
       //if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
-    if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
+    if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.test_email=='false')
     {
         this.ApiService.create_state_admin(angForm1.value.mode,angForm1.value.email,angForm1.value.firstname,
           angForm1.value.lastname,angForm1.value.whatsapp_no,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
@@ -237,7 +240,73 @@ export class StateadminComponent implements OnInit {
                 });
     }
 
-  }
 
+  }
+  email_1:any=[];
+  test_email="false";
+  getemail(a){
+    if(this.stateadminform.get('email').status=="VALID"){
+        console.log(a);
+    
+
+    this.ApiService.email_check().subscribe(data => {
+      //console.log(data)
+      //this.email_1=data;
+     // console.log(this.email_1)
+      for (let email in data) {
+        let b = data[email];
+       //console.log(data[email])
+       //console.log(a)
+
+        // Do something with value
+        if(a==b.email){
+          //console.log("tttt")
+          this.test_email="true";
+          break;
+        }
+        else{
+          //console.log("esle")
+          this.test_email='false';
+        }
+      }
+      //
+      
+          // console.log(this.email_1);
+    });
+  }
+  }
+ 
+  test_ph="false";
+  getphone(c){
+    if(this.stateadminform.get('whatapp_no').status=="VALID"){
+        console.log(c);
+    
+
+    this.ApiService.ph_check().subscribe(data => {
+      console.log(data)
+      //this.email_1=data;
+     // console.log(this.email_1)
+      // for (let whatsapp_no in data) {
+      //   let b = data[whatsapp_no];
+       //console.log(data[email])
+       //console.log(a)
+
+      //   // Do something with value
+      //   if(c==b.whatapp_no){
+      //     //console.log("tttt")
+      //     this.test_ph="true";
+      //     break;
+      //   }
+      //   else{
+      //     //console.log("esle")
+      //     this.test_ph='false';
+      //   }
+      // }
+      //
+      
+          // console.log(this.email_1);
+    });
+  }
+  }
 
 }

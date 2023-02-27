@@ -76,6 +76,7 @@ export class MeetingsComponent implements OnInit {
       this.tableshow=true;
       //console.log(this.customers.length);
       //console.log(obj.data.length);
+      console.log(this.customers);
       ;})
 
     // this.getdata();

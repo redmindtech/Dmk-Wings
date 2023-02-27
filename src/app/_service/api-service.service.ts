@@ -275,6 +275,14 @@ public viewtableDA() {
                 //     })
                 return this.httpClient.get(this.baseUrl +'/rolechange_approvel_show.php');
             }
+            email_checking:any[]=[];
+            public email_check() {
+            return this.httpClient.get(this.baseUrl +'/email.php');
+        }
+        email_phone:any[]=[];
+        public ph_check() {
+        return this.httpClient.get(this.baseUrl +'/phone.php');
+    }
 
 
 
