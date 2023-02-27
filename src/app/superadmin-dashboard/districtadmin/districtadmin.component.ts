@@ -20,6 +20,7 @@ export class DistrictadminComponent implements OnInit {
   message: boolean;
   spinner: boolean;
   tableshow: boolean=false;
+  districtadminform: any;
 
  // firstname1: any;
   //lastname1: any;
@@ -91,7 +92,7 @@ export class DistrictadminComponent implements OnInit {
     {
         console.log(angForm1);
        
-        if(this.distadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.district!=null)
+        if(this.distadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.district!=null && this.test_email == 'false' && this.test_ph == 'false')
         {
             this.ApiService.create_dist_admin('1',angForm1.value.whatsapp_no,angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.district,angForm1.value.party_designation,angForm1.value.approval_status,angForm1.value.location_id)
             
@@ -203,13 +204,145 @@ export class DistrictadminComponent implements OnInit {
       this.FormIntialize();
      this.hidden=true;
     }
+    old_mail: any;
+    old_whatsapp: any;
+    get_oldmail(old_record) {
+      this.old_mail = old_record.email;
+      this.old_whatsapp = old_record.whatsapp_no;
+      console.log(this.old_whatsapp );
+    }
+     test_email = "false";
+  getemail(a, add) {
+    if (add == 'ADD') {
+      console.log(add);
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (this.distadminform.get('email').status == "VALID") {
+        console.log(a);
+        this.ApiService.email_check().subscribe(data => {
+
+          for (let email in data) {
+            let b = data[email];
+            // Do something with value
+            if (a == b.email) {
+              //console.log("tttt")
+              this.test_email = "true";
+              break;
+            }
+            else {
+              this.test_email = 'false';
+            }
+          }
+
+        });
+      }
+    }
+    else {
+      if (this.editform.get('email1').status == "VALID") {
+        console.log("edit");
+        console.log(a);
+        console.log(this.old_mail);
+
+        if (this.old_mail == a) {
+          this.test_email = "false";
+          console.log(this.test_email);
+        }
+        else {
+          this.ApiService.email_check().subscribe(data => {
+            for (let email in data) {
+              let b = data[email];
+              // Do something with value
+              if (a == b.email) {
+                //console.log("tttt")
+                this.test_email = "true";
+                console.log(this.test_email);
+                break;
+              }
+              else {
+
+                this.test_email = 'false';
+                console.log(this.test_email);
+              }
+            }
+
+          });
+        }
+      }
+    
+    }
+
+  }
+  test_ph = "false";
+  getphone(c, add) {
+    // console.log(add)
+    if (add == 'ADD') {
+      if (this.distadminform.get('whatsapp_no').status == "VALID") {
+        // console.log(c);
+        this.ApiService.ph_check().subscribe(data => {
+          //  console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            //  console.log(d.whatsapp_no );
+            // Do something with value
+            if (c == d.whatsapp_no) {
+              //console.log("tttt")
+              this.test_ph = "true";
+              // console.log(this.test_ph);
+              break;
+            }
+            else {
+              //console.log("esle")
+              this.test_ph = 'false';
+              // console.log(this.test_ph  );
+            }
+          }
+        });
+      }
+    }
+    else{
+      if (this.editform.get('whatsapp_no1').status == "VALID") {
+      
+        // console.log("edit");      
+        // console.log(this.old_whatsapp);
+        // console.log(c);
+        if (this.old_whatsapp == c) {
+          this.test_ph = "false";
+          // console.log(this.test_ph)
+
+        }
+        else{
+        this.ApiService.ph_check().subscribe(data => {
+          // console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            
+            if (c == d.whatsapp_no) {
+              
+              this.test_ph = "true";
+              // console.log(this.test_ph)
+              break;
+            }
+            else {
+            
+              this.test_ph = 'false';
+              // console.log("else")
+              // console.log(this.test_ph)
+            }
+          }
+        });
+        // console.log(this.test_ph)
+      }
+    }
+    }
+  }
+
 
 
     updatedata(updateform: any){
 
       console.log(updateform.value);
 
-      if(this.editform.valid==true)
+      if(this.editform.valid==true && this.test_email == 'false' && this.test_ph == 'false')
       {
         this.spinner=true;
 

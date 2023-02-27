@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AppointDistrictOffBearerComponent implements OnInit {
 
- customers:any=[];
+  customers:any=[];
   reqform :FormGroup;
   router: any;
   editform:FormGroup;
@@ -26,10 +26,9 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   user_password: any;
   spinner: boolean;
   districtname: any;
-  tableshow: boolean=false;
 
-  constructor(public ApiService:ApiServiceService,private spinnerService: NgxSpinnerService,
-    private fb: FormBuilder)
+  constructor(public ApiService:ApiServiceService,
+    private fb: FormBuilder,private spinnerService: NgxSpinnerService)
     {
       // this.ApiService.viewtableOB().subscribe((data:any) => {
       // let obj= data;
@@ -43,34 +42,14 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'},{name:'nm2',email:'em2'},
   //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'}
   // ]
-      this.officebearerform = this.fb.group({ //angForm
-        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
-        age:['',Validators.required],
-        // constituency:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-        mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
-        educational_qualification:['',Validators.required],
-        date_of_birth:['',Validators.required],
-        additional_qualification:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
-        contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-        profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
-        address:[''],
-        applied_role:['',Validators.required],
-        party_comments:[''],
-        location_id:['1',Validators.required],
-        mode:['2',Validators.required]
-      });
+      
 
-
+      this.FormIntialize();
       this.editform = this.fb.group({ //angForm
         email1: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age1:['',Validators.required],
-        constituency:['',Validators.required],
         father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         mother_name1:['', Validators.pattern('[A-Za-z ]{1,32}')],
         educational_qualification1:['',Validators.required],
@@ -98,20 +77,50 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         this.district = JSON.parse(localStorage.getItem('user_district'));
 
     }
+    FormIntialize(){
+      this.officebearerform = this.fb.group({ //angForm
+        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        // constituency:['',Validators.required],
+        firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
+        age:['',Validators.required],
+        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
+        educational_qualification:['',Validators.required],
+        date_of_birth:['',Validators.required],
+        additional_qualification:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
+        contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
+        profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
+        address:[''],
+        applied_role:['',Validators.required],
+        party_comments:[''],
+        location_id:['1',Validators.required],
+        mode:['2',Validators.required]
+      });
+
+    }
 
   officebearerform !:FormGroup;
   district_list:any[]=this.ApiService.all_districts;
   constituency_list:any=this.ApiService.all_constituency;
   user_constituency:any;
+  
+  FormReset(){
+    this.officebearerform.reset();
+    this.FormIntialize();
+    this.hidden=true;
+
+  }
 
   ngOnInit(): void {
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    console.log( this.districtname)
     this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
       //console.log(obj.data.length);
-      this.tableshow=true;
       ;})
     //console.log(this.customers);
     //console.log(this.district_list);
@@ -177,7 +186,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
     console.log(officebearerform);
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='')
-    {   console.log(officebearerform);
+    {  
+       console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
           officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
         .subscribe(
@@ -228,6 +238,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     get email() { return this.officebearerform.get('email'); }
     get firstname() { return this.officebearerform.get('firstname'); }
     get lastname() { return this.officebearerform.get('lastname'); }
+    // get constituency() { return this.officebearerform.get('constituency'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
     get father_name() { return this.officebearerform.get('father_name'); }
     get mother_name() { return this.officebearerform.get('mother_name'); }
@@ -251,6 +262,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     get applied_role1() { return this.editform.get('applied_role1'); }
     get party_comments1() { return this.editform.get('party_comments1'); }
     get address1() { return this.editform.get('address1'); }
+    get email1() { return this.editform.get('email1'); }
 
     OBid:any;
     OBname: any;
@@ -287,8 +299,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
          this.OBmothername=a.mother_name;
          this.OBdegree=a.educational_qualification;
          this.OBaddtionaldegree=a.additional_qualification;
-         this.OBphonenumber=a.contact_no.slice(2);
-         this.whatsappnumner=a.whatsapp_no.slice(2);
+         this.OBphonenumber=a.contact_no;
+         this.whatsappnumner=a.whatsapp_no;
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
@@ -337,9 +349,11 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 }
 updatedata(updateform: any){
   // console.log(this.OBDistrict,'',this.OBConstituency);
-  // console.log(updateform.value);
-  this.spinner=true;
-  if(this.editform.valid==true && this.OBConstituency!=''){
+  console.log(updateform);
+  
+  if(this.editform.valid==true && this.OBConstituency!=''&& this.test_email=='false'&& this.test_ph=='false'){
+    console.log(updateform)
+    this.spinner=true;
     //console.log("VAAALId")
     this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
     updateform.get('age1').value,
@@ -348,8 +362,8 @@ updatedata(updateform: any){
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
     updateform.get('additional_qualification1').value,
-    '91'+updateform.get('contact_no1').value,
-    '91'+updateform.get('whatsapp_no1').value,
+    updateform.get('contact_no1').value,
+    updateform.get('whatsapp_no1').value,
     updateform.get('profession1').value,
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
@@ -358,8 +372,13 @@ updatedata(updateform: any){
     .pipe()
     .subscribe(
         data => {
-            window.location.reload();
-            alert("Office Bearer detail was updated!");
+          console.log(data);
+          this.spinnerService.hide();
+          setTimeout(function(){
+           alert("Office Bearer detail was updated!");
+           window.location.reload();
+            },100)
+            
         },
 
         error => {
@@ -372,6 +391,134 @@ updatedata(updateform: any){
   }
 
 }
+old_mail: any;
+  old_whatsapp: any;
+  get_oldmail(old_record) {
+    this.old_mail = old_record.email;
+    this.old_whatsapp = old_record.whatsapp_no;
+    // console.log(this.old_whatsapp );
+  }
+test_ph = "false";
+  getphone(c, add) {
+    // console.log(add)
+    if (add == 'ADD') {
+      if (this.officebearerform.get('whatsapp_no').status == "VALID") {
+        // console.log(c);
+        this.ApiService.ph_check().subscribe(data => {
+          //  console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            // console.log(d.whatsapp_no );
+            // Do something with value
+            if (c == d.whatsapp_no) {
+              //console.log("tttt")
+              this.test_ph = "true";
+              break;
+            }
+            else {
+              //console.log("esle")
+              this.test_ph = 'false';
+            }
+          }
+        });
+      }
+    }
+    else{
+      if (this.editform.get('whatsapp_no1').status == "VALID") {
+      
+        // console.log("edit");      
+        // console.log(this.old_whatsapp);
+        // console.log(c);
+        if (this.old_whatsapp == c) {
+          this.test_ph = "false";
+          // console.log(this.test_ph)
+
+        }
+        else{
+        this.ApiService.ph_check().subscribe(data => {
+          console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            
+            if (c == d.whatsapp_no) {
+              
+              this.test_ph = "true";
+              // console.log(this.test_ph)
+              break;
+            }
+            else {
+            
+              this.test_ph = 'false';
+              // console.log("else")
+              // console.log(this.test_ph)
+            }
+          }
+        });
+        // console.log(this.test_ph)
+      }
+    }
+    }
+  }
+  email_1: any = [];
+  test_email = "false";
+  getemail(a, add) {
+    if (add == 'ADD') {
+      // console.log(add);
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (this.officebearerform.get('email').status == "VALID") {
+        // console.log(a);
+        this.ApiService.email_check().subscribe(data => {
+
+          for (let email in data) {
+            let b = data[email];
+            // Do something with value
+            if (a == b.email) {
+              //console.log("tttt")
+              this.test_email = "true";
+              break;
+            }
+            else {
+              this.test_email = 'false';
+            }
+          }
+
+        });
+      }
+    }
+    else {
+      if (this.editform.get('email1').status == "VALID") {
+        // console.log("edit");
+        // console.log(a);
+        // console.log(this.old_mail);
+
+        if (this.old_mail == a) {
+          this.test_email = "false";
+        }
+        else {
+          this.ApiService.email_check().subscribe(data => {
+            for (let email in data) {
+              let b = data[email];
+              // Do something with value
+              if (a == b.email) {
+                //console.log("tttt")
+                this.test_email = "true";
+                break;
+              }
+              else {
+
+                this.test_email = 'false';
+              }
+            }
+
+          });
+        }
+      }
+    
+    }
+
+  }
+
 
 
 postdata1(angForm1) //angForm1
@@ -379,7 +526,7 @@ postdata1(angForm1) //angForm1
      console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value)
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value && this.test_email=='false'&& this.test_ph=='false')
         .pipe()
         .subscribe(
         data => {
@@ -430,7 +577,7 @@ editcalculateAge() {
 
 
 get user_id() { return this.reqform.get('user_id'); }
-get email1() { return this.reqform.get('email1'); }
+//get email1() { return this.reqform.get('email1'); }
 get name() { return this.reqform.get('name'); }
 get  new_designation() { return this.reqform.get('new_designation'); }
 get old_designation() { return this.reqform.get(' old_designation'); }
@@ -438,4 +585,3 @@ get responcibility() { return this.reqform.get(' responcibility'); }
 // get reason1() { return this.reqform.get('reason1'); }
 
 }
-

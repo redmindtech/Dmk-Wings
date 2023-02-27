@@ -348,7 +348,7 @@ updatedata(updateform: any){
   // console.log(this.OBDistrict,'',this.OBConstituency);
   console.log(updateform);
   
-  if(this.editform.valid==true && this.OBConstituency!=''){
+  if(this.editform.valid==true && this.OBConstituency!=''&& this.test_email=='false'&& this.test_ph=='false'){
     console.log(updateform)
     this.spinner=true;
     //console.log("VAAALId")
@@ -388,6 +388,134 @@ updatedata(updateform: any){
   }
 
 }
+old_mail: any;
+  old_whatsapp: any;
+  get_oldmail(old_record) {
+    this.old_mail = old_record.email;
+    this.old_whatsapp = old_record.whatsapp_no;
+    // console.log(this.old_whatsapp );
+  }
+test_ph = "false";
+  getphone(c, add) {
+    // console.log(add)
+    if (add == 'ADD') {
+      if (this.officebearerform.get('whatsapp_no').status == "VALID") {
+        // console.log(c);
+        this.ApiService.ph_check().subscribe(data => {
+          //  console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            // console.log(d.whatsapp_no );
+            // Do something with value
+            if (c == d.whatsapp_no) {
+              //console.log("tttt")
+              this.test_ph = "true";
+              break;
+            }
+            else {
+              //console.log("esle")
+              this.test_ph = 'false';
+            }
+          }
+        });
+      }
+    }
+    else{
+      if (this.editform.get('whatsapp_no1').status == "VALID") {
+      
+        // console.log("edit");      
+        // console.log(this.old_whatsapp);
+        // console.log(c);
+        if (this.old_whatsapp == c) {
+          this.test_ph = "false";
+          // console.log(this.test_ph)
+
+        }
+        else{
+        this.ApiService.ph_check().subscribe(data => {
+          console.log(data);
+          for (let whatsapp_no in data) {
+            let d = data[whatsapp_no];
+            
+            if (c == d.whatsapp_no) {
+              
+              this.test_ph = "true";
+              // console.log(this.test_ph)
+              break;
+            }
+            else {
+            
+              this.test_ph = 'false';
+              // console.log("else")
+              // console.log(this.test_ph)
+            }
+          }
+        });
+        // console.log(this.test_ph)
+      }
+    }
+    }
+  }
+  email_1: any = [];
+  test_email = "false";
+  getemail(a, add) {
+    if (add == 'ADD') {
+      // console.log(add);
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (this.officebearerform.get('email').status == "VALID") {
+        // console.log(a);
+        this.ApiService.email_check().subscribe(data => {
+
+          for (let email in data) {
+            let b = data[email];
+            // Do something with value
+            if (a == b.email) {
+              //console.log("tttt")
+              this.test_email = "true";
+              break;
+            }
+            else {
+              this.test_email = 'false';
+            }
+          }
+
+        });
+      }
+    }
+    else {
+      if (this.editform.get('email1').status == "VALID") {
+        // console.log("edit");
+        // console.log(a);
+        // console.log(this.old_mail);
+
+        if (this.old_mail == a) {
+          this.test_email = "false";
+        }
+        else {
+          this.ApiService.email_check().subscribe(data => {
+            for (let email in data) {
+              let b = data[email];
+              // Do something with value
+              if (a == b.email) {
+                //console.log("tttt")
+                this.test_email = "true";
+                break;
+              }
+              else {
+
+                this.test_email = 'false';
+              }
+            }
+
+          });
+        }
+      }
+    
+    }
+
+  }
+
 
 
 postdata1(angForm1) //angForm1
@@ -395,7 +523,7 @@ postdata1(angForm1) //angForm1
      console.log(angForm1);
     if( angForm1.status="valid" )
     {
-        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value)
+        this.ApiService.rq_form(angForm1.get('name').value,this.OBid,angForm1.get('email1').value,angForm1.get('old_designation').value,angForm1.get('new_designation1').value,angForm1.get('reason').value,angForm1.get('district').value && this.test_email=='false'&& this.test_ph=='false')
         .pipe()
         .subscribe(
         data => {

@@ -142,13 +142,14 @@
                                         <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                         <span class="required "> *</span>
                                         <input type="email" class="form-control form-control" id="exampleInputEmail"
-                                            formControlName="email"
+                                            formControlName="email" (keyup)="getemail(distadminform.get('email').value,'ADD')"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" >
                                             <div  *ngIf="(distadminform.get('email').status=='INVALID' && email.value!='')"
                                               class="invalid-msg" >Please Enter valid Email</div>
-                                              <div  *ngIf="(distadminform.get('email').touched && email.value=='')"
+                                              <div  *ngIf="(distadminform.get('email').touched && email.value=='') && distadminform.get('email').hasError('pattern') "
                                               class="invalid-msg" >Please fill out this field</div>
                                               <div  class="invalid-msg" *ngIf="distadminform.get('email').untouched && email.value==''" [hidden]='hidden'>Please fill out this field</div>
+                                              <div  class="invalid-msg" *ngIf="test_email=='true' && email.value !=''">This email is already exist and please enter new email.</div>
                                                 <!-- <div  class="invalid-msg" *ngIf="distadminform.status=='INVALID'" [hidden]='hidden'>This email was already used</div>  -->
 
                                     </div>
@@ -156,7 +157,7 @@
                                         <label> Whatsapp Number /வாட்ஸ்அப் எண்</label>
                                         <span class="required "> *</span>
                                         <input type="text" class="form-control form-control"
-                                            formControlName="whatsapp_no" name="whatsapp_no" maxlength="10"
+                                            formControlName="whatsapp_no" name="whatsapp_no" maxlength="10"(keyup)="getphone(distadminform.get('whatsapp_no').value,'ADD')"
                                             placeholder="Enter Whatsapp Number /வாட்ஸ்அப் எண்">
 
 
@@ -166,6 +167,8 @@
                                         <div *ngIf="distadminform.get('whatsapp_no').hasError('required')"
                                             class="invalid-msg" [hidden]='hidden'>Please fill out this field
                                           </div>
+                                          <div  class="invalid-msg" *ngIf="test_ph=='true'&& distadminform.get('whatsapp_no').value !=''">This phone is already exist and please enter new phone.</div>
+
                                         </div>
 
 
@@ -405,7 +408,7 @@
                                     <i class="fas fa-flag"></i>
                                 </a></td>
                             <td><a data-toggle="modal" data-target="#modal-xl" class="btn btn-info btn-circle btn-sm"
-                                    (click)="editbuttonviewDA(customer)">
+                                    (click)="editbuttonviewDA(customer);get_oldmail(customer)">
                                     <i class="fas fa-check"></i>
                                 </a></td>
                             <td><a class="btn btn-danger btn-circle btn-sm" (click)="delete_da(customer.id)">
@@ -514,7 +517,7 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Email Address / மின்னஞ்சல் முகவரி</label>
                                     <span class="required "> *</span>
-                                    <input type="email" class="form-control" id="exampleInputEmail"
+                                    <input type="email" class="form-control" id="exampleInputEmail" (keyup)="getemail(editform.get('email1').value,'EDIT')"
                                         placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" formControlName="email1"
                                         name="email1" required>
                                         <div  *ngIf="editform.get('email1').value==''"
@@ -522,12 +525,13 @@
 
                                         <div  *ngIf="(editform.get('email1').value!='' && editform.get('email1').status=='INVALID')"
                                         class="invalid-msg" >Please Enter valid Email</div>
+                                        <div  class="invalid-msg" *ngIf="test_email=='true' && editform.get('email1').value!=''">This email is already exist and please enter new email.</div>
                                         <!-- <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div> -->
                                 </div>
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>WhatsApp Number / வாட்ஸ் அப் எண்</label><span class="required "> *</span>
-                                    <input type="text" class="form-control form-control" formControlName="whatsapp_no1" maxlength="10"
+                                    <input type="text" class="form-control form-control" formControlName="whatsapp_no1" maxlength="10" (keyup)="getphone(editform.get('whatsapp_no1').value,'EDIT')"
                                         placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
                                         <div *ngIf="editform.get('whatsapp_no1').hasError('pattern') && editform.get('whatsapp_no1').value!=''"
@@ -536,6 +540,8 @@
                                     <div *ngIf="editform.get('whatsapp_no1').value==''"
                                         class="invalid-msg" >Please fill out this field
                                       </div>
+                                      <div  class="invalid-msg" *ngIf="test_ph=='true'&& editform.get('whatsapp_no1').value !=''">This phone is already exist and please enter new phone.</div>
+
 
                                 </div>
                             </div>
@@ -591,7 +597,7 @@
 
 
 
-<div class="modal fade show" id="message" *ngIf="distadminform.status=='VALID'" >
+<div class="modal fade show" id="message" *ngIf="distadminform.status=='VALID'&& test_email=='false'&& test_ph=='false'" >
     <div class="modal-dialog modal-m"  style="margin-top:10%;">
         <div class="modal-content">
            
