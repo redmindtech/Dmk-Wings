@@ -249,9 +249,15 @@
                     <!-- <td><a data-toggle="modal" data-target="#modal-xl" class="btn btn-info btn-circle btn-sm" >
                         <i class="fas fa-check"></i>
                     </a></td> -->
-                    <td><a *ngIf="customer.status=='Active'" class="btn btn-danger btn-circle btn-sm" (click)="delete_CM(customer.id)">
+                    <td><a *ngIf="customer.status=='Active';else notShow" class="btn btn-danger btn-circle btn-sm" (click)="delete_CM(customer.id)">
                         <i class="fas fa-times"></i>
                     </a></td>
+                    <ng-template #notShow>
+                      <a *ngIf="customer.status=='cancel'" >
+                        Cancelled
+                      
+                    </a>
+                    </ng-template>
                   </tr>
               </tbody>
 
