@@ -1,4 +1,9 @@
 <!-- <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+<div *ngIf="spinner==true">
+  <ngx-spinner  size="medium"  type="timer" >
+      <p style="font-size: 20px; color: white;padding-left:7%;">Loading...</p>
+  </ngx-spinner>
+</div>
 <div class="container-fluid" >
   <div class="card shadow">
     <div class="card-header d-flex justify-content-between">
@@ -14,7 +19,7 @@
 </div>
 
 
-      <div class="modal fade" id="modal-xl">
+      <!-- <div class="modal fade" id="modal-xl">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="card-danger">
@@ -120,11 +125,11 @@
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
                           </div>
-                          <!-- <div class="col-sm-6">
+                          <div class="col-sm-6">
                           <label>District</label>
                           <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
                         </div> -->
-                      </div>
+                      <!-- </div>
                       <div class="col-3" style="margin-left:34%;">
                           <button  class="btn btn-danger btn btn-block">
                             UPDATE OFFICE BEARER
@@ -133,14 +138,14 @@
                       </form>
                   </div>
              </div>
-          </div>
+          </div> -->
           <!-- /.modal-content -->
-        </div>
+        <!-- </div> -->
         <!-- /.modal-dialog -->
-      </div>
+      <!-- </div>  -->
       <!-- /.modal -->
 
-      <div class="modal fade" id="showDialog">
+      <!-- <div class="modal fade" id="showDialog">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="card-danger">
@@ -247,26 +252,26 @@
                             <textarea name="party_comments" pInputText class="form-control" [disabled]="true" placeholder="Enter Comments" cols="100" rows="5" [value]="OBcomments"></textarea>
                           </div>
                       </div>
-                      <!-- <div class="col-3" style="margin-left:34%;">
+                       <div class="col-3" style="margin-left:34%;">
                           <a  class="btn btn-danger btn btn-block">
                             UPDATE OFFICE BEARER
                           </a>
                         </div> -->
-                      </form>
+                      <!-- </form>
                   </div>
              </div>
-          </div>
+          </div> -->
           <!-- /.modal-content -->
-        </div>
+        <!-- </div> -->
         <!-- /.modal-dialog -->
-      </div>
+      <!-- </div>  -->
 
 
 
 
 
 
-            <div class="modal fade" id="myModal">
+            <!-- <div class="modal fade" id="myModal">
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="card-danger">
@@ -436,7 +441,7 @@
                               <input type="text" hidden  formControlName="location_id"/>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <div class="col-6 md:col-6">
                               <label>Status / நிலை</label>
                               <input pInputText type="text" hidden class="form-control" name="mode" formControlName="mode"/>
@@ -446,7 +451,7 @@
                               <input pInputText type="text" hidden class="form-control" name="location_id" formControlName="location_id"/>
                             </div>
                         </div> -->
-                          <div class="col-3" style="margin-left:34%;">
+                          <!-- <div class="col-3" style="margin-left:34%;">
                             <button class="btn btn-danger btn btn-block">Create office bearer</button>
                           </div>
                         </form>
@@ -454,7 +459,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --> 
 
 
 <!-- OFFICE BEARER DATATABLE         -->
@@ -577,26 +582,30 @@
                       <option value="Village Organiser">Village Organiser / ஊரக அமைப்பாளர்</option>
                       <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                   </select>
-                    <div  *ngIf="reqform.get('new_designation1').hasError('new_designation1') && reqform.get('new_designation1').touched"
+                     <!-- <div  *ngIf="reqform.get('new_designation1').hasError('new_designation1') && reqform.get('new_designation1').untouched "
                     class="invalid-msg">Please enter the valid field
-                  </div>
-            </div>
+                  </div>  -->
+                  <!-- reqform.get('new_designation1').touched -->
+                  <!-- <div  *ngIf="reqform.get('new_designation1').hasError('required') "
+                  class="invalid-msg" >Please select this field</div> -->
+                  <div  class="invalid-msg" *ngIf="reqform.get('new_designation1').touched && new_designation1.value ==''" >Please select this field</div>
+                  <div  class="invalid-msg" *ngIf="reqform.get('new_designation1').untouched" [hidden]='hidden'>Please select this field</div>
+                </div>
             </div>
             <div class="form-group ">
                 <div class="col-12 md:col-12">
                   <label>Reason</label><span class="required "> *</span>
                     <input pInputText type="text" name="reason"  class="form-control" formControlName="reason" placeholder="Reason" >
-                    <!-- <div  *ngIf="reqform.get('reason1').hasError('reason1') && reqform.get('reason1').touched"
+                    <div  *ngIf="reqform.get('reason').hasError('reason') && reqform.get('reason').touched"
                     class="invalid-msg">Please enter the valid field
-                  </div> -->
+                  </div>
+                  <div  class="invalid-msg" *ngIf="reqform.get('reason').untouched" [hidden]='hidden'>Please select this field</div>
                 </div>
               </div>
                 <div class="col-12 md:col-12" hidden>
                   <label>District</label><span class="required "> *</span>
                     <input pInputText type="text" name="district"  class="form-control" formControlName="district" placeholder="District "  [value]="OBDistrict">
-                    <!-- <div  *ngIf="reqform.get('reason1').hasError('reason1') && reqform.get('reason1').touched"
-                    class="invalid-msg">Please enter the valid field
-                  </div> -->
+                  
                 </div>
             
             <div class="col-3" style="margin-left:34%;">

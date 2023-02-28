@@ -66,12 +66,14 @@ export class OfficeBearerApprovalComponent implements OnInit {
             .pipe()
             .subscribe(
             data => {if(status=='approve'){
-              this.router.navigate(['superadmin/Dashboard']);
+             
               alert("Approved !")
+              window.location.reload();
             }
             else{
-              this.router.navigate(['superadmin/Dashboard']);
+              // this.router.navigate(['superadmin/Dashboard']);
               alert("Rejected !")
+              window.location.reload();
             }
 
                 

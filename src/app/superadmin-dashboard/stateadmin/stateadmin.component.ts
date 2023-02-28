@@ -59,6 +59,10 @@ export class StateadminComponent implements OnInit {
     this.stateadminform.reset();
     this.FormInilialize();
     this.hidden = true;
+    this.test_email1 = "false";
+    this.test_email = "false";
+    this.test_ph = 'false';
+    this.test_ph1 = 'false';
   }
   //firstname1=new FormControl('hu');
 
@@ -249,6 +253,7 @@ export class StateadminComponent implements OnInit {
   }
   email_1: any = [];
   test_email = "false";
+  test_email1 = "false";
   getemail(a, add) {
     if (add == 'ADD') {
       // console.log(add);
@@ -281,7 +286,7 @@ export class StateadminComponent implements OnInit {
         // console.log(this.old_mail);
 
         if (this.old_mail == a) {
-          this.test_email = "false";
+          this.test_email1 = "false";
         }
         else {
           this.ApiService.email_check().subscribe(data => {
@@ -290,12 +295,12 @@ export class StateadminComponent implements OnInit {
               // Do something with value
               if (a == b.email) {
                 //console.log("tttt")
-                this.test_email = "true";
+                this.test_email1 = "true";
                 break;
               }
               else {
 
-                this.test_email = 'false';
+                this.test_email1 = 'false';
               }
             }
 
@@ -308,6 +313,7 @@ export class StateadminComponent implements OnInit {
   }
 
   test_ph = "false";
+  test_ph1 = "false";
   getphone(c, add) {
     if (add == 'ADD') {
       if (this.stateadminform.get('whatsapp_no').status == "VALID") {
@@ -338,7 +344,7 @@ export class StateadminComponent implements OnInit {
         // console.log(this.old_whatsapp);
         // console.log(c);
         if (this.old_whatsapp == c) {
-          this.test_ph = "false";
+          this.test_ph1 = "false";
           console.log(this.test_ph)
 
         }
@@ -350,15 +356,15 @@ export class StateadminComponent implements OnInit {
             
             if (c == d.whatsapp_no) {
               
-              this.test_ph = "true";
-              console.log(this.test_ph)
+              this.test_ph1 = "true";
+              // console.log(this.test_ph)
               break;
             }
             else {
             
-              this.test_ph = 'false';
-              console.log("else")
-              console.log(this.test_ph)
+              this.test_ph1 = 'false';
+              // console.log("else")
+              // console.log(this.test_ph)
             }
           }
         });
