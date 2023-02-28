@@ -154,7 +154,7 @@
                                     <div  *ngIf="(editform.get('whatsapp_no1').touched && whatsapp_no1.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('whatsapp_no1').untouched && whatsapp_no1.value==''">Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="test_ph=='true'&& editform.get('whatsapp_no1').value !=''">This phone is already exist and please enter new phone.</div>
+                                    <div  class="invalid-msg" *ngIf="test_ph1=='true'&& editform.get('whatsapp_no1').value !=''">This phone is already exist and please enter new phone.</div>
                                     <!-- <div *ngIf="editform.get('whatsapp_no1').hasError('required') && editform.get('whatsapp_no1').touched"
                                         class="invalid-msg">Please fill out this field
                                     </div>
@@ -184,7 +184,7 @@
                                   <div  *ngIf="(editform.get('email1').touched && email1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="editform.get('email1').untouched && email1.value==''">Please fill this field</div>
-                                  <div  class="invalid-msg" *ngIf="test_email=='true' && editform.get('email1').value !=''">This email is already exist and please enter new email.</div>
+                                  <div  class="invalid-msg" *ngIf="test_email1=='true' && editform.get('email1').value !=''">This email is already exist and please enter new email.</div>
                                 </div>
                             <div class="col-6 md:col-6">
                                 <label>Profession / தொழில்,வேலை</label>
