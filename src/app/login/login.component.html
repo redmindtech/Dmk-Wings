@@ -45,7 +45,12 @@
             </div>
             <!-- /.col -->
           </div>
-          <button class="btn btn-block btn-primary">Sign in</button>
+
+          <button class="btn btn-block btn-primary" [disabled]="btnDisable" >Sign in</button>
+          <div *ngIf="btnDisable==true">
+            Your three attempt is completed. Your account was blocked 
+          </div>
+
         </form>
   
         <div class="social-auth-links text-center mb-3">
