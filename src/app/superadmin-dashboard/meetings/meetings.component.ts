@@ -66,8 +66,10 @@ export class MeetingsComponent implements OnInit {
 
 
   dtOptions: DataTables.Settings = {};
-
+  date:any;
   ngOnInit():void{
+  this.date=new Date();
+// document.write(today);
     this.customers=[];
     this.showSpinner();
     this.ApiService.viewtablemeeting().subscribe((data:any) => {

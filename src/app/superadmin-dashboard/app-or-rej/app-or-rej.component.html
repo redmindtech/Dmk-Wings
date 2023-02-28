@@ -473,7 +473,7 @@
                         <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Date of Birth<span class="required "> *</span></label>
-                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth"/>
+                                <input type="date" name="date_of_birth"class="form-control"  placeholder="Enter Date of Birth" [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth" max="{{minAge1 | date:'yyyy-MM-dd'}}"/>
                                   <!-- <div  *ngIf="date_of_birth.touched && date_of_birth.value==''"
                                   class="invalid-msg" >Please fill this field</div> -->
                                   <div  class="invalid-msg" *ngIf="!date_of_birth && hidden==false">Please fill this field</div>

@@ -44,7 +44,7 @@
                   <div class="col-6 md:col-6">
                       <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
                       <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
-                                  placeholder="Enter Meeting Date / சந்திப்பு தேதி" required>
+                                  placeholder="Enter Meeting Date / சந்திப்பு தேதி" required min="{{date | date:'yyyy-MM-dd'}}">
                                   <div  *ngIf="(createmeetingform.get('meeting_date').touched && createmeetingform.get('meeting_date').value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_date').untouched" [hidden]='hidden'>Please fill this field</div>

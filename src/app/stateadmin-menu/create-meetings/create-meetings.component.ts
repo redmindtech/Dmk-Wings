@@ -26,6 +26,7 @@ export class CreateMeetingsComponent implements OnInit {
   participants: any;
   meeting_type: any;
   meeting_location: any;
+  spinner: boolean;
   hidden:boolean=true;
   dropdownList : string[]= [];
   dropdownSettings:IDropdownSettings={};
@@ -33,8 +34,8 @@ export class CreateMeetingsComponent implements OnInit {
   selectedItems = [];
   
   dropDownForm: FormGroup;
-  spinner: boolean;
   tableshow: boolean=false;
+  
 
 
   onItemSelect(item: any) {
@@ -67,13 +68,19 @@ export class CreateMeetingsComponent implements OnInit {
 
 
   dtOptions: DataTables.Settings = {};
-
+  date:any;
   ngOnInit():void{
+  this.date=new Date();
+// document.write(today);
+    this.customers=[];
+    this.showSpinner();
     this.ApiService.viewtablemeeting().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
-      //console.log(obj.data.length);
       this.tableshow=true;
+      //console.log(this.customers.length);
+      //console.log(obj.data.length);
+      console.log(this.customers);
       ;})
 
     // this.getdata();
@@ -96,7 +103,8 @@ export class CreateMeetingsComponent implements OnInit {
     this.dropDownForm = this.fb.group({
       meeting_district: [this.selectedItems]
   });
-  this.showSpinner();
+  
+ 
 
   }
   public showSpinner(): void {
@@ -112,6 +120,7 @@ export class CreateMeetingsComponent implements OnInit {
           this.customers.pop();
     //console.log(this.ApiService.tabledataDA)
     //this.ApiService.viewtableOB();
+    
 
   }
 
@@ -123,7 +132,9 @@ export class CreateMeetingsComponent implements OnInit {
           angForm1.value.meeting_date,
        );
         if(angForm1.status == "VALID" &&  angForm1.value.meeting_name!=null  && angForm1.value.meeting_date !=null  && angForm1.value.meeting_time!=null && angForm1.value.participants !=null &&  angForm1.value.meeting_location !=null &&  angForm1.value.meeting_district !=null)
-        {        this.spinner=true;
+        {
+          this.spinner=true;
+
             this.ApiService.create_meeting(angForm1.value.meeting_name,angForm1.value.meeting_date,
               angForm1.value.meeting_time,angForm1.value.participants,
               angForm1.value.meeting_type,
@@ -136,6 +147,7 @@ export class CreateMeetingsComponent implements OnInit {
                 alert("Meeting has been created successfully!")
                 window.location.reload();
                 },100)
+                 
             //this.router.navigate(['superadmin/Meetings']);
              angForm1.reset();
             },
@@ -204,5 +216,3 @@ console.log(a.date)
           }
 
 }
-
-

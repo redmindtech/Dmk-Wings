@@ -114,8 +114,12 @@ this.test_ph1= "false";
 
 
   }
-
+minAge1:Date;
   ngOnInit(): void {
+    
+    var today = new Date();
+    var minAge = 18;
+     this.minAge1 = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.ApiService.viewtableOB().subscribe((data:any) => {
       let obj= data;

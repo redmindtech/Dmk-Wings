@@ -14,8 +14,10 @@ export class OfficeBearerApprovalComponent implements OnInit {
   tableshow: boolean=false;
   constructor(public ApiService:ApiServiceService,
     public router:Router) { }
+    minAge1:Date;
 
   ngOnInit(): void {
+
     this.ApiService.viewtableOBapprove();
     this.ApiService.viewtableDA();
     this.ApiService.viewtableOB();
