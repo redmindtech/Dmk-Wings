@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-            baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          //  baseUrl:string="http://localhost/night_git/Dmk-Wings/php/";
+            // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+          baseUrl:string="http://localhost/git_new/Dmk-Wings/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -117,7 +117,20 @@ public all_designation=['Select designation ','District President / மாவட
 
 public constituency:any='No-Select';
 
+userlogincheck:any[]=[];
+public logincheck() {
+  return this.httpClient.get(this.baseUrl +'/loginusercheck.php');
+}
+public locked(whatsapp_no:any) {
+  // console.log("api");
+  //  console.log(whatsapp_no);
+  // dadistrict=this.district;
 
+  return this.httpClient.post(this.baseUrl +'/lock.php',{whatsapp_no})
+  .pipe(map(Users => {
+    return Users;
+    }));
+}
 
 public userlogin(username : any, password :any) {
 

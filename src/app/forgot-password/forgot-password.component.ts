@@ -11,17 +11,46 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   sendmail:FormGroup;
+  btnDisable: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, private router:Router) {
       this.sendmail = this.fb.group({
-        email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
+        email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         });
     }
 
   ngOnInit(): void {
   }
-
+  test_email = "false";
+  getemail(a) {
+    
+       console.log(a);
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (this.sendmail.get('email').status == "VALID") {
+        // console.log(a);
+        this.ApiService.email_check().subscribe(data => {
+console.log(data);
+          for (let email in data) {
+            let b = data[email];
+            // Do something with value
+            if (a == b.email) {
+              //console.log("tttt")
+              this.test_email = "true";
+              this.btnDisable=false;
+              break;
+            }
+            else {
+              this.test_email = 'false';
+              this.btnDisable=true;
+            }
+          }
+          // console.log(this.test_email)
+        });
+      }
+    }
+  
    postdata(forgotForm : any)
 {
       //console.log(this.sendmail)
