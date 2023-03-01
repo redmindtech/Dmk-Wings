@@ -7,15 +7,15 @@
 </div>
 <div class="container-fluid" >
     <div class="card shadow">
-        <div class="card-header d-flex justify-content-between">
-            <h4 class="font-weight-bold text-dark py">STATE ADMIN</h4>
-            <div class="col-2" style="margin-left:71%">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h4 class="font-weight-bold text-dark py">STATE ADMIN</h4>
+              <div style="width:120px">
                 <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
+              </div>
             </div>
-
-
-        </div>
-        <div *ngIf="!tableshow" style="margin-left: 50%;">
+          </div>
+        <div *ngIf="!tableshow" class="d-flex justify-content-center">
             <div class="loader"></div>
         </div>
 
@@ -32,7 +32,7 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <label>First Name / முதல் பெயர்</label><span class="required "> *</span>
+                                            <label>First Name / முதல் பெயர்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control" formControlName="firstname"
                                                 placeholder="Enter First Name / முதல் பெயர்" >
                                                 <div *ngIf="stateadminform.get('firstname').status=='INVALID'&& stateadminform.get('firstname').touched==true && stateadminform.get('firstname').value!=''" class="invalid-msg">
@@ -43,7 +43,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <label>Last Name / குடும்ப பெயர்</label><span class="required "> *</span>
+                                            <label>Last Name / குடும்ப பெயர்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control" formControlName="lastname"
                                                 placeholder="Enter Last Name / குடும்ப பெயர்">
                                                 <div *ngIf="stateadminform.get('lastname').status=='INVALID'&& stateadminform.get('lastname').touched==true && stateadminform.get('lastname').value!=''" class="invalid-msg">
@@ -80,7 +80,7 @@
 
 
                                     <div class="col-sm-6">
-                                        <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
+                                        <label>Party Designation / கட்சி பதவி<span class="required "> *</span></label>
                                         <select name="party_designation" formControlName="party_designation"  class="form-control">
                                             <option value="" disabled selected hidden>Select Option</option>
                                             <option value="State Engineer Team Leader">State Engineer Team Leader / மாநில பொறியாளர் அணித் தலைவர்</option>
@@ -96,7 +96,7 @@
                                     </div>
 
                                       <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>WhatsApp Number / வாட்ஸ் அப் எண்</label><span class="required "> *</span>
+                                        <label nowrap>WhatsApp Number / வாட்ஸ் அப் எண்<span class="required "> *</span></label>
                                         <input type="text" class="form-control form-control" formControlName="whatsapp_no" maxlength="10" (keyup)="getphone(stateadminform.get('whatsapp_no').value,'ADD')"
                                             placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
@@ -112,7 +112,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
+                                        <label>Email Address / மின்னஞ்சல் முகவரி<span class="required "> *</span></label>
                                         <input type="email" class="form-control form-control" formControlName="email" (keyup)="getemail(stateadminform.get('email').value,'ADD')"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                             <div *ngIf="stateadminform.get('email').status=='INVALID'&& stateadminform.get('email').touched==true && stateadminform.get('email').value!=''" class="invalid-msg">
@@ -124,7 +124,7 @@
                                     </div>
 
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Status / நிலை</label><span class="required "> *</span><br>
+                                        <label>Status / நிலை<span class="required "> *</span></label><br>
                                         <select name="approval_status" formControlName="approval_status"  class="form-control">
                                             <option value="" disabled selected hidden>Select Option</option>
                                             <option value="Active">Active</option>
@@ -168,10 +168,12 @@
                                             <input  type="text" hidden name="location_id" formControlName="location_id"/>
                                         </div>
                                     </div>
-
-                                    <div class="col-3" style="margin-left:34%;">
-                                      <button  class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  data-backdrop="false" >Create State Admin</button>
-                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div  style="width:200px">
+                                            <button  class="btn btn-danger btn btn-block"  data-toggle="modal" data-target="#message"  data-backdrop="false" >Create State Admin</button>
+                                        </div>
+                                      </div>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -194,7 +196,7 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <label>First Name / முதல் பெயர்</label><span class="required "> *</span>
+                                            <label>First Name / முதல் பெயர்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control" [disabled]="true"
                                                 placeholder="Enter First Name / முதல் பெயர்" [value]="SAfirstname">
                                                 <!-- <div *ngIf="stateadminform.get('firstname').hasError('required') && stateadminform.get('firstname').touched"
@@ -218,7 +220,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <label>Last Name / குடும்ப பெயர்</label><span class="required "> *</span>
+                                            <label>Last Name / குடும்ப பெயர்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control" [disabled]="true"
                                                 placeholder="Enter Last Name / குடும்ப பெயர்" [value]="SAlastname">
                                                 <!-- <div *ngIf="stateadminform.get('lastname').hasError('required') && stateadminform.get('lastname').touched"
@@ -232,7 +234,7 @@
                                     <div class="form-group row">
 
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
+                                    <label>Party Designation / கட்சி பதவி<span class="required "> *</span></label>
                                     <select  [value]="SAparty_desig" [disabled]="true" class="form-control">
                                         <option value="">Select Option</option>
                                         <option value="State Engineer Team Leader">State Engineer Team Leader / மாநில பொறியாளர் அணித் தலைவர்</option>
@@ -247,7 +249,7 @@
                                     </div>
 
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>WhatsApp Number / வாட்ஸ் அப் எண்</label><span class="required "> *</span>
+                                        <label>WhatsApp Number / வாட்ஸ் அப் எண்<span class="required "> *</span></label>
                                         <input type="text" class="form-control form-control" [value]="SAwhatsapp_no" [disabled]="true"
                                             placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
@@ -267,7 +269,7 @@
                                     <div class="form-group row">
 
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
+                                        <label>Email Address / மின்னஞ்சல் முகவரி<span class="required "> *</span></label>
                                         <input type="email" class="form-control form-control" [disabled]="true"
                                             placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" [value]="SAmail">
                                             <!-- <div *ngIf="stateadminform.get('email').hasError('required') && stateadminform.get('email').touched"
@@ -278,7 +280,7 @@
                                             </div> -->
                                         </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Status / நிலை</label><br>
+                                                <label>Status / நிலை<span class="required "> *</span></label><br>
                                                 <select   class="form-control form-control" [disabled]="true" [value]="SAstatus">
                                                     <option value="">Select Option</option>
                                                     <option value="Active">Active</option>
@@ -336,7 +338,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>First Name / முதல் பெயர்</label>
+                                        <label>First Name / முதல் பெயர்<span class="required "> *</span></label>
                                         <input type="text" class="form-control form-control"  formControlName="firstname1"
                                             placeholder="Enter First Name / முதல் பெயர்" >
 
@@ -347,7 +349,7 @@
 
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Last Name / குடும்ப பெயர்</label>
+                                        <label>Last Name / குடும்ப பெயர்<span class="required "> *</span></label>
                                         <input type="text" class="form-control form-control" formControlName="lastname1"
                                             placeholder="Enter Last Name / குடும்ப பெயர்" >
 
@@ -365,7 +367,7 @@
                                 </div> -->
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Party Designation / கட்சி பதவி</label><span class="required "> *</span>
+                                    <label>Party Designation / கட்சி பதவி<span class="required "> *</span></label>
                                     <select formControlName="party_designation1" class="form-control">
                                         <option value="" disabled selected hidden>Select Option</option>
                                         <option value="State Engineer Team Leader">State Engineer Team Leader / மாநில பொறியாளர் அணித் தலைவர்</option>
@@ -379,7 +381,7 @@
 
 
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>WhatsApp Number / வாட்ஸ் அப் எண்</label><span class="required "> *</span>
+                                        <label>WhatsApp Number / வாட்ஸ் அப் எண்<span class="required "> *</span></label>
                                         <input type="text" class="form-control form-control" formControlName="whatsapp_no1" maxlength="10" (keyup)="getphone(editform.get('whatsapp_no1').value,'EDIT')"
                                             placeholder="Enter WhatsApp Number / வாட்ஸ் அப் எண்">
 
@@ -394,7 +396,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Email Address / மின்னஞ்சல் முகவரி</label>
+                                    <label>Email Address / மின்னஞ்சல் முகவரி<span class="required "> *</span></label>
                                     <input type="email" class="form-control form-control" formControlName="email1" (keyup)="getemail(editform.get('email1').value,'EDIT')"
                                         placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
 
@@ -405,7 +407,7 @@
                                         <div  class="invalid-msg" *ngIf="test_email1=='true'">This email is already exist and please enter new email.</div>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Status / நிலை</label><span class="required "> *</span><br>
+                                    <label>Status / நிலை<span class="required "> *</span></label><br>
                                     <select formControlName="approval_status1"  class="form-control">
                                         <option value="" disabled selected hidden>Select Option</option>
                                         <option value="Active">Active</option>
@@ -416,11 +418,12 @@
                                   </div>
                                 </div>
                             </div>
-
-
-                                <div class="col-3 d-flex align-content-center" style="margin-left:34%">
-                                    <button class="btn btn-danger btn btn-block">UPDATE STATE ADMIN</button>
+                              <div class="d-flex justify-content-center">
+                                <div  style="width:200px">
+                                    <button class="btn btn-danger btn btn-block">Update State Admin</button>
                                 </div>
+                              </div>
+                             
                             </div>
                         </form>
 
