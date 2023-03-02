@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   constructor( private fb: FormBuilder,
     private dataService: ApiServiceService,
     private router:Router) { 
+      sessionStorage.setItem('validUserToken', 'false');
       this.userForm = this.fb.group({
         whatsapp_no: ['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         password: ['', Validators.required]

@@ -144,6 +144,11 @@ public userlogin(username : any, password :any) {
 
   this.setToken(Users[0].name);
   this.getLoggedInName.emit(true);
+  //only authorized user to login
+  if(Users!=''){
+    //console.log(window.localStorage.getItem('UserToken'));
+    sessionStorage.setItem('validUserToken', 'true');
+  }
   return Users;
   //console.log(Users);
   }));

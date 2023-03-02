@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AppointDistrictOffBearerComponent } from './districtadmin-menu/appoint-district-off-bearer/appoint-district-off-bearer.component';
 import { CreateOffBearerComponent } from './districtadmin-menu/create-off-bearer/create-off-bearer.component';
@@ -26,36 +27,36 @@ import { StateadminComponent } from './superadmin-dashboard/stateadmin/stateadmi
 import { SuperadminDashboardComponent } from './superadmin-dashboard/superadmin-dashboard.component';
 
 const routes: Routes = [
-  {path:"", component: LoginComponent},
+  {path:"", component: LoginComponent, pathMatch: 'full'},
   {path:"change-password/:email", component: ChangePasswordComponent},
-  {path:"superadmin", component: SuperadminDashboardComponent,
+  {path:"superadmin",  canActivate: [AuthenticationGuard],component: SuperadminDashboardComponent,
         children: [
-          { path: '', component: DashboardComponent},
-          { path: 'Dashboard', component: DashboardComponent},
-          { path: 'Districtadmin', component: DistrictadminComponent},
-          { path:"Stateadmin", component: StateadminComponent},
-          { path:"Approve-Reject", component: AppOrRejComponent},
-          { path:"Meetings", component: MeetingsComponent},
-          { path:"Reports", component: ReportsComponent},
-          { path:"office-bearer-approval", component: OfficeBearerApprovalComponent},
+          { path: '',  component: DashboardComponent},
+          { path: 'Dashboard',canActivate: [AuthenticationGuard],  component: DashboardComponent},
+          { path: 'Districtadmin', canActivate: [AuthenticationGuard], component: DistrictadminComponent},
+          { path:"Stateadmin", canActivate: [AuthenticationGuard], component: StateadminComponent},
+          { path:"Approve-Reject", canActivate: [AuthenticationGuard], component: AppOrRejComponent},
+          { path:"Meetings", canActivate: [AuthenticationGuard], component: MeetingsComponent},
+          { path:"Reports",canActivate: [AuthenticationGuard],  component: ReportsComponent},
+          { path:"office-bearer-approval",canActivate: [AuthenticationGuard],  component: OfficeBearerApprovalComponent},
           ],},
-  {path:"stateadmin", component: StateadminMenuComponent,
+  {path:"stateadmin", canActivate: [AuthenticationGuard],component: StateadminMenuComponent,
           children: [
-            { path: '', component: SADashboardComponent},
-            { path: 'Dashboard', component: SADashboardComponent},
-            { path: 'create-meetings', component: CreateMeetingsComponent },
-            { path: 'sent-meetings-notification', component: SentMeetingsNotifyComponent},
-            { path: 'report-of-all-districts', component: ReportAllDistrictComponent},
+            { path: '', canActivate: [AuthenticationGuard], component: SADashboardComponent},
+            { path: 'Dashboard',canActivate: [AuthenticationGuard],  component: SADashboardComponent},
+            { path: 'create-meetings', canActivate: [AuthenticationGuard], component: CreateMeetingsComponent },
+            { path: 'sent-meetings-notification',canActivate: [AuthenticationGuard],  component: SentMeetingsNotifyComponent},
+            { path: 'report-of-all-districts',canActivate: [AuthenticationGuard],  component: ReportAllDistrictComponent},
             ],},
 
-  {path:"districtadmin", component: DistrictadminMenuComponent ,
+  {path:"districtadmin",canActivate: [AuthenticationGuard], component: DistrictadminMenuComponent ,
             children: [
-              { path: '', component: DaDashboardComponent},
-              { path: 'Dashboard', component: DaDashboardComponent},
-              { path: 'create-office-bearers', component: CreateOffBearerComponent},
-              { path: 'appoint-district-office-bearers', component: AppointDistrictOffBearerComponent},
-              { path: 'request-office-bearers-change', component: ReqOffBearerChangeComponent},
-              { path: 'districtwise-engieers-report', component: DistrictwiseEngReportComponent},
+              { path: '', canActivate: [AuthenticationGuard], component: DaDashboardComponent},
+              { path: 'Dashboard',canActivate: [AuthenticationGuard],  component: DaDashboardComponent},
+              { path: 'create-office-bearers',canActivate: [AuthenticationGuard],  component: CreateOffBearerComponent},
+              { path: 'appoint-district-office-bearers', canActivate: [AuthenticationGuard], component: AppointDistrictOffBearerComponent},
+              { path: 'request-office-bearers-change', canActivate: [AuthenticationGuard], component: ReqOffBearerChangeComponent},
+              { path: 'districtwise-engieers-report',canActivate: [AuthenticationGuard],  component: DistrictwiseEngReportComponent},
               ],},
   {path:"forgot_password", component: ForgotPasswordComponent},
   {path:"self-registration", component: SelfRegistrationComponent},
