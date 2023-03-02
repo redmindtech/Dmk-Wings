@@ -5,13 +5,16 @@
 </div>
 <div class="container-fluid">
   <div class="card">
-    <div class="card-header d-flex justify-content-between">
-      <h4 class="font-weight-bold text-dark py">MEETINGS</h4>
-      <div class="col-2" style="margin-left:67%">
+    <div class="card-header">
+      <div class="d-flex justify-content-between">
+        <h4 class="font-weight-bold text-dark py">MEETINGS</h4>
+        <div style="width:120px">
           <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
+        </div>
       </div>
+      
   </div>
-  <div *ngIf="!tableshow" style="margin-left: 50%;">
+  <div *ngIf="!tableshow" class="d-flex justify-content-center">
     <div class="loader"></div>
 </div>
 
@@ -21,13 +24,13 @@
       <div class="card-danger">
         <div class="card-header">
           <h3 class="card-title">CREATE MEETING</h3>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" (click)="createmeetingform.reset()">&times;</button>
         </div>
         
         <div class="card-body">
                 <form class="register-form" [formGroup]='createmeetingform' (ngSubmit)="postdata(createmeetingform)" autocomplete="off">
                 <div class="form-group row">
-                        <div class="col-6 md:col-6">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Meeting Name / கூட்டத்தின் பெயர்</label><span class="required "> *</span>
                             <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்">
                             <div *ngIf="createmeetingform.get('meeting_name').status=='INVALID'&& createmeetingform.get('meeting_name').touched==true && createmeetingform.get('meeting_name').value!=''" class="invalid-msg">
@@ -41,17 +44,17 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-6 md:col-6">
-                      <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
-                      <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Meeting Date / சந்திப்பு தேதி<span class="required "> *</span></label>
+                      <input  type="text"  formControlName="meeting_date" class="form-control" onfocus="(this.type='date')"
                                   placeholder="Enter Meeting Date / சந்திப்பு தேதி" required min="{{date | date:'yyyy-MM-dd'}}">
                                   <div  *ngIf="(createmeetingform.get('meeting_date').touched && createmeetingform.get('meeting_date').value=='')"
                                   class="invalid-msg" >Please fill this field</div>
                                   <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_date').untouched" [hidden]='hidden'>Please fill this field</div>
                   </div>
-                        <div class="col-6 md:col-6">
-                            <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
-                            <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
+                        <div class="col-sm-6">
+                            <label>Meeting Time / சந்திப்பு நேரம்<span class="required "> *</span></label>
+                            <input  onfocus="(this.type='time')" type="text" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
                             <div  *ngIf="(createmeetingform.get('meeting_time').touched && createmeetingform.get('meeting_time').value=='')"
                             class="invalid-msg" >Please fill this field</div>
                             <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_time').untouched" [hidden]='hidden'>Please fill this field</div>
@@ -59,7 +62,7 @@
                 </div>
 
                 <div class="form-group" required>
-                    <label>Participants / பங்கேற்பாளர்கள்</label><span class="required "> *</span>
+                    <label>Participants / பங்கேற்பாளர்கள்<span class="required "> *</span></label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio1" (click)="Participants('option1')"   value="1">
                             <label class="form-check-label" for="inlineRadio1">All District Office Bearers/அனைத்து மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
@@ -68,7 +71,7 @@
                             <input class="form-check-input" type="radio" name="participants"  formControlName="participants" id="inlineRadio2" (click)="Participants('option2')"  value="2">
                             <label class="form-check-label" for="inlineRadio1">District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
 
-                            <div  class="col-6 md:col-6">
+                            <div  class="col-sm-6 mb-3 mb-sm-0">
                               <ng-multiselect-dropdown
                              [placeholder]="'Select District'"
                              [settings]="dropdownSettings"
@@ -87,7 +90,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="participants" formControlName="participants" id="inlineRadio3" (click)="Participants('option3')" value="3">
                             <label class="form-check-label" for="inlineRadio1">Engineers/பொறியாளர்கள்</label>
-                            <div  class="col-6 md:col-6">
+                            <div  class="col-sm-6 mb-3 mb-sm-0">
                               <ng-multiselect-dropdown
                              [placeholder]="'Select District'"
                              [settings]="dropdownSettings"
@@ -147,12 +150,12 @@
 
                 <div>
                     <div class="form-group" required>
-                        <label>Meeting Type</label><span class="required "> *</span>
+                        <label>Meeting Type<span class="required "> *</span></label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('online')"  value="online">
                             <label class="form-check-label" for="option1">Online</label>
                            
-                            <input *ngIf="MeetingOptions=='online'" class="form-control col-6 md:col-6" name="meeting_location" formControlName="meeting_location" type="text" placeholder="Enter Meeting Url">
+                            <input *ngIf="MeetingOptions=='online'" class="form-control col-sm-6 mb-3 mb-sm-0" name="meeting_location" formControlName="meeting_location" type="text" placeholder="Enter Meeting Url">
                             <div *ngIf="createmeetingform.get('meeting_location').untouched && createmeetingform.get('meeting_location').touched==true && createmeetingform.get('meeting_location').value!=''" class="invalid-msg">
                               Please fill this field</div>
                             <div  *ngIf="MeetingOptions=='online' && (createmeetingform.get('meeting_location').touched && createmeetingform.get('meeting_location').value=='')"
@@ -163,7 +166,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="meeting_type" formControlName="meeting_type" (click)="radiobutton('offline')" value="offline">
                             <label class="form-check-label" for="option2">Offline</label>
-                            <input *ngIf="MeetingOptions=='offline'"  class="form-control col-6 md:col-6"  formControlName="meeting_location" type="text" placeholder="Enter Location">
+                            <input *ngIf="MeetingOptions=='offline'"  class="form-control col-sm-6 mb-3 mb-sm-0"  formControlName="meeting_location" type="text" placeholder="Enter Location">
                             <div *ngIf="createmeetingform.get('meeting_location').untouched && createmeetingform.get('meeting_location').touched==true && createmeetingform.get('meeting_location').value!=''" class="invalid-msg">
                               Please fill this field</div>
                             <div  *ngIf="MeetingOptions=='offline' && (createmeetingform.get('meeting_location').touched && createmeetingform.get('meeting_location').value=='')"
@@ -192,11 +195,12 @@
                         <option value="3">Chennai/சென்னை</option>
                     </select>
                 </div> -->
-                <div class="col-3" style="margin-left:34%;">
-                    <button class="btn btn-danger btn btn-block">
-                    Create Meeting
-                    </button>
+                <div class="d-flex justify-content-center">
+                  <div  style="width:200px">
+                    <button class="btn btn-danger btn btn-block" >Create Meeting</button>
+                  </div>
                 </div>
+                
             </form>
         </div>
     </div>
@@ -277,7 +281,7 @@
         <div class="card-body">
                 <form class="register-form" [formGroup]='createmeetingform' (ngSubmit)="postdata(createmeetingform)" autocomplete="off">
                 <div class="form-group row">
-                        <div class="col-6 md:col-6">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Meeting Name / கூட்டத்தின் பெயர்</label><span class="required "> *</span>
                             <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்"  [value]="CM_name" [disabled]="true" readonly="readonly">
 
@@ -286,13 +290,13 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-6 md:col-6">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
                       <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
                       <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
                                   placeholder="Enter Meeting Date / சந்திப்பு தேதி" required [value]="CM_date" readonly="readonly">
 
                   </div> 
-                        <div class="col-6 md:col-6">
+                        <div class="col-sm-6">
                             <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
                             <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required  [value]="CM_time" readonly="readonly">
 
@@ -308,12 +312,12 @@
                       </div>
                       <div class="form-check"*ngIf="CM_participants==2">
                         <label class="form-check-label" for="option2"> District Office Bearers/மாவட்ட அலுவலகப் பொறுப்பாளர்கள்</label>
-                        <textarea name="text" class="form-control col-12 md:col-6" rows="2" cols="150" wrap="soft" [value]="CM_constituency" readonly="readonly"> </textarea>
+                        <textarea name="text" class="form-control col-sm-6 mb-3 mb-sm-0" rows="2" cols="150" wrap="soft" [value]="CM_constituency" readonly="readonly"> </textarea>
                     </div>
                       <div class="form-check"*ngIf="CM_participants==3">
                         <label class="form-check-label" for="option3"> Engineers/பொறியாளர்கள்</label>
                       <!-- <input  class="form-control col-6 md:col-6" type="text"   [value]="CM_constituency" readonly="readonly"> -->
-                      <textarea name="text" class="form-control col-12 md:col-6" rows="5" cols="150" wrap="soft" [value]="CM_constituency" readonly="readonly"> </textarea>
+                      <textarea name="text" class="form-control col-sm-6 mb-3 mb-sm-0" rows="5" cols="150" wrap="soft" [value]="CM_constituency" readonly="readonly"> </textarea>
 
                   
                       </div>
@@ -337,12 +341,12 @@
                         <div class="form-check" *ngIf="CM_meeting_type=='online'" >
 
                             <label class="form-check-label" for="option1">Online</label>
-                            <input  class="form-control col-6 md:col-6" readonly="readonly" type="text" placeholder="Enter Meeting Url"  [value]="CM_meeting_location">
+                            <input  class="form-control col-sm-6 mb-3 mb-sm-0" readonly="readonly" type="text" placeholder="Enter Meeting Url"  [value]="CM_meeting_location">
                         </div>
                         <div class="form-check" *ngIf="CM_meeting_type=='offline'">
 
                             <label class="form-check-label" for="option2">Offline</label>
-                            <input  class="form-control col-6 md:col-6" readonly="readonly"  placeholder="Enter Location"  [value]="CM_meeting_location">
+                            <input  class="form-control col-sm-6 mb-3 mb-sm-0" readonly="readonly"  placeholder="Enter Location"  [value]="CM_meeting_location">
                         </div>
                     </div>
                 </div>
