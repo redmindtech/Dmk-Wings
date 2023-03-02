@@ -27,13 +27,17 @@
               <div *ngIf="test_ph=='true' && userForm.get('whatsapp_no').status=='INVALID'&& userForm.get('whatsapp_no').touched==true && userForm.get('whatsapp_no').value!=''" class="invalid-msg">
                 Username is incorrect</div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" [disabled]="btnDisable" formControlName="password">
+              <input type="password" class="form-control" placeholder="Password"  formControlName="password">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
                 </div>
               </div>
             </div>
+            <!-- <div *ngIf=" userForm.get('password').status=='VALID'&& userForm.get('password').touched==true && userForm.get('password').value !=''" class="invalid-msg">
+               please enter password</div>
+               <div *ngIf=" userForm.get('password').status=='INVALID'&& userForm.get('password').touched==true && userForm.get('password').value !=''" class="invalid-msg">
+                please enter password</div> -->
             <div class="row">
               <!-- <div class="col-8">
                 <div class="icheck-primary">
@@ -54,9 +58,9 @@
             </div>
   
             <button class="btn btn-block btn-primary" [disabled]="btnDisable" >Sign in</button>
-            <div *ngIf="btnDisable==true">
+            <!-- <div *ngIf="btnDisable==true">
               Your three attempt is completed. Your account was blocked 
-            </div>
+            </div> -->
   
           </form>
     

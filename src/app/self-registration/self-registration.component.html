@@ -38,26 +38,45 @@
                             <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Degree / கல்வி தகுதி</label>
-                                <input type="text" class="form-control form-control" formControlName="educational_qualification"
+                                <input type="text" class="form-control form-control" formControlName="educational_qualification"required readonly
                                     placeholder="Enter Degree / கல்வி தகுதி">
                             </div>
                             <div class="col-sm-6">
-                                <label>Degree Major / கல்வி தகுதின் பிரிவு</label>
-                                <input type="text" class="form-control form-control" formControlName="profession"
-                                    placeholder="Enter Degree Major / கல்வி தகுதின் பிரிவு">
+                                <label>Degree Major / கல்வித் தகுதியின் பிரிவு</label>
+                                <!-- <input type="text" class="form-control form-control" formControlName="profession"
+                                    placeholder="Enter Degree Major / கல்வி தகுதின் பிரிவு"> -->
+                                    <select name="profession" formControlName="profession"  class="form-control">
+                                        <option value="" selected disabled>Select Option</option>
+                                        <option value="CIVIL">CIVIL</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="MECH">MECH</option>
+                                        <option value="OTHERS">OTHERS</option>
+                                       
+                                        
+                                      
+                                    </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Date of Birth / பிறந்த தேதி</label><span class="required "> *</span>
-                                <input type="date" class="form-control form-control" formControlName="date_of_birth"
-                                    placeholder="Enter Date of Birth / பிறந்த தேதி">
+                                  <label>Date of Birth<span class="required "> *</span></label>
+                                  <input type="date" name="date_of_birth"class="form-control"  [(ngModel)]="date_of_birth" (ngModelChange)="calculateAge()" formControlName="date_of_birth" max="{{minAge1 | date:'yyyy-MM-dd'}}"/>
+                                    
+                                  <!-- <div  *ngIf="date_of_birth.touched && date_of_birth.value==''"
+                                    class="invalid-msg" >Please fill this field</div> -->
+                                    <div  class="invalid-msg" *ngIf="!date_of_birth && hidden==false">Please fill this field</div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <label>Age / வயது<span class="required "> *</span></label>
+                                  <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18"  placeholder="Age / வயது" formControlName="age" readonly/>
+                                  <span *ngIf="age<18" class="invalid-msg">Age must be 18 or above</span>
+                                </div>
+                          </div>
 
-                                    <div  *ngIf="(angForm.get('date_of_birth').touched && angForm.get('date_of_birth').value=='')"
-                                    class="invalid-msg" >Please fill out this field</div>
-                                    <div  class="invalid-msg" *ngIf="angForm.get('date_of_birth').untouched" [hidden]='hidden'>Please fill out this field</div>
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Mobile No / கைபேசி எண்</label><span class="required "> *</span>
                                 <input type="text" maxlength="10" class="form-control form-control" formControlName="contact_no"
                                     placeholder="Enter Mobile / கைபேசி">
@@ -67,8 +86,8 @@
                                     class="invalid-msg" >Please fill out this field</div>
                                     <div  class="invalid-msg" *ngIf="angForm.get('contact_no').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
-                        </div>
-                            <div class="form-group">
+                      
+                        <div class="col-sm-6">
                                 <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
                                 <input type="email" class="form-control form-control" formControlName="email"
                                     placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
@@ -78,8 +97,9 @@
                                     class="invalid-msg" >Please fill out this field</div>
                                     <div  class="invalid-msg" *ngIf="angForm.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
+                        </div>
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                <div class="col-sm-12">
                                     <label>Parents Name / பெற்றோர் பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="father_name"
                                         placeholder="Enter Parents Name / பெற்றோர் பெயர்">
@@ -88,13 +108,44 @@
                                           <div  *ngIf="(angForm.get('father_name').touched && angForm.get('father_name').value=='')"
                                           class="invalid-msg" >Please fill out this field</div>
                                           <div  class="invalid-msg" *ngIf="angForm.get('father_name').untouched" [hidden]='hidden'>Please fill out this field</div>
-                                </div>
+                                </div></div>
                                 <!-- <div class="col-sm-6">
                                     <label>Parents Mobile No / பெற்றோர் கைபேசி எண்</label>
                                     <input type="text" class="form-control form-control" id="ParentsMobileNo"
                                         placeholder="Enter Parents Mobile No / பெற்றோர் கைபேசி எண்">
                                 </div> -->
-                                <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                      <label>Address 1 / முகவரி</label>
+                                      <textarea name="address1" pInputText class="form-control form-control"  placeholder="Enter Address 1 / முகவரி" cols="100" rows="5" formControlName="address1"></textarea>
+                                            <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
+                                            class="invalid-msg" >Please fill this field</div>
+                                            <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Address 2 / முகவரி</label>
+                                        <textarea name="address2" pInputText class="form-control form-control"  placeholder="Enter Address 2 / முகவரி" cols="100" rows="5" formControlName="address2"></textarea>
+                                              <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
+                                              class="invalid-msg" >Please fill this field</div>
+                                              <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Town or City / நகரம்</label>
+                                            <input type="text" class="form-control form-control" name="town_city"  formControlName="town_city"
+                                                placeholder="Town or City / நகரம்">                                             
+                                                  
+                                        </div>
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Taluk / தாலுக்கா</label>
+                                            <input type="text" class="form-control form-control" name="taluk"  formControlName="taluk"
+                                                placeholder="Taluk / தாலுக்கா">                                             
+                                                  
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Select District Name</label><span class="required "> *</span>
                                     <select class="form-control dropdown-toggle" aria-label="Default select example" formControlName="district">
                                         <option value="" disabled selected hidden>Select District</option>
@@ -106,11 +157,18 @@
                                             <div *ngIf="angForm.get('district').hasError('required')"
                                         class="invalid-msg" [hidden]='hidden'>Please fill out this field
                                     </div>
+                                  </div>
+                                  <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Pincode / அஞ்சல் குறியீடு</label>
+                                    <input type="text" class="form-control form-control" name="pincode"  formControlName="pincode"
+                                        placeholder="Pincode / அஞ்சல் குறியீடு">                                             
+                                          
                                 </div>
+                               </div>
                                 <div class="col-12 md:col-12">
                                     <input pInputText type="text" hidden name="location_id" formControlName="location_id" placeholder="Location Id"required/>
                                 </div>
-                            </div>
+                            
 
                             <div class="form-group" >
                                 <div class="d-flex justify-content-center">

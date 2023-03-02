@@ -11,7 +11,7 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   sendmail:FormGroup;
-  btnDisable: boolean;
+  btnDisable=true;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, private router:Router) {

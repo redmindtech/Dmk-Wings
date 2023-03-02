@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-            baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          // baseUrl:string="http://localhost/git_new/Dmk-Wings/php";
+            // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+           baseUrl:string="http://localhost/new_git/Dmk-Wings/php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -154,14 +154,14 @@ public userlogin(username : any, password :any) {
   }));
   }
 
-public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any) {
+public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any,age:any,address1:any,address2:any,town_city:any,taluk:any,pincode:any) {
   const httpOptions : Object = {
     headers: new HttpHeaders({
       'Content-Type':'application/x-www-form-urlencoded'
     })
   };
-
-return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id })
+console.log(location_id);
+return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id,age,address1,address2,town_city,taluk,pincode})
 .pipe(map(Users => {
 return Users;
 }));

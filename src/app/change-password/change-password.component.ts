@@ -31,7 +31,14 @@ export class ChangePasswordComponent implements OnInit {
   }
   postdata(forgotForm : any)
   { 
-        //console.log(this.resetpassword)
+    console.log(forgotForm.value.password);
+    console.log(forgotForm.value.password);
+    console.log(forgotForm.value.email);
+
+    if(forgotForm.password==forgotForm.cpassword)
+    {
+      if(forgotForm.status == "VALID")
+        console.log(forgotForm.value.password);
       this.ApiService.resetpassword(forgotForm.value.email,forgotForm.value.password,forgotForm.value.cpassword)
       .subscribe( data => {
                       alert("Password was updated");
@@ -39,6 +46,10 @@ export class ChangePasswordComponent implements OnInit {
                       this.router.navigate(['']);},
                   error => {
                       console.log(error)});
+    }
+    else{
+      alert("password and confirm password not same");
+    }
   }
 get email() { return this.resetpassword.get('email'); }
 get password() { return this.resetpassword.get('password'); }
