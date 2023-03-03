@@ -169,7 +169,7 @@ export class CreateMeetingsComponent implements OnInit {
           .subscribe(
           data => {
               window.location.reload();
-              alert("Meeting has been canceled!")
+              alert("Meeting has been cancelled!")
           },
 
           error => {

@@ -57,12 +57,12 @@ console.log(data);
       this.ApiService.sendmail(forgotForm.value.email)
       .subscribe(
       data => {
-          alert("The reset link has been sent to your registeres mail");
+          alert("The password reset link has been sent to your registered mail");
           this.router.navigate(['']);
       },
       error => {
           ///console.log(error)
-          alert("The reset link has been sent to your registeres mail");
+          alert("The password reset link has been sent to your registered mail");
           this.sendmail.reset();
           this.router.navigate(['']);
       });

@@ -158,7 +158,7 @@ else {
   .pipe(first())
  .subscribe(
  data => {
- alert("Your profile has been locked please contact admin");
+ alert("Your account has been locked please contact admin");
  });
 
   // alert('Login failed. Invalid email or password. Your account was blocked');

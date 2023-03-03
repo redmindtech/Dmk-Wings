@@ -31,24 +31,31 @@ export class ChangePasswordComponent implements OnInit {
   }
   postdata(forgotForm : any)
   { 
-    console.log(forgotForm.value.password);
-    console.log(forgotForm.value.password);
-    console.log(forgotForm.value.email);
+    // console.log(forgotForm.value.password);
+    // console.log(forgotForm.value.cpassword);
+    // console.log("forgotForm.value.email");
 
-    if(forgotForm.password==forgotForm.cpassword)
+    if(forgotForm.value.password==forgotForm.value.cpassword)
     {
-      if(forgotForm.status == "VALID")
+      if(forgotForm.value.password != '' && forgotForm.value.cpassword!= '' ){
         console.log(forgotForm.value.password);
       this.ApiService.resetpassword(forgotForm.value.email,forgotForm.value.password,forgotForm.value.cpassword)
       .subscribe( data => {
-                      alert("Password was updated");
+                      alert("Password has been updated");
                       this.resetpassword.reset();
                       this.router.navigate(['']);},
                   error => {
                       console.log(error)});
+      // console.log('if');
     }
     else{
-      alert("password and confirm password not same");
+    alert("Please enter password");
+    }
+  }
+    else{
+      alert("Password and confirm password not same");
+      window.location.reload()
+      
     }
   }
 get email() { return this.resetpassword.get('email'); }

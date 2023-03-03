@@ -70,36 +70,39 @@
                                 </div>
                                 <div class="col-sm-6">
                                   <label>Age / வயது<span class="required "> *</span></label>
-                                  <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="18"  placeholder="Age / வயது" formControlName="age" readonly/>
-                                  <span *ngIf="age<18" class="invalid-msg">Age must be 18 or above</span>
+                                  <input type="number" name="age" class="form-control age" [(ngModel)]="age"  min="20"  placeholder="Age / வயது" formControlName="age" readonly/>
+                                  <span *ngIf="age<20" class="invalid-msg">Age must be 20 or above</span>
                                 </div>
                           </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Mobile No / கைபேசி எண்</label><span class="required "> *</span>
-                                <input type="text" maxlength="10" class="form-control form-control" formControlName="contact_no"
+                                <input type="text" maxlength="10" class="form-control form-control" formControlName="contact_no" (keyup)="getphone(angForm.get('contact_no').value)"
                                     placeholder="Enter Mobile / கைபேசி">
-                                    <div *ngIf="angForm.get('contact_no').status=='INVALID'&& angForm.get('contact_no').touched==true && angForm.get('contact_no').value!=''" class="invalid-msg">
+                                    <div *ngIf=" angForm.get('contact_no').status=='INVALID'&& angForm.get('contact_no').touched==true && angForm.get('contact_no').value!=''" class="invalid-msg">
                                       Please enter the valid Contact Number</div>
                                     <div  *ngIf="(angForm.get('contact_no').touched && angForm.get('contact_no').value=='')"
                                     class="invalid-msg" >Please fill out this field</div>
-                                    <div  class="invalid-msg" *ngIf="angForm.get('contact_no').untouched" [hidden]='hidden'>Please fill out this field</div>
+                                    <div  class="invalid-msg" *ngIf="test_ph=='true'&& angForm.get('contact_no').value !=''">This phone is already exist and please enter new phone.</div>
+                                    <div  class="invalid-msg" *ngIf="test_ph=='true' && angForm.get('contact_no').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                       
                         <div class="col-sm-6">
                                 <label>Email Address / மின்னஞ்சல் முகவரி</label><span class="required "> *</span>
-                                <input type="email" class="form-control form-control" formControlName="email"
-                                    placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
+                                <input type="email" class="form-control form-control" formControlName="email" 
+                                (keyup)="getemail(angForm.get('email').value)"    placeholder="Enter Email Address / மின்னஞ்சல் முகவரி">
                                     <div *ngIf="angForm.get('email').status=='INVALID'&& angForm.get('email').touched==true && angForm.get('email').value!=''" class="invalid-msg">
                                      Please enter valid Email Id</div>
                                     <div  *ngIf="(angForm.get('email').touched && angForm.get('email').value=='')"
                                     class="invalid-msg" >Please fill out this field</div>
                                     <div  class="invalid-msg" *ngIf="angForm.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
+                                    <div  class="invalid-msg" *ngIf="test_email=='true'&& angForm.get('email').value !=''">This emaii is already exist and please enter new email.</div>
+                                    <div  class="invalid-msg" *ngIf="test_email=='true' && angForm.get('email').untouched" [hidden]='hidden'>Please fill out this field</div>
                             </div>
                         </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Parents Name / பெற்றோர் பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="father_name"
                                         placeholder="Enter Parents Name / பெற்றோர் பெயர்">
@@ -108,7 +111,14 @@
                                           <div  *ngIf="(angForm.get('father_name').touched && angForm.get('father_name').value=='')"
                                           class="invalid-msg" >Please fill out this field</div>
                                           <div  class="invalid-msg" *ngIf="angForm.get('father_name').untouched" [hidden]='hidden'>Please fill out this field</div>
-                                </div></div>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Profession / தொழில்</label>
+                                    <input type="text" name="self_profession" pInputText class="form-control form-control"  placeholder="Profession / தொழில்"  formControlName="self_profession">
+                                          <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
+                                          class="invalid-msg" >Please fill this field</div>
+                                          <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
+                                  </div></div>
                                 <!-- <div class="col-sm-6">
                                     <label>Parents Mobile No / பெற்றோர் கைபேசி எண்</label>
                                     <input type="text" class="form-control form-control" id="ParentsMobileNo"
