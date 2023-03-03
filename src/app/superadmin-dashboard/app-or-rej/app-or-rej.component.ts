@@ -25,6 +25,7 @@ export class AppOrRejComponent implements OnInit {
   username: any;
   user_password: any;
   spinner: boolean;
+  approval_status: string;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -189,11 +190,11 @@ minAge1:Date;
   {
 
     console.log(officebearerform);
-    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='')
+    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='' && this.approval_status!='')
     {  
        console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
-          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.approval_status,this.district,this.constituency)
         .subscribe(
         data => {
            // window.location.reload();
@@ -372,6 +373,7 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
      updateform.get('party_comments1').value,
+     updateform.get('approval_status1').value,
     '1',this.OBDistrict,this.OBConstituency)
     .pipe()
     .subscribe(

@@ -77,9 +77,10 @@ export class ReqOffBearerChangeComponent implements OnInit {
         user_id:[''],});
     }
   customers:any=[];
+  statusapproval:any=[];
   officebearerform !:FormGroup;
   dtOptions: DataTables.Settings = {};
-
+  emparr:any=[];  
   ngOnInit(): void {
     this.districtname=JSON.parse(localStorage.getItem('user_district'));
     this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
@@ -90,7 +91,32 @@ export class ReqOffBearerChangeComponent implements OnInit {
       //console.log(obj.data.length);
       ;})
     // this.getdata();
-    // this.ApiService.viewtableOB();
+ 
+
+    
+
+    this.ApiService.roledatablelogin(this.districtname).subscribe((data:any) => {
+      console.log(data);
+let obj= data;
+this.customers=obj.data;
+this.tableshow=true;
+console.log(obj.data.length);
+;})
+
+
+//     this.ApiService.viewtableOBapprove().subscribe((data:any) => {
+//       console.log(data);
+// let obj= data;
+// this.statusapproval=obj.data;
+// for(let i in this.statusapproval){
+//   //console.log(this.statusapproval[i].user_maser_id);
+//   this.emparr.push(this.statusapproval[i].user_maser_id);
+// }
+// console.log( this.emparr);
+
+// this.tableshow=true;
+// // console.log(obj.data.length);
+// ;})
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();

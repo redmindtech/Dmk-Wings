@@ -26,6 +26,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   user_password: any;
   spinner: boolean;
   districtname: any;
+  approval_status: any;
+  tableshow: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -61,6 +63,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         address1:[''],
         applied_role1:['',Validators.required],
         party_comments1:[''],
+        approval_status1:['',Validators.required],
         location_id1:['1',Validators.required],
         mode1:['2',Validators.required]
       });
@@ -94,6 +97,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address:[''],
         applied_role:['',Validators.required],
+        approval_status:['',Validators.required],
         party_comments:[''],
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
@@ -123,6 +127,7 @@ minAge1:Date;
      this.minAge1 = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
     //console.log(this.ApiService.all_constituency['CHENGALPATTU'])
     this.districtname=JSON.parse(localStorage.getItem('user_district'));
+    
     this.ApiService.datablelogin(this.districtname).subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
@@ -144,6 +149,7 @@ minAge1:Date;
     let obj=this.constituency_list;
     this.user_constituency=obj[this.district];
     this.showSpinner();
+    this.tableshow=true;
   }
   public showSpinner(): void {
     this.spinnerService.show();
@@ -191,11 +197,11 @@ minAge1:Date;
   {
 
     console.log(officebearerform);
-    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='')
+    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='' && this.approval_status!='')
     {  
        console.log(officebearerform);
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
-          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency)
+        this.ApiService.create_office_bearers(officebearerform.value.mode, officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency,officebearerform.value.approval_status)
         .subscribe(
         data => {
            // window.location.reload();
@@ -284,6 +290,7 @@ minAge1:Date;
     OBdegree: any;
     OBaddtionaldegree: any;
     OBphonenumber: any;
+    // OBapproval_status:any;
     whatsappnumner: any;
     OBprofession: any;
     OBaddress: any;
@@ -310,6 +317,7 @@ minAge1:Date;
          this.OBmail=a.email;
          this.OBprofession=a.profession;
          this.OBaddress=a.address1;
+         this.OBstatus=a.approval_status;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
          this.fullname1=a.name;
@@ -343,6 +351,7 @@ minAge1:Date;
         additional_qualification1:this.OBaddtionaldegree,
         contact_no1:this.OBphonenumber,
         whatsapp_no1:this.whatsappnumner,
+        
         profession1:this.OBprofession,
         address1:this.OBaddress,
         applied_role1:this.OBold_designation,
@@ -374,7 +383,7 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
      updateform.get('party_comments1').value,
-    '1',this.OBDistrict,this.OBConstituency)
+    '1',this.OBDistrict,this.OBConstituency,updateform.get('approval_status1').value,)
     .pipe()
     .subscribe(
         data => {

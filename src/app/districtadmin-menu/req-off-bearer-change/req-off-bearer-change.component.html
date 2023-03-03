@@ -7,7 +7,7 @@
 <div class="container-fluid" >
   <div class="card shadow">
     <div class="card-header d-flex justify-content-between">
-      <h4 class="font-weight-bold text-dark py">OFFICE BEARER</h4>
+      <h4 class="font-weight-bold text-dark py">REQUEST OFFICE BEARER ROLE CHANGES</h4>
       <!-- <div class="col-2" style="margin-left:67%">
           <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
       </div> -->
@@ -500,10 +500,24 @@
                   <td style="min-width: 20px;">
                     {{customer.contact_no}}
                     </td>
-                  <td><a data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
-                    <i class="fas fa-flag"></i>
-                </a></td>
-
+                  <td>
+                    <div *ngIf="customer.role_change_status == ''">
+                      <button data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
+                        <i class="fas fa-flag"></i>
+                    </button>
+                    </div>
+                  
+                  <div *ngIf="customer.role_change_status == 'approved'">
+                    <button data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
+                      <i class="fas fa-flag"></i>
+                  </button>
+                  </div>
+                  <div *ngIf="customer.role_change_status == 'pending'">
+                    <button disabled data-toggle="modal" data-target="#requestDialog" class="btn btn-primary btn-circle btn-sm" (click)="editbuttonviewOB(customer)">
+                      <i class="fas fa-flag"></i>
+                  </button>
+                  </div>
+                </td>
                 </tr>
             </tbody>
 
