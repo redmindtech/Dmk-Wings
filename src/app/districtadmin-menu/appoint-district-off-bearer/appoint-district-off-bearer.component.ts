@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Colors } from 'chart.js';
 
 @Component({
   selector: 'app-appoint-district-off-bearer',
@@ -28,6 +29,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   districtname: any;
   approval_status: any;
   tableshow: boolean;
+  
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -141,7 +143,7 @@ minAge1:Date;
       order:[]
     };
 
-    // this.ApiService.viewtableOB();
+    this.ApiService.viewtableOB();
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
@@ -188,7 +190,7 @@ minAge1:Date;
         // for(const prop in obj.data) {
         //     this.customers.push(obj.data[prop]);
         //   }
-        //   console.log(this.customers);
+           console.log(this.customers);
     });
 
   }
@@ -535,7 +537,126 @@ test_ph1= "false";
     }
 
   }
+  applied_role3: any = [];
+  test_applied = "false";
+  applied_role4 = "fasle";
+  getapplied(r) {
+      console.log(r);
+      //console.log(g)
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (r!=null) {
+       console.log(r);
+       this.ApiService.datablelogin(this.districtname).subscribe(data => {
+        ///let object={data:[{id:'000'}]};
+        let object:any=data;
+        
+         let roles = [];
+        object.data.map((data) => {
+          roles.push(data.applied_role);
+        });
+        console.log(roles);
+        let roles2=[roles];
+        console.log(roles2);
+        const  value_to_count: string = "District Co-Organizer";
 
+        let count: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count) {
+                count++;
+            }
+        
+        }
+        const  value_to_count1: string = "Corporation & Municipalities Chairman";
+
+        let count1: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count1) {
+                count1++;
+            }
+        
+        }
+        const  value_to_count2: string = "Corporation & Municipalities Vice President";
+
+        let count2: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count2) {
+                count2++;
+            }
+        
+        }
+        const  value_to_count3: string = "District Organiser";
+
+        let count3: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count3) {
+                count2++;
+            }
+        
+        }
+
+        
+
+        console.log(r);
+        
+        if(r=="Corporation & Municipalities Chairman"){
+
+           if(count1<1){
+          
+          console.log('1');
+          console.log(count1);
+          this.applied_role4 = "fasle";
+          }
+          else{
+            this.applied_role4= "true";
+          }
+
+        
+
+        }
+        else if(r=="Corporation & Municipalities Vice President"){
+          if(count2<1){
+          
+            console.log('2');
+            this.applied_role4 = "false";
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="District Organiser"){
+          if(count3<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+        }
+        else{
+          if(count<5){
+          
+          console.log('esle');
+          this.applied_role4 = "fasle";
+          }
+          else{
+            this.applied_role4 = "true";
+          }
+
+        }
+    
+
+     }
+
+        );
+      }
+      else {
+      console.log('ffff');
+      
+      }
+    }
 
 
 postdata1(angForm1) //angForm1
@@ -565,7 +686,7 @@ postdata1(angForm1) //angForm1
 
 
 calculateAge() {
-  console.log(this.date_of_birth);
+ // console.log(this.date_of_birth);
 
 
   const today = new Date();

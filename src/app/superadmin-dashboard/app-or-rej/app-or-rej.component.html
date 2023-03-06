@@ -195,13 +195,7 @@
                               </div>
                       </div>
                       <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                              <label>Address / முகவரி</label>
-                              <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
-                                    <!-- <div  *ngIf="(editform.get('address1').touched && address1.value=='')"
-                                    class="invalid-msg" >Please fill this field</div> -->
-                                    <!-- <div  class="invalid-msg" *ngIf="editform.get('address1').untouched && address1.value==''">Please fill this field</div> -->
-                            </div>
+                           
                       </div>
                       <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -225,8 +219,23 @@
                                       class="invalid-msg" >Please fill this field</div>
                                     <div  class="invalid-msg" *ngIf="editform.get('applied_role1').untouched && applied_role1.value==''">Please fill this field</div>
                             </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Status / நிலை<span class="required "> *</span></label><br>
+                              <select name="approval_status" formControlName="approval_status1" class="form-control">
+                                  <option value="" disabled selected hidden>Select Option</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Inactive">Inactive</option>
+                              </select>
+                            </div>
                       </div>
                       <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <label>Address / முகவரி</label>
+                          <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
+                                <!-- <div  *ngIf="(editform.get('address1').touched && address1.value=='')"
+                                class="invalid-msg" >Please fill this field</div> -->
+                                <!-- <div  class="invalid-msg" *ngIf="editform.get('address1').untouched && address1.value==''">Please fill this field</div> -->
+                        </div>
                           <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
@@ -341,10 +350,7 @@
                             </div>
                       </div>
                       <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                              <label>Address / முகவரி</label>
-                              <textarea name="address1" pInputText class="form-control"  [disabled]="true" placeholder="Enter Address / முகவரி" cols="100" rows="5" [value]="OBaddress"></textarea>
-                            </div>
+                            
                       </div>
                       <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -365,8 +371,20 @@
                                     <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                                 </select>
                             </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Status / நிலை<span class="required "></span></label><br>
+                              <select name="approval_status" [disabled]="true" [value]="OBstatus" class="form-control">
+                                  <option value="" disabled selected hidden>Select Option</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Inactive">Inactive</option>
+                              </select>
+                            </div>
                       </div>
                       <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <label>Address / முகவரி</label>
+                          <textarea name="address1" pInputText class="form-control"  [disabled]="true" placeholder="Enter Address / முகவரி" cols="100" rows="5" [value]="OBaddress"></textarea>
+                        </div>
                           <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Comments</label>
                             <textarea name="party_comments" pInputText class="form-control" [disabled]="true" placeholder="Enter Comments" cols="100" rows="5" [value]="OBcomments"></textarea>
@@ -585,15 +603,7 @@
 
                               </div>
                         </div>
-                        <div class="form-group row">
-                              <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Address / முகவரி</label>
-                                <textarea name="address" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5" formControlName="address"></textarea>
-                                      <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
-                                      class="invalid-msg" >Please fill this field</div>
-                                      <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
-                              </div>
-                        </div>
+                        
                         <div class="form-group row">
                               <div class="col-sm-6 mb-3 mb-sm-0">
                                   <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு<span class="required "> *</span></label><br>
@@ -616,8 +626,26 @@
                                     class="invalid-msg" >Please select this field</div>
                                     <div  class="invalid-msg" *ngIf="officebearerform.get('applied_role').untouched" [hidden]='hidden'>Please select this field</div>
                               </div>
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Status / நிலை<span class="required "> *</span></label><br>
+                                <select name="approval_status" formControlName="approval_status"  class="form-control">
+                                    <option value="" disabled selected hidden>Select Option</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                                <div *ngIf="officebearerform.get('approval_status').hasError('required')"
+                                class="invalid-msg" [hidden]='hidden'>Please select the Status
+                              </div>
+                            </div>
                         </div>
                         <div class="form-group row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Address / முகவரி</label>
+                            <textarea name="address" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5" formControlName="address"></textarea>
+                                  <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
+                                  class="invalid-msg" >Please fill this field</div>
+                                  <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
+                          </div>
                             <div class="col-sm-6 mb-3 mb-sm-0">
                               <label>Comments</label>
                               <textarea name="party_comments" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" formControlName="party_comments"></textarea>

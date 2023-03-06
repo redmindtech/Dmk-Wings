@@ -59,6 +59,7 @@ export class AppOrRejComponent implements OnInit {
         whatsapp_no1:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         profession1:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address1:[''],
+        approval_status1: ['', Validators.required],
         applied_role1:['',Validators.required],
         party_comments1:[''],
         location_id1:['1',Validators.required],
@@ -94,6 +95,7 @@ export class AppOrRejComponent implements OnInit {
         profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address:[''],
         applied_role:['',Validators.required],
+        approval_status: ['', Validators.required],
         party_comments:[''],
         location_id:['1',Validators.required],
         mode:['2',Validators.required]
@@ -194,7 +196,7 @@ minAge1:Date;
     {  
        console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
-          officebearerform.value.party_comments,officebearerform.value.location_id,this.approval_status,this.district,this.constituency)
+          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency,officebearerform.value.approval_status)
         .subscribe(
         data => {
            // window.location.reload();
@@ -314,6 +316,7 @@ minAge1:Date;
          this.fullname1=a.name;
          this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
+         this.OBstatus=a.approval_status;
          console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
@@ -334,7 +337,6 @@ minAge1:Date;
           age1:this.OBage,
           designation1:this.OBdesig,
           party_designation1:this.OBparty_desig,
-          approval_status1:this.OBstatus,
         father_name1:this.OBfathername,
         mother_name1:this.OBmothername,
         educational_qualification1:this.OBdegree,
@@ -346,6 +348,7 @@ minAge1:Date;
         address1:this.OBaddress,
         applied_role1:this.OBold_designation,
         party_comments1:this.OBcomments,
+        approval_status1:this.OBstatus,
         location_id1:'1',
         mode1:'2'
 
@@ -373,8 +376,8 @@ updatedata(updateform: any){
     updateform.get('address1').value,
     updateform.get('applied_role1').value,
      updateform.get('party_comments1').value,
-     updateform.get('approval_status1').value,
-    '1',this.OBDistrict,this.OBConstituency)
+    '1',this.OBDistrict,this.OBConstituency,
+    updateform.get('approval_status1').value)
     .pipe()
     .subscribe(
         data => {

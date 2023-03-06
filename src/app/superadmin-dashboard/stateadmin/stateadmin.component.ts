@@ -260,7 +260,7 @@ export class StateadminComponent implements OnInit {
       // console.log('old_em')
       // console.log( this.SAmail)
       if (this.stateadminform.get('email').status == "VALID") {
-        // console.log(a);
+         console.log(a);
         this.ApiService.email_check().subscribe(data => {
 
           for (let email in data) {
