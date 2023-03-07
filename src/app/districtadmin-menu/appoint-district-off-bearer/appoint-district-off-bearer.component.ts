@@ -185,6 +185,7 @@ minAge1:Date;
 
     this.ApiService.viewtableOB().subscribe((data:any) => {
         let obj= data;
+        this.tableshow=true;
         // console.log(obj.data);
 
         // for(const prop in obj.data) {

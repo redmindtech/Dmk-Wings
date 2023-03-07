@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-change-password',
@@ -11,26 +12,35 @@ import { ApiServiceService } from 'src/app/_service/api-service.service';
 export class ChangePasswordComponent implements OnInit {
   resetpassword:FormGroup;
     sent_email:string;
-  
+    token:string;
+    today = new Date();
+    ex:string;
+    expiry_date:Date;
+    expdate_to_str:string;
+
 
   constructor(public ApiService:ApiServiceService,
     private route:ActivatedRoute,
-    private fb: FormBuilder, private router:Router
-    
+    private fb: FormBuilder, private router:Router,public datepipe:DatePipe
+
     ) {
       this.sent_email=this.route.snapshot.params['email'];
+      this.token=this.route.snapshot.params['token'];
       this.resetpassword = this.fb.group({
         email: [this.sent_email, [Validators.required,Validators.minLength(1), Validators.email]],
         password:['',[Validators.required]],
         cpassword:['',[Validators.required]],
-        }); 
-      
+        });
+
     }
 
   ngOnInit(): void {
+
+    this.getdata();
+
   }
   postdata(forgotForm : any)
-  { 
+  {
     // console.log(forgotForm.value.password);
     // console.log(forgotForm.value.cpassword);
     // console.log("forgotForm.value.email");
@@ -55,13 +65,38 @@ export class ChangePasswordComponent implements OnInit {
     else{
       alert("Password and confirm password not same");
       window.location.reload()
-      
+
     }
   }
 get email() { return this.resetpassword.get('email'); }
 get password() { return this.resetpassword.get('password'); }
 get cpassword() { return this.resetpassword.get('cpassword'); }
 
- 
+customers: any[] = [];
+ex_time:string;
+form_hidden:boolean;
+content_hidden:boolean;
+getdata() {
+  this.ApiService.check_token(this.sent_email).subscribe(data => {
+    for (const prop in data) {
+      this.customers.push(data[prop])
+    }
+    console.log(this.customers);
+    this.expiry_date=this.customers[0][0].expiry_link;
+    //alert(this.expiry_date);
+    this.ex=this.datepipe.transform(this.today,"YYYY-MM-dd HH:MM:ss");
+    //alert(this.ex);
+    this.ex_time=this.datepipe.transform(this.expiry_date,"YYYY-MM-dd HH:MM:ss");
+    if(Date.parse(this.ex_time)>Date.parse(this.ex))
+    {
+      this.form_hidden=false;
+      this.content_hidden=true;
+    }
+    else{
+      this.form_hidden=true;
+      this.content_hidden=false;
+    }
+  });
+}
 
 }

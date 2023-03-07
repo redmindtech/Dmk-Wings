@@ -29,6 +29,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   
   
-  providers: [],
+  // providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

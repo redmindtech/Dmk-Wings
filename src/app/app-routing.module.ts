@@ -27,7 +27,8 @@ import { StateadminComponent } from './superadmin-dashboard/stateadmin/stateadmi
 import { SuperadminDashboardComponent } from './superadmin-dashboard/superadmin-dashboard.component';
 
 const routes: Routes = [
-  {path:"", component: LoginComponent, pathMatch: 'full'},
+  // {path:"", component: LoginComponent, pathMatch: 'full'},
+  {path:"change-password/:email/:token", component: ChangePasswordComponent},
   {path:"change-password/:email", component: ChangePasswordComponent},
   {path:"superadmin",  canActivate: [AuthenticationGuard],component: SuperadminDashboardComponent,
         children: [
