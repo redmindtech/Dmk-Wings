@@ -458,22 +458,7 @@
                             </span>
                         </div>
                       </div> -->
-                      <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label>Responsibility for Applying to District Posting Name / மாவட்ட அணி பொறுப்பு
-                          <span class="required "> *</span></label><br>
-                        <select name="applied_posting" class="form-control" formControlName="applied_posting"  (change)="getposting(officebearerform.get('applied_posting').value)">
-                            <option value="" selected disabled hidden>Select Option</option>
-                           
-                            <option value="மாவட்rrrrrrடம்">மாவட்டம்</option>
-                            <option value="மாநகரம்">மாநகரம்</option>
-                            <option value="ஒன்றியம்">ஒன்றியம்</option>
-                            <option value="பேரூர்">பேரூர்</option>
-                            <option value="பகுதி">பகுதி</option>
-                        </select>
                   
-                    </div>
-                      </div>
 
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
                          <div class="form-group row">

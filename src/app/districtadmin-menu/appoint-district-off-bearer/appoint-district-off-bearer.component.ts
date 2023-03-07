@@ -102,7 +102,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         approval_status:['',Validators.required],
         party_comments:[''],
         location_id:['1',Validators.required],
-        mode:['2',Validators.required]
+        mode:['2',Validators.required],
+        applied_posting:['',Validators.required]
       });
 
     }
@@ -536,6 +537,9 @@ test_ph1= "false";
     
     }
 
+  }
+  getposting(p){
+    console.log(p);
   }
   applied_role3: any = [];
   test_applied = "false";
