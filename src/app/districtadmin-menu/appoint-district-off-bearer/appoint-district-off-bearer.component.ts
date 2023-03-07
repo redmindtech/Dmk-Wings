@@ -185,7 +185,6 @@ minAge1:Date;
 
     this.ApiService.viewtableOB().subscribe((data:any) => {
         let obj= data;
-        this.tableshow=true;
         // console.log(obj.data);
 
         // for(const prop in obj.data) {
@@ -591,7 +590,8 @@ test_ph1= "false";
         let count3: number = 0;
         for (let value of roles) {
             if (value === value_to_count3) {
-                count2++;
+                count3++;
+                
             }
         
         }
@@ -606,7 +606,9 @@ test_ph1= "false";
           
           console.log('1');
           console.log(count1);
-          this.applied_role4 = "fasle";
+          this.applied_role4 = "false";
+          count1 == 0;
+          console.log(count1);
           }
           else{
             this.applied_role4= "true";
@@ -619,7 +621,8 @@ test_ph1= "false";
           if(count2<1){
           
             console.log('2');
-            this.applied_role4 = "false";
+            this.applied_role4 = "fasle";
+            count2 == 0;
             }
             else{
               this.applied_role4 = "true";
@@ -631,16 +634,20 @@ test_ph1= "false";
           
             console.log('3');
             this.applied_role4 = "fasle";
+            count3 == 0;
+            console.log(count3);
             }
             else{
               this.applied_role4 = "true";
             }
+  
         }
         else{
           if(count<5){
           
           console.log('esle');
-          this.applied_role4 = "fasle";
+          this.applied_role4 = "false";
+          count== 0;
           }
           else{
             this.applied_role4 = "true";
