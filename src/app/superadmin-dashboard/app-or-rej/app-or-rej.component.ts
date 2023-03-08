@@ -63,6 +63,7 @@ export class AppOrRejComponent implements OnInit {
         address1:[''],
         approval_status1: ['', Validators.required],
         applied_role1:['',Validators.required],
+        applied_posting1:['',Validators.required],
         party_comments1:[''],
         location_id1:['1',Validators.required],
         mode1:['2',Validators.required],
@@ -212,7 +213,7 @@ minAge1:Date;
           officebearerform.value.firstname,
           officebearerform.value.lastname,
           officebearerform.value.age,
-          officebearerform.value.father_name,
+          officebearerform.value.lastname,
           officebearerform.value.mother_name,
           officebearerform.value.educational_qualification,
           officebearerform.value.date_of_birth,
@@ -280,7 +281,7 @@ minAge1:Date;
     get lastname() { return this.officebearerform.get('lastname'); }
     // get constituency() { return this.officebearerform.get('constituency'); }
     get applied_role() { return this.officebearerform.get('applied_role'); }
-    get father_name() { return this.officebearerform.get('father_name'); }
+    get father_name() { return this.officebearerform.get('lastname'); }
     get mother_name() { return this.officebearerform.get('mother_name'); }
     get educational_qualification() { return this.officebearerform.get('educational_qualification'); }
     get additional_qualification() { return this.officebearerform.get('additional_qualification'); }
@@ -312,7 +313,7 @@ minAge1:Date;
     get town_city1() { return this.officebearerform.get('town_city1'); }
     get taluk1() { return this.officebearerform.get('taluk1'); }
     get pincode1() { return this.officebearerform.get('pincode1'); }
-
+    get applied_posting1() { return this.editform.get('applied_posting1'); }
     OBid:any;
     OBname: any;
     OBlastname: any;
@@ -370,6 +371,7 @@ minAge1:Date;
          this.OBtown_city=a.town_city;
          this.OBtaluk=a.taluk;
          this.OBpincode=a.pincode;
+        this.OBapplied_posting=a.applied_posting;
          console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
@@ -407,7 +409,8 @@ minAge1:Date;
         taluk1:this.OBtaluk,
         pincode1:this.OBpincode,
         location_id1:'1',
-        mode1:'2'
+        mode1:'2',
+        applied_posting1:this.OBapplied_posting,
 
 
         });
@@ -438,7 +441,9 @@ updatedata(updateform: any){
     updateform.get('street_name1').value,
     updateform.get('town_city1').value,
     updateform.get('taluk1').value ,
-    updateform.get('pincode1').value )
+    updateform.get('pincode1').value ,
+    updateform.get('applied_posting1').value)
+
     .pipe()
     .subscribe(
         data => {

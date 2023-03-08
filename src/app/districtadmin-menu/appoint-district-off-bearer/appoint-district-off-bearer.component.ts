@@ -69,6 +69,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         profession1:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address1:[''],
         applied_role1:['',Validators.required],
+       // applied_posting1:['',Validators.required],
         party_comments1:[''],
         approval_status1:['',Validators.required],
         location_id1:['1',Validators.required],
@@ -77,7 +78,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         street_name1:[''],
         town_city1:[''],
         taluk1:[''],
-        pincode1:['',[Validators.pattern('[1-9][0-9]{6}')]]
+        pincode1:['']
       });
 
       this.reqform= this.fb.group({
@@ -327,6 +328,7 @@ minAge1:Date;
     get town_city1() { return this.officebearerform.get('town_city1'); }
     get taluk1() { return this.officebearerform.get('taluk1'); }
     get pincode1() { return this.officebearerform.get('pincode1'); }
+    get applied_posting1() { return this.editform.get('applied_posting1'); }
 
     OBid:any;
     OBname: any;
@@ -460,7 +462,8 @@ updatedata(updateform: any){
     updateform.get('street_name1').value,
     updateform.get('town_city1').value,
     updateform.get('taluk1').value ,
-    updateform.get('pincode1').value)
+    updateform.get('pincode1').value,
+    updateform.get('applied_posting1').value)
     .pipe()
     .subscribe(
         data => {

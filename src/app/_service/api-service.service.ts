@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ApiServiceService {
   redirectUrl!: string;
             // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-            baseUrl:string="http://localhost/today_dmk/Dmk-Wings/php/";
+            baseUrl:string="http://localhost/Dmk-Wings/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -512,7 +512,7 @@ public viewtableDA() {
                                           }
 
                                           public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,
-                                            party_comments:any,location_id:'1',district:any,constituency:any,approval_status:any,address1:any,town_city:any,taluk:any,pincode:any) {
+                                            party_comments:any,location_id:'1',district:any,constituency:any,approval_status:any,address1:any,town_city:any,taluk:any,pincode:any,applied_posting:any) {
                                             //let firstname='names'
                                             const httpOptions : Object = {
                                                     headers: new HttpHeaders({
@@ -522,7 +522,7 @@ public viewtableDA() {
                                                   console.log(user_id);
                                               // console.log("apidata : "+user_id,firstname,lastname,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address,applied_role,party_comments,location_id)
                                                   return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=2', {mode,user_id,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,
-                                                    party_comments,location_id,district,constituency,approval_status,address1,town_city,taluk,pincode},httpOptions)
+                                                    party_comments,location_id,district,constituency,approval_status,address1,town_city,taluk,pincode,applied_posting},httpOptions)
                                                           .pipe(map(Users => {
                                                           return Users;
                                                           }));
