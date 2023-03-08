@@ -205,14 +205,14 @@ public userlogin(username : any, password :any) {
   }));
   }
 
-public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any,age:any,address1:any,address2:any,town_city:any,taluk:any,pincode:any,self_profession:any) {
+public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any,age:any,address1:any,flat_no:any,town_city:any,taluk:any,pincode:any,self_profession:any,other_qualification:any) {
   const httpOptions : Object = {
     headers: new HttpHeaders({
       'Content-Type':'application/x-www-form-urlencoded'
     })
   };
 console.log(location_id);
-return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id,age,address1,address2,town_city,taluk,pincode,self_profession})
+return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id,age,address1,flat_no,town_city,taluk,pincode,self_profession,other_qualification})
 .pipe(map(Users => {
 return Users;
 }));

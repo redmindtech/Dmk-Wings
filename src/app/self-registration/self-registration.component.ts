@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./self-registration.component.scss']
 })
 export class SelfRegistrationComponent implements OnInit {
+professionOptions(arg0: string) {
+throw new Error('Method not implemented.');
+}
   selfregistration: any;
   mydist:any;
   angForm :FormGroup;
@@ -16,7 +19,8 @@ export class SelfRegistrationComponent implements OnInit {
   district:any;
   age:number;
   date_of_birth:string;
-
+  educationOptions: any;
+  profession:any;
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, private router:Router) {
       this.mydist = this.ApiService.mydist;
@@ -31,15 +35,16 @@ export class SelfRegistrationComponent implements OnInit {
             contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
             date_of_birth:['',[Validators.required]],
             age:['',Validators.required],
-            educational_qualification:['B.E'],
+            educational_qualification:[''],
             profession:[''],
             address1:[''],
-            address2:[''],
+            flat_no:[''],
             town_city:[''],
             taluk:[''],
             pincode:[''],
             self_profession:[''],
-            location_id:['1',Validators.required]
+            location_id:['1',Validators.required],
+            other_qualification:['']
             });
 
     }
@@ -125,11 +130,11 @@ getphone(c) {
   postdata(angForm1 : any) //angForm1
   {
       console.log(angForm1.value.location_id);
-      if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null && angForm1.value.age !=null)
+      if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null && angForm1.value.age !=null && angForm1.value.other_qualification !=null )
       // if(1>0)
       {
           this.ApiService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id,angForm1.value.age,
-            angForm1.value.address1,angForm1.value.address2,angForm1.value.town_city,angForm1.value.taluk,angForm1.value.pincode,angForm1.value.self_profession)
+            angForm1.value.address1,angForm1.value.flat_no,angForm1.value.town_city,angForm1.value.taluk,angForm1.value.pincode,angForm1.value.self_profession,	angForm1.value.other_qualification)
           .subscribe(
           data => {
               alert("Self registration is completed successfully!")
@@ -156,6 +161,11 @@ getphone(c) {
         alert('Enter Valid Details')
         this.hidden=false;
       }
+  }
+
+  professionOption(option:any){
+    this.educationOptions=option;
+    // console.log(this.MeetingOptions);
   }
 
   calculateAge() {

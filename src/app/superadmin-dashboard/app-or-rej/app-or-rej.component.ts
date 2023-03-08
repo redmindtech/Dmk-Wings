@@ -27,6 +27,7 @@ export class AppOrRejComponent implements OnInit {
   spinner: boolean;
   approval_status: string;
   applied_posting6: string;
+  ln:string;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)

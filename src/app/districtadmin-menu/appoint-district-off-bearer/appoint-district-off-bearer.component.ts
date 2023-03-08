@@ -30,6 +30,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   approval_status: any;
   tableshow: boolean;
   applied_posting6: string;
+  ln:string;
  
 
 
@@ -225,7 +226,7 @@ minAge1:Date;
           officebearerform.value.firstname,
           officebearerform.value.lastname,
           officebearerform.value.age,
-          officebearerform.value.father_name,
+          officebearerform.value.lastname,
           officebearerform.value.mother_name,
           officebearerform.value.educational_qualification,
           officebearerform.value.date_of_birth,

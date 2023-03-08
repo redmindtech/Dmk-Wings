@@ -47,16 +47,16 @@
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <label>Last Name / குடும்ப பெயர்</label>
+                                            <label>Father Name / தந்தையின் பெயர்</label>
                                             <span class="required "> *</span>
-                                            <input type="text" class="form-control form-control"
-                                                formControlName="lastname"
-                                                placeholder="Enter Last Name / குடும்ப பெயர்">
-                                                <div *ngIf="lastname.status=='INVALID'&& lastname.touched==true && lastname.value!=''" class="invalid-msg">
+                                            <input type="text" class="form-control form-control" 
+                                                placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="lastname1"
+                                                name="lastname1">
+                                                <div *ngIf="lastname1.status=='INVALID'&& lastname1.touched==true && lastname1.value!=''" class="invalid-msg">
                                                     Numbers and Special charaters not allowed</div>
-                                                  <div  *ngIf="(distadminform.get('lastname').touched && lastname.value=='')"
-                                                  class="invalid-msg" >Please fill out this field</div>
-                                                  <div  class="invalid-msg" *ngIf="distadminform.get('lastname').untouched" [hidden]='hidden'>Please fill out this field</div>
+                                                  <div  *ngIf="(editform.get('lastname1').touched && lastname1.value=='')"
+                                                  class="invalid-msg" >Please fill this field</div>
+                                                  <!-- <div  class="invalid-msg" *ngIf="editform.get('lastname1').untouched" [hidden]='hidden'>Please fill this field</div> -->
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -260,9 +260,9 @@
                                             
                                         </div>
                                         <div class="col-sm-6">
-                                            <label>Last Name / குடும்ப பெயர்<span class="required "> *</span></label>
+                                            <label>Father Name / தந்தையின் பெயர்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control"
-                                                placeholder="Enter Last Name / குடும்ப பெயர்" [disabled]="true"
+                                                placeholder="Enter Father Name / தந்தையின் பெயர்" [disabled]="true"
                                                 [value]="DAlastname">
                                             
                                         </div>
@@ -443,10 +443,10 @@
                                               <!-- <div  class="invalid-msg" *ngIf="editform.get('firstname1').untouched">Please fill this field</div> -->
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Last Name / குடும்ப பெயர்</label>
+                                        <label>Father Name / தந்தையின் பெயர்</label>
                                         <span class="required "> *</span>
                                         <input type="text" class="form-control form-control" 
-                                            placeholder="Enter Last Name / குடும்ப பெயர்" formControlName="lastname1"
+                                            placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="lastname1"
                                             name="lastname1">
                                             <div *ngIf="lastname1.status=='INVALID'&& lastname1.touched==true && lastname1.value!=''" class="invalid-msg">
                                                 Numbers and Special charaters not allowed</div>

@@ -25,9 +25,9 @@
                                         <div  class="invalid-msg" *ngIf="angForm.get('firstname').untouched" [hidden]='hidden'>Please fill out this field</div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Last Name / குடும்ப பெயர்</label>
+                                    <label>Father Name / தந்தையின் பெயர்</label>
                                     <input type="text" class="form-control form-control" formControlName="lastname"
-                                        placeholder="Enter Last Name / குடும்ப பெயர்">
+                                        placeholder="Enter Father Name / தந்தையின் பெயர்">
                                         <div *ngIf="angForm.get('lastname').status=='INVALID'&& angForm.get('lastname').touched==true && angForm.get('lastname').value!=''" class="invalid-msg">
                                           Numbers and Special charaters not allowed</div>
                                         <div  *ngIf="(angForm.get('lastname').touched && angForm.get('lastname').value=='')"
@@ -38,26 +38,35 @@
                             <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Degree / கல்வி தகுதி</label>
-                                <input type="text" class="form-control form-control" formControlName="educational_qualification"required readonly
-                                    placeholder="Enter Degree / கல்வி தகுதி">
+                                <!-- <input type="text" class="form-control form-control" formControlName="educational_qualification"required readonly
+                                    placeholder="Enter Degree / கல்வி தகுதி"> -->
+                                    <select name="profession" formControlName="educational_qualification"  class="form-control">
+                                        <option value="" selected disabled>Select Option</option>
+                                        <option value="B.E">B.E</option>
+                                        <option value="DIPLOMA">DIPLOMA</option>                                     
+                                    </select>
+                                   
                             </div>
                             <div class="col-sm-6">
                                 <label>Degree Major / கல்வித் தகுதியின் பிரிவு</label>
                                 <!-- <input type="text" class="form-control form-control" formControlName="profession"
                                     placeholder="Enter Degree Major / கல்வி தகுதின் பிரிவு"> -->
-                                    <select name="profession" formControlName="profession"  class="form-control">
-                                        <option value="" selected disabled>Select Option</option>
+                                    <select name="profession" [(ngModel)]="educationOptions" formControlName="profession"  class="form-control">
+                                        <option *ngIf="profession==null" selected disabled>Select Option</option>
                                         <option value="CIVIL">CIVIL</option>
                                         <option value="CSE">CSE</option>
                                         <option value="ECE">ECE</option>
                                         <option value="EEE">EEE</option>
                                         <option value="MECH">MECH</option>
+                                        <option value="IT">IT</option>
                                         <option value="OTHERS">OTHERS</option>
-                                       
-                                        
-                                      
                                     </select>
+                                    <br/>
+                                        <!-- <input *ngIf="educationOptions === 'OTHERS'" type="text" class="form-control col-sm-6 mb-3 mb-sm-0" id="additional_qualification" ngModel name="additional_qualification"> -->
+                                        <input *ngIf="educationOptions === 'OTHERS'" class="form-control col-sm-13 mb-3 mb-sm-0" name="	other_qualification" formControlName="other_qualification" type="text" placeholder="Enter Degree Major / கல்வித் தகுதியின் பிரிவு">
+                            
                             </div>
+                            
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -126,15 +135,15 @@
                                 </div> -->
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <label>Address 1 / முகவரி</label>
-                                      <textarea name="address1" pInputText class="form-control form-control"  placeholder="Enter Address 1 / முகவரி" cols="100" rows="5" formControlName="address1"></textarea>
+                                      <label>Door / Flat no / கதவு / பிளாட் எண்</label>
+                                      <input type="text" name="flat_no" pInputText class="form-control form-control"  placeholder="Enter Door / Flat no / கதவு / பிளாட் எண்" cols="100" rows="5" formControlName="flat_no"/>
                                             <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
                                             class="invalid-msg" >Please fill this field</div>
                                             <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Address 2 / முகவரி</label>
-                                        <textarea name="address2" pInputText class="form-control form-control"  placeholder="Enter Address 2 / முகவரி" cols="100" rows="5" formControlName="address2"></textarea>
+                                        <label>Street Name / தெருவின் பெயர்</label>
+                                        <input type="text" name="address1" pInputText class="form-control form-control"  placeholder="Enter Street Name / தெருவின் பெயர்" cols="100" rows="5" formControlName="address1"/>
                                               <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
                                               class="invalid-msg" >Please fill this field</div>
                                               <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
@@ -195,5 +204,3 @@
     </div>
 
 </div>
-
-
