@@ -50,11 +50,11 @@
                                             <label>Father Name / தந்தையின் பெயர்</label>
                                             <span class="required "> *</span>
                                             <input type="text" class="form-control form-control" 
-                                                placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="lastname1"
-                                                name="lastname1">
-                                                <div *ngIf="lastname1.status=='INVALID'&& lastname1.touched==true && lastname1.value!=''" class="invalid-msg">
+                                                placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="lastname"
+                                                name="lastname">
+                                                <div *ngIf="lastname.status=='INVALID'&& lastname.touched==true && lastname.value!=''" class="invalid-msg">
                                                     Numbers and Special charaters not allowed</div>
-                                                  <div  *ngIf="(editform.get('lastname1').touched && lastname1.value=='')"
+                                                  <div  *ngIf="(distadminform.get('lastname').touched && lastname.value=='')"
                                                   class="invalid-msg" >Please fill this field</div>
                                                   <!-- <div  class="invalid-msg" *ngIf="editform.get('lastname1').untouched" [hidden]='hidden'>Please fill this field</div> -->
                                         </div>
@@ -137,22 +137,25 @@
                                     </div>
 
                                     <div class="form-group row">
-
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Email Address / மின்னஞ்சல் முகவரி</label>
-                                        <span class="required "> *</span>
-                                        <input type="email" class="form-control form-control" id="exampleInputEmail"
-                                            formControlName="email" (keyup)="getemail(distadminform.get('email').value,'ADD')"
-                                            placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" >
-                                            <div  *ngIf="(distadminform.get('email').status=='INVALID' && email.value!='')"
-                                              class="invalid-msg" >Please Enter valid Email</div>
-                                              <div  *ngIf="(distadminform.get('email').touched && email.value=='') && distadminform.get('email').hasError('pattern') "
-                                              class="invalid-msg" >Please fill out this field</div>
-                                              <div  class="invalid-msg" *ngIf="distadminform.get('email').untouched && email.value==''" [hidden]='hidden'>Please fill out this field</div>
-                                              <div  class="invalid-msg" *ngIf="test_email=='true' && email.value !=''">This email is already exist and please enter new email.</div>
-                                                <!-- <div  class="invalid-msg" *ngIf="distadminform.status=='INVALID'" [hidden]='hidden'>This email was already used</div>  -->
+                                            <label> Contact Number / தொடர்பு எண்</label>
+                                            <span class="required "> *</span>
+                                            <input type="text" class="form-control form-control"
+                                                formControlName="contact_no" name="cantacgt_no" maxlength="10"
+                                                placeholder="Enter Contact Number / தொடர்பு எண்">
+    
+                                            <div *ngIf="distadminform.get('contact_no').hasError('pattern') && distadminform.get('contact_no').touched"
+                                                class="invalid-msg">Please enter the valid contact number
+                                            </div>
+                                            <div *ngIf="distadminform.get('contact_no').hasError('required')"
+                                                class="invalid-msg" [hidden]='hidden'>Please fill out this field
+                                              </div>
+</div>
 
-                                    </div>
+
+
+                                            
+
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label> Whatsapp Number /வாட்ஸ்அப் எண்</label>
                                         <span class="required "> *</span>
@@ -175,6 +178,21 @@
                                 </div>
                                 <div class="form-group row">
                                     <!--  -->
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Email Address / மின்னஞ்சல் முகவரி</label>
+                                        <span class="required "> *</span>
+                                        <input type="email" class="form-control form-control" id="exampleInputEmail"
+                                            formControlName="email" (keyup)="getemail(distadminform.get('email').value,'ADD')"
+                                            placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" >
+                                            <div  *ngIf="(distadminform.get('email').status=='INVALID' && email.value!='')"
+                                              class="invalid-msg" >Please Enter valid Email</div>
+                                              <div  *ngIf="(distadminform.get('email').touched && email.value=='') && distadminform.get('email').hasError('pattern') "
+                                              class="invalid-msg" >Please fill out this field</div>
+                                              <div  class="invalid-msg" *ngIf="distadminform.get('email').untouched && email.value==''" [hidden]='hidden'>Please fill out this field</div>
+                                              <div  class="invalid-msg" *ngIf="test_email=='true' && email.value !=''">This email is already exist and please enter new email.</div>
+                                                <!-- <div  class="invalid-msg" *ngIf="distadminform.status=='INVALID'" [hidden]='hidden'>This email was already used</div>  -->
+
+                                    </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Status / நிலை</label><span class="required "> *</span><br>
                                         <select name="approval_status" formControlName="approval_status"
@@ -279,21 +297,34 @@
                                                 placeholder="Enter Party Designation / கட்சி பதவி" [disabled]="true"
                                                 [value]="DAparty_desig">
                                         </div>
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="col-sm-6 ">
                                             <label>Select Party District/மாவட்டத்தின் பெயரைத் தேர்ந்தெடுக்கவும்<span class="required "> *</span></label>
                                             <input type="text" class="form-control form-control" [disabled]="true"
                                                 [value]="DAdistrict">
                                         </div>
-
+                                    </div>
                                     <!-- <div class="col-sm-6">
                                         <label> Whatsapp Number /வாட்ஸ்அப் எண்</label>
                                         <input type="text" class="form-control form-control" [disabled]="true"
                                             [value]="DAwhats">
                                     </div> -->
 
-                                    </div>
+                                   
 
                                     <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label> contact Number / தொடர்பு எண்<span class="required "> *</span></label>
+                                            <input type="text" class="form-control form-control" [disabled]="true"
+                                                [value]="DAcontact_no">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label> Whatsapp Number /வாட்ஸ்அப் எண்<span class="required "> *</span></label>
+                                            <input type="text" class="form-control form-control" [disabled]="true"
+                                                [value]="DAwhats">
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Email Address / மின்னஞ்சல் முகவரி<span class="required "> *</span></label>
                                         <input type="email" class="form-control form-control" id="exampleInputEmail"
@@ -306,13 +337,9 @@
                                             class="invalid-msg">Please enter the valid Email Id
                                         </div> -->
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label> Whatsapp Number /வாட்ஸ்அப் எண்<span class="required "> *</span></label>
-                                        <input type="text" class="form-control form-control" [disabled]="true"
-                                            [value]="DAwhats">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
+                                 
+                                
+                              
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Status / நிலை<span class="required "> *</span></label><br>
                                     <input type="text" class="form-control form-control" [disabled]="true"
@@ -334,16 +361,7 @@
 
 
                                     <div class="form-group row">
-                                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Password / கடவுச்சொல்</label>
-                                                <input type="password" class="form-control form-control" id="password"
-                                                placeholder="Enter Password / கடவுச்சொல்">
-                                            </div> -->
-                                        <!-- <div class="col-sm-6">
-                                                <label>Status / நிலை</label>
-                                                <input type="text" class="form-control form-control"
-                                                    id="exampleRepeatPassword" placeholder="Enter Status / நிலை" [disabled]="true" [value]="DAstatus">
-                                            </div> -->
+                                        
 
                                         <div class="col-6 md:col-6">
                                             <input type="text" hidden formControlName="mode" />
@@ -514,20 +532,19 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label>Email Address / மின்னஞ்சல் முகவரி</label>
-                                    <span class="required "> *</span>
-                                    <input type="email" class="form-control" id="exampleInputEmail" (keyup)="getemail(editform.get('email1').value,'EDIT')"
-                                        placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" formControlName="email1"
-                                        name="email1" required>
-                                        <div  *ngIf="editform.get('email1').value==''"
-                                        class="invalid-msg" >Please fill out this field</div>
-
-                                        <div  *ngIf="(editform.get('email1').value!='' && editform.get('email1').status=='INVALID')"
-                                        class="invalid-msg" >Please Enter valid Email</div>
-                                        <div  class="invalid-msg" *ngIf="test_email1=='true' && editform.get('email1').value!=''">This email is already exist and please enter new email.</div>
-                                        <!-- <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div> -->
-                                </div>
-
+                                        <label>Contact Number / தொடர்பு எண்</label><span class="required "> *</span>
+                                        <input type="text" class="form-control form-control" formControlName="contact_no1" maxlength="10"  placeholder="Enter Contact Number / தொடர்பு எண்">
+    
+                                            <div *ngIf="editform.get('contact_no1').hasError('pattern') && editform.get('contact_no1').value!=''"
+                                            class="invalid-msg">Please enter the valid contact number
+                                        </div>
+                                        <div *ngIf="editform.get('contact_no1').value==''"
+                                            class="invalid-msg" >Please fill out this field
+                                          </div>
+                                          <!-- <div  class="invalid-msg" *ngIf="test_ph1=='true'&& editform.get('contact_no1').value !=''">This phone is already exist and please enter new phone.</div> -->
+    
+    
+                                    </div>  
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>WhatsApp Number / வாட்ஸ் அப் எண்</label><span class="required "> *</span>
                                     <input type="text" class="form-control form-control" formControlName="whatsapp_no1" maxlength="10" (keyup)="getphone(editform.get('whatsapp_no1').value,'EDIT')"
@@ -545,7 +562,21 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <!--  -->
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Email Address / மின்னஞ்சல் முகவரி</label>
+                                    <span class="required "> *</span>
+                                    <input type="email" class="form-control" id="exampleInputEmail" (keyup)="getemail(editform.get('email1').value,'EDIT')"
+                                        placeholder="Enter Email Address / மின்னஞ்சல் முகவரி" formControlName="email1"
+                                        name="email1" required>
+                                        <div  *ngIf="editform.get('email1').value==''"
+                                        class="invalid-msg" >Please fill out this field</div>
+
+                                        <div  *ngIf="(editform.get('email1').value!='' && editform.get('email1').status=='INVALID')"
+                                        class="invalid-msg" >Please Enter valid Email</div>
+                                        <div  class="invalid-msg" *ngIf="test_email1=='true' && editform.get('email1').value!=''">This email is already exist and please enter new email.</div>
+                                        <!-- <div  class="invalid-msg" *ngIf="editform.get('email1').untouched" [hidden]='hidden'>Please fill out this field</div> -->
+                                </div>
+
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Status / நிலை</label><span class="required "> *</span><br>
                                 <select name="approval_status1" formControlName="approval_status1"

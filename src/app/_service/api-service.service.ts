@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-            // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-            baseUrl:string="http://localhost/Dmk-Wings/php";
+              baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+            //  baseUrl:string="http://localhost/DMK_TODAY/Dmk-Wings/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -218,25 +218,25 @@ return Users;
 }));
 }
 
-public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,approval_status:any,location_id:any) {
+public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,approval_status:any,location_id:any,contact_no:any) {
   const httpOptions : Object = {
           headers: new HttpHeaders({
             'Content-Type':'application/x-www-form-urlencoded'
           })
         };
-  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,whatsapp_no,party_designation,approval_status,location_id },httpOptions )
+  return this.httpClient.post<any>(this.baseUrl + '/create.php?category=SA', { mode,email,firstname,lastname,whatsapp_no,party_designation,approval_status,location_id,contact_no },httpOptions )
   .pipe(map(Users => {
   return Users;
   }))
   }
 
-    public create_dist_admin(mode:any,whatsapp_no:any,email:any,firstname:any,lastname:any,district:any,party_designation:any,approval_status:any,location_id:any) {
+    public create_dist_admin(mode:any,whatsapp_no:any,email:any,firstname:any,lastname:any,district:any,party_designation:any,approval_status:any,location_id:any,contact_no:any) {
       const httpOptions : Object = {
         headers: new HttpHeaders({
           'Content-Type':'application/x-www-form-urlencoded'
         })
       };
-      return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', {mode, whatsapp_no,email,firstname,lastname,district,party_designation,approval_status,location_id },httpOptions )
+      return this.httpClient.post<any>(this.baseUrl + '/create.php?category=DA', {mode, whatsapp_no,email,firstname,lastname,district,party_designation,approval_status,location_id,contact_no },httpOptions )
         .pipe(map(Users => {
         return Users;
         }));
@@ -441,7 +441,7 @@ public viewtableDA() {
                 return Users;
                 }));
                 }
-                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,email:any,approval_status:any,location_id='1') {
+                public updateSA(mode:any,user_id:any,firstname:any,lastname:any,whatsapp_no:any,party_designation:any,email:any,approval_status:any,location_id='1',contact_no:any) {
                   //let firstname='names'
                   const httpOptions : Object = {
                           headers: new HttpHeaders({
@@ -450,7 +450,7 @@ public viewtableDA() {
                         };
                         console.log(user_id);
                     console.log("apidata : "+user_id,firstname,lastname,whatsapp_no,party_designation,approval_status)
-                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,whatsapp_no,party_designation,email,approval_status,location_id},httpOptions)
+                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=0', {mode,user_id,firstname,lastname,whatsapp_no,party_designation,email,approval_status,location_id,contact_no},httpOptions)
                                 .pipe(map(Users => {
                                   // console.log(Users);
                                 return Users;
@@ -481,7 +481,7 @@ public viewtableDA() {
                                 }));
                                 }
 
-                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any,reason:any,district:any) {
+                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any,reason:any,district:any,) {
                                   const httpOptions: Object = {
                                     headers: new HttpHeaders({
                                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -496,7 +496,7 @@ public viewtableDA() {
                                   }));
 
                                 }
-                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,district:any,party_designation:any,email:any,whatsapp_no:any,approval_status:any,location_id='1') {
+                                public updateDA(mode:any,user_id:any,firstname:any,lastname:any,district:any,party_designation:any,email:any,whatsapp_no:any,approval_status:any,location_id='1',contact_no:any) {
                                   //let firstname='names'
                                   const httpOptions : Object = {
                                           headers: new HttpHeaders({
@@ -505,7 +505,7 @@ public viewtableDA() {
                                         };
                                         console.log(user_id);
                                     console.log("apidata : "+user_id,firstname,lastname,district,party_designation,approval_status)
-                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,district,party_designation,email,whatsapp_no,approval_status,location_id},httpOptions)
+                                        return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=1', {mode,user_id,firstname,lastname,district,party_designation,email,whatsapp_no,approval_status,location_id,contact_no},httpOptions)
                                                 .pipe(map(Users => {
                                                 return Users;
                                                 }));

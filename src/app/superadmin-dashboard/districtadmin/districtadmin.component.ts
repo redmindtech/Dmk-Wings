@@ -21,6 +21,7 @@ export class DistrictadminComponent implements OnInit {
   spinner: boolean;
   tableshow: boolean = false;
   districtadminform: any;
+  DAcontact_no: any;
 
   // firstname1: any;
   //lastname1: any;
@@ -41,7 +42,8 @@ export class DistrictadminComponent implements OnInit {
       party_designation1: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status1: ['', Validators.required],
       location_id1: ['1', Validators.required],
-      mode1: ['1']
+      mode1: ['1'],
+      contact_no1: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
     });
   }
   FormIntialize() {
@@ -54,7 +56,8 @@ export class DistrictadminComponent implements OnInit {
       whatsapp_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
       party_designation: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status: ['', Validators.required],
-      location_id: ['1', Validators.required]
+      location_id: ['1', Validators.required],
+      contact_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
     });
   }
   district_list: any[] = this.ApiService.all_districts;
@@ -76,7 +79,7 @@ export class DistrictadminComponent implements OnInit {
   }
   getdata() {
     this.ApiService.viewtableDA().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       for (const prop in data) {
         this.customers.push(data[prop])
       }
@@ -93,7 +96,7 @@ export class DistrictadminComponent implements OnInit {
     console.log(angForm1);
 
     if (this.distadminform.valid == true && this.email != null && this.firstname != null && this.lastname != null && this.district != null && this.test_email == 'false' && this.test_ph == 'false') {
-      this.ApiService.create_dist_admin('1', angForm1.value.whatsapp_no, angForm1.value.email, angForm1.value.firstname, angForm1.value.lastname, angForm1.value.district, angForm1.value.party_designation, angForm1.value.approval_status, angForm1.value.location_id)
+      this.ApiService.create_dist_admin('1', angForm1.value.whatsapp_no, angForm1.value.email, angForm1.value.firstname, angForm1.value.lastname, angForm1.value.district, angForm1.value.party_designation, angForm1.value.approval_status, angForm1.value.location_id,angForm1.value.contact_no)
 
         .subscribe(
           data => {
@@ -152,11 +155,13 @@ export class DistrictadminComponent implements OnInit {
   get lastname() { return this.distadminform.get('lastname'); }
   get district() { return this.distadminform.get('district'); }
   get whatsapp_no() { return this.distadminform.get('whatsapp_no'); }
+  get contact_no() { return this.distadminform.get('contact_no'); }
 
   get party_designation1() { return this.editform.get('party_designation1'); }
   get firstname1() { return this.editform.get('firstname1'); }
   get lastname1() { return this.editform.get('lastname1'); }
   get district1() { return this.editform.get('district1'); }
+  get contact_no1() { return this.distadminform.get('contact_no1'); }
   //get district1() { return this.editform.get('district1'); }
 
   DAid: any;
@@ -181,6 +186,7 @@ export class DistrictadminComponent implements OnInit {
     this.DAmail = a.email;
     this.DAstatus = a.approval_status;
     this.DAwhats = a.whatsapp_no;
+    this.DAcontact_no=a.contact_no;
 
 
     this.editform.patchValue({
@@ -192,7 +198,8 @@ export class DistrictadminComponent implements OnInit {
 
       party_designation1: this.DAparty_desig,
       approval_status1: this.DAstatus,
-      whatsapp_no1: this.DAwhats
+      whatsapp_no1: this.DAwhats,
+      contact_no1:this.DAcontact_no
 
     })
   }
@@ -355,7 +362,8 @@ export class DistrictadminComponent implements OnInit {
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
         updateform.get('whatsapp_no1').value,
-        updateform.get('approval_status1').value)
+        updateform.get('approval_status1').value,"",
+        updateform.get('contact_no1').value)
 
 
         .pipe()

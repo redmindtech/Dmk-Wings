@@ -56,7 +56,7 @@
                           <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Engineer Wing District Posting / மாவட்ட பொறியாளர் பொறுப்பு 
                               <span class="required "> *</span></label><br>
-                              <select  name="applied_posting" class="form-control" [disabled]="true" [value]="OBapplied_posting" >
+                              <select  name="applied_posting1" class="form-control" [disabled]="true" [value]="OBapplied_posting" >
                                <option value="" disabled selected hidden>Select Option</option>
                                
                                 <option value="மாவட்டம்">மாவட்டம்</option>
@@ -92,9 +92,9 @@
                                 <option value="Village Deputy Organiser">Village Deputy Organiser / ஊரக துணை அமைப்பாளர்</option>
                             </select> -->
                             <input type="text" name="applied_role1"  formControlName="applied_role1" class="form-control"  placeholder="Responsibility / பொறுப்பு" readonly="readonly" />
-                                <div  *ngIf="(editform.get('applied_role1').touched && applied_role1.value=='')"
+                                <!-- <div  *ngIf="(editform.get('applied_role1').touched && applied_role1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
-                                <div  class="invalid-msg" *ngIf="editform.get('applied_role1').untouched && applied_role1.value==''">Please fill this field</div>
+                                <div  class="invalid-msg" *ngIf="editform.get('applied_role1').untouched && applied_role1.value==''">Please fill this field</div> -->
                         </div> 
                         </div>
                       <div class="form-group row">
@@ -133,12 +133,12 @@
                       <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                               <label>Father Name / தந்தையின் பெயர்<span class="required ">*</span></label>
-                              <input type="text" name="father_name1" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1" value="{{ln}}"/>
-                                  <div *ngIf="father_name1.status=='INVALID'&& father_name1.touched==true && father_name1.value!=''" class="invalid-msg">
+                              <input type="text" name="father_name1" class="form-control" readonly="readonly" placeholder="Enter Father Name / தந்தையின் பெயர்" formControlName="father_name1" value="{{ln}}"/>
+                                  <!-- <div *ngIf="father_name1.status=='INVALID'&& father_name1.touched==true && father_name1.value!=''" class="invalid-msg">
                                     Numbers and Special charaters not allowed</div>
                                   <div  *ngIf="(editform.get('father_name1').touched && father_name1.value=='')"
                                   class="invalid-msg" >Please fill this field</div>
-                                  <div  class="invalid-msg" *ngIf="editform.get('father_name1').untouched && father_name1.value==''">Please fill this field</div>
+                                  <div  class="invalid-msg" *ngIf="editform.get('father_name1').untouched && father_name1.value==''">Please fill this field</div> -->
                               <!-- <div *ngIf="editform.get('father_name1').hasError('required')"
                                               class="invalid-msg">Please enter the Father name
                               </div>
@@ -721,11 +721,11 @@
                               <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Father Name / தந்தையின் பெயர்<span class="required "> *</span></label>
                                 <input type="text" name="father_name" class="form-control"  placeholder="Enter Father Name / தந்தையின் பெயர்" readonly="readonly"  value="{{ln}}" formControlName="father_name"/>
-                                    <div *ngIf="father_name.status=='INVALID'&& father_name.touched==true && father_name.value!=''" class="invalid-msg">
+                                    <!-- <div *ngIf="father_name.status=='INVALID'&& father_name.touched==true && father_name.value!=''" class="invalid-msg">
                                       Numbers and Special charaters not allowed</div>
                                     <div  *ngIf="(officebearerform.get('father_name').touched && father_name.value=='')"
                                     class="invalid-msg" >Please fill this field</div>
-                                    <div  class="invalid-msg" *ngIf="officebearerform.get('father_name').untouched" [hidden]='hidden'>Please fill this field</div>
+                                    <div  class="invalid-msg" *ngIf="officebearerform.get('father_name').untouched" [hidden]='hidden'>Please fill this field</div> -->
                               </div>
                               <div class="col-sm-6">
                                 <label>Mother Name / தாய் பெயர்</label>

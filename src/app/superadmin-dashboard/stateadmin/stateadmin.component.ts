@@ -35,6 +35,7 @@ export class StateadminComponent implements OnInit {
       party_designation1: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status1: ['', Validators.required],
       location_id1: ['1'],
+      contact_no1:['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
       mode1: ['0']
     });
 
@@ -52,7 +53,8 @@ export class StateadminComponent implements OnInit {
       party_designation: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       approval_status: ['', Validators.required],
       location_id: ['1'],
-      mode: ['0']
+      mode: ['0'],
+      contact_no:['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]]
     });
   }
   FormReset() {
@@ -126,11 +128,11 @@ export class StateadminComponent implements OnInit {
   // }
   postdata(angForm1: any) //angForm1
   {
-    //console.log(angForm1);
+    console.log(angForm1);
     //if(this.stateadminform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null)
     if (this.stateadminform.valid == true && this.email != null && this.firstname != null && this.lastname != null && this.test_email == 'false' && this.test_ph == 'false') {
       this.ApiService.create_state_admin(angForm1.value.mode, angForm1.value.email, angForm1.value.firstname,
-        angForm1.value.lastname, angForm1.value.whatsapp_no, angForm1.value.party_designation, angForm1.value.approval_status, angForm1.value.location_id)
+        angForm1.value.lastname, angForm1.value.whatsapp_no, angForm1.value.party_designation, angForm1.value.approval_status, angForm1.value.location_id,angForm1.value.contact_no)
         .subscribe(
           data => {
             console.log(data)
@@ -189,6 +191,7 @@ export class StateadminComponent implements OnInit {
   SAparty_desig: any;
   SAmail: any;
   SAstatus: any;
+  SAcontact_no:any;
   editbuttonviewSA(a: any) {
     //  let fullname=a.name.split(" ");
     this.SAid = a.id;
@@ -200,6 +203,7 @@ export class StateadminComponent implements OnInit {
     this.SAparty_desig = a.party_designation;
     this.SAmail = a.email;
     this.SAstatus = a.approval_status;
+    this.SAcontact_no=a.contact_no;
 
     this.editform.patchValue({
       id1: this.SAid,
@@ -209,8 +213,8 @@ export class StateadminComponent implements OnInit {
       designation1: this.SAdesig,
       whatsapp_no1: this.SAwhatsapp_no,
       party_designation1: this.SAparty_desig,
-      approval_status1: this.SAstatus
-
+      approval_status1: this.SAstatus,
+      contact_no1:this.SAcontact_no
 
     })
   }
@@ -224,7 +228,9 @@ export class StateadminComponent implements OnInit {
         updateform.get('whatsapp_no1').value,
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
-        updateform.get('approval_status1').value)
+        updateform.get('approval_status1').value,'',
+        updateform.get('contact_no1').value
+        )
         .pipe()
         .subscribe(
           data => {

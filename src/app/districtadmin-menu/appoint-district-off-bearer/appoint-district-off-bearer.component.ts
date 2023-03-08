@@ -59,7 +59,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         firstname1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname1:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age1:['',Validators.required],
-        father_name1:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        father_name1:[''],
         mother_name1:['', Validators.pattern('[A-Za-z ]{1,32}')],
         educational_qualification1:['',Validators.required],
         date_of_birth1:['',Validators.required],
@@ -69,7 +69,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         profession1:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
         address1:[''],
         applied_role1:['',Validators.required],
-       // applied_posting1:['',Validators.required],
+       applied_posting1:['',Validators.required],
         party_comments1:[''],
         approval_status1:['',Validators.required],
         location_id1:['1',Validators.required],
@@ -100,7 +100,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
         lastname:['',[Validators.required,Validators.pattern('[A-Za-z ]{1,32}')]],
         age:['',Validators.required],
-        father_name:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+        father_name:[''],
         mother_name:['',[ Validators.pattern('[A-Za-z ]{1,32}')]],
         educational_qualification:['',Validators.required],
         date_of_birth:['',Validators.required],
@@ -313,7 +313,7 @@ minAge1:Date;
 
     get firstname1() { return this.editform.get('firstname1'); }
     get lastname1() { return this.editform.get('lastname1'); }
-    get father_name1() { return this.editform.get('father_name1'); }
+    get father_name1() { return this.editform.get('lastname1'); }
     get mother_name1() { return this.editform.get('mother_name1'); }
     get educational_qualification1() { return this.editform.get('educational_qualification1'); }
     get additional_qualification1() { return this.editform.get('additional_qualification1'); }
@@ -430,7 +430,7 @@ minAge1:Date;
         town_city1:this.OBtown_city,
         taluk1: this.OBtaluk,
         pincode1: this.OBpincode,     
-
+applied_posting1:this.OBapplied_posting
 
 
         });
@@ -446,7 +446,7 @@ updatedata(updateform: any){
     
     this.ApiService.updateOB('0', this.OBid, updateform.get('email1').value,updateform.get('firstname1').value, updateform.get('lastname1').value,
     updateform.get('age1').value,
-    updateform.get('father_name1').value,
+    updateform.get('lastname1').value,
     updateform.get('mother_name1').value,
     updateform.get('educational_qualification1').value,
     updateform.get('date_of_birth1').value,
