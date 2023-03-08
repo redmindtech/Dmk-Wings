@@ -231,12 +231,40 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <label>Address / முகவரி</label>
-                          <textarea name="address1" formControlName="address1" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5"></textarea>
-                                <!-- <div  *ngIf="(editform.get('address1').touched && address1.value=='')"
-                                class="invalid-msg" >Please fill this field</div> -->
-                                <!-- <div  class="invalid-msg" *ngIf="editform.get('address1').untouched && address1.value==''">Please fill this field</div> -->
+                          
+                            <label>Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்</label>
+                            <input pInputText type="text"  name="flat_no1" formControlName="flat_no1" pInputText class="form-control"  placeholder="Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்" />
+  
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Street Name / தெருவின் பெயர்</label>
+                            <input pInputText type="text"  name="street_name1" formControlName="street_name1" pInputText class="form-control"  placeholder="Street Name / தெருவின் பெயர்" />
+                                  
+                         
+                                  </div>
                         </div>
+                        <div class="form-group row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Town or City / நகரம்</label>
+                            <input pInputText type="text"  name="town_city1" formControlName="town_city1" pInputText class="form-control"  placeholder="Town or City / நகரம்" />
+  
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Taluk / தாலுக்கா</label>
+                            <input pInputText type="text"  name="taluk1" formControlName="taluk1" pInputText class="form-control"  placeholder="Taluk / தாலுக்கா" />
+                                  
+                         
+                                  </div>
+                        </div>
+                          <div class="form-group row">
+                            
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Pincode / அஞ்சல் குறியீடு</label>
+                                <input pInputText type="text"  name="pincode1" formControlName="pincode1" pInputText class="form-control"  placeholder="Taluk / தாலுக்கா" />
+                                      
+                             
+                                      </div>
+                          
                           <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Comments</label>
                             <textarea name="party_comments1" formControlName="party_comments1" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" ></textarea>
@@ -288,6 +316,52 @@
                       </div>
                     </div>
                     <form>
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <label>Engineer Wing District Posting / மாவட்ட பொறியாளர் பொறுப்பு 
+                            <span class="required "> *</span></label><br>
+                          <select  name="applied_posting" class="form-control" formControlName="applied_posting"  (change)="getposting(officebearerform.get('applied_posting').value)">
+                             <option value="" disabled selected hidden>Select Option</option>
+                             
+                              <option value="மாவட்டம்">மாவட்டம்</option>
+                              <option value="மாநகரம்">மாநகரம்</option>
+                              <option value="ஒன்றியம்">ஒன்றியம்</option>
+                              <option value="நகரம்">நகரம்</option>
+                              <option value="பகுதி">பகுதி</option>
+                              <option value="பேரூர்">பேரூர்</option>
+                             
+                          </select>
+                          <div  *ngIf="(officebearerform.get('applied_posting').touched && applied_posting.value=='')"
+                          class="invalid-msg" >Please select this field</div>
+                          <div  class="invalid-msg" *ngIf="officebearerform.get('applied_posting').untouched" [hidden]='hidden'>Please select this field</div>
+                    
+                      </div>
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு</label><br>
+                        <select name="applied_role"  class="form-control" [disabled]="true" [value]="OBold_designation">
+                          <option value="" disabled selected hidden>Select Option</option>
+                          <option  value="மாவட்ட தலைவர்">மாவட்ட தலைவர்</option>
+                          <option  value="மாவட்ட துணை தலைவர்">மாவட்ட துணை தலைவர்</option>
+                          <option   value="மாவட்ட அமைப்பாளர்">மாவட்ட அமைப்பாளர்</option>
+                          <option  value="மாவட்ட துணை அமைப்பாளர்">மாவட்ட துணை அமைப்பாளர்</option>
+
+                          <option   value="மாநகர அமைப்பாளர்">மாநகர அமைப்பாளர்</option>
+                          <option   value="மாநகர துணை அமைப்பாளர்">மாநகர துணை அமைப்பாளர்</option>
+
+                          <option   value="ஒன்றிய அமைப்பாளர்">ஒன்றிய அமைப்பாளர்</option>
+                          <option   value="ஒன்றிய துணை அமைப்பாளர்">ஒன்றிய துணை அமைப்பாளர்</option>
+
+                          <option   value="நகர அமைப்பாளார்">நகர அமைப்பாளார்</option>
+                          <option   value="நகர துணை அமைப்பாளர்">நகர துணை அமைப்பாளர்</option>
+                           
+                          <option   value="பகுதி அமைப்பாளர்">பகுதி அமைப்பாளர்</option>
+                          <option   value="பகுதி துணை அமைப்பாளர்">பகுதி துணை அமைப்பாளர்</option>
+
+                          <option value="பேரூர் அமைப்பாளர்">பேரூர் அமைப்பாளர்</option>
+                          <option value="பேரூர் துணை அமைப்பாளர்">பேரூர் துணை அமைப்பாளர்</option>
+                        </select>
+                    </div>
+                        </div>
 
                       <div class="form-group row">
                               <div class="col-sm-6 mb-3 mb-sm-0">
@@ -349,20 +423,12 @@
                             </div>
                             <div class="col-sm-6">
                               <label>Profession / தொழில்,வேலை</label>
-                              <input pInputText type="text" class="form-control" name="profession" [disabled]="true" placeholder="Enter Profession / தொழில்,வேலை"[value]="OBprofession"/>
+                              <input pInputText type="text"  name="profession" class="form-control" name="profession" [disabled]="true" placeholder="Enter Profession / தொழில்,வேலை"[value]="OBprofession"/>
                             </div>
                       </div>
                      
                       <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு</label><br>
-                                <select name="applied_role"  class="form-control" [disabled]="true" [value]="OBold_designation">
-                                  <option value="Corporation & Municipalities Chairman">Corporation & Municipalities Chairman /மாநகராட்சி & நகராட்சிகளில தலைவர்</option>
-                                  <option value="Corporation & Municipalities Vice President">Corporation & Municipalities Vice President / துணை தலைவர்</option>
-                                  <option value="District Organiser">District Organiser / மாவட்ட அமைப்பாளர்</option>
-                                  <option value="District Co-Organizer">District Co-Organizer/ மாவட்ட துணை அமைப்பாளர்</option>
-                                </select>
-                            </div>
+                           
                             <div class="col-sm-6 mb-3 mb-sm-0">
                               <label>Status / நிலை<span class="required "></span></label><br>
                               <select name="approval_status" [disabled]="true" [value]="OBstatus" class="form-control">
@@ -374,9 +440,31 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <label>Address / முகவரி</label>
-                          <textarea name="address1" pInputText class="form-control"  [disabled]="true" placeholder="Enter Address / முகவரி" cols="100" rows="5" [value]="OBaddress"></textarea>
+                          
+                            <label>Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்</label>
+                            <input pInputText type="text" name="flat_no" class="form-control"  [disabled]="true" placeholder="Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்"  [value]="OBflat_no"/>
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Street Name / தெருவின் பெயர்</label>
+                            <input pInputText type="text" class="form-control" name="street_name" [disabled]="true" placeholder="Street Name / தெருவின் பெயர்"  [value]="OBstreet_name"/>
+                          </div>
                         </div>
+                        <div class="form-group row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Town or City / நகரம்</label>
+                            <input pInputText type="text" class="form-control" name="town_city"[disabled]="true" placeholder="Town or City / நகரம்"  [value]="OBtown_city"/>
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Taluk / தாலுக்கா</label>
+                            <input pInputText type="text" class="form-control" name="taluk" [disabled]="true" placeholder="Taluk / தாலுக்கா"  [value]="OBtaluk"/>
+                          </div>
+                        </div>
+                          <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Pincode / அஞ்சல் குறியீடு</label>
+                              <input pInputText type="text" class="form-control" name="pincode" [disabled]="true" placeholder="Pincode / அஞ்சல் குறியீடு"  [value]="OBpincode"/>
+                            </div>
+  
                           <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Comments</label>
                             <textarea name="party_comments" pInputText class="form-control" [disabled]="true" placeholder="Enter Comments" cols="100" rows="5" [value]="OBcomments"></textarea>
@@ -458,8 +546,87 @@
                             </span>
                         </div>
                       </div> -->
+                      <!-- <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <label>Responsibility for Applying to District Posting Name / மாவட்ட அணி பொறுப்பு
+                            <span class="required "> *</span></label><br>
+                          <select name="applied_posting" class="form-control" formControlName="applied_posting">
+                              <option value="" selected disabled hidden>Select Option</option>
+                             
+                              <option value="">மாவட்டம்</option>
+                              <option value="மாநகரம்">மாநகரம்</option>
+                              <option value="ஒன்றியம்">ஒன்றியம்</option>
+                              <option value="பேரூர்">பேரூர்</option>
+                              <option value="பகுதி">பகுதி</option>
+                          </select>
+                          
+                          <div  *ngIf="(officebearerform.get('applied_posting').touched && applied_role.value=='')"
+                          class="invalid-msg" >Please select this field</div>
+                          <div  class="invalid-msg" *ngIf="officebearerform.get('applied_posting').untouched" [hidden]='hidden'>Please select this field</div>
+                          <div  class="invalid-msg" *ngIf="officebearerform.get('applied_posting').value !=''" >The maximum number of user for this role has been created</div>
+                    
+                      </div>
+                        </div> -->
+                        
             
                       <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
+                        <div class="form-group row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Engineer Wing District Posting / மாவட்ட பொறியாளர் பொறுப்பு 
+                              <span class="required "> *</span></label><br>
+                            <select  name="applied_posting" class="form-control" formControlName="applied_posting"  (change)="getposting(officebearerform.get('applied_posting').value)">
+                               <option value="" disabled selected hidden>Select Option</option>
+                               
+                                <option value="மாவட்டம்">மாவட்டம்</option>
+                                <option value="மாநகரம்">மாநகரம்</option>
+                                <option value="ஒன்றியம்">ஒன்றியம்</option>
+                                <option value="நகரம்">நகரம்</option>
+                                <option value="பகுதி">பகுதி</option>
+                                <option value="பேரூர்">பேரூர்</option>
+                               
+                            </select>
+                            
+                            <div *ngIf="officebearerform.get('applied_posting').hasError('required')"
+                        class="invalid-msg" [hidden]='hidden'>Please fill out this field
+                    </div>
+                            
+                      
+                        </div>
+                        <div class="col-sm-6">
+                          <label>Applying / பொறுப்பு<span class="required "> *</span></label><br>
+                          <select  name="applied_role"  class="form-control" formControlName="applied_role"  (change)="getapplied(officebearerform.get('applied_role').value)">
+                            
+                              <option value="" selected disabled hidden>Select Option</option>
+                             
+                              <option  *ngIf="applied_posting5=='true'"value="மாவட்ட தலைவர்">மாவட்ட தலைவர்</option>
+                                  <option *ngIf="applied_posting5=='true'" value="மாவட்ட துணை தலைவர்">மாவட்ட துணை தலைவர்</option>
+                                  <option  *ngIf="applied_posting5=='true'" value="மாவட்ட அமைப்பாளர்">மாவட்ட அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting5=='true'" value="மாவட்ட துணை அமைப்பாளர்">மாவட்ட துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting6=='true'" value="மாநகர அமைப்பாளர்">மாநகர அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting6=='true'" value="மாநகர துணை அமைப்பாளர்">மாநகர துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting7=='true'" value="ஒன்றிய அமைப்பாளர்">ஒன்றிய அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting7=='true'" value="ஒன்றிய துணை அமைப்பாளர்">ஒன்றிய துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting8=='true'" value="நகர அமைப்பாளார்">நகர அமைப்பாளார்</option>
+                                  <option  *ngIf="applied_posting8=='true'" value="நகர துணை அமைப்பாளர்">நகர துணை அமைப்பாளர்</option>
+                                   
+                                  <option  *ngIf="applied_posting9=='true'" value="பகுதி அமைப்பாளர்">பகுதி அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting9=='true'" value="பகுதி துணை அமைப்பாளர்">பகுதி துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting10=='true'" value="பேரூர் அமைப்பாளர்">பேரூர் அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting10=='true'" value="பேரூர் துணை அமைப்பாளர்">பேரூர் துணை அமைப்பாளர்</option>
+                          
+                          </select>
+                        
+                      
+                  
+                          <div *ngIf="officebearerform.get('applied_role').hasError('required')"
+                             class="invalid-msg" [hidden]='hidden'>Please fill out this field 6 </div>
+                                  <div  class="invalid-msg" *ngIf="applied_role4=='true' && officebearerform.get('applied_role').value !=''" >The maximum number of user for this role has been created</div>
+                      </div>
+                    </div>
                          <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                   <label>First Name/முதல் பெயர்<span class="required "> *</span></label>
@@ -596,19 +763,35 @@
                               </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
                               <label>Responsibility For Applying / விண்ணப்பிப்பதற்கான பொறுப்பு<span class="required "> *</span></label><br>
-                              <select name="applied_role"  class="form-control" formControlName="applied_role"  (change)="getapplied(officebearerform.get('applied_role').value)">
+                              <select  name="applied_role"  class="form-control" formControlName="applied_role"  (change)="getapplied(officebearerform.get('applied_role').value)">
                                 
                                   <option value="" selected disabled hidden>Select Option</option>
                                  
-                                  <option value="Corporation & Municipalities Chairman">Corporation & Municipalities Chairman /மாநகராட்சி & நகராட்சிகளில தலைவர்</option>
-                                  <option value="Corporation & Municipalities Vice President">Corporation & Municipalities Vice President / துணை தலைவர்</option>
-                                  <option value="District Organiser">District Organiser/ மாவட்ட அமைப்பாளர்</option>
-                                  <option value="District Co-Organizer">District Co-Organizer/ மாவட்ட துணை அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting5=='true'"value="மாவட்ட தலைவர்">மாவட்ட தலைவர்</option>
+                                  <option *ngIf="applied_posting5=='true'" value="மாவட்ட துணை தலைவர்">மாவட்ட துணை தலைவர்</option>
+                                  <option  *ngIf="applied_posting5=='true'" value="மாவட்ட அமைப்பாளர்">மாவட்ட அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting5=='true'" value="மாவட்ட துணை அமைப்பாளர்">மாவட்ட துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting6=='true'" value="மாநகர அமைப்பாளர்">மாநகர அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting6=='true'" value="மாநகர துணை அமைப்பாளர்">மாநகர துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting7=='true'" value="ஒன்றிய அமைப்பாளர்">ஒன்றிய அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting7=='true'" value="ஒன்றிய துணை அமைப்பாளர்">ஒன்றிய துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting8=='true'" value="நகர அமைப்பாளார்">நகர அமைப்பாளார்</option>
+                                  <option  *ngIf="applied_posting8=='true'" value="நகர துணை அமைப்பாளர்">நகர துணை அமைப்பாளர்</option>
+                                   
+                                  <option  *ngIf="applied_posting9=='true'" value="பகுதி அமைப்பாளர்">பகுதி அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting9=='true'" value="பகுதி துணை அமைப்பாளர்">பகுதி துணை அமைப்பாளர்</option>
+
+                                  <option  *ngIf="applied_posting10=='true'" value="பேரூர் அமைப்பாளர்">பேரூர் அமைப்பாளர்</option>
+                                  <option  *ngIf="applied_posting10=='true'" value="பேரூர் துணை அமைப்பாளர்">பேரூர் துணை அமைப்பாளர்</option>
                               
                               </select>
+                            
                           
                                 <div  *ngIf="(officebearerform.get('applied_role').touched && applied_role.value=='')"
                                 class="invalid-msg" >Please select this field</div>
@@ -623,21 +806,52 @@
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                             </select>
-                            <!-- <div *ngIf="stateadminform.get('approval_status').hasError('required')"
+                            <<div *ngIf="stateadminform.get('approval_status').hasError('required')"
                             class="invalid-msg" [hidden]='hidden'>Please select the Status
                           </div> -->
-                        </div>
-                    </div>
+                        <!-- </div>
+                    </div> --> 
 
                         <div class="form-group row">
-                              <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Address / முகவரி</label>
-                                <textarea name="address" pInputText class="form-control"  placeholder="Enter Address / முகவரி" cols="100" rows="5" formControlName="address"></textarea>
-                                      <!-- <div  *ngIf="(officebearerform.get('address').touched && address.value=='')"
-                                      class="invalid-msg" >Please fill this field</div>
-                                      <div  class="invalid-msg" *ngIf="officebearerform.get('address').untouched && address.value!=null" [hidden]='hidden'>Please fill this field</div> -->
-                              </div>
-                              <div class="col-sm-6 mb-3 mb-sm-0">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்</label>
+                            <input pInputText name="address"  class="form-control"  placeholder="Door no or Flat no / கதவு எண் அல்லது பிளாட் எண்"  formControlName="flat_no"/>
+                                  
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Street name / தெருவின் பெயர்</label>
+                            <input pInputText name="street_name"  class="form-control"  placeholder="Street name / தெருவின் பெயர்"  formControlName="street_name"/>
+                                 
+                          </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Town or City / நகரம்</label>
+                              <input pInputText name="town_city"  class="form-control"  placeholder="Town or City / நகரம்"  formControlName="town_city"/>
+                                    
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Taluk / தாலுக்கா</label>
+                              <input pInputText name="taluk"  class="form-control"  placeholder="Taluk / தாலுக்கா"  formControlName="taluk"/>
+                                   
+                            </div>
+                            </div>
+                          <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Pincode / அஞ்சல் குறியீடு</label>
+                              <input pInputText name="pincode"  class="form-control"  placeholder="Pincode / அஞ்சல் குறியீடு"  formControlName="pincode"/>
+                                   
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                              <label>Status / நிலை<span class="required "> *</span></label><br>
+                              <select name="approval_status" formControlName="approval_status"  class="form-control">
+                                  <option value="" disabled selected hidden>Select Option</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Inactive">Inactive</option>
+                              </select></div></div>
+                          <div class="form-group row">
+
+                              <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label>Comments</label>
                                 <textarea name="party_comments" pInputText class="form-control"  placeholder="Enter Comments" cols="100" rows="5" formControlName="party_comments"></textarea>
                                       <!-- <div  *ngIf="(officebearerform.get('party_comments').touched && party_comments.value=='')"

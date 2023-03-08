@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs';
+import { first, takeWhile } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -26,6 +26,7 @@ export class AppOrRejComponent implements OnInit {
   user_password: any;
   spinner: boolean;
   approval_status: string;
+  applied_posting6: string;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -63,7 +64,12 @@ export class AppOrRejComponent implements OnInit {
         applied_role1:['',Validators.required],
         party_comments1:[''],
         location_id1:['1',Validators.required],
-        mode1:['2',Validators.required]
+        mode1:['2',Validators.required],
+        flat_no1:[''],
+        street_name1:[''],
+        town_city1:[''],
+        taluk1:[''],
+        pincode1:['']
       });
 
       this.reqform= this.fb.group({
@@ -93,12 +99,17 @@ export class AppOrRejComponent implements OnInit {
         contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         whatsapp_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
         profession:['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
-        address:[''],
+        flat_no:[''],
         applied_role:['',Validators.required],
         approval_status: ['', Validators.required],
+        applied_posting:['',Validators.required],
         party_comments:[''],
         location_id:['1',Validators.required],
-        mode:['2',Validators.required]
+        mode:['2',Validators.required],
+        street_name:[''],
+        town_city:[''],
+        taluk:[''],
+        pincode:['']
       });
 
     }
@@ -195,8 +206,29 @@ minAge1:Date;
     if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='' && this.approval_status!='')
     {  
        console.log(officebearerform);
-        this.ApiService.create_office_bearers(officebearerform.value.mode,officebearerform.value.email,officebearerform.value.firstname,officebearerform.value.lastname,officebearerform.value.age,officebearerform.value.father_name,officebearerform.value.mother_name,officebearerform.value.educational_qualification,officebearerform.value.date_of_birth,officebearerform.value.additional_qualification,officebearerform.value.contact_no,officebearerform.value.whatsapp_no,officebearerform.value.profession,officebearerform.value.address,officebearerform.value.applied_role,
-          officebearerform.value.party_comments,officebearerform.value.location_id,this.district,this.constituency,officebearerform.value.approval_status)
+        this.ApiService.create_office_bearers(officebearerform.value.mode,
+          officebearerform.value.email,
+          officebearerform.value.firstname,
+          officebearerform.value.lastname,
+          officebearerform.value.age,
+          officebearerform.value.father_name,
+          officebearerform.value.mother_name,
+          officebearerform.value.educational_qualification,
+          officebearerform.value.date_of_birth,
+          officebearerform.value.additional_qualification,
+          officebearerform.value.contact_no,
+          officebearerform.value.whatsapp_no,
+          officebearerform.value.profession,
+          officebearerform.value.flat_no,
+          officebearerform.value.applied_role,
+          officebearerform.value.party_comments,
+          officebearerform.value.location_id,
+          this.district,this.constituency,
+          officebearerform.value.approval_status,
+          officebearerform.value.street_name,
+          officebearerform.value.town_city,
+          officebearerform.value.taluk,
+          officebearerform.value.pincode,officebearerform.value.applied_posting)
         .subscribe(
         data => {
            // window.location.reload();
@@ -254,8 +286,13 @@ minAge1:Date;
     get contact_no() { return this.officebearerform.get('contact_no'); }
     get whatsapp_no() { return this.officebearerform.get('whatsapp_no'); }
     get profession() { return this.officebearerform.get('profession'); }
-    get address() { return this.officebearerform.get('address'); }
+    get flat_no() { return this.officebearerform.get('flat_no'); }
+    get street_name() { return this.officebearerform.get('street_name'); }
+    get town_city() { return this.officebearerform.get('town_city'); }
+    get taluk() { return this.officebearerform.get('taluk'); }
+    get pincode() { return this.officebearerform.get('pincode'); }
     get party_comments() { return this.officebearerform.get('party_comments'); }
+    get applied_posting() { return this.officebearerform.get('applied_posting'); }
 
     get firstname1() { return this.editform.get('firstname1'); }
     get lastname1() { return this.editform.get('lastname1'); }
@@ -270,6 +307,10 @@ minAge1:Date;
     get party_comments1() { return this.editform.get('party_comments1'); }
     get address1() { return this.editform.get('address1'); }
     get email1() { return this.editform.get('email1'); }
+    get flat_no1() { return this.officebearerform.get('flat_no1'); }   
+    get town_city1() { return this.officebearerform.get('town_city1'); }
+    get taluk1() { return this.officebearerform.get('taluk1'); }
+    get pincode1() { return this.officebearerform.get('pincode1'); }
 
     OBid:any;
     OBname: any;
@@ -287,7 +328,8 @@ minAge1:Date;
     OBphonenumber: any;
     whatsappnumner: any;
     OBprofession: any;
-    OBaddress: any;
+    OBflat_no: any;
+    OBstreet_name:any;
     OBold_designation: any;
     OBcomments: any;
     OBnew_designation:any;
@@ -295,6 +337,12 @@ minAge1:Date;
     fullname1:any;
     OBDistrict:any;
     OBConstituency:string;
+    OBtown_city:string;
+    OBtaluk:string;
+    OBpincode:string;
+     OBapplied_posting:string;
+
+   
     editbuttonviewOB(a:any){
       console.log(a);
       this.OBid=a.id;
@@ -310,13 +358,17 @@ minAge1:Date;
          this.whatsappnumner=a.whatsapp_no;
          this.OBmail=a.email;
          this.OBprofession=a.profession;
-         this.OBaddress=a.address1;
+         this.OBflat_no=a.flat_no;
          this.OBold_designation=a.applied_role;
          this.OBcomments=a.party_comments;
          this.fullname1=a.name;
          this.OBDistrict=a.district;
          this.OBConstituency=a.constituency;
          this.OBstatus=a.approval_status;
+         this.OBstreet_name=a.address1;
+         this.OBtown_city=a.town_city;
+         this.OBtaluk=a.taluk;
+         this.OBpincode=a.pincode;
          console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
@@ -345,10 +397,14 @@ minAge1:Date;
         contact_no1:this.OBphonenumber,
         whatsapp_no1:this.whatsappnumner,
         profession1:this.OBprofession,
-        address1:this.OBaddress,
+        flat_no1:this.OBflat_no,
         applied_role1:this.OBold_designation,
         party_comments1:this.OBcomments,
         approval_status1:this.OBstatus,
+        street_name1:this.OBstreet_name,
+        town_city1:this.OBtown_city,
+        taluk1:this.OBtaluk,
+        pincode1:this.OBpincode,
         location_id1:'1',
         mode1:'2'
 
@@ -373,11 +429,15 @@ updatedata(updateform: any){
     updateform.get('contact_no1').value,
     updateform.get('whatsapp_no1').value,
     updateform.get('profession1').value,
-    updateform.get('address1').value,
+    updateform.get('flat_no1').value,
     updateform.get('applied_role1').value,
      updateform.get('party_comments1').value,
     '1',this.OBDistrict,this.OBConstituency,
-    updateform.get('approval_status1').value)
+    updateform.get('approval_status1').value,
+    updateform.get('street_name1').value,
+    updateform.get('town_city1').value,
+    updateform.get('taluk1').value ,
+    updateform.get('pincode1').value )
     .pipe()
     .subscribe(
         data => {
@@ -529,7 +589,556 @@ test_ph1= "false";
     }
 
   }
+  applied_posting4 = "false";
+  applied_posting5 = "false";
+  applied_posting7 ="false"; 
+  applied_posting8 ="false";
+  applied_posting9 ="false";
+  applied_posting10 ="false";
 
+  getposting(r) {
+    console.log(r);
+    //console.log(g)
+    // console.log('old_em')
+    // console.log( this.SAmail)
+    if (r!=null) {
+     console.log(r);
+    
+      const  value_to_count5: string = "மாவட்டம்";
+
+      let count5: number = 0;
+      for (let value of r) {
+          if (value === value_to_count5) {
+              count5++;
+          }
+      
+      }
+      const  value_to_count6: string = "மாநகரம்";
+
+      let count6: number = 0;
+      for (let value of r) {
+          if (value === value_to_count6) {
+              count6++;
+          }
+      
+      }
+      const  value_to_count7: string = "ஒன்றியம்";
+
+      let count7: number = 0;
+      for (let value of r) {
+          if (value === value_to_count7) {
+              count7++;
+          }
+      
+      }
+      const  value_to_count8: string = "நகரம்";
+
+      let count8: number = 0;
+      for (let value of r) {
+          if (value === value_to_count8) {
+              count8++;
+              
+          }
+      
+      }
+      const  value_to_count9: string = "பகுதி";
+
+      let count9: number = 0;
+      for (let value of r) {
+          if (value === value_to_count9) {
+              count9++;
+              
+          }
+      
+      }
+
+      const  value_to_count10: string = "பேரூர்";
+
+      let count10: number = 0;
+      for (let value of r) {
+          if (value === value_to_count10) {
+              count10++;
+              
+          }
+      
+      }
+
+
+      
+
+      console.log(r);
+      
+      if(r=="மாவட்டம்"){
+
+         if(count5<1){
+        
+        console.log('1');
+        console.log(count5);
+        this.applied_posting5 = "true";
+        this.applied_posting6 = "false";
+        this.applied_posting7 = "false";
+        this.applied_posting8 = "false";
+        this.applied_posting9 = "false";
+        this.applied_posting10= "false";
+        count5 == 0;
+        console.log(count5);
+        }
+        else{
+          this.applied_posting5= "false";
+        }
+
+      
+
+      }
+      else if(r=="மாநகரம்"){
+        if(count6<1){
+        
+          console.log('2');
+          this.applied_posting6 = "true";
+          this.applied_posting7 = "false";
+        this.applied_posting8 = "false";
+        this.applied_posting9 = "false";
+        this.applied_posting10= "false";
+        this.applied_posting5 = "false";
+          count6 == 0;
+          }
+          else{
+            this.applied_posting6 = "false";
+          }
+
+      }
+      else if(r=="ஒன்றியம்"){
+        if(count7<1){
+        
+          console.log('3');
+          this.applied_posting7 = "true";
+          this.applied_posting8 = "false";
+          this.applied_posting9 = "false";
+          this.applied_posting10= "false";
+          this.applied_posting5 = "false";
+          this.applied_posting6 = "false";
+
+          count7 == 0;
+          console.log(count7);
+          }
+          else{
+            this.applied_posting7 = "false";
+          }
+
+      }
+      else if(r=="நகரம்"){
+        if(count8<1){
+        
+          console.log('3');
+          this.applied_posting8= "true";
+          this.applied_posting9 = "false";
+          this.applied_posting10= "false";
+          this.applied_posting5 = "false";
+          this.applied_posting6 = "false";
+           this.applied_posting7 = "false";
+          count8 == 0;
+          console.log(count8);
+          }
+          else{
+            this.applied_posting8 = "false";
+          }
+
+      }
+      else if(r=="பகுதி"){
+        if(count9<1){
+        
+          console.log('3');
+          this.applied_posting9 = "true";
+          this.applied_posting10= "false";
+          this.applied_posting5 = "false";
+          this.applied_posting6 = "false";
+           this.applied_posting7 = "false";
+           this.applied_posting8= "false";
+          count7 == 0;
+          console.log(count9);
+          }
+          else{
+            this.applied_posting9 = "false";
+          }
+
+      }
+      else if(r=="பேரூர்"){
+        if(count10<1){
+        
+          console.log('3');
+          this.applied_posting10= "true";
+          this.applied_posting5 = "false";
+          this.applied_posting6 = "false";
+           this.applied_posting7 = "false";
+           this.applied_posting8= "false";
+           this.applied_posting9= "false";
+          count10 == 0;
+          console.log(count7);
+          }
+          else{
+            this.applied_posting10= "false";
+          }
+
+      }
+      else{
+        console.log("value not found")
+
+      }
+  
+    }
+    else {
+    console.log('ffff');
+    
+    }
+  }
+  applied_role3: any = [];
+  test_applied = "false";
+  applied_role4 = "fasle";
+  getapplied(r) {
+      console.log(r);
+      //console.log(g)
+      // console.log('old_em')
+      // console.log( this.SAmail)
+      if (r!=null) {
+       console.log(r);
+       this.ApiService.viewtableOB().subscribe(data => {
+        ///let object={data:[{id:'000'}]};
+        let object:any=data;
+        
+         let roles = [];
+        object.data.map((data) => {
+          roles.push(data.applied_role);
+        });
+        console.log(roles);
+        let roles2=[roles];
+        console.log(roles2);
+        const  value_to_count: string = "மாநகர துணை அமைப்பாளர்";
+
+        let count: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count) {
+                count++;
+            }
+        
+        }
+        const  value_to_count1: string = "மாவட்ட தலைவர்";
+
+        let count1: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count1) {
+                count1++;
+            }
+        
+        }
+        const  value_to_count2: string = "மாவட்ட துணை தலைவர்";
+
+        let count2: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count2) {
+                count2++;
+            }
+        
+        }
+        const  value_to_count3: string = "மாவட்ட அமைப்பாளர்";
+
+        let count3: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count3) {
+                count3++;
+                
+            }
+        
+        }
+        const  value_to_count4: string = "மாநகர அமைப்பாளர்";
+
+        let count4: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count4) {
+                count4++;
+                
+            }
+        
+        }
+        const  value_to_count5: string = "ஒன்றிய அமைப்பாளர்";
+
+        let count5: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count5) {
+                count5++;
+                
+            }
+        
+        }
+        const  value_to_count6: string = "நகர அமைப்பாளர்";
+
+        let count6: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count6) {
+                count6++;
+                
+            }
+        
+        }
+        const  value_to_count7: string = "பகுதி அமைப்பாளர்";
+
+        let count7: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count7) {
+                count7++;
+                
+            }
+        
+        }
+        const  value_to_count8: string = "பேரூர் அமைப்பாளர்";
+
+        let count8: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count8) {
+                count8++;
+                
+            }
+        
+        }
+        const  value_to_count9: string = "பேரூர் துணை அமைப்பாளர்";
+
+        let count9: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count9) {
+                count9++;
+                
+            }
+        
+        }
+        const  value_to_count10: string = "மாவட்ட துணை அமைப்பாளர்";
+
+        let count10: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count10) {
+                count4++;
+                
+            }
+        
+        }
+        const  value_to_count11: string = "ஒன்றிய துணை அமைப்பாளர்";
+
+        let count11: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count11) {
+                count11++;
+                
+            }
+        
+        }
+        const  value_to_count12: string = "நகர துணை அமைப்பாளர்";
+
+        let count12: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count12) {
+                count12++;
+                
+            }
+        
+        }
+        const  value_to_count13: string = "பகுதி துணை அமைப்பாளர்";
+
+        let count13: number = 0;
+        for (let value of roles) {
+            if (value === value_to_count13) {
+                count13++;
+                
+            }
+        
+        }
+
+
+        
+
+        console.log(r);
+        
+        if(r=="மாவட்ட தலைவர்"){
+
+           if(count1<1){
+          
+          console.log('1');
+          console.log(count1);
+          this.applied_role4 = "false";
+          count1 == 0;
+          console.log(count1);
+          }
+          else{
+            this.applied_role4= "true";
+          }
+
+        
+
+        }
+        else if(r=="மாவட்ட துணை தலைவர்"){
+          if(count2<1){
+          
+            console.log('2');
+            this.applied_role4 = "fasle";
+            count2 == 0;
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="மாவட்ட அமைப்பாளர் "){
+          if(count3<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count3 == 0;
+            console.log(count3);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="மாநகர அமைப்பாளர்"){
+          if(count4<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count4== 0;
+            console.log(count4);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="ஒன்றிய அமைப்பாளர்"){
+          if(count5<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count5== 0;
+            console.log(count5);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="நகர அமைப்பாளார்"){
+          if(count6<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count6== 0;
+            console.log(count6);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="பகுதி அமைப்பாளர்"){
+          if(count7<1){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count7== 0;
+            console.log(count7);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="பேரூர் அமைப்பாளர்"){
+          if(count8<1){
+          
+            console.log('8');
+            this.applied_role4 = "fasle";
+            count8== 0;
+            console.log(count3);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="மாவட்ட துணை அமைப்பாளர்"){
+          if(count9<3){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count9== 0;
+            console.log(count9);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="ஒன்றிய துணை அமைப்பாளர்"){
+          if(count10<3){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count10== 0;
+            console.log(count10);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="நகர துணை அமைப்பாளர்"){
+          if(count11<3){
+          
+            console.log('3');
+            this.applied_role4 = "fasle";
+            count11== 0;
+            console.log(count9);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else if(r=="நகர துணை அமைப்பாளர்"){
+          if(count12<3){
+          
+            console.log('10');
+            this.applied_role4 = "fasle";
+            count12== 0;
+            console.log(count12);
+            }
+            else{
+              this.applied_role4 = "true";
+            }
+  
+        }
+        else{
+          if(count<5){
+          
+          console.log('esle');
+          this.applied_role4 = "false";
+          count== 0;
+          }
+          else{
+            this.applied_role4 = "true";
+          }
+
+        }
+    
+
+     }
+
+        );
+      }
+      else {
+      console.log('ffff');
+      
+      }
+    }
+
+  
 
 
 postdata1(angForm1) //angForm1

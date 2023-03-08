@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-            baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-          //  baseUrl:string="http://localhost/dmk_php/";
+            // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+            baseUrl:string="http://localhost/today_dmk/Dmk-Wings/php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -20,7 +20,6 @@ constructor(private httpClient : HttpClient) { };
 
 
 user_district:any='null';
-
 
 public mydist = [
     {
@@ -67,17 +66,21 @@ public all_districts=['Chennai North', 'Chennai North East', 'Chennai East', 'Ch
 'Cuddalore East', 'Cuddalore West', 'Thanjavur North', 'Thanjavur Central', 'Thanjavur South', 'Mayiladuthurai', 'Nagai', 'Tiruvarur',
 'Trichy North', 'Trichy Central', 'Trichy South', 'Perambalur', 'Ariyalur', 'Karur', 'Pudukottai North', 'Pudukottai South', 'Salem East',
 'Salem West', 'Salem Central', 'Namakkal East', 'Namakkal West', 'Dharmapuri East', 'Dharmapuri West', 'Krishnagiri East', 'Krishnagiri West', 'Coimbatore North',
+'Coimbatore South','Coimbatore','Tirupur North','Tirupur South','Erode North','Erode South','Nilgiri','Madurai North','Madurai South','Madurai','Dindigul East',
+'Dindigul West','Theni North','Theni South',
 'Ramanathapuram', 'Sivagangai', 'Virudhunagar North', 'Virudhunagar South', 'Tirunelveli East', 'Tirunelveli Central','Tenkasi North',
 'Tenkasi South','Thoothukudi North','Thoothukudi South','Kanyakumari East','Kanyakumari West'];
 
-public meeting_districts=['Chennai North District', 'Chennai North East District', 'Chennai East District', 'Chennai West District', 'Chennai South West District', 'Chennai South District',
-'Thiruvallur East District', 'Thiruvallur Central District', 'Thiruvallur West District', 'Kanchipuram North District', 'Kanchipuram South District', 'Ranipet District', 'Vellore District',
-'Tirupattur District', 'Tiruvannamalai North District', 'Tiruvannamalai South District', 'Villupuram North District', 'Villupuram South District', 'Kallakurichi North District', 'Kallakurichi South District',
-'Cuddalore East District', 'Cuddalore West District', 'Thanjavur North District', 'Thanjavur Central District', 'Thanjavur South District', 'Mayiladuthurai District', 'Nagai District', 'Tiruvarur District',
-'Trichy North District', 'Trichy Central District', 'Trichy South District', 'Perambalur District', 'Ariyalur District', 'Karur District', 'Pudukottai North District', 'Pudukottai South District', 'Salem East District',
-'Salem West District', 'Salem Central District', 'Namakkal East District', 'Namakkal West District', 'Dharmapuri East District', 'Dharmapuri West District', 'Krishnagiri East District', 'Krishnagiri West District', 'Coimbatore North District',
-'Ramanathapuram District', 'Sivagangai District', 'Virudhunagar North District', 'Virudhunagar South District', 'Tirunelveli East District', 'Tirunelveli Central District','Tenkasi North District',
-'Tenkasi South District','Thoothukudi North District','Thoothukudi South District','Kanyakumari East District','Kanyakumari West Distric'];
+public meeting_districts=['Chennai North', 'Chennai North East', 'Chennai East', 'Chennai West', 'Chennai South West', 'Chennai South',
+'Thiruvallur East', 'Thiruvallur Central', 'Thiruvallur West', 'Kanchipuram North', 'Kanchipuram South', 'Ranipet', 'Vellore',
+'Tirupattur', 'Tiruvannamalai North', 'Tiruvannamalai South', 'Villupuram North', 'Villupuram South', 'Kallakurichi North', 'Kallakurichi South',
+'Cuddalore East', 'Cuddalore West', 'Thanjavur North', 'Thanjavur Central', 'Thanjavur South', 'Mayiladuthurai', 'Nagai', 'Tiruvarur',
+'Trichy North', 'Trichy Central', 'Trichy South', 'Perambalur', 'Ariyalur', 'Karur', 'Pudukottai North', 'Pudukottai South', 'Salem East',
+'Salem West', 'Salem Central', 'Namakkal East', 'Namakkal West', 'Dharmapuri East', 'Dharmapuri West', 'Krishnagiri East', 'Krishnagiri West', 'Coimbatore North',
+'Coimbatore South','Coimbatore','Tirupur North','Tirupur South','Erode North','Erode South','Nilgiri','Madurai North','Madurai South','Madurai','Dindigul East',
+'Dindigul West','Theni North','Theni South',
+'Ramanathapuram', 'Sivagangai', 'Virudhunagar North', 'Virudhunagar South', 'Tirunelveli East', 'Tirunelveli Central','Tenkasi North',
+'Tenkasi South','Thoothukudi North','Thoothukudi South','Kanyakumari East','Kanyakumari West'];
 
 public all_constituency={ 'Chennai North': ['Dr. Radhakrishnan Nagar', 'Perambur', 'Rayapuram'],
 'Chennai North East': ['Madhavaram', 'Tiruvottiyur'],
@@ -104,8 +107,8 @@ public all_constituency={ 'Chennai North': ['Dr. Radhakrishnan Nagar', 'Perambur
 'Thanjavur North': ['Thiruvidaimarudur (Separate)', 'Kumbakonam', 'Papanasam'],
 'Thanjavur Central': ['Tiruvaiyar', 'Thanjavur', 'Orathanadu'],
 'Thanjavur South': ['Pattukottai', 'Peravurani'],
-'Mayiladuthurai': ['Sirkazhi ', 'Mayiladuthurai', 'Poompuhar'],
-'Nagai': ['Nagapattinam', 'Kilvelur ', 'Vedaranyam'],
+'Mayiladuthurai': ['Sirkazhi (Separate)', 'Mayiladuthurai', 'Poompuhar'],
+'Nagai': ['Nagapattinam', 'Kilvelur (Separate) ', 'Vedaranyam'],
 'Tiruvarur': ['Thirutharapoondi (Separate)', 'Mannargudi.', 'Tiruvarur', 'Nannilam'],
 'Trichy North': ['Manchanallur', 'Musiri', 'Thuraiyur (Separate)'],
 'Trichy Central': ['Thiruvarangam', 'Tiruchirappalli West', 'Lalgudi'],
@@ -125,17 +128,27 @@ public all_constituency={ 'Chennai North': ['Dr. Radhakrishnan Nagar', 'Perambur
 'Krishnagiri East': ['Uthangarai (Separate)', 'Bargur', 'Krishnagiri '],
 'Krishnagiri West': ['Veppanahalli', 'Hosur ', 'Thally'],
 'Coimbatore North': ['Mettupalayam', 'Thondamuthur', 'Goundampalayam', 'Avinashi (Separate)'],
-
-
-
+'Coimbatore South':['Sulur','Kinathukadavu','Pollachi','Valparai (Separate)'],
+'Coimbatore': ['Coimbatore North', 'Coimbatore South', 'Singanallur'],
+ 'Tirupur North': ['Tirupur North', 'Tirupur South','Palladam'],
+  'Tirupur South': ['Dharapuram (Separate)', 'Kangayam', 'Udumalaipettai','Madathukulam'],
+ 'Erode North': ['Bhavani', 'Anthiyur', 'Gopichettipalayam','Bhavani Sagar (Separate)'],
+ 'Erode South': ['Erode East', 'Erode West','Modakurichi','Perundurai'],
+ 'Nilgiri':['Udhagamandalam','gudalur (Separate)','Coonoor'],
+  'Madurai North': ['Melur', 'Madurai East', 'Sholavandan (Separate)'],
+  'Madurai South': ['Tirumangalam', 'Thiruparankundram','Usilampatti'],
+  'Madurai': ['Madurai North','Madurai South','Madurai Centre','Madurai West'], 
+'Dindigul East': ['Palani', 'Athur','Nilakkottai (Separate)','Dindigul'],
+  'Dindigul West': ['Oddanchatram', 'Natham','Vedasandur'],
+'Theni North': ['Periyakulam (Separate)', 'Bodinayakanur'],
+ 'Theni South': ['Andipatti','Kambam'],
 'Ramanathapuram': ['Paramakudi (Separate)', ' Thiruvadanai', 'Ramanathapuram', 'Mudukulathur'],
-'Sivagangai': ['Karaikudi', 'Thiruppathur', 'Sivagangai', 'Manamadurai'],
+'Sivagangai': ['Karaikudi', 'Thiruppathur', 'Sivagangai', 'Manamadurai (Separate)'],
 'Virudhunagar North': ['Sivakasi', 'Virudhunagar', 'Tiruchuli'],
 'Virudhunagar South': ['Rajapalayam', 'Thiruvilliputhur (Separate)', 'Chatur', 'Aruppukottai'],
 'Tirunelveli East': ['Ambasamudram', 'Nanguneri', 'Radhapuram'],
 'Tirunelveli Central': ['Tirunelveli', 'Palayamkottai'],
 'Tenkasi North':['Vasudevanallur (Separate)','Sankaran Kovil (Separate)'],
-
 'Tenkasi South': ['Kadayanallur', 'Tenkasi', 'Alangulam'],
 'Thoothukudi North': ['Vilathikulam', 'Thoothukudi','Kovilpatti'],
  'Thoothukudi South': ['Tiruchendur', 'Tiruvaikuntam', 'Ottapidaram (Separate)'],
@@ -229,13 +242,13 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp
         }));
         }
 
-          public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any,approval_status:any) {
+          public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any,approval_status:any,street_name:any,town_city:any,taluk:any,pincode:any,applied_posting:any) {
             const httpOptions : Object = {
               headers: new HttpHeaders({
                 'Content-Type':'application/x-www-form-urlencoded'
               })
             };
-            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,party_comments,location_id,district,constituency,approval_status},httpOptions)
+            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,party_comments,location_id,district,constituency,approval_status,street_name,town_city,taluk,pincode,applied_posting},httpOptions)
             .pipe(map(Users => {
             return Users;
             }));
@@ -498,8 +511,8 @@ public viewtableDA() {
                                                 }));
                                           }
 
-                                          public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,address1:any,applied_role:any,
-                                            party_comments:any,location_id:'1',district:any,approval_status:any,constituency:any) {
+                                          public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,
+                                            party_comments:any,location_id:'1',district:any,constituency:any,approval_status:any,address1:any,town_city:any,taluk:any,pincode:any) {
                                             //let firstname='names'
                                             const httpOptions : Object = {
                                                     headers: new HttpHeaders({
@@ -508,8 +521,8 @@ public viewtableDA() {
                                                   };
                                                   console.log(user_id);
                                               // console.log("apidata : "+user_id,firstname,lastname,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address,applied_role,party_comments,location_id)
-                                                  return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=2', {mode,user_id,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address1,applied_role,
-                                                    party_comments,location_id,district,constituency,approval_status},httpOptions)
+                                                  return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=2', {mode,user_id,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,
+                                                    party_comments,location_id,district,constituency,approval_status,address1,town_city,taluk,pincode},httpOptions)
                                                           .pipe(map(Users => {
                                                           return Users;
                                                           }));
