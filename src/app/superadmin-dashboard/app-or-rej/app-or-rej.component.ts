@@ -28,6 +28,7 @@ export class AppOrRejComponent implements OnInit {
   approval_status: string;
   applied_posting6: string;
   ln:string;
+  tableshow: boolean;
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -192,7 +193,7 @@ minAge1:Date;
     this.ApiService.viewtableOB().subscribe((data:any) => {
         let obj= data;
         // console.log(obj.data);
-
+        this.tableshow = true;
         // for(const prop in obj.data) {
         //     this.customers.push(obj.data[prop]);
         //   }

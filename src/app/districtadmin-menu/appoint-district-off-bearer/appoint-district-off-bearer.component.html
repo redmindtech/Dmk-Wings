@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-  <div style="margin-left: 50%;">
+  <div *ngIf="!tableshow" style="margin-left: 50%;">
     <div *ngIf="customers.length == 0" class="loader"></div>
 </div>
 
@@ -949,7 +949,7 @@
 
 <!-- OFFICE BEARER DATATABLE         -->
 <div class="card-body">
-  <div class="table-responsive" *ngIf="customers.length != 0">
+  <div class="table-responsive" *ngIf="tableshow">
       <!-- TABLE -->
           <table class="table table-bordered display" [dtOptions]="dtOptions[0]" datatable >
             <thead>
