@@ -28,7 +28,14 @@ export class AppOrRejComponent implements OnInit {
   approval_status: string;
   applied_posting6: string;
   ln:string;
+  other_qualification:any;
+  degree_major:any;
+  
+degreeOptions: any;
   tableshow: boolean;
+  educationOptions: any;
+  degree_major_role='false';
+  
 
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder,private spinnerService: NgxSpinnerService)
@@ -72,7 +79,9 @@ export class AppOrRejComponent implements OnInit {
         street_name1:[''],
         town_city1:[''],
         taluk1:[''],
-        pincode1:['']
+        pincode1:[''],
+        other_qualification1:[''],
+        degree_major1:['']
       });
 
       this.reqform= this.fb.group({
@@ -112,7 +121,9 @@ export class AppOrRejComponent implements OnInit {
         street_name:[''],
         town_city:[''],
         taluk:[''],
-        pincode:['']
+        pincode:[''],
+        other_qualification:['',Validators.required],
+        degree_major:['']
       });
 
     }
@@ -141,6 +152,7 @@ minAge1:Date;
     this.ApiService.viewtableOB().subscribe((data:any) => {
       let obj= data;
       this.customers=obj.data;
+      this.tableshow=true;
       //console.log(obj.data.length);
       ;})
     //console.log(this.customers);
@@ -160,6 +172,9 @@ minAge1:Date;
     this.user_constituency=obj[this.district];
     this.showSpinner();
   }
+
+  
+
   public showSpinner(): void {
     this.spinnerService.show();
     }
@@ -193,7 +208,7 @@ minAge1:Date;
     this.ApiService.viewtableOB().subscribe((data:any) => {
         let obj= data;
         // console.log(obj.data);
-        this.tableshow = true;
+
         // for(const prop in obj.data) {
         //     this.customers.push(obj.data[prop]);
         //   }
@@ -206,7 +221,7 @@ minAge1:Date;
   {
 
     console.log(officebearerform);
-    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='' && this.approval_status!='')
+    if(this.officebearerform.valid==true && this.email!=null && this.firstname!=null && this.lastname!=null && this.applied_role!=null && this.district!='' && this.constituency!='' && this.approval_status!='' && this.other_qualification!='' && this.degree_major!='')
     {  
        console.log(officebearerform);
         this.ApiService.create_office_bearers(officebearerform.value.mode,
@@ -231,7 +246,7 @@ minAge1:Date;
           officebearerform.value.street_name,
           officebearerform.value.town_city,
           officebearerform.value.taluk,
-          officebearerform.value.pincode,officebearerform.value.applied_posting)
+          officebearerform.value.pincode,officebearerform.value.applied_posting,officebearerform.value.other_qualification,officebearerform.value.degree_major)
         .subscribe(
         data => {
            // window.location.reload();
@@ -343,8 +358,9 @@ minAge1:Date;
     OBtown_city:string;
     OBtaluk:string;
     OBpincode:string;
-     OBapplied_posting:string;
-
+    OBapplied_posting:string;
+    OBother_qualification:string;
+    OBdegree_major:string;
    
     editbuttonviewOB(a:any){
       console.log(a);
@@ -373,6 +389,9 @@ minAge1:Date;
          this.OBtaluk=a.taluk;
          this.OBpincode=a.pincode;
         this.OBapplied_posting=a.applied_posting;
+        this.OBother_qualification=a.other_qualification;
+        this.OBdegree_major=a.degree_major;
+
          console.log(this.OBConstituency);
           let obj=this.constituency_list;
           this.user_constituency=obj[this.OBDistrict];
@@ -412,7 +431,8 @@ minAge1:Date;
         location_id1:'1',
         mode1:'2',
         applied_posting1:this.OBapplied_posting,
-
+        other_qualification1:this.OBother_qualification,
+        degree_major1:this.OBdegree_major,
 
         });
 }
@@ -443,8 +463,12 @@ updatedata(updateform: any){
     updateform.get('town_city1').value,
     updateform.get('taluk1').value ,
     updateform.get('pincode1').value ,
-    updateform.get('applied_posting1').value)
+    updateform.get('applied_posting1').value,
+    updateform.get('degree_major1').value ,
+    updateform.get('other_qualification1').value)
+  
 
+    
     .pipe()
     .subscribe(
         data => {
@@ -1171,6 +1195,16 @@ postdata1(angForm1) //angForm1
     else{
         alert("Please enter the valid details");
     }
+}
+
+degreeOption(option:any){
+  this.degreeOptions=option;
+  // console.log(this.MeetingOptions);
+}
+
+professionOption(option:any){
+  this.educationOptions=option;
+  // console.log(this.MeetingOptions);
 }
 
 

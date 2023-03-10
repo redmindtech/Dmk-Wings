@@ -21,6 +21,7 @@ throw new Error('Method not implemented.');
   date_of_birth:string;
   educationOptions: any;
   profession:any;
+  degree_major:any;
   constructor(public ApiService:ApiServiceService,
     private fb: FormBuilder, private router:Router) {
       this.mydist = this.ApiService.mydist;
@@ -44,7 +45,8 @@ throw new Error('Method not implemented.');
             pincode:[''],
             self_profession:[''],
             location_id:['1',Validators.required],
-            other_qualification:['']
+            other_qualification:[''],
+            degree_major:['']
             });
 
     }
@@ -130,11 +132,11 @@ getphone(c) {
   postdata(angForm1 : any) //angForm1
   {
       console.log(angForm1.value.location_id);
-      if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null && angForm1.value.age !=null && angForm1.value.other_qualification !=null )
+      if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null && angForm1.value.age !=null && angForm1.value.other_qualification !=null && angForm1.value.degree_major !=null )
       // if(1>0)
       {
           this.ApiService.userregistration(angForm1.value.email,angForm1.value.firstname,angForm1.value.lastname,angForm1.value.father_name,angForm1.value.district,angForm1.value.contact_no,angForm1.value.date_of_birth,angForm1.value.educational_qualification,angForm1.value.profession,angForm1.value.location_id,angForm1.value.age,
-            angForm1.value.address1,angForm1.value.flat_no,angForm1.value.town_city,angForm1.value.taluk,angForm1.value.pincode,angForm1.value.self_profession,	angForm1.value.other_qualification)
+            angForm1.value.address1,angForm1.value.flat_no,angForm1.value.town_city,angForm1.value.taluk,angForm1.value.pincode,angForm1.value.self_profession,	angForm1.value.other_qualification,angForm1.value.degree_major )
           .subscribe(
           data => {
               alert("Self registration is completed successfully!")

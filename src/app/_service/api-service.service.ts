@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ApiServiceService {
   redirectUrl!: string;
-              // baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
-             baseUrl:string="http://localhost/dmk_php";
+             baseUrl:string = "https://redmindtechnologies.com/dmk_dev/";
+              // baseUrl:string="http://localhost/ag 2/Dmk-Wings/php";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   valueChanges: any;
   district: any;
@@ -205,14 +205,15 @@ public userlogin(username : any, password :any) {
   }));
   }
 
-public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any,age:any,address1:any,flat_no:any,town_city:any,taluk:any,pincode:any,self_profession:any,other_qualification:any) {
+public userregistration(email : any,firstname:any,lastname:any,father_name:any,district:any,contact_no:any,date_of_birth:any,educational_qualification:any,profession:any,location_id:any,age:any,address1:any,flat_no:any,town_city:any,taluk:any,pincode:any,self_profession:any,other_qualification:any,degree_major:any) {
   const httpOptions : Object = {
     headers: new HttpHeaders({
       'Content-Type':'application/x-www-form-urlencoded'
     })
   };
 console.log(location_id);
-return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id,age,address1,flat_no,town_city,taluk,pincode,self_profession,other_qualification})
+return this.httpClient.post<any>(this.baseUrl + '/register.php', { email,firstname,lastname,father_name,district,contact_no,date_of_birth,educational_qualification,profession,location_id,age,address1,flat_no,town_city,taluk,pincode,self_profession,other_qualification,degree_major
+})
 .pipe(map(Users => {
 return Users;
 }));
@@ -242,13 +243,15 @@ public create_state_admin(mode:any,email:any,firstname:any,lastname:any,whatsapp
         }));
         }
 
-          public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any,approval_status:any,street_name:any,town_city:any,taluk:any,pincode:any,applied_posting:any) {
+          public create_office_bearers(mode:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,party_comments:any,location_id:any,district:any,constituency:any,approval_status:any,street_name:any,town_city:any,taluk:any,pincode:any,applied_posting:any,other_qualification:any,degree_major:any
+            ) {
             const httpOptions : Object = {
               headers: new HttpHeaders({
                 'Content-Type':'application/x-www-form-urlencoded'
               })
             };
-            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,party_comments,location_id,district,constituency,approval_status,street_name,town_city,taluk,pincode,applied_posting},httpOptions)
+            return this.httpClient.post<any>(this.baseUrl + '/create.php?category=OB', { mode,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,party_comments,location_id,district,constituency,approval_status,street_name,town_city,taluk,pincode,applied_posting,other_qualification,degree_major
+            },httpOptions)
             .pipe(map(Users => {
             return Users;
             }));
@@ -481,7 +484,7 @@ public viewtableDA() {
                                 }));
                                 }
 
-                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any,reason:any,district:any,) {
+                                public rq_form(name:any,user_id:any,email:any,old_designation:any,new_designation:any,reason:any,district:any) {
                                   const httpOptions: Object = {
                                     headers: new HttpHeaders({
                                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -512,7 +515,7 @@ public viewtableDA() {
                                           }
 
                                           public updateOB(mode:any,user_id:any,email:any,firstname:any,lastname:any,age:any,father_name:any,mother_name:any,educational_qualification:any,date_of_birth:any,additional_qualification:any,contact_no:any,whatsapp_no:any,profession:any,flat_no:any,applied_role:any,
-                                            party_comments:any,location_id:'1',district:any,constituency:any,approval_status:any,address1:any,town_city:any,taluk:any,pincode:any,applied_posting:any) {
+                                            party_comments:any,location_id:'1',district:any,constituency:any,approval_status:any,address1:any,town_city:any,taluk:any,pincode:any,applied_posting:any,degree_major:any,other_qualification:any) {
                                             //let firstname='names'
                                             const httpOptions : Object = {
                                                     headers: new HttpHeaders({
@@ -522,7 +525,7 @@ public viewtableDA() {
                                                   console.log(user_id);
                                               // console.log("apidata : "+user_id,firstname,lastname,father_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,address,applied_role,party_comments,location_id)
                                                   return this.httpClient.post<any>(this.baseUrl + '/update.php?mode=2', {mode,user_id,email,firstname,lastname,age,father_name,mother_name,educational_qualification,date_of_birth,additional_qualification,contact_no,whatsapp_no,profession,flat_no,applied_role,
-                                                    party_comments,location_id,district,constituency,approval_status,address1,town_city,taluk,pincode,applied_posting},httpOptions)
+                                                    party_comments,location_id,district,constituency,approval_status,address1,town_city,taluk,pincode,applied_posting,degree_major,other_qualification},httpOptions)
                                                           .pipe(map(Users => {
                                                           return Users;
                                                           }));
