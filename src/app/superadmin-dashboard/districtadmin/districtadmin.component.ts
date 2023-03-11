@@ -39,7 +39,7 @@ export class DistrictadminComponent implements OnInit {
       lastname1: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
       district1: ['', Validators.required],
       whatsapp_no1: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
-      party_designation1: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      party_designation1: ['', [Validators.required]],
       approval_status1: ['', Validators.required],
       location_id1: ['1', Validators.required],
       mode1: ['1'],
@@ -54,7 +54,7 @@ export class DistrictadminComponent implements OnInit {
       district: ['', Validators.required],
 
       whatsapp_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
-      party_designation: ['', [Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
+      party_designation: ['', [Validators.required]],
       approval_status: ['', Validators.required],
       location_id: ['1', Validators.required],
       contact_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
@@ -362,7 +362,7 @@ export class DistrictadminComponent implements OnInit {
         updateform.get('party_designation1').value,
         updateform.get('email1').value,
         updateform.get('whatsapp_no1').value,
-        updateform.get('approval_status1').value,"",
+        updateform.get('approval_status1').value,'1',
         updateform.get('contact_no1').value)
 
 

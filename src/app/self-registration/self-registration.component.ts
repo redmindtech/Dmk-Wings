@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-self-registration',
@@ -23,9 +24,8 @@ throw new Error('Method not implemented.');
   profession:any;
   degree_major:any;
   constructor(public ApiService:ApiServiceService,
-    private fb: FormBuilder, private router:Router) {
+    private fb: FormBuilder, private router:Router,public datepipe:DatePipe) {
       this.mydist = this.ApiService.mydist;
-
         this.angForm = this.fb.group({ //angForm
             email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
             firstname:['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
@@ -34,7 +34,7 @@ throw new Error('Method not implemented.');
             //parent_number:['',Validators.required],
             district:['',Validators.required],
             contact_no:['',[Validators.required,Validators.pattern('[6789][0-9]{9}')]],
-            date_of_birth:['',[Validators.required]],
+            date_of_birth:['2003-03-11',[Validators.required]],
             age:['',Validators.required],
             educational_qualification:[''],
             profession:[''],
@@ -48,14 +48,24 @@ throw new Error('Method not implemented.');
             other_qualification:[''],
             degree_major:['']
             });
-
+      
     }
     district_list:any[]=this.ApiService.all_districts;
     minAge1:Date;
   ngOnInit(): void {
+    
     var today = new Date();
     var minAge = 20;
     this.minAge1 = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+    this.setCurrentdate();
+  }
+  //Dafault age in form
+  current_date:any;
+  setCurrentdate(){
+    this.current_date=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+    this.angForm.get('date_of_birth').setValue(this.current_date);
+    this.date_of_birth=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+    console.log(this.current_date);
   }
   
   
@@ -131,7 +141,7 @@ getphone(c) {
     }
   postdata(angForm1 : any) //angForm1
   {
-      console.log(angForm1.value.location_id);
+      console.log(angForm1);
       if(angForm1.valid==true && angForm1.value.email!=null && angForm1.value.firstname!=null && angForm1.value.district!=null && angForm1.value.contact_no!=null && angForm1.value.date_of_birth !=null && angForm1.value.age !=null && angForm1.value.other_qualification !=null && angForm1.value.degree_major !=null )
       // if(1>0)
       {
