@@ -9,7 +9,7 @@
       <div class="d-flex justify-content-between">
         <h4 class="font-weight-bold text-dark py">MEETINGS</h4>
         <div style="width:120px">
-          <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
+          <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal" (click)="setCurrentdate()">Add</button>
         </div>
       </div>
       
@@ -46,7 +46,7 @@
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                       <label>Meeting Date / சந்திப்பு தேதி<span class="required "> *</span></label>
-                      <input  type="text"  formControlName="meeting_date" class="form-control" onfocus="(this.type='date')"
+                      <input  type="date"  formControlName="meeting_date" class="form-control" 
                                   placeholder="Enter Meeting Date / சந்திப்பு தேதி" required min="{{date | date:'yyyy-MM-dd'}}">
                                   <div  *ngIf="(createmeetingform.get('meeting_date').touched && createmeetingform.get('meeting_date').value=='')"
                                   class="invalid-msg" >Please fill this field</div>
@@ -54,7 +54,7 @@
                   </div>
                         <div class="col-sm-6">
                             <label>Meeting Time / சந்திப்பு நேரம்<span class="required "> *</span></label>
-                            <input  onfocus="(this.type='time')" type="text" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
+                            <input   type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required>
                             <div  *ngIf="(createmeetingform.get('meeting_time').touched && createmeetingform.get('meeting_time').value=='')"
                             class="invalid-msg" >Please fill this field</div>
                             <div  class="invalid-msg" *ngIf="createmeetingform.get('meeting_time').untouched" [hidden]='hidden'>Please fill this field</div>

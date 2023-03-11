@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -52,11 +53,12 @@ export class CreateMeetingsComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router,private spinnerService: NgxSpinnerService) {
+  constructor(private fb: FormBuilder,private ApiService: ApiServiceService,private router:Router,private spinnerService: NgxSpinnerService,
+    public datepipe:DatePipe) {
     this.createmeetingform= this.fb.group({
       meeting_name: ['',[Validators.required, Validators.pattern('[A-Za-z ]{1,32}')]],
-      meeting_date:['',Validators.required ],
-      meeting_time:['',Validators.required],
+      meeting_date:[this.current_date,Validators.required ],
+      meeting_time:[this.current_time,Validators.required],
       participants:['',Validators.required],
       meeting_type:['',Validators.required],
       comments:[''],
@@ -106,6 +108,15 @@ export class CreateMeetingsComponent implements OnInit {
   
  
 
+  }
+  //Default date time in form
+  current_date:any;
+  current_time;any;
+  setCurrentdate(){
+    this.current_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.current_time=this.datepipe.transform(new Date(), 'HH:mm');
+    this.createmeetingform.get('meeting_date').setValue(this.current_date);
+    this.createmeetingform.get('meeting_time').setValue(this.current_time);
   }
   public showSpinner(): void {
     this.spinnerService.show();
