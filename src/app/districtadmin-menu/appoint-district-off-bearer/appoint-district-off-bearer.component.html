@@ -300,8 +300,10 @@
 
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <label>Pincode / அஞ்சல் குறியீடு</label>
-                    <input pInputText type="text" name="pincode1" formControlName="pincode1" pInputText
+                    <input pInputText type="text" name="pincode1" formControlName="pincode1" pInputText maxlength="6"
                       class="form-control" placeholder="Pincode / அஞ்சல் குறியீடு" />
+                      <div *ngIf="editform.get('pincode1').status =='INVALID' && editform.get('pincode1').touched==true " class="invalid-msg">
+                        Please enter valid pincode</div>
 
 
                   </div>
@@ -575,7 +577,7 @@
       </div>
       <!-- /.modal-dialog -->
     </div>
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="myModal" *ngIf="user_password==null">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="card-danger">
@@ -1014,8 +1016,10 @@
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <label>Pincode / அஞ்சல் குறியீடு</label>
-                    <input pInputText name="pincode" class="form-control" placeholder="Pincode / அஞ்சல் குறியீடு"
-                      formControlName="pincode" />
+                    <input pInputText name="pincode" class="form-control" placeholder="Pincode / அஞ்சல் குறியீடு" maxlength="6"
+                      formControlName="pincode" /> 
+                      <div *ngIf="pincode.status=='INVALID'&& pincode.touched==true " class="invalid-msg">
+                        Please enter valid pincode</div>
 
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0">

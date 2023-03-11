@@ -84,7 +84,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       street_name1: [''],
       town_city1: [''],
       taluk1: [''],
-      pincode1: [''],
+      pincode1: ['',Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
       degree_major1:[''],
         other_qualification1:['']
 
@@ -128,7 +128,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       street_name: [''],
       town_city: [''],
       taluk: [''],
-      pincode: [''],
+      pincode: ['',Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
       flat_no: [''],
       degree_major:[''],
         other_qualification:['']
@@ -459,6 +459,12 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   updatedata(updateform: any) {
     // console.log(this.OBDistrict,'',this.OBConstituency);
     console.log(updateform);
+
+    if(updateform.get('degree_major1').value!=="OTHERS")
+  {
+    updateform.get('other_qualification1').setValue('');
+    
+  }
 
     console.log(this.editform.valid)
     if (this.editform.valid == true && this.OBConstituency != '' && this.test_email == 'false' && this.test_ph == 'false') {
