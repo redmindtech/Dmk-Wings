@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, takeWhile } from 'rxjs';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class AppOrRejComponent implements OnInit {
 
 
   constructor(public ApiService: ApiServiceService,
-    private fb: FormBuilder, private spinnerService: NgxSpinnerService) {
+    private fb: FormBuilder, private spinnerService: NgxSpinnerService,public datepipe:DatePipe) {
     // this.ApiService.viewtableOB().subscribe((data:any) => {
     // let obj= data;
     // this.customers=obj.data;
@@ -64,7 +65,7 @@ export class AppOrRejComponent implements OnInit {
       father_name1: [''],
       mother_name1: ['', Validators.pattern('[A-Za-z ]{1,32}')],
       educational_qualification1: ['', Validators.required],
-      date_of_birth1: ['', Validators.required],
+      date_of_birth1: [this.current_date, Validators.required],
       additional_qualification1: ['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
       contact_no1: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
       whatsapp_no1: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
@@ -147,6 +148,7 @@ export class AppOrRejComponent implements OnInit {
 
   }
   minAge1: Date;
+  current_date:any;
   ngOnInit(): void {
 
     var today = new Date();
@@ -175,6 +177,12 @@ export class AppOrRejComponent implements OnInit {
     let obj = this.constituency_list;
     this.user_constituency = obj[this.district];
     this.showSpinner();
+  }
+  //Dafault age in form
+  setCurrentdate(){
+    this.current_date=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+    this.officebearerform.get('date_of_birth').setValue(this.current_date);
+    
   }
   public showSpinner(): void {
     this.spinnerService.show();

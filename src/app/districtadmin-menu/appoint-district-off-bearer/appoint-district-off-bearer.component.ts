@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/_service/api-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Colors } from 'chart.js';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appoint-district-off-bearer',
@@ -44,7 +45,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
 
   constructor(public ApiService: ApiServiceService,
-    private fb: FormBuilder, private spinnerService: NgxSpinnerService) {
+    private fb: FormBuilder, private spinnerService: NgxSpinnerService,public datepipe:DatePipe) {
     // this.ApiService.viewtableOB().subscribe((data:any) => {
     // let obj= data;
     // this.customers=obj.data;
@@ -113,7 +114,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       father_name: [''],
       mother_name: ['', [Validators.pattern('[A-Za-z ]{1,32}')]],
       educational_qualification: ['', Validators.required],
-      date_of_birth: ['', Validators.required],
+      date_of_birth: [this.current_date, Validators.required],
       additional_qualification: ['', Validators.pattern('^[a-zA-Z]+[a-zA-Z .,]+$')],
       contact_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
       whatsapp_no: ['', [Validators.required, Validators.pattern('[6789][0-9]{9}')]],
@@ -183,6 +184,13 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     this.user_constituency = obj[this.district];
     this.showSpinner();
     this.tableshow = true;
+  }
+  //Dafault age in form
+  current_date:any;
+  setCurrentdate(){
+    this.current_date=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+    this.officebearerform.get('date_of_birth').setValue(this.current_date);
+    
   }
   public showSpinner(): void {
     this.spinnerService.show();
