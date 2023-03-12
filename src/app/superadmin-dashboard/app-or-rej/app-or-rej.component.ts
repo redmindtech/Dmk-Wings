@@ -181,6 +181,7 @@ export class AppOrRejComponent implements OnInit {
   //Dafault age in form
   setCurrentdate(){
     this.current_date=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+    this.date_of_birth=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
     this.officebearerform.get('date_of_birth').setValue(this.current_date);
     
   }
