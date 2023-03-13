@@ -37,15 +37,15 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
   degree_major: any;
   educationOptions: any;
-  other_qualification:any;
-  degree_major_role='false';
+  other_qualification: any;
+  degree_major_role = 'false';
 
 
 
 
 
   constructor(public ApiService: ApiServiceService,
-    private fb: FormBuilder, private spinnerService: NgxSpinnerService,public datepipe:DatePipe) {
+    private fb: FormBuilder, private spinnerService: NgxSpinnerService, public datepipe: DatePipe) {
     // this.ApiService.viewtableOB().subscribe((data:any) => {
     // let obj= data;
     // this.customers=obj.data;
@@ -85,9 +85,9 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       street_name1: [''],
       town_city1: [''],
       taluk1: [''],
-      pincode1: ['',Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
-      degree_major1:[''],
-        other_qualification1:['']
+      pincode1: ['', Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
+      degree_major1: [''],
+      other_qualification1: ['']
 
     });
 
@@ -129,10 +129,10 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       street_name: [''],
       town_city: [''],
       taluk: [''],
-      pincode: ['',Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
+      pincode: ['', Validators.pattern('[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}')],
       flat_no: [''],
-      degree_major:[''],
-        other_qualification:['']
+      degree_major: [''],
+      other_qualification: ['']
 
     });
 
@@ -175,7 +175,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       order: []
     };
 
-    this.ApiService.viewtableOB();
+    // this.ApiService.viewtableOB();
     // this.ApiService.viewtableDA();
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
@@ -183,14 +183,14 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     let obj = this.constituency_list;
     this.user_constituency = obj[this.district];
     this.showSpinner();
-    this.tableshow = true;
+
   }
   //Dafault age in form
-  current_date:any;
-  setCurrentdate(){
-    this.current_date=this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
+  current_date: any;
+  setCurrentdate() {
+    this.current_date = this.datepipe.transform(this.minAge1, 'yyyy-MM-dd');
     this.officebearerform.get('date_of_birth').setValue(this.current_date);
-    
+
   }
   public showSpinner(): void {
     this.spinnerService.show();
@@ -222,8 +222,9 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     //console.log(this.ApiService.tabledataDA)
     //this.ApiService.viewtableOB();
 
-    this.ApiService.viewtableOB().subscribe((data: any) => {
+    this.ApiService.datablelogin(this.districtname).subscribe((data: any) => {
       let obj = data;
+      this.tableshow = true;
       // console.log(obj.data);
 
       // for(const prop in obj.data) {
@@ -241,7 +242,7 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     console.log(this.officebearerform.valid);
 
     console.log(officebearerform);
-    if (this.officebearerform.valid == true && this.email != null && this.firstname != null && this.lastname != null && this.applied_role != null && this.district != '' && this.constituency != '' && this.approval_status != ''&& this.degree_major!='' && this.other_qualification!='') {
+    if (this.officebearerform.valid == true && this.email != null && this.firstname != null && this.lastname != null && this.applied_role != null && this.district != '' && this.constituency != '' && this.approval_status != '' && this.degree_major != '' && this.other_qualification != '') {
       console.log(officebearerform);
       this.ApiService.create_office_bearers(officebearerform.value.mode,
         officebearerform.value.email,
@@ -265,8 +266,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         officebearerform.value.street_name,
         officebearerform.value.town_city,
         officebearerform.value.taluk,
-        officebearerform.value.pincode, officebearerform.value.applied_posting,officebearerform.value.other_qualification,officebearerform.value.degree_major
-        )
+        officebearerform.value.pincode, officebearerform.value.applied_posting, officebearerform.value.other_qualification, officebearerform.value.degree_major
+      )
         .subscribe(
           data => {
             // window.location.reload();
@@ -382,8 +383,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
   OBtaluk: string;
   OBpincode: string;
   OBapplied_posting: string;
-  OBother_qualification:any;
-    OBdegree_major:any;
+  OBother_qualification: any;
+  OBdegree_major: any;
 
   editbuttonviewOB(a: any) {
     console.log(a);
@@ -413,8 +414,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     this.OBtaluk = a.taluk;
     this.OBpincode = a.pincode;
     this.OBapplied_posting = a.applied_posting;
-    this.OBother_qualification=a.other_qualification;
-         this.OBdegree_major=a.degree_major;
+    this.OBother_qualification = a.other_qualification;
+    this.OBdegree_major = a.degree_major;
 
 
     console.log(this.OBConstituency);
@@ -458,8 +459,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       taluk1: this.OBtaluk,
       pincode1: this.OBpincode,
       applied_posting1: this.OBapplied_posting,
-      other_qualification1:this.OBother_qualification,
-        degree_major1:this.OBdegree_major,
+      other_qualification1: this.OBother_qualification,
+      degree_major1: this.OBdegree_major,
 
 
     });
@@ -468,11 +469,10 @@ export class AppointDistrictOffBearerComponent implements OnInit {
     // console.log(this.OBDistrict,'',this.OBConstituency);
     console.log(updateform);
 
-    if(updateform.get('degree_major1').value!=="OTHERS")
-  {
-    updateform.get('other_qualification1').setValue('');
-    
-  }
+    if (updateform.get('degree_major1').value !== "OTHERS") {
+      updateform.get('other_qualification1').setValue('');
+
+    }
 
     console.log(this.editform.valid)
     if (this.editform.valid == true && this.OBConstituency != '' && this.test_email == 'false' && this.test_ph == 'false') {
@@ -499,8 +499,8 @@ export class AppointDistrictOffBearerComponent implements OnInit {
         updateform.get('taluk1').value,
         updateform.get('pincode1').value,
         updateform.get('applied_posting1').value,
-    updateform.get('degree_major1').value ,
-    updateform.get('other_qualification1').value)
+        updateform.get('degree_major1').value,
+        updateform.get('other_qualification1').value)
 
         .pipe()
         .subscribe(
@@ -695,811 +695,721 @@ export class AppointDistrictOffBearerComponent implements OnInit {
 
   getposting1(t) {
 
-    this.ApiService.viewtableOB().subscribe(data => {
+    this.ApiService.datablelogin(this.districtname).subscribe(data => {
       ///let object={data:[{id:'000'}]};
       let object: any = data;
-      console.log('ffffff');
+      // console.log('ffffff');
       let roles = [];
       object.data.map((data) => {
         roles.push(data.applied_role);
       });
       console.log(roles);
-      let roles2 = [roles];
-      console.log(roles2);
+      // let roles2 = [roles];
+      // console.log(roles2);
       console.log(t);
-      for (var i = 1; i < t.length; i++) {
-
-
-
-
-        if (t == 'மாவட்டம்') {
-
-          if (t == "மாவட்டம்") {
-            console.log(t);
-            const value_to_count1: string = "மாவட்ட தலைவர்";
-            for (let value of roles) {
-
-
-
-
-
-              console.log(value)
-              if (value == value_to_count1) {
-
-                this.applied_posting111 = "false";
-                break;
-
-
-              }
-              else {
-                this.applied_posting111 = "true";
-                continue;
-
-              }
-
-            }
-            const value_to_count2: string = "மாவட்ட துணை தலைவர்";
-            for (let value of roles) {
-
-
-
-
-
-              if (value === value_to_count2) {
-
-                this.applied_posting112 = "false";
-                break;
-
-              }
-              else {
-                this.applied_posting112 = "true";
-                continue;
-              }
-
-            }
-            const value_to_count3: string = "மாவட்ட அமைப்பாளர்";
-
-            for (let value of roles) {
-
-              if (value === value_to_count3) {
-
-                this.applied_posting113 = "false";
-                break;
-              }
-              else {
-                this.applied_posting113 = "true";
-                continue;
-
-              }
-            }
-
-
-            const value_to_count4: string = "மாவட்ட துணை அமைப்பாளர் 1";
-
-            for (let value of roles) {
-
-              if (value === value_to_count4) {
-
-                this.applied_posting114 = "false";
-                break;
-              }
-              else {
-                this.applied_posting114 = "true";
+      if (roles.length != 0) {
+        for (var i = 1; i < t.length; i++) {
+          if (t == 'மாவட்டம்') {
+            if (t == "மாவட்டம்") {
+              console.log(t);
+              const value_to_count1: string = "மாவட்ட தலைவர்";
+              for (let value of roles) {
                 console.log(value)
-                continue;
+                if (value == value_to_count1) {
+                  this.applied_posting111 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting111 = "true";
+                  continue;
+                }
               }
+              const value_to_count2: string = "மாவட்ட துணை தலைவர்";
+              for (let value of roles) {
+                if (value === value_to_count2) {
+                  this.applied_posting112 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting112 = "true";
+                  continue;
+                }
+              }
+              const value_to_count3: string = "மாவட்ட அமைப்பாளர்";
+              for (let value of roles) {
+                if (value === value_to_count3) {
+                  this.applied_posting113 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting113 = "true";
+                  continue;
+                }
+              }
+              const value_to_count4: string = "மாவட்ட துணை அமைப்பாளர் 1";
+              for (let value of roles) {
+                if (value === value_to_count4) {
+                  this.applied_posting114 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting114 = "true";
+                  console.log(value)
+                  continue;
+                }
+              }
+              const value_to_count5: string = "மாவட்ட துணை அமைப்பாளர் 2";
+              for (let value of roles) {
+                if (value === value_to_count5) {
+                  this.applied_posting115 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting115 = "true";
+                  continue;
+                }
+              }
+              const value_to_count6: string = "மாவட்ட துணை அமைப்பாளர் 3";
+              for (let value of roles) {
+                if (value === value_to_count6) {
+                  this.applied_posting116 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting116 = "true";
+                  continue;
+                }
+              }
+              const value_to_count7: string = "மாவட்ட துணை அமைப்பாளர் 4";
+              for (let value of roles) {
+                if (value === value_to_count7) {
+                  this.applied_posting117 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting117 = "true";
+                  continue;
+                }
+              }
+              const value_to_count8: string = "மாவட்ட துணை அமைப்பாளர் 5";
+              for (let value of roles) {
+                if (value === value_to_count8) {
+                  this.applied_posting118 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting118 = "true";
+                  continue;
+                }
+              }
+              this.applied_posting119 = "false";
+              this.applied_posting120 = "false";
+              this.applied_posting121 = "false";
+              this.applied_posting122 = "false";
+              this.applied_posting123 = "false";
+              this.applied_posting124 = "false";
+              this.applied_posting125 = "false";
+              this.applied_posting126 = "false";
+              this.applied_posting127 = "false";
+              this.applied_posting128 = "false";
+              this.applied_posting129 = "false";
+              this.applied_posting130 = "false";
+              this.applied_posting131 = "false";
+              this.applied_posting132 = "false";
+              this.applied_posting133 = "false";
+              this.applied_posting134 = "false";
+              this.applied_posting135 = "false";
+              this.applied_posting136 = "false";
+              this.applied_posting137 = "false";
+              this.applied_posting138 = "false";
             }
-
-            const value_to_count5: string = "மாவட்ட துணை அமைப்பாளர் 2";
-
-            for (let value of roles) {
-
-              if (value === value_to_count5) {
-
-                this.applied_posting115 = "false";
-                break;
-              }
-              else {
-                this.applied_posting115 = "true";
-                continue;
-              }
+            else {
+              console.log("ttttttttt")
             }
-
-            const value_to_count6: string = "மாவட்ட துணை அமைப்பாளர் 3";
-
-            for (let value of roles) {
-              if (value === value_to_count6) {
-
-                this.applied_posting116 = "false";
-                break;
-              }
-              else {
-                this.applied_posting116 = "true";
-                continue;
-              }
-
-
-            }
-            const value_to_count7: string = "மாவட்ட துணை அமைப்பாளர் 4";
-
-
-            for (let value of roles) {
-              if (value === value_to_count7) {
-
-                this.applied_posting117 = "false";
-                break;
-              }
-              else {
-                this.applied_posting117 = "true";
-                continue;
-              }
-
-            }
-            const value_to_count8: string = "மாவட்ட துணை அமைப்பாளர் 5";
-
-            for (let value of roles) {
-
-              if (value === value_to_count8) {
-
-                this.applied_posting118 = "false";
-                break;
-              }
-              else {
-                this.applied_posting118 = "true";
-                continue;
-              }
-
-            }
-            this.applied_posting119 = "false";
-            this.applied_posting120 = "false";
-            this.applied_posting121 = "false";
-            this.applied_posting122 = "false";
-            this.applied_posting123 = "false";
-            this.applied_posting124 = "false";
-
-
-            this.applied_posting125 = "false";
-            this.applied_posting126 = "false";
-            this.applied_posting127 = "false";
-            this.applied_posting128 = "false";
-
-            this.applied_posting129 = "false";
-            this.applied_posting130 = "false";
-            this.applied_posting131 = "false";
-            this.applied_posting132 = "false";
-
-            this.applied_posting133 = "false";
-            this.applied_posting134 = "false";
-            this.applied_posting135 = "false";
-            this.applied_posting136 = "false";
-
-
-
-
-            this.applied_posting137 = "false";
-            this.applied_posting138 = "false";
-
-
-
-
-
           }
-          else {
-            console.log("ttttttttt")
+          else if (t == 'மாநகரம்') {
+            if (t == 'மாநகரம்') {
+              console.log(t);
+              const value_to_count9: string = "மாநகர அமைப்பாளர்";
+              for (let value of roles) {
+                // console.log(value)
+                if (value == value_to_count9) {
+                  this.applied_posting119 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting119 = "true";
+                  continue;
+                }
+              }
+              const value_to_count10: string = "மாநகர துணை அமைப்பாளர் 1";
+              for (let value of roles) {
+                if (value === value_to_count10) {
+                  this.applied_posting120 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting120 = "true";
+                  continue;
+                }
+              }
+              const value_to_count11: string = "மாநகர துணை அமைப்பாளர் 2";
+              for (let value of roles) {
+                if (value === value_to_count11) {
+                  this.applied_posting121 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting121 = "true";
+                  continue;
+                }
+              }
+              const value_to_count12: string = "மாநகர துணை அமைப்பாளர் 3";
+              for (let value of roles) {
+                if (value === value_to_count12) {
+                  this.applied_posting122 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting122 = "true";
+                  continue;
+                }
+              }
+              const value_to_count13: string = "மாநகர துணை அமைப்பாளர் 4";
+              for (let value of roles) {
+                if (value === value_to_count13) {
+                  this.applied_posting123 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting123 = "true";
+                  continue;
+                }
+              }
+              const value_to_count14: string = "மாநகர துணை அமைப்பாளர் 5";
+              for (let value of roles) {
+                if (value === value_to_count14) {
+                  this.applied_posting124 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting124 = "true";
+                  continue;
+                }
+              }
+              this.applied_posting111 = "false";
+              this.applied_posting112 = "false";
+              this.applied_posting113 = "false";
+              this.applied_posting114 = "false";
+              this.applied_posting115 = "false";
+              this.applied_posting116 = "false";
+              this.applied_posting117 = "false";
+              this.applied_posting118 = "false";
+              this.applied_posting125 = "false";
+              this.applied_posting126 = "false";
+              this.applied_posting127 = "false";
+              this.applied_posting128 = "false";
+              this.applied_posting129 = "false";
+              this.applied_posting130 = "false";
+              this.applied_posting131 = "false";
+              this.applied_posting132 = "false";
+              this.applied_posting133 = "false";
+              this.applied_posting134 = "false";
+              this.applied_posting135 = "false";
+              this.applied_posting136 = "false";
+              this.applied_posting137 = "false";
+              this.applied_posting138 = "false";
+            }
+            // else {
+
+            // }
           }
-
-
-        }
-        else if (t == 'மாநகரம்') {
-          if (t == 'மாநகரம்') {
-
-
-
-            console.log(t);
-            const value_to_count9: string = "மாநகர அமைப்பாளர்";
-
-            for (let value of roles) {
-
-
-
-
-
-
-              console.log(value)
-              if (value == value_to_count9) {
-
-                this.applied_posting119 = "false";
-                break;
-
-
+          else if (t == "ஒன்றியம்") {
+            if (t == "ஒன்றியம்") {
+              console.log(t);
+              const value_to_count15: string = "ஒன்றிய அமைப்பாளர்";
+              for (let value of roles) {
+                console.log(value)
+                if (value == value_to_count15) {
+                  this.applied_posting125 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting125 = "true";
+                  continue;
+                }
               }
-              else {
-                this.applied_posting119 = "true";
-                continue;
+              const value_to_count16: string = "ஒன்றிய துணை அமைப்பாளர் 1";
+              for (let value of roles) {
+                if (value === value_to_count16) {
+                  this.applied_posting126 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting126 = "true";
+                  continue;
+                }
               }
-
+              const value_to_count17: string = "ஒன்றிய துணை அமைப்பாளர் 2";
+              for (let value of roles) {
+                if (value === value_to_count17) {
+                  this.applied_posting127 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting127 = "true";
+                  continue;
+                }
+              }
+              const value_to_count18: string = "ஒன்றிய துணை அமைப்பாளர் 3";
+              for (let value of roles) {
+                if (value === value_to_count18) {
+                  this.applied_posting128 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting128 = "true";
+                  continue;
+                }
+              }
+              this.applied_posting111 = "false";
+              this.applied_posting112 = "false";
+              this.applied_posting113 = "false";
+              this.applied_posting114 = "false";
+              this.applied_posting115 = "false";
+              this.applied_posting116 = "false";
+              this.applied_posting117 = "false";
+              this.applied_posting118 = "false";
+              this.applied_posting119 = "false";
+              this.applied_posting120 = "false";
+              this.applied_posting121 = "false";
+              this.applied_posting122 = "false";
+              this.applied_posting123 = "false";
+              this.applied_posting124 = "false";
+              this.applied_posting129 = "false";
+              this.applied_posting130 = "false";
+              this.applied_posting131 = "false";
+              this.applied_posting132 = "false";
+              this.applied_posting133 = "false";
+              this.applied_posting134 = "false";
+              this.applied_posting135 = "false";
+              this.applied_posting136 = "false";
+              this.applied_posting137 = "false";
+              this.applied_posting138 = "false";
             }
-            const value_to_count10: string = "மாநகர துணை அமைப்பாளர் 1";
-            for (let value of roles) {
-
-
-
-
-
-              if (value === value_to_count10) {
-
-                this.applied_posting120 = "false";
-                break;
-
-              }
-              else {
-                this.applied_posting120 = "true";
-                continue;
-              }
-
-            }
-
-            const value_to_count11: string = "மாநகர துணை அமைப்பாளர் 2";
-
-            for (let value of roles) {
-
-
-              if (value === value_to_count11) {
-
-                this.applied_posting121 = "false";
-                break;
-              }
-              else {
-                this.applied_posting121 = "true";
-                continue;
-              }
-
-            }
-
-            const value_to_count12: string = "மாநகர துணை அமைப்பாளர் 3";
-
-
-            for (let value of roles) {
-
-              if (value === value_to_count12) {
-
-                this.applied_posting122 = "false";
-                break;
-              }
-              else {
-                this.applied_posting122 = "true";
-                continue;
-              }
-
-            }
-            const value_to_count13: string = "மாநகர துணை அமைப்பாளர் 4";
-
-
-            for (let value of roles) {
-              if (value === value_to_count13) {
-
-                this.applied_posting123 = "false";
-                break;
-              }
-              else {
-                this.applied_posting124 = "true";
-                continue;
-              }
-
-            }
-
-            const value_to_count14: string = "மாநகர துணை அமைப்பாளர் 5";
-
-            for (let value of roles) {
-
-
-              if (value === value_to_count14) {
-
-                this.applied_posting124 = "false";
-                break;
-              }
-              else {
-                this.applied_posting124 = "true";
-                continue;
-              }
-            }
-            this.applied_posting111 = "false";
-            this.applied_posting112 = "false";
-            this.applied_posting113 = "false";
-            this.applied_posting114 = "false";
-            this.applied_posting115 = "false";
-            this.applied_posting116 = "false";
-            this.applied_posting117 = "false";
-            this.applied_posting118 = "false";
-
-            this.applied_posting125 = "false";
-            this.applied_posting126 = "false";
-            this.applied_posting127 = "false";
-            this.applied_posting128 = "false";
-
-            this.applied_posting129 = "false";
-            this.applied_posting130 = "false";
-            this.applied_posting131 = "false";
-            this.applied_posting132 = "false";
-
-            this.applied_posting133 = "false";
-            this.applied_posting134 = "false";
-            this.applied_posting135 = "false";
-            this.applied_posting136 = "false";
-
-
-
-
-            this.applied_posting137 = "false";
-            this.applied_posting138 = "false";
-
-
-
-
-
           }
-          else {
+          else if (t == "நகரம்") {
+            if (t == "நகரம்") {
+              console.log(this.applied_posting129);
+              const value_to_count19: string = "நகர அமைப்பாளார்";
+              for (let value of roles) {
+                console.log(roles);
+                console.log(value)
+                if (value == value_to_count19) {
+                  this.applied_posting129 = "false";
+                  console
+                  break;
+                }
+                else {
+                  this.applied_posting129 = "true";
+                  continue;
+                }
+              }
+              console.log(this.applied_posting129);
+              const value_to_count20: string = "நகர துணை அமைப்பாளர் 1";
+              for (let value of roles) {
+                console.log(value);
+                if (value === value_to_count20) {
+                  console.log("in");
+                  this.applied_posting130 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting130 = "true";
+                  continue;
+                }
+              }
+              console.log(this.applied_posting130)
+              const value_to_count21: string = "நகர துணை அமைப்பாளர் 2";
+              for (let value of roles) {
+                if (value === value_to_count21) {
+                  console.log("hhh");
+                  this.applied_posting131 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting131 = "true";
+                  continue;
+                }
+              } console.log(this.applied_posting131)
+              const value_to_count22: string = "நகர துணை அமைப்பாளர் 3";
 
+              for (let value of roles) {
+
+                if (value === value_to_count22) {
+
+                  this.applied_posting132 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting132 = "true";
+                  continue;
+                }
+              }
+              this.applied_posting111 = "false";
+              this.applied_posting112 = "false";
+              this.applied_posting113 = "false";
+              this.applied_posting114 = "false";
+              this.applied_posting115 = "false";
+              this.applied_posting116 = "false";
+              this.applied_posting117 = "false";
+              this.applied_posting118 = "false";
+              this.applied_posting119 = "false";
+              this.applied_posting120 = "false";
+              this.applied_posting121 = "false";
+              this.applied_posting122 = "false";
+              this.applied_posting123 = "false";
+              this.applied_posting124 = "false";
+              this.applied_posting125 = "false";
+              this.applied_posting126 = "false";
+              this.applied_posting127 = "false";
+              this.applied_posting128 = "false";
+              this.applied_posting133 = "false";
+              this.applied_posting134 = "false";
+              this.applied_posting135 = "false";
+              this.applied_posting136 = "false";
+              this.applied_posting137 = "false";
+              this.applied_posting138 = "false";
+            }
+            // else {
+
+            // }
           }
-
-
-        }
-        else if (t == "ஒன்றியம்") {
-          if (t == "ஒன்றியம்") {
-
-            console.log(t);
-            const value_to_count15: string = "ஒன்றிய அமைப்பாளர்";
-            for (let value of roles) {
-
-
-
-
-
-              console.log(value)
-              if (value == value_to_count15) {
-
-                this.applied_posting125 = "false";
-                break;
-
-
-              }
-              else {
-                this.applied_posting125 = "true";
-                continue;
-
+          else if (t == "பகுதி") {
+            if (t == "பகுதி") {
+              console.log(t);
+              const value_to_count23: string = "பகுதி அமைப்பாளர்";
+              for (let value of roles) {
+                console.log(value)
+                if (value == value_to_count23) {
+                  this.applied_posting133 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting133 = "true";
+                  continue;
+                }
               }
 
+              const value_to_count24: string = "பகுதி துணை அமைப்பாளர் 1";
+
+              for (let value of roles) {
+                if (value === value_to_count24) {
+
+                  this.applied_posting134 = "false";
+                   break;
+
+                }
+                else {
+                  this.applied_posting134 = "true";
+                  continue;
+                }
+              }
+              const value_to_count25: string = "பகுதி துணை அமைப்பாளர் 2";
+              for (let value of roles) {
+                if (value === value_to_count25) {
+                  this.applied_posting135 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting135 = "true";
+                  continue;
+                }
+              }
+              const value_to_count26: string = "பகுதி துணை அமைப்பாளர் 3";
+              for (let value of roles) {
+                if (value === value_to_count26) {
+                  this.applied_posting136 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting136 = "true";
+                  continue;
+                }
+              }
+              this.applied_posting111 = "false";
+              this.applied_posting112 = "false";
+              this.applied_posting113 = "false";
+              this.applied_posting114 = "false";
+              this.applied_posting115 = "false";
+              this.applied_posting116 = "false";
+              this.applied_posting117 = "false";
+              this.applied_posting118 = "false";
+              this.applied_posting119 = "false";
+              this.applied_posting120 = "false";
+              this.applied_posting121 = "false";
+              this.applied_posting122 = "false";
+              this.applied_posting123 = "false";
+              this.applied_posting124 = "false";
+              this.applied_posting125 = "false";
+              this.applied_posting126 = "false";
+              this.applied_posting127 = "false";
+              this.applied_posting128 = "false";
+              this.applied_posting129 = "false";
+              this.applied_posting130 = "false";
+              this.applied_posting131 = "false";
+              this.applied_posting132 = "false";
+              this.applied_posting137 = "false";
+              this.applied_posting138 = "false";
             }
+            // else {
 
-            const value_to_count16: string = "ஒன்றிய துணை அமைப்பாளர் 1";
-
-            for (let value of roles) {
-
-              if (value === value_to_count16) {
-
-                this.applied_posting126 = "false";
-                break;
-              }
-              else {
-                this.applied_posting126 = "true";
-                continue;
-              }
-            }
-
-
-            const value_to_count17: string = "ஒன்றிய துணை அமைப்பாளர் 2";
-
-            for (let value of roles) {
-
-              if (value === value_to_count17) {
-
-                this.applied_posting127 = "false";
-                break;
-              }
-              else {
-                this.applied_posting127 = "true";
-                continue;
-              }
-
-
-            }
-            const value_to_count18: string = "ஒன்றிய துணை அமைப்பாளர் 3";
-
-            for (let value of roles) {
-
-              if (value === value_to_count18) {
-
-                this.applied_posting128 = "false";
-                break;
-              }
-              else {
-                this.applied_posting128 = "true";
-                continue;
-              }
-            }
-            this.applied_posting111 = "false";
-            this.applied_posting112 = "false";
-            this.applied_posting113 = "false";
-            this.applied_posting114 = "false";
-            this.applied_posting115 = "false";
-            this.applied_posting116 = "false";
-            this.applied_posting117 = "false";
-            this.applied_posting118 = "false";
-
-
-            this.applied_posting119 = "false";
-            this.applied_posting120 = "false";
-            this.applied_posting121 = "false";
-            this.applied_posting122 = "false";
-            this.applied_posting123 = "false";
-            this.applied_posting124 = "false";
-
-
-            this.applied_posting129 = "false";
-            this.applied_posting130 = "false";
-            this.applied_posting131 = "false";
-            this.applied_posting132 = "false";
-
-            this.applied_posting133 = "false";
-            this.applied_posting134 = "false";
-            this.applied_posting135 = "false";
-            this.applied_posting136 = "false";
-
-
-
-
-            this.applied_posting137 = "false";
-            this.applied_posting138 = "false";
-
-
-
-
+            // }
           }
-
-
-        }
-
-        else if (t == "நகரம்") {
-          if (t == "நகரம்") {
-            console.log(this.applied_posting129);
-
-            const value_to_count19: string = "நகர அமைப்பாளார்";
-            for (let value of roles) {
-
-
-              console.log(roles);
-
-
-              console.log(value)
-              if (value == value_to_count19) {
-
-                this.applied_posting129 = "false";
-                console
-                break;
-
-
+          else if (t == "பேரூர்") {
+            if (t == "பேரூர்") {
+              console.log(t);
+              for (let value of roles) {
+                const value_to_count27: string = "பேரூர் அமைப்பாளர்";
+                console.log(value)
+                if (value == value_to_count27) {
+                  this.applied_posting137 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting137 = "true";
+                  continue;
+                }
               }
-              else {
-                this.applied_posting129 = "true";
-                continue;
-
+              const value_to_count28: string = "பேரூர் துணை அமைப்பாளர்";
+              for (let value of roles) {
+                if (value === value_to_count28) {
+                  this.applied_posting138 = "false";
+                  break;
+                }
+                else {
+                  this.applied_posting138 = "true";
+                  continue;
+                }
               }
+              this.applied_posting111 = "false";
+              this.applied_posting112 = "false";
+              this.applied_posting113 = "false";
+              this.applied_posting114 = "false";
+              this.applied_posting115 = "false";
+              this.applied_posting116 = "false";
+              this.applied_posting117 = "false";
+              this.applied_posting118 = "false";
+              this.applied_posting119 = "false";
+              this.applied_posting120 = "false";
+              this.applied_posting121 = "false";
+              this.applied_posting122 = "false";
+              this.applied_posting123 = "false";
+              this.applied_posting124 = "false";
+              this.applied_posting125 = "false";
+              this.applied_posting126 = "false";
+              this.applied_posting127 = "false";
+              this.applied_posting128 = "false";
+              this.applied_posting129 = "false";
+              this.applied_posting130 = "false";
+              this.applied_posting131 = "false";
+              this.applied_posting132 = "false";
+              this.applied_posting133 = "false";
+              this.applied_posting134 = "false";
+              this.applied_posting135 = "false";
+              this.applied_posting136 = "false";
+            }
+            else {
+              console.log('gggg')
 
             }
-            console.log(this.applied_posting129);
-
-            const value_to_count20: string = "நகர துணை அமைப்பாளர் 1";
-
-            for (let value of roles) {
-              console.log(value);
-
-              if (value === value_to_count20) {
-                console.log("in");
-                this.applied_posting130 = "false";
-                break;
-
-              }
-              else {
-                this.applied_posting130 = "true";
-                continue;
-              }
-            }
-
-            console.log(this.applied_posting130)
-            const value_to_count21: string = "நகர துணை அமைப்பாளர் 2";
-
-            for (let value of roles) {
-
-
-              if (value === value_to_count21) {
-                console.log("hhh");
-                this.applied_posting131 = "false";
-                break;
-              }
-              else {
-                this.applied_posting131 = "true";
-                continue;
-              }
-
-
-            } console.log(this.applied_posting131)
-            const value_to_count22: string = "நகர துணை அமைப்பாளர் 3";
-
-            for (let value of roles) {
-
-              if (value === value_to_count22) {
-
-                this.applied_posting132 = "false";
-                break;
-              }
-              else {
-                this.applied_posting132 = "true";
-                continue;
-              }
-            }
-            this.applied_posting111 = "false";
-            this.applied_posting112 = "false";
-            this.applied_posting113 = "false";
-            this.applied_posting114 = "false";
-            this.applied_posting115 = "false";
-            this.applied_posting116 = "false";
-            this.applied_posting117 = "false";
-            this.applied_posting118 = "false";
-
-
-            this.applied_posting119 = "false";
-            this.applied_posting120 = "false";
-            this.applied_posting121 = "false";
-            this.applied_posting122 = "false";
-            this.applied_posting123 = "false";
-            this.applied_posting124 = "false";
-
-            this.applied_posting125 = "false";
-            this.applied_posting126 = "false";
-            this.applied_posting127 = "false";
-            this.applied_posting128 = "false";
-
-
-
-            this.applied_posting133 = "false";
-            this.applied_posting134 = "false";
-            this.applied_posting135 = "false";
-            this.applied_posting136 = "false";
-
-
-
-
-            this.applied_posting137 = "false";
-            this.applied_posting138 = "false";
-
-
-
-
-
           }
-          else {
-
-          }
-
-
-        }
-        else if (t == "பகுதி") {
-          if (t == "பகுதி") {
-
-            console.log(t);
-            const value_to_count23: string = "பகுதி அமைப்பாளர்";
-
-            for (let value of roles) {
-
-
-
-
-
-              console.log(value)
-              if (value == value_to_count23) {
-
-                this.applied_posting133 = "false";
-                break;
-
-
-              }
-              else {
-                this.applied_posting133 = "true";
-                continue;
-
-              }
-
-            }
-
-            const value_to_count24: string = "பகுதி துணை அமைப்பாளர் 1";
-
-            for (let value of roles) {
-              if (value === value_to_count24) {
-
-                this.applied_posting134 = "false";
-                continue; break;
-
-              }
-              else {
-                this.applied_posting134 = "true";
-                continue;
-              }
-            }
-
-
-            const value_to_count25: string = "பகுதி துணை அமைப்பாளர் 2";
-
-            for (let value of roles) {
-
-              if (value === value_to_count25) {
-
-                this.applied_posting135 = "false";
-                break;
-              }
-              else {
-                this.applied_posting135 = "true";
-                continue;
-              }
-            }
-
-
-            const value_to_count26: string = "பகுதி துணை அமைப்பாளர் 3";
-
-            for (let value of roles) {
-
-              if (value === value_to_count26) {
-
-                this.applied_posting136 = "false";
-                break;
-              }
-              else {
-                this.applied_posting136 = "true";
-                continue;
-              }
-            }
-            this.applied_posting111 = "false";
-            this.applied_posting112 = "false";
-            this.applied_posting113 = "false";
-            this.applied_posting114 = "false";
-            this.applied_posting115 = "false";
-            this.applied_posting116 = "false";
-            this.applied_posting117 = "false";
-            this.applied_posting118 = "false";
-
-
-            this.applied_posting119 = "false";
-            this.applied_posting120 = "false";
-            this.applied_posting121 = "false";
-            this.applied_posting122 = "false";
-            this.applied_posting123 = "false";
-            this.applied_posting124 = "false";
-
-
-            this.applied_posting125 = "false";
-            this.applied_posting126 = "false";
-            this.applied_posting127 = "false";
-            this.applied_posting128 = "false";
-
-            this.applied_posting129 = "false";
-            this.applied_posting130 = "false";
-            this.applied_posting131 = "false";
-            this.applied_posting132 = "false";
-
-
-
-
-
-
-            this.applied_posting137 = "false";
-            this.applied_posting138 = "false";
-
-
-
-
-
-          }
-          else {
-
-          }
-
-
-        }
-        else if (t == "பேரூர்") {
-          if (t == "பேரூர்") {
-
-            console.log(t);
-
-            for (let value of roles) {
-
-              const value_to_count27: string = "பேரூர் அமைப்பாளர்";
-
-
-
-              console.log(value)
-              if (value == value_to_count27) {
-
-                this.applied_posting137 = "false";
-                break;
-
-
-              }
-              else {
-                this.applied_posting137 = "true";
-                continue;
-
-              }
-            }
-            const value_to_count28: string = "பேரூர் துணை அமைப்பாளர்";
-
-            for (let value of roles) {
-
-
-
-
-              if (value === value_to_count28) {
-
-                this.applied_posting138 = "false";
-                break;
-
-              }
-              else {
-                this.applied_posting138 = "true";
-                continue;
-              }
-            }
-            this.applied_posting111 = "false";
-            this.applied_posting112 = "false";
-            this.applied_posting113 = "false";
-            this.applied_posting114 = "false";
-            this.applied_posting115 = "false";
-            this.applied_posting116 = "false";
-            this.applied_posting117 = "false";
-            this.applied_posting118 = "false";
-
-            this.applied_posting119 = "false";
-            this.applied_posting120 = "false";
-            this.applied_posting121 = "false";
-            this.applied_posting122 = "false";
-            this.applied_posting123 = "false";
-            this.applied_posting124 = "false";
-
-            this.applied_posting125 = "false";
-            this.applied_posting126 = "false";
-            this.applied_posting127 = "false";
-            this.applied_posting128 = "false";
-
-            this.applied_posting129 = "false";
-            this.applied_posting130 = "false";
-            this.applied_posting131 = "false";
-            this.applied_posting132 = "false";
-
-            this.applied_posting133 = "false";
-            this.applied_posting134 = "false";
-            this.applied_posting135 = "false";
-            this.applied_posting136 = "false";
-
-
-
-
-
-
-
-
-
-
-          }
-
-
-          else {
-
-            console.log('gggg')
-
-
-          }
-
-        }
-
-      }
+        
+        
+
+      }}
+    else{
+console.log('else')
+console.log('else')
+if (t == 'மாவட்டம்'){
+this.applied_posting111 = "true";
+this.applied_posting112 = "true";
+this.applied_posting113 = "true";
+this.applied_posting114 = "true";
+this.applied_posting115 = "true";
+this.applied_posting116 = "true";
+this.applied_posting117 = "true";
+this.applied_posting118 = "true";
+this.applied_posting119 = "false";
+this.applied_posting120 = "false";
+this.applied_posting121 = "false";
+this.applied_posting122 = "false";
+this.applied_posting123 = "false";
+this.applied_posting124 = "false";
+this.applied_posting125 = "false";
+this.applied_posting126 = "false";
+this.applied_posting127 = "false";
+this.applied_posting128 = "false";
+this.applied_posting129 = "false";
+this.applied_posting130 = "false";
+this.applied_posting131 = "false";
+this.applied_posting132 = "false";
+this.applied_posting133 = "false";
+this.applied_posting134 = "false";
+this.applied_posting135 = "false";
+this.applied_posting136 = "false";
+this.applied_posting137 = "false";
+this.applied_posting138 = "false";
+}
+ else if (t == 'மாநகரம்')             
+{
+  this.applied_posting111 = "false";
+  this.applied_posting112 = "false";
+  this.applied_posting113 = "false";
+  this.applied_posting114 = "false";
+  this.applied_posting115 = "false";
+  this.applied_posting116 = "false";
+  this.applied_posting117 = "false";
+  this.applied_posting118 = "false";
+  this.applied_posting119 = "true";
+  this.applied_posting120 = "true";
+  this.applied_posting121 = "true";
+  this.applied_posting122 = "true";
+  this.applied_posting123 = "true";
+  this.applied_posting124 = "true";
+  this.applied_posting125 = "false";
+  this.applied_posting126 = "false";
+  this.applied_posting127 = "false";
+  this.applied_posting128 = "false";
+  this.applied_posting129 = "false";
+  this.applied_posting130 = "false";
+  this.applied_posting131 = "false";
+  this.applied_posting132 = "false";
+  this.applied_posting133 = "false";
+  this.applied_posting134 = "false";
+  this.applied_posting135 = "false";
+  this.applied_posting136 = "false";
+  this.applied_posting137 = "false";
+  this.applied_posting138 = "false";
+} else if (t == "ஒன்றியம்") {
+  this.applied_posting111 = "false";
+  this.applied_posting112 = "false";
+  this.applied_posting113 = "false";
+  this.applied_posting114 = "false";
+  this.applied_posting115 = "false";
+  this.applied_posting116 = "false";
+  this.applied_posting117 = "false";
+  this.applied_posting118 = "false";
+  this.applied_posting119 = "false";
+  this.applied_posting120 = "false";
+  this.applied_posting121 = "false";
+  this.applied_posting122 = "false";
+  this.applied_posting123 = "false";
+  this.applied_posting124 = "false";
+  this.applied_posting125 = "true";
+  this.applied_posting126 = "true";
+  this.applied_posting127 = "true";
+  this.applied_posting128 = "true";
+  this.applied_posting129 = "false";
+  this.applied_posting130 = "false";
+  this.applied_posting131 = "false";
+  this.applied_posting132 = "false";
+  this.applied_posting133 = "false";
+  this.applied_posting134 = "false";
+  this.applied_posting135 = "false";
+  this.applied_posting136 = "false";
+  this.applied_posting137 = "false";
+  this.applied_posting138 = "false";
+}
+else if (t == "நகரம்") {
+  this.applied_posting111 = "false";
+  this.applied_posting112 = "false";
+  this.applied_posting113 = "false";
+  this.applied_posting114 = "false";
+  this.applied_posting115 = "false";
+  this.applied_posting116 = "false";
+  this.applied_posting117 = "false";
+  this.applied_posting118 = "false";
+  this.applied_posting119 = "false";
+  this.applied_posting120 = "false";
+  this.applied_posting121 = "false";
+  this.applied_posting122 = "false";
+  this.applied_posting123 = "false";
+  this.applied_posting124 = "false";
+  this.applied_posting125 = "false";
+  this.applied_posting126 = "false";
+  this.applied_posting127 = "false";
+  this.applied_posting128 = "false";
+  this.applied_posting129 = "true";
+  this.applied_posting130 = "true";
+  this.applied_posting131 = "true";
+  this.applied_posting132 = "true";
+  this.applied_posting133 = "false";
+  this.applied_posting134 = "false";
+  this.applied_posting135 = "false";
+  this.applied_posting136 = "false";
+  this.applied_posting137 = "false";
+  this.applied_posting138 = "false";
+} else if (t == "பகுதி") {
+  this.applied_posting111 = "false";
+  this.applied_posting112 = "false";
+  this.applied_posting113 = "false";
+  this.applied_posting114 = "false";
+  this.applied_posting115 = "false";
+  this.applied_posting116 = "false";
+  this.applied_posting117 = "false";
+  this.applied_posting118 = "false";
+  this.applied_posting119 = "false";
+  this.applied_posting120 = "false";
+  this.applied_posting121 = "false";
+  this.applied_posting122 = "false";
+  this.applied_posting123 = "false";
+  this.applied_posting124 = "false";
+  this.applied_posting125 = "false";
+  this.applied_posting126 = "false";
+  this.applied_posting127 = "false";
+  this.applied_posting128 = "false";
+  this.applied_posting129 = "false";
+  this.applied_posting130 = "false";
+  this.applied_posting131 = "false";
+  this.applied_posting132 = "false";
+  this.applied_posting133 = "true";
+  this.applied_posting134 = "true";
+  this.applied_posting135 = "true";
+  this.applied_posting136 = "true";
+  this.applied_posting137 = "false";
+  this.applied_posting138 = "false";
+}
+else if (t == "பேரூர்") {
+  this.applied_posting111 = "false";
+  this.applied_posting112 = "false";
+  this.applied_posting113 = "false";
+  this.applied_posting114 = "false";
+  this.applied_posting115 = "false";
+  this.applied_posting116 = "false";
+  this.applied_posting117 = "false";
+  this.applied_posting118 = "false";
+  this.applied_posting119 = "false";
+  this.applied_posting120 = "false";
+  this.applied_posting121 = "false";
+  this.applied_posting122 = "false";
+  this.applied_posting123 = "false";
+  this.applied_posting124 = "false";
+  this.applied_posting125 = "false";
+  this.applied_posting126 = "false";
+  this.applied_posting127 = "false";
+  this.applied_posting128 = "false";
+  this.applied_posting129 = "false";
+  this.applied_posting130 = "false";
+  this.applied_posting131 = "false";
+  this.applied_posting132 = "false";
+  this.applied_posting133 = "false";
+  this.applied_posting134 = "false";
+  this.applied_posting135 = "false";
+  this.applied_posting136 = "false";
+  this.applied_posting137 = "true";
+  this.applied_posting138 = "true";
+    }}
 
     });
 
@@ -1529,11 +1439,11 @@ export class AppointDistrictOffBearerComponent implements OnInit {
       alert("Please enter the valid details");
     }
   }
-  professionOption(option:any){
-    this.educationOptions=option;
+  professionOption(option: any) {
+    this.educationOptions = option;
     // console.log(this.MeetingOptions);
   }
-  
+
 
   calculateAge() {
     // console.log(this.date_of_birth);

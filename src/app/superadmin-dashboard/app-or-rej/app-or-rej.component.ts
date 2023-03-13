@@ -18,8 +18,8 @@ export class AppOrRejComponent implements OnInit {
   editform: FormGroup;
   dtOptions: DataTables.Settings = {};
   hidden: boolean = true;
-  district: string;
-  constituency: string = '';
+  district: string='';
+  constituency: string ='';
   date_of_birth: string;
   age: number;
   message: boolean;
@@ -55,7 +55,7 @@ export class AppOrRejComponent implements OnInit {
     //   {name:'nm2',email:'em2'},{name:'nm2',email:'em2'}
     // ]
 
-    this.districtname = JSON.parse(localStorage.getItem('user_district'));
+    // this.districtname = JSON.parse(localStorage.getItem('user_district'));
     this.FormIntialize();
     this.editform = this.fb.group({ //angForm
       email1: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -97,7 +97,7 @@ export class AppOrRejComponent implements OnInit {
     });
 
     //this.district=this.ApiService.user_district;
-    this.district = JSON.parse(localStorage.getItem('user_district'));
+    // this.district = JSON.parse(localStorage.getItem('user_district'));
 
   }
   FormIntialize() {
@@ -174,8 +174,8 @@ export class AppOrRejComponent implements OnInit {
     // this.ApiService.viewtableSA();
     // this.ApiService.viewtableOBapprove();
     this.getdata();
-    let obj = this.constituency_list;
-    this.user_constituency = obj[this.district];
+    // let obj = this.constituency_list;
+    // this.user_constituency = obj[this.district];
     this.showSpinner();
   }
   //Dafault age in form
@@ -189,13 +189,15 @@ export class AppOrRejComponent implements OnInit {
     this.spinnerService.show();
   }
   Constituency_selection(selection: any) {
-    //console.log(selection)
+    console.log(selection)
     if (selection != 'null') {
       //console.log(this.district);
       let obj = this.constituency_list;
-      this.user_constituency = obj[this.district];
+       this.user_constituency = obj[this.district];
+    
 
     }
+    
 
   }
   OBconstituency_change(a: any) {

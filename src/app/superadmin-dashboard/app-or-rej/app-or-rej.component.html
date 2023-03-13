@@ -53,8 +53,9 @@
               </div>
               <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
                  <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                      <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                    <div class="col-sm-6 mb-3 mb-sm-0"> 
+                      <!-- <div class="col-sm-12 mb-3 mb-sm-0"> -->
+                      <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                         <span class="required "> *</span></label><br>
                         <select  name="applied_posting" class="form-control" [disabled]="true" [value]="OBapplied_posting" >
                          <option value="" disabled selected hidden>Select Option</option>
@@ -70,12 +71,14 @@
                       
                       
               </div>
-                      
-                
-          
-              
+                    <!-- </div>   -->
+         
+         
+                    <!-- <div class="form-group row"> -->
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <label> பொறுப்பு<span class="required "> *</span></label><br>
+                      <!-- <div class="col-sm-12 mb-3 mb-sm-0"> -->
+                        <br>
+                      <label>பொறியாளர் அணி பொறுப்பு<span class="required "> *</span></label><br>
                       <!-- <select name="applied_role" formControlName="applied_role1"  class="form-control">
                           <option value="" selected disabled>Select Option</option>
                           <option value="Village Deputy Organiser">District President / மாவட்ட தலைவர்</option>
@@ -371,7 +374,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                    <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                       <span class="required "> *</span></label><br>
                     <select  name="applied_posting" class="form-control" [disabled]="true" [value]="OBapplied_posting" >
                        <option value="" disabled selected hidden>Select Option</option>
@@ -388,7 +391,8 @@
               
                 </div>
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <label> பொறுப்பு</label><br>
+                  <br>
+                  <label> பொறியாளர் அணி பொறுப்பு</label><br>
                   <select name="applied_role"  class="form-control" [disabled]="true" [value]="OBold_designation">
                     <option value="" disabled selected hidden>Select Option</option>
                     <option  value="மாவட்ட தலைவர்">மாவட்ட தலைவர்</option>
@@ -541,13 +545,13 @@
                   </div>
                
                     
-
+                  <div class="form-group row">
                     <div class="col-sm-12 mb-3 mb-sm-0">
                       <label>Comments</label>
                       <textarea name="party_comments" pInputText class="form-control" [disabled]="true" placeholder="Enter Comments" cols="100" rows="5" [value]="OBcomments"></textarea>
                     </div>
 
-                  </div>
+                  </div></div>
                 <!-- <div class="col-3" style="margin-left:34%;">
                     <a  class="btn btn-danger btn btn-block">
                       UPDATE OFFICE BEARER
@@ -582,13 +586,16 @@
                       <option *ngFor="let option of district_list" (value)="option" >
                         {{option}}</option>
                     </select> 
-                    
+                    <div class="invalid-msg" *ngIf="!district" [hidden]='hidden'>Select District
+                    </div>
+                    <!-- <div  class="invalid-msg" *ngIf="district =='Select District' && officebearerform.status=='VALID'" >
+                      Select District </div> -->
                   </div>
                  
                     <div class="col-sm-6">
                     <label>Assembly constituency/சட்டமன்ற தொகுதி<span class="required "> *</span></label><br>
                       <select class="form-control"  [(ngModel)]="constituency" >
-                        <option value="" selected disabled hidden>Select constituency</option>
+                        <option value="" selected disabled hidden>Select Constituency<option>
                         <option *ngFor="let option of user_constituency" (value)="option" >
                           {{option}}</option>
                       </select>
@@ -597,6 +604,7 @@
                     </div> -->
                     <div class="invalid-msg" *ngIf="!constituency" [hidden]='hidden'>Select Constituency
                     </div>
+                    
                     <!-- <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div> -->
                  
                       <!-- <div *ngIf="officebearerform.get('constituency').touched && officebearerform.get('constituency') !=''">
@@ -648,7 +656,7 @@
                 <form  [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                      <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                         <span class="required "> *</span></label><br>
                       <select  name="applied_posting" class="form-control" formControlName="applied_posting"  (change)="getposting1(officebearerform.get('applied_posting').value)">
                          <option value="" disabled selected hidden>Select Option</option>
@@ -669,7 +677,8 @@
                 
                   </div>
                   <div class="col-sm-6">
-                    <label> பொறுப்பு<span class="required "> *</span></label><br>
+                    <br>
+                    <label> பொறியாளர் அணி பொறுப்பு<span class="required "> *</span></label><br>
                     <select  name="applied_role"  class="form-control" formControlName="applied_role"  >
                       
                         <option value="" selected disabled hidden>Select Option</option>

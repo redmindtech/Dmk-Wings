@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-left: 50%;">
+    <div *ngIf="!tableshow" style="margin-left: 50%;">
       <div *ngIf="customers.length == 0" class="loader"></div>
     </div>
 
@@ -53,7 +53,7 @@
               <form [formGroup]='editform' (ngSubmit)="updatedata(editform)" autocomplete="off">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                    <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                       <span class="required "> *</span></label><br>
                     <select name="applied_posting1" class="form-control" [disabled]="true" [value]="OBapplied_posting">
                       <option value="" disabled selected hidden>Select Option</option>
@@ -74,7 +74,8 @@
 
 
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>பொறுப்பு<span class="required "> *</span></label><br>
+                    <br>
+                    <label>பொறியாளர் அணி பொறுப்பு<span class="required "> *</span></label><br>
                     
                     <input type="text" name="applied_role1" formControlName="applied_role1" class="form-control" [value]="OBold_designation"
                       placeholder="Responsibility / பொறுப்பு" readonly="readonly" />
@@ -374,7 +375,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                    <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                       <span class="required "> *</span></label><br>
                     <select name="applied_posting" class="form-control" [disabled]="true" [value]="OBapplied_posting">
                       <option value="" disabled selected hidden>Select Option</option>
@@ -391,7 +392,8 @@
 
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>பொறுப்பு</label><br>
+                    <br>
+                    <label> பொறியாளர் அணி பொறுப்பு</label><br>
                     <input type="text" name="applied_role1" formControlName="applied_role1" class="form-control" [value]="OBold_designation"
                     placeholder="Responsibility / பொறுப்பு" readonly="readonly" />
                     <!-- <select name="applied_role" class="form-control" [disabled]="true" [value]="OBold_designation" >
@@ -605,9 +607,9 @@
                     <option *ngFor="let option of user_constituency" (value)="option">
                       {{option}}</option>
                   </select>
-                  <div *ngIf="!constituency && officebearerform.status=='VALID' " class="invalid-msg">Select
+                  <!-- <div *ngIf="!constituency && officebearerform.status=='VALID' " class="invalid-msg">Select
                     Constituency
-                  </div>
+                  </div> -->
                   <div class="invalid-msg" *ngIf="!constituency" [hidden]='hidden'>Select Constituency
                   </div>
                   <!-- <div  class="invalid-msg" *ngIf="officebearerform.get('constituency').untouched" [hidden]='hidden'>Please select constituency</div> -->
@@ -661,7 +663,7 @@
               <form [formGroup]='officebearerform' (ngSubmit)="postdata(officebearerform)" autocomplete="off">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label>மாவட்ட பொறியாளர் அணி பொறுப்பு
+                    <label>மாவட்டம் / மாநகரம் / ஒன்றியம் / நகரம் / பகுதி / பேரூர் பொறியாளர் அணி பொறுப்பு
                       <span class="required "> *</span></label><br>
                     <select name="applied_posting" class="form-control" formControlName="applied_posting"
                       (change)="getposting1(officebearerform.get('applied_posting').value)">
@@ -683,7 +685,8 @@
 
                   </div>
                   <div class="col-sm-6">
-                    <label>பொறுப்பு<span class="required "> *</span></label><br>
+                    <br>
+                    <label>பொறியாளர் அணி பொறுப்பு<span class="required "> *</span></label><br>
                     <select name="applied_role" class="form-control" formControlName="applied_role">
 
                       <option value="" selected disabled hidden>Select Option</option>
@@ -1078,7 +1081,7 @@
 
     <!-- OFFICE BEARER DATATABLE         -->
     <div class="card-body">
-      <div class="table-responsive" *ngIf="customers.length != 0">
+      <div class="table-responsive" *ngIf="tableshow">
         <!-- TABLE -->
         <table class="table table-bordered display" [dtOptions]="dtOptions[0]" datatable>
           <thead>
