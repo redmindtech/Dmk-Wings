@@ -15,8 +15,8 @@ export class ChangePasswordComponent implements OnInit {
     token:string;
     today = new Date();
     ex:string;
-    expiry_date:Date;
     expdate_to_str:string;
+    db_token:string;
 
 
   constructor(public ApiService:ApiServiceService,
@@ -82,20 +82,20 @@ getdata() {
       this.customers.push(data[prop])
     }
     console.log(this.customers);
-    this.expiry_date=this.customers[0][0].expiry_link;
-    //alert(this.expiry_date);
-    this.ex=this.datepipe.transform(this.today,"YYYY-MM-dd HH:MM:ss");
-    //alert(this.ex);
-    this.ex_time=this.datepipe.transform(this.expiry_date,"YYYY-MM-dd HH:MM:ss");
-    if(Date.parse(this.ex_time)>Date.parse(this.ex))
-    {
-      this.form_hidden=false;
-      this.content_hidden=true;
-    }
-    else{
-      this.form_hidden=true;
-      this.content_hidden=false;
-    }
+     this.db_token=this.customers[0][0].token;
+   // alert(this.db_token);
+    // this.ex=this.datepipe.transform(this.today,"YYYY-MM-dd HH:MM:ss");
+    // //alert(this.ex);
+    // this.ex_time=this.datepipe.transform(this.expiry_date,"YYYY-MM-dd HH:MM:ss");
+     if(this.db_token==this.token)
+     {
+       this.form_hidden=false;
+       this.content_hidden=true;
+     }
+     else{
+       this.form_hidden=true;
+       this.content_hidden=false;
+     }
   });
 }
 
