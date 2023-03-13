@@ -54,28 +54,32 @@
         <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
       </div>   -->
     </div>
-    <div class="row">
-      <!-- Applications Overview Bar chart -->
-      <div class="card shadow mb-8">
-          <div class="card-header py-3" >
-              <h6 class="m-0 font-weight-bold text-primary">District-wise Engineers Overview</h6>
-          </div>
-          <div class="card-body" >
-              <div class="chart-bar" style="width:500px">
-                  <canvas  id="MyChart" >{{ chart }}</canvas>
+    <div class="row h-auto justify-content-around" style="gap: 10px;">
+      <div class="col" >
+          <!-- Applications Overview Bar chart -->
+          <div class="card shadow h-100">
+              <div class="card-header" >
+                  <h6 class="m-0 font-weight-bold text-primary">District-wise Engineers Overview</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-bar">
+                      <canvas  id="MyChart" >{{ chart }}</canvas>
+                  </div>
               </div>
           </div>
       </div>
-      <div class="card shadow mb-8 ml-3">
-        <div class="card-header py-3" >
-            <h6 class="m-0 font-weight-bold text-primary">Branch-wise Engineers</h6>
+      <div class="col" >
+        <div class="card shadow h-100">
+          <div class="card-header" >
+              <h6 class="m-0 font-weight-bold text-primary">Branch-wise Engineers</h6>
+          </div>
+          <div class="card-body" >
+              <div>
+                <canvas id="canvas"></canvas>
+              </div>
+          </div>
         </div>
-        <div class="card-body" >
-            <div style="width:400px">
-              <canvas id="canvas"></canvas>
-            </div>
-        </div>
-    </div>
+      </div>
       
    </div>
    
