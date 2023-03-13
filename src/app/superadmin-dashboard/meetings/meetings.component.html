@@ -216,9 +216,8 @@
                     <th>Location</th>
                     <th>Date</th>
                     <th>Meeting Type</th>
-
                     <th>Show</th>
-                  <!-- <th>Edit</th>-->
+                    <th>Edit</th>
                     <th>Cancel</th>
                 </tr>
               </thead>
@@ -247,12 +246,12 @@
                         {{customer.meeting_type}}
                         </td>
 
-                    <td><a data-toggle="modal" data-target="#showCM" class="btn btn-primary btn-circle btn-sm" (click)="buttonviewmeeting(customer)">
+                    <td><a data-toggle="modal" data-target="#showCM" class="btn btn-primary btn-circle btn-sm" (click)="buttonviewmeeting(customer,'show')">
                         <i class="fas fa-flag"></i>
                     </a></td>
-                    <!-- <td><a data-toggle="modal" data-target="#modal-xl" class="btn btn-info btn-circle btn-sm" >
-                        <i class="fas fa-check"></i>
-                    </a></td> -->
+                    <td><button data-toggle="modal" data-target="#showCM" [disabled]="customer.status=='cancel'" class="btn btn-info btn-circle btn-sm" (click)="buttonviewmeeting(customer,'edit')">
+                      <i class="fas fa-check"></i>
+                    </button></td>
                     <td><a *ngIf="customer.status=='Active';else notShow" class="btn btn-danger btn-circle btn-sm" (click)="delete_CM(customer.id)">
                         <i class="fas fa-times"></i>
                     </a></td>
@@ -279,29 +278,43 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="card-body">
-                <form class="register-form" [formGroup]='createmeetingform' (ngSubmit)="postdata(createmeetingform)" autocomplete="off">
+                <form class="register-form" [formGroup]='editmeetingform' (ngSubmit)="updatedata(editmeetingform,CM_id)" autocomplete="off">
                 <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Meeting Name / கூட்டத்தின் பெயர்</label><span class="required "> *</span>
-                            <input pInputText type="text" class="form-control"  formControlName="meeting_name"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்"  [value]="CM_name" [disabled]="true" readonly="readonly">
+                            <input pInputText type="text" class="form-control"  placeholder="Enter Meeting Name / கூட்டத்தின் பெயர்"  [value]="CM_name"  readonly="readonly">
 
                         </div>
                        
                 </div>
-
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="editfield">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                       <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
-                      <input pInputText type="date"  id="exampleFirstName" formControlName="meeting_date" class="form-control"
-                                  placeholder="Enter Meeting Date / சந்திப்பு தேதி" required [value]="CM_date" readonly="readonly">
+                      <input pInputText type="date"  class="form-control" formControlName="meeting_date"
+                                  placeholder="Enter Meeting Date / சந்திப்பு தேதி" >
 
                   </div> 
                         <div class="col-sm-6">
                             <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
-                            <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" required  [value]="CM_time" readonly="readonly">
+                            <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்">
 
                         </div>
                 </div>
+
+                <div class="form-group row" *ngIf="!editfield">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Meeting Date / சந்திப்பு தேதி</label><span class="required "> *</span>
+                      <input pInputText type="date"  class="form-control" formControlName="meeting_date"
+                                  placeholder="Enter Meeting Date / சந்திப்பு தேதி" readonly="readonly">
+
+                  </div> 
+                        <div class="col-sm-6">
+                            <label>Meeting Time / சந்திப்பு நேரம்</label><span class="required "> *</span>
+                            <input pInputText type="time" class="form-control" formControlName="meeting_time" placeholder="Enter Meeting Time / சந்திப்பு நேரம்" readonly="readonly">
+
+                        </div>
+                </div>
+                
 
                 <div class="form-group" required >
                   <label>Participants / பங்கேற்பாளர்கள்</label><span class="required "> *</span>
@@ -367,11 +380,12 @@
                         <option value="3">Chennai/சென்னை</option>
                     </select>
                 </div> -->
-                <!-- <div class="col-3" style="margin-left:34%;">
-                    <button class="btn btn-danger btn btn-block">
-                    Create Meeting
-                    </button>
-                </div> -->
+                <div class="d-flex justify-content-center">
+                  <div  style="width:200px">
+                    <button class="btn btn-danger btn btn-block" >Update Meeting</button>
+                  </div>
+                </div>
+                
             </form>
         </div>
     </div>

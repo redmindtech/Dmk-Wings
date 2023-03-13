@@ -584,6 +584,19 @@ public viewtableDA() {
                 }));
                 }
 
+                public updatemeeting(id:any,meeting_date:any,meeting_time:any) {
+                  console.log(id,meeting_date,meeting_time)
+                  const httpOptions : Object = {
+                          headers: new HttpHeaders({
+                            'Content-Type':'application/x-www-form-urlencoded'
+                          })
+                        };
+                  return this.httpClient.post<any>(this.baseUrl + '/updatemeeting.php', {id,meeting_date,meeting_time},httpOptions)
+                                .pipe(map(Users => {
+                                return Users;
+                                }));
+                          }
+
 
 //token
 setToken(token: string) {

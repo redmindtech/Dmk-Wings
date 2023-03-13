@@ -36,6 +36,8 @@ export class CreateMeetingsComponent implements OnInit {
   
   dropDownForm: FormGroup;
   tableshow: boolean=false;
+  CM_id: any;
+  editmeetingform !:FormGroup;
   
 
 
@@ -64,8 +66,8 @@ export class CreateMeetingsComponent implements OnInit {
       comments:[''],
       meeting_location:['',Validators.required],
       meeting_district:['']
-
     });
+    this.editformInitialize('false');
   }
 
 
@@ -209,13 +211,13 @@ export class CreateMeetingsComponent implements OnInit {
   CM_constituency:any;
 
 
-  buttonviewmeeting(a:any){
-    console.log(a)
-
-console.log(a.date)
-
-      
-          this.CM_name=a.meeting_name;
+  editfield:boolean=false;
+  buttonviewmeeting(a:any,editbutton:any ){
+    console.log(a,editbutton);
+    //console.log(a.date)
+    if(editbutton=='edit'){
+      this.editfield=true;
+      this.CM_name=a.meeting_name;
           this.CM_meeting_location=a.meeting_location;
           this.CM_date=a.date;
           this.CM_time=a.time;
@@ -223,7 +225,55 @@ console.log(a.date)
           this.CM_comments=a.comments;
           this.CM_participants=a.participants;
           this.CM_constituency=a.constituency;
+          this.CM_id=a.id;
           console.log(this.CM_name)
+          //this.editformInitialize(false);
+      }
+    else{
+      this.editfield=false;
+      this.CM_name=a.meeting_name;
+          this.CM_meeting_location=a.meeting_location;
+          this.CM_date=a.date;
+          this.CM_time=a.time;
+          this.CM_meeting_type=a.meeting_type;
+          this.CM_comments=a.comments;
+          this.CM_participants=a.participants;
+          this.CM_constituency=a.constituency;
+          
+          console.log(this.CM_name)
+          //this.editformInitialize(false);
+    }
+    this.editmeetingform.get('meeting_date').setValue(a.date);
+    this.editmeetingform.get('meeting_time').setValue(a.time);
+          //this.editmeetingform.controls['meeting_date'].disable();
+        //  this.editmeetingform.controls['meeting_date'].setValue(this.CM_date);
+        //  this.editmeetingform.controls['meeting_date'].setValue(this.CM_time);
+
+    }
+
+          editformInitialize(a){
+            this.editmeetingform= this.fb.group({
+              meeting_date:[''],
+              meeting_time:[''],
+          });
+          }
+        
+          updatedata(updateform,id){
+            console.log(updateform,id);  
+            this.spinner = true;
+            this.ApiService.updatemeeting(this.CM_id,updateform.value.meeting_date,updateform.value.meeting_time).pipe().subscribe(
+              data => {
+                console.log(data);
+                this.spinnerService.hide();
+                    setTimeout(function () {
+                      alert("Meeting detail has been updated!");
+                      window.location.reload();
+                    }, 100)
+                },
+              
+              error => {
+                console.log(error);
+              });
           }
 
 }
